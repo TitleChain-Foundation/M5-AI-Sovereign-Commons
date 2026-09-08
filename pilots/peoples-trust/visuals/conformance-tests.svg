@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Conformance and failure testing</title>
+  <desc id="desc">The pilot tests invalid authority, collapsed rights, missing regulated roles, conflicting records, correction, recovery, and successor portability before launch.</desc>
+  <rect width="1200" height="500" rx="28" fill="#10152c"/>
+  <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">The proof is whether unsafe actions fail before execution</text>
+  <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">A successful demo includes denials, correction, recovery, and successor continuity</text>
+  <g font-family="Arial, sans-serif" font-size="17">
+    <rect x="65" y="150" width="520" height="265" rx="20" fill="#f7f2e8"/>
+    <text x="105" y="195" fill="#10152c" font-size="21" font-weight="700">MUST DENY OR RESOLVE</text>
+    <text x="105" y="235" fill="#39405c">- wrong signer or expired delegation</text>
+    <text x="105" y="270" fill="#39405c">- title, operator, water, crop, and M4 rights collapsed</text>
+    <text x="105" y="305" fill="#39405c">- missing regulated role or holder restriction</text>
+    <text x="105" y="340" fill="#39405c">- conflicting authoritative and linked records</text>
+    <text x="105" y="375" fill="#39405c">- compromised device or unavailable provider</text>
+    <rect x="615" y="150" width="520" height="265" rx="20" fill="#28a9a1"/>
+    <text x="655" y="195" fill="#071e24" font-size="21" font-weight="700">MUST DEMONSTRATE</text>
+    <text x="655" y="235" fill="#071e24">- attributable allow and deny receipts</text>
+    <text x="655" y="270" fill="#071e24">- restriction change and exception authority</text>
+    <text x="655" y="305" fill="#071e24">- correction without erasing history</text>
+    <text x="655" y="340" fill="#071e24">- recovery without authority escalation</text>
+    <text x="655" y="375" fill="#071e24">- export to an authorized successor</text>
+  </g>
+  <text x="600" y="462" text-anchor="middle" fill="#d5a84b" font-family="Arial, sans-serif" font-size="19" font-weight="700">Passing a bounded test is evidence for that test - not certification or legal approval</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Public reviewers needed</title>
+  <desc id="desc">The pilot seeks input from regulators, recordkeepers, title professionals, operators, communities, legal and security reviewers, standards builders, and the public.</desc>
+  <rect width="1200" height="520" rx="28" fill="#10152c"/>
+  <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">Who needs a seat at the review table?</text>
+  <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">Bring one concrete risk, requirement, objection, source, test, or correction</text>
+  <g font-family="Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle">
+    <g fill="#f7f2e8"><rect x="65" y="155" width="245" height="90" rx="16"/><rect x="330" y="155" width="245" height="90" rx="16"/><rect x="595" y="155" width="245" height="90" rx="16"/><rect x="860" y="155" width="275" height="90" rx="16"/></g>
+    <g fill="#10152c"><text x="188" y="207">REGULATORS</text><text x="453" y="207">TRANSFER AGENTS</text><text x="718" y="207">TITLE PROFESSIONALS</text><text x="998" y="207">OPERATORS + COMMUNITIES</text></g>
+    <g fill="#28a9a1"><rect x="65" y="275" width="245" height="90" rx="16"/><rect x="330" y="275" width="245" height="90" rx="16"/><rect x="595" y="275" width="245" height="90" rx="16"/><rect x="860" y="275" width="275" height="90" rx="16"/></g>
+    <g fill="#071e24"><text x="188" y="327">LEGAL + TAX</text><text x="453" y="327">PRIVACY + SECURITY</text><text x="718" y="327">STANDARDS BUILDERS</text><text x="998" y="327">PUBLIC-INTEREST REVIEWERS</text></g>
+  </g>
+  <rect x="170" y="410" width="860" height="58" rx="15" fill="#d5a84b"/>
+  <text x="600" y="447" text-anchor="middle" fill="#10152c" font-family="Arial, sans-serif" font-size="18" font-weight="700">Criticism is welcome. Private records and vulnerabilities stay in approved private channels.</text>
+</svg>

@@ -61,6 +61,32 @@ commenter's full submission.
    immutability as the sole source of legal effect.
 5. Define technology-neutral resilience properties tied to the role performed.
 
+## Pilot Project Pipeline
+
+The People's Trust simulation is Pilot 001 of a proposed repeatable national
+framework, not a single illustrative transaction. It is designed to test a
+common control pattern across independently bounded projects:
+
+```text
+Pilot 001 - complete synthetic framework
+    -> Pilot 002 - independent replication
+    -> Pilot 003+ - national scale and anti-consolidation tests
+```
+
+The repeated pattern keeps authoritative title, stewardship, local operations,
+project economics, any separately analyzed M4 economic right, regulated
+recordkeeping, and correction evidence distinct. This gives regulators, state
+agencies, transfer agents, title professionals, operators, and standards
+reviewers more than one scenario against which to test portability,
+jurisdictional variation, successor continuity, and failure handling.
+
+The broader pipeline reflects years of private research but is published only
+as anonymous conformance categories. It is not an asset inventory, acquisition
+announcement, offering pipeline, or evidence that any owner, seller, operator,
+regulator, transfer agent, or agency has agreed to participate.
+
+[Open the claims-safe visual Pilot Project Pipeline](../pilots/peoples-trust/#pilot-project-pipeline).
+
 ## Where this work is tracked
 
 | Public workspace | Purpose |

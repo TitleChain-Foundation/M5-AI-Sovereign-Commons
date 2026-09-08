@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Four rights remain separate</title>
+  <desc id="desc">Stewardship participation, official title, local operating authority, and any separately analyzed economic right are independently defined and never silently collapsed into one token.</desc>
+  <rect width="1200" height="500" rx="28" fill="#10152c"/>
+  <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">Four rights remain separate</text>
+  <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">No wallet, membership, credential, investment, or token silently combines them</text>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <rect x="65" y="155" width="245" height="220" rx="20" fill="#f7f2e8"/>
+    <text x="188" y="200" fill="#10152c" font-size="21" font-weight="700">STEWARDSHIP</text>
+    <text x="188" y="240" fill="#39405c" font-size="16">mission participation</text>
+    <text x="188" y="268" fill="#39405c" font-size="16">anti-capture governance</text>
+    <text x="188" y="296" fill="#39405c" font-size="16">no automatic title,</text>
+    <text x="188" y="322" fill="#39405c" font-size="16">operator, or economic right</text>
+
+    <rect x="330" y="155" width="245" height="220" rx="20" fill="#28a9a1"/>
+    <text x="453" y="200" fill="#071e24" font-size="21" font-weight="700">TITLE</text>
+    <text x="453" y="240" fill="#071e24" font-size="16">authoritative record</text>
+    <text x="453" y="268" fill="#071e24" font-size="16">owner and restrictions</text>
+    <text x="453" y="296" fill="#071e24" font-size="16">severable rights</text>
+    <text x="453" y="322" fill="#071e24" font-size="16">lawful conveyance</text>
+
+    <rect x="595" y="155" width="245" height="220" rx="20" fill="#f7f2e8"/>
+    <text x="718" y="200" fill="#10152c" font-size="21" font-weight="700">OPERATIONS</text>
+    <text x="718" y="240" fill="#39405c" font-size="16">credentialed local operator</text>
+    <text x="718" y="268" fill="#39405c" font-size="16">bounded budget and scope</text>
+    <text x="718" y="296" fill="#39405c" font-size="16">prohibited actions</text>
+    <text x="718" y="322" fill="#39405c" font-size="16">revocation and succession</text>
+
+    <rect x="860" y="155" width="275" height="220" rx="20" fill="#d5a84b"/>
+    <text x="998" y="200" fill="#10152c" font-size="21" font-weight="700">ECONOMIC / M4</text>
+    <text x="998" y="240" fill="#10152c" font-size="16">separate legal analysis</text>
+    <text x="998" y="268" fill="#10152c" font-size="16">issuer and terms</text>
+    <text x="998" y="296" fill="#10152c" font-size="16">eligibility and restrictions</text>
+    <text x="998" y="322" fill="#10152c" font-size="16">recordkeeper where required</text>
+  </g>
+  <text x="600" y="438" text-anchor="middle" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="19" font-weight="700">The system proves relationships among rights; it does not erase their legal differences</text>
+</svg>
