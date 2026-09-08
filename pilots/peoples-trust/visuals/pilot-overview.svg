@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
   <title id="title">People's Trust synthetic conformance pilot</title>
   <desc id="desc">A permanent stewardship commons connects to isolated projects whose title, operations, economic rights, and evidence remain separate.</desc>
+  <style>
+    text { font-family: Arial, sans-serif; } text[font-size="30"], text[font-size="32"], text[font-size="34"] { font-family: Georgia, "Times New Roman", serif; }
+    [fill="#10152c"] { fill: #211627; } [fill="#28a9a1"] { fill: #f7f4ee; } [fill="#071e24"] { fill: #211627; } [fill="#39405c"] { fill: #4c4650; }
+    [fill="#aeb8d6"] { fill: #d8cbd8; } [fill="#232b50"] { fill: #321b38; } [fill="#d5a84b"] { fill: #c7a552; } [fill="#f7f2e8"] { fill: #fffdf9; } [stroke="#d5a84b"] { stroke: #d53679; }
+    stop[stop-color="#10152c"] { stop-color: #211627; } stop[stop-color="#23345b"] { stop-color: #321b38; }
+  </style>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#10152c"/>

@@ -1,6 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
   <title id="title">Conformance and failure testing</title>
   <desc id="desc">The pilot tests invalid authority, collapsed rights, missing regulated roles, conflicting records, correction, recovery, and successor portability before launch.</desc>
+  <style>
+    text { font-family: Arial, sans-serif; } text[font-size="30"], text[font-size="32"], text[font-size="34"] { font-family: Georgia, "Times New Roman", serif; }
+    [fill="#10152c"] { fill: #211627; } [fill="#28a9a1"] { fill: #f7f4ee; } [fill="#071e24"] { fill: #211627; } [fill="#39405c"] { fill: #4c4650; }
+    [fill="#aeb8d6"] { fill: #d8cbd8; } [fill="#232b50"] { fill: #321b38; } [fill="#d5a84b"] { fill: #c7a552; } [fill="#f7f2e8"] { fill: #fffdf9; } [stroke="#d5a84b"] { stroke: #d53679; }
+  </style>
   <rect width="1200" height="500" rx="28" fill="#10152c"/>
   <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">The proof is whether unsafe actions fail before execution</text>
   <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">A successful demo includes denials, correction, recovery, and successor continuity</text>

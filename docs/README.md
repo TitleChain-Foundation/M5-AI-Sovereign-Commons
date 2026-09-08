@@ -13,8 +13,8 @@ Use this page to choose a path before opening the detailed source documents.
 | Open standards and portability | [Open Standards Evidence Registry](OPEN-STANDARDS-EVIDENCE-REGISTRY.md) | [M5POD Data Portability Profile](M5POD-DATA-PORTABILITY-PROFILE.md) |
 | Communications | [Sovereign Communications Profile](SOVEREIGN-COMMUNICATIONS-PROFILE.md) | [Threat Model](../THREAT-MODEL.md) |
 | Money, rights, and jurisdiction | [Value Instrument and Jurisdiction Model](VALUE-INSTRUMENT-AND-JURISDICTION.md) | [Draft schemas](../schemas/) and [synthetic examples](../examples/) |
-| People's Trust pilot | [Visual Pilot Library](../pilots/peoples-trust/) | [Pilot specification](PEOPLES-TRUST-PUBLIC-PILOT.md) |
-| SEC public input | [SEC Public Input Summary](../sec-public-input/) | [Pilot and SEC RFI Crosswalk](PILOT-SEC-RFI-CROSSWALK.md) |
+| People's Trust pilot | [Visual Pilot Library](../pilots/peoples-trust/README.md) | [Pilot specification](PEOPLES-TRUST-PUBLIC-PILOT.md) |
+| SEC public input | [SEC Public Input Summary](../sec-public-input/README.md) | [Pilot and SEC RFI Crosswalk](PILOT-SEC-RFI-CROSSWALK.md) |
 
 ## How to read this repository
 

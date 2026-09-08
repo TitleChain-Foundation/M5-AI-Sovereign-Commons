@@ -19,9 +19,9 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 
 | I want to understand | Visual landing page |
 | --- | --- |
-| What the Commons contains and how the documents fit together | [Documentation map](docs/) |
-| How the proposed People's Trust pilot tests the standards | [People's Trust Public Pilot Library](pilots/peoples-trust/) |
-| What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/) |
+| What the Commons contains and how the documents fit together | [Documentation map](docs/README.md) |
+| How the proposed People's Trust pilot tests the standards | [People's Trust Public Pilot Library](pilots/peoples-trust/README.md) |
+| What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
 | What is safe to publish or how to report a vulnerability | [Public-review boundaries](#public-review-boundaries) and [Security](SECURITY.md) |
 
 **Public review path:** visual orientation -> maintained source text -> scoped
@@ -96,7 +96,7 @@ jurisdictions, and standards references is documented in
 
 Supporting public-review materials:
 
-- [Visual documentation map](docs/)
+- [Visual documentation map](docs/README.md)
 - [M5Canon Function Namespace](docs/M5CANON-FUNCTION-NAMESPACE.md)
 - [M5AGT Authority and Activation](docs/M5AGT-AUTHORITY-AND-ACTIVATION.md)
 - [Named Role and Function Crosswalk](docs/NAMED-ROLE-FUNCTION-CROSSWALK.md)
@@ -105,8 +105,8 @@ Supporting public-review materials:
 - [Sovereign Communications Profile](docs/SOVEREIGN-COMMUNICATIONS-PROFILE.md)
 - [People's Trust Public Conformance Pilot](docs/PEOPLES-TRUST-PUBLIC-PILOT.md)
 - [Pilot and SEC Request-for-Input Crosswalk](docs/PILOT-SEC-RFI-CROSSWALK.md)
-- [People's Trust Public Pilot Library](pilots/peoples-trust/)
-- [SEC Public Input Summary](sec-public-input/)
+- [People's Trust Public Pilot Library](pilots/peoples-trust/README.md)
+- [SEC Public Input Summary](sec-public-input/README.md)
 - [Threat Model](THREAT-MODEL.md)
 - [Draft JSON Schemas](schemas/) and [synthetic examples](examples/)
 - [Schema validation tests](tests/test_schemas.py)
