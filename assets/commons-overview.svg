@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">M5 AI Sovereign Commons public review map</title>
+  <desc id="desc">Human authority flows through open standards into bounded systems, public pilots, and evidence-based review.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10152c"/>
+      <stop offset="1" stop-color="#222b52"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#d5a84b"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="440" rx="28" fill="url(#background)"/>
+  <text x="70" y="70" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="34" font-weight="700">M5 AI Sovereign Commons</text>
+  <text x="70" y="105" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="20">A visual path into the maintained public record</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="70" y="160" width="230" height="170" rx="18" fill="#f7f2e8"/>
+    <text x="185" y="205" text-anchor="middle" fill="#10152c" font-size="21" font-weight="700">HUMAN AUTHORITY</text>
+    <text x="185" y="245" text-anchor="middle" fill="#39405c" font-size="17">accountable principal</text>
+    <text x="185" y="273" text-anchor="middle" fill="#39405c" font-size="17">current standing</text>
+    <text x="185" y="301" text-anchor="middle" fill="#39405c" font-size="17">explicit delegation</text>
+
+    <rect x="345" y="160" width="230" height="170" rx="18" fill="#d5a84b"/>
+    <text x="460" y="205" text-anchor="middle" fill="#10152c" font-size="21" font-weight="700">OPEN STANDARDS</text>
+    <text x="460" y="245" text-anchor="middle" fill="#10152c" font-size="17">authority controls</text>
+    <text x="460" y="273" text-anchor="middle" fill="#10152c" font-size="17">portable evidence</text>
+    <text x="460" y="301" text-anchor="middle" fill="#10152c" font-size="17">conformance tests</text>
+
+    <rect x="620" y="160" width="230" height="170" rx="18" fill="#28a9a1"/>
+    <text x="735" y="205" text-anchor="middle" fill="#071e24" font-size="21" font-weight="700">PUBLIC PILOTS</text>
+    <text x="735" y="245" text-anchor="middle" fill="#071e24" font-size="17">synthetic scenarios</text>
+    <text x="735" y="273" text-anchor="middle" fill="#071e24" font-size="17">failure conditions</text>
+    <text x="735" y="301" text-anchor="middle" fill="#071e24" font-size="17">independent review</text>
+
+    <rect x="895" y="160" width="235" height="170" rx="18" fill="#f7f2e8"/>
+    <text x="1012" y="205" text-anchor="middle" fill="#10152c" font-size="21" font-weight="700">PUBLIC EVIDENCE</text>
+    <text x="1012" y="245" text-anchor="middle" fill="#39405c" font-size="17">comments and risks</text>
+    <text x="1012" y="273" text-anchor="middle" fill="#39405c" font-size="17">proposed actions</text>
+    <text x="1012" y="301" text-anchor="middle" fill="#39405c" font-size="17">recorded outcomes</text>
+
+    <path d="M300 245 H335" stroke="#d5a84b" stroke-width="5" marker-end="url(#arrow)"/>
+    <path d="M575 245 H610" stroke="#d5a84b" stroke-width="5" marker-end="url(#arrow)"/>
+    <path d="M850 245 H885" stroke="#d5a84b" stroke-width="5" marker-end="url(#arrow)"/>
+  </g>
+  <text x="600" y="390" text-anchor="middle" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="18">Draft for public comment - visuals orient; maintained text and evidence control</text>
+</svg>

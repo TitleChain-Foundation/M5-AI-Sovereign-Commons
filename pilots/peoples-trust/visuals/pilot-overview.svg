@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">People's Trust synthetic conformance pilot</title>
+  <desc id="desc">A permanent stewardship commons connects to isolated projects whose title, operations, economic rights, and evidence remain separate.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#10152c"/>
+      <stop offset="1" stop-color="#23345b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="620" rx="28" fill="url(#background)"/>
+  <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">People's Trust Public Conformance Pilot</text>
+  <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">Synthetic evidence first - no acquisition, offering, ownership, or approval claim</text>
+
+  <rect x="330" y="145" width="540" height="105" rx="20" fill="#d5a84b"/>
+  <text x="600" y="188" text-anchor="middle" fill="#10152c" font-family="Arial, sans-serif" font-size="24" font-weight="700">PERMANENT STEWARDSHIP COMMONS</text>
+  <text x="600" y="220" text-anchor="middle" fill="#10152c" font-family="Arial, sans-serif" font-size="17">mission - anti-capture - public standards - no automatic title or economic right</text>
+
+  <path d="M600 250 V300" stroke="#d5a84b" stroke-width="5"/>
+  <path d="M195 300 H1005" stroke="#d5a84b" stroke-width="5"/>
+  <path d="M195 300 V340 M465 300 V340 M735 300 V340 M1005 300 V340" stroke="#d5a84b" stroke-width="5"/>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="70" y="340" width="250" height="190" rx="18" fill="#f7f2e8"/>
+    <text x="195" y="382" text-anchor="middle" fill="#10152c" font-size="21" font-weight="700">TITLE + RIGHTS</text>
+    <text x="195" y="420" text-anchor="middle" fill="#39405c" font-size="16">official record</text>
+    <text x="195" y="447" text-anchor="middle" fill="#39405c" font-size="16">leases and interests</text>
+    <text x="195" y="474" text-anchor="middle" fill="#39405c" font-size="16">water and severable rights</text>
+    <text x="195" y="501" text-anchor="middle" fill="#39405c" font-size="16">source and correction history</text>
+
+    <rect x="340" y="340" width="250" height="190" rx="18" fill="#28a9a1"/>
+    <text x="465" y="382" text-anchor="middle" fill="#071e24" font-size="21" font-weight="700">LOCAL OPERATIONS</text>
+    <text x="465" y="420" text-anchor="middle" fill="#071e24" font-size="16">qualified operator</text>
+    <text x="465" y="447" text-anchor="middle" fill="#071e24" font-size="16">bounded agreement</text>
+    <text x="465" y="474" text-anchor="middle" fill="#071e24" font-size="16">approved budget</text>
+    <text x="465" y="501" text-anchor="middle" fill="#071e24" font-size="16">revocation and succession</text>
+
+    <rect x="610" y="340" width="250" height="190" rx="18" fill="#f7f2e8"/>
+    <text x="735" y="382" text-anchor="middle" fill="#10152c" font-size="21" font-weight="700">ECONOMIC LAYER</text>
+    <text x="735" y="420" text-anchor="middle" fill="#39405c" font-size="16">separate analysis</text>
+    <text x="735" y="447" text-anchor="middle" fill="#39405c" font-size="16">issuer and terms</text>
+    <text x="735" y="474" text-anchor="middle" fill="#39405c" font-size="16">eligibility and restrictions</text>
+    <text x="735" y="501" text-anchor="middle" fill="#39405c" font-size="16">accountable recordkeeping</text>
+
+    <rect x="880" y="340" width="250" height="190" rx="18" fill="#28a9a1"/>
+    <text x="1005" y="382" text-anchor="middle" fill="#071e24" font-size="21" font-weight="700">EVIDENCE RECORD</text>
+    <text x="1005" y="420" text-anchor="middle" fill="#071e24" font-size="16">allow and deny receipts</text>
+    <text x="1005" y="447" text-anchor="middle" fill="#071e24" font-size="16">exceptions and disputes</text>
+    <text x="1005" y="474" text-anchor="middle" fill="#071e24" font-size="16">correction and supersession</text>
+    <text x="1005" y="501" text-anchor="middle" fill="#071e24" font-size="16">successor portability</text>
+  </g>
+  <text x="600" y="580" text-anchor="middle" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="18">Each project remains legally, operationally, economically, and evidentially distinguishable</text>
+</svg>
