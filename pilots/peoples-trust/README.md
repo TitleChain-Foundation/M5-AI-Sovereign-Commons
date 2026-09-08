@@ -76,13 +76,23 @@ transaction.
 
 ### Visual review sequence
 
-| 1. Ten gates | 2. Evidence states |
-| --- | --- |
-| [![Ten advancement gates](visuals/ten-gates.svg)](visuals/ten-gates.svg) | [![Evidence and claim states](visuals/evidence-states.svg)](visuals/evidence-states.svg) |
+**5. Ten advancement gates**
 
-| 3. Test failure before launch | 4. Seats at the table |
-| --- | --- |
-| [![Conformance and failure testing](visuals/conformance-tests.svg)](visuals/conformance-tests.svg) | [![Public reviewers needed](visuals/seats-at-the-table.svg)](visuals/seats-at-the-table.svg) |
+[![Ten advancement gates](visuals/ten-gates.svg)](visuals/ten-gates.svg)
+
+**6. Evidence and claim states**
+
+[![Evidence and claim states](visuals/evidence-states.svg)](visuals/evidence-states.svg)
+
+**7. Conformance and failure testing**
+
+[![Conformance and failure testing](visuals/conformance-tests.svg)](visuals/conformance-tests.svg)
+
+**8. Seats at the table**
+
+[![Public reviewers needed](visuals/seats-at-the-table.svg)](visuals/seats-at-the-table.svg)
+
+**9. Join the public review**
 
 [![Enter the Public Pilot Library and contribute](visuals/join-the-review.svg)](https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/discussions/1)
 
