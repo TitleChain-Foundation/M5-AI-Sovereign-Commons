@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "profile:synthetic-001",
+  "system": {
+    "processor": "Synthetic CPU",
+    "accelerator": null,
+    "memory_bytes": 8589934592,
+    "runtime": "Synthetic Runtime 1"
+  },
+  "workload": {
+    "artifact_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "parameters": {"batch_size": 1},
+    "input_description": "Generated test tokens"
+  },
+  "measurements": [{"metric": "latency", "value": 12.5, "unit": "ms"}],
+  "measured_at": "2026-09-01T12:00:00Z",
+  "measurement_method": "Synthetic single-run fixture",
+  "certification_claim": false,
+  "provenance": [{
+    "sequence": 0,
+    "actor_ref": "human:example-tester",
+    "timestamp": "2026-09-01T12:00:01Z",
+    "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  }]
+}

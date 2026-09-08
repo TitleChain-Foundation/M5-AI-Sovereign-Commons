@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability privately
+    url: mailto:security@titlechainfoundation.org
+    about: Do not disclose exploits, credentials, private evidence, or production details in a public issue.
+  - name: General support
+    url: mailto:support@titlechainfoundation.org
+    about: Ask participation or documentation questions. Do not send sensitive security material here.
+  - name: M5 AI Agents public discussion
+    url: https://github.com/orgs/TitleChain-Foundation/discussions/23
+    about: Discuss native M5 agents, authority boundaries, and proposed Commons topics.

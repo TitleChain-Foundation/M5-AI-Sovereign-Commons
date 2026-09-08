@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "m5-ai-governor-reference"
+version = "0.7.0"
+description = "M5 AI Governor provider-neutral cost/context/policy control plane (reference implementation)."
+requires-python = ">=3.10"
+dependencies = [
+    "openai>=2.0.0",
+    "anthropic>=0.60.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+# setuptools' flat-layout auto-discovery only picks up directories that look
+# like packages (i.e. contain __init__.py); it would silently omit the
+# top-level m5_governor.py module and could try to also package tests/.
+# Declare both explicitly so `pip install .` produces a correct, minimal
+# install with no manual PYTHONPATH step required.
+[tool.setuptools]
+py-modules = ["m5_governor"]
+
+[tool.setuptools.packages.find]
+include = ["providers*"]
+
+[tool.pytest.ini_options]
+# Adds the project root to sys.path for test collection so `import m5_governor`
+# and `import providers` resolve without exporting PYTHONPATH manually.
+pythonpath = ["."]
+testpaths = ["tests"]

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_id": "artifact:synthetic-model",
+  "artifact_version": "0.1-test",
+  "digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "format": "synthetic-test-format",
+  "accountable_operator_ref": "entity:example-operator",
+  "capability_function_ids": ["M5CAP.RECORD.PLAIN_LANGUAGE.EXPLAIN.v1"],
+  "named_roles": ["Paine"],
+  "runtime_constraints": {
+    "network_access": false,
+    "tool_access": [],
+    "max_context_tokens": 1024
+  },
+  "lifecycle": {
+    "status": "draft",
+    "effective_at": null,
+    "expires_at": null,
+    "revocation_ref": null
+  },
+  "provenance": [{
+    "sequence": 0,
+    "event_type": "generated_for_test",
+    "actor_ref": "human:example-author",
+    "timestamp": "2026-09-01T12:00:00Z",
+    "digest": "sha256:ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  }]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "receipt_id": "urn:m5:receipt:synthetic-001",
+  "value_instrument": {
+    "instrument_id": "instrument:synthetic-service-credit",
+    "category": "non_currency_unit",
+    "issuer_ref": "entity:example-issuer",
+    "lifecycle_status": "active"
+  },
+  "denomination": {
+    "amount": "25.5",
+    "kind": "service_unit",
+    "code": "SYNTHETIC-COMPUTE-UNIT",
+    "standard_ref": null
+  },
+  "valuation": {
+    "required": false,
+    "value": null,
+    "denomination_code": null,
+    "source_ref": null,
+    "observed_at": null
+  },
+  "jurisdiction_authority_graph": {
+    "nodes": [{
+      "authority_id": "authority:example-policy-owner",
+      "authority_type": "contractual-policy-owner",
+      "jurisdiction": "synthetic-test-context",
+      "source_ref": "document:synthetic-policy-v1",
+      "status": "asserted"
+    }],
+    "edges": []
+  },
+  "standard_refs": [{"id": "M5-AIGOV-001", "version": "Draft", "purpose": "governance"}],
+  "approvals": [{
+    "approval_id": "approval:synthetic-001",
+    "approver_ref": "human:example-approver",
+    "authority_source_ref": "document:synthetic-delegation",
+    "scope": "synthetic test action",
+    "status": "approved",
+    "signed_at": "2026-09-01T12:01:00Z"
+  }],
+  "named_role_results": [{
+    "function_id": "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1",
+    "named_role": "Savant",
+    "result": "pass",
+    "evidence_ref": "evidence:synthetic-001"
+  }],
+  "m5canon_decision": {
+    "function_id": "M5CANON.ACTION.AUTHORIZE.v1",
+    "deterministic": true,
+    "outcome": "allow",
+    "policy_version": "synthetic-policy-v1",
+    "decided_at": "2026-09-01T12:02:00Z"
+  },
+  "provenance": [{
+    "sequence": 0,
+    "previous_digest": null,
+    "event_type": "receipt_committed",
+    "timestamp": "2026-09-01T12:02:01Z",
+    "actor_ref": "service:m5canon-example",
+    "digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  }]
+}

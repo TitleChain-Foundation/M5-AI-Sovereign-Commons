@@ -1,0 +1,58 @@
+name: Standards feedback
+description: Propose or critique a normative requirement without sharing private data.
+title: "[Standards] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This repository is a Draft for Public Comment. Do not submit credentials,
+        private M5POD evidence, personal or regulated data, confidential M5Canon
+        material, or production endpoint details.
+  - type: dropdown
+    id: standard
+    attributes:
+      label: Proposed standard
+      options:
+        - M5-AIGOV-001
+        - M5-AIMOD-001
+        - M5-AISPACE-001
+        - M5-AIPROV-001
+        - People's Trust public conformance pilot
+        - Pilot and SEC request-for-input crosswalk
+        - M5POD data portability profile
+        - Sovereign communications profile
+        - Open standards evidence registry
+        - Cross-standard governance
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or ambiguity
+      description: Explain the problem without including private or confidential material.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed correction
+      description: Identify whether the change is normative or informative.
+    validations:
+      required: true
+  - type: textarea
+    id: effects
+    attributes:
+      label: Authority, privacy, security, and interoperability effects
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Submission boundaries
+      options:
+        - label: I did not include credentials, private evidence, personal data, confidential rules, or production endpoints.
+          required: true
+        - label: I am not presenting an AI output or internal classification as a legal determination.
+          required: true
+        - label: I did not identify or speculate about a nonpublic pilot property, owner, seller, operator, address, parcel, valuation, or transaction.
+          required: true

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "space:synthetic-guide",
+  "accountable_operator_ref": "entity:example-operator",
+  "function_ids": ["M5CAP.RUNTIME.ORCHESTRATE.v1"],
+  "named_roles": ["Lina"],
+  "inputs": ["synthetic-position"],
+  "outputs": ["synthetic-direction"],
+  "sensors": ["simulated-position"],
+  "actuators": [],
+  "spatial_bounds": {"frame": "synthetic-grid", "description": "Ten by ten test grid"},
+  "data_handling": {"minimized": true, "retention_seconds": 60, "residency": ["synthetic-region-1"]},
+  "prohibited_effects": ["physical actuation", "authority determination"],
+  "emergency_stop": {"independent_of_model": true, "method": "operator stop control"},
+  "lifecycle": {"status": "draft", "expires_at": null}
+}

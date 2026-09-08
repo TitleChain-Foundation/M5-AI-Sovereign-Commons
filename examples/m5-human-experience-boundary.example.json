@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0.0",
+  "boundary_id": "boundary:synthetic-001",
+  "accountable_entity_ref": "entity:example-operator",
+  "notice": {
+    "provided": true,
+    "content_ref": "notice:synthetic-v1",
+    "provided_at": "2026-09-01T12:00:00Z"
+  },
+  "lawful_basis": {
+    "basis": "synthetic explicit consent",
+    "authority_source_ref": "policy:synthetic-v1"
+  },
+  "consent": {
+    "required": true,
+    "status": "granted",
+    "subject_ref": "human:example-participant",
+    "record_ref": "consent:synthetic-001",
+    "revocable": true
+  },
+  "accessibility": {
+    "accommodations_available": ["text alternative"],
+    "contact_ref": "contact:example-support"
+  },
+  "human_override": {"available": true, "method": "visible stop control"},
+  "safety_limits": [{
+    "category": "physical",
+    "limit": "no physical actuation",
+    "response": "stop and notify operator"
+  }],
+  "data_controls": {
+    "minimized": true,
+    "retention_seconds": 60,
+    "deletion_method": "automatic fixture deletion"
+  },
+  "recovery": {"exit_available": true, "support_ref": "contact:example-support"},
+  "m5canon_gate_status": {
+    "principal": "pass",
+    "standing": "pass",
+    "delegation": "pass",
+    "context": "pass",
+    "decision_approval": "pass",
+    "commit_activation": "pass"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:canonical-context-envelope:v1",
+  "title": "M5 Canonical Context Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "context_id", "economic_class", "account_context", "title_container", "representation", "wrapper", "jurisdictional_security_state", "usc", "s_state", "sr_state", "external_classifications", "credentials_standing", "provenance"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "context_id": {"type": "string", "minLength": 1},
+    "economic_class": {"$ref": "#/$defs/dimension"},
+    "account_context": {"$ref": "#/$defs/dimension"},
+    "title_container": {"$ref": "#/$defs/dimension"},
+    "representation": {"$ref": "#/$defs/dimension"},
+    "wrapper": {"$ref": "#/$defs/dimension"},
+    "jurisdictional_security_state": {"$ref": "#/$defs/dimension"},
+    "usc": {"$ref": "#/$defs/dimension"},
+    "s_state": {"$ref": "#/$defs/dimension"},
+    "sr_state": {"$ref": "#/$defs/dimension"},
+    "external_classifications": {"$ref": "#/$defs/dimension"},
+    "credentials_standing": {"$ref": "#/$defs/dimension"},
+    "provenance": {"$ref": "#/$defs/dimension"}
+  },
+  "$defs": {
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "source_refs"],
+      "properties": {
+        "status": {"enum": ["known", "unknown", "disputed", "not_applicable"]},
+        "value": {},
+        "source_refs": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

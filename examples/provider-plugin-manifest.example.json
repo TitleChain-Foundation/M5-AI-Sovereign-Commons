@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "plugin_id": "urn:m5:plugin:synthetic-transcriber",
+  "provider": {
+    "provider_id": "provider:synthetic-lab",
+    "accountable_entity_ref": "entity:example-operator",
+    "enrollment_status": "pending",
+    "verification_status": "unverified",
+    "endorsed": false,
+    "status_checked_at": "2026-09-01T12:00:00Z"
+  },
+  "capabilities": [{
+    "function_id": "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1",
+    "named_role": null,
+    "bounded": true,
+    "inputs": ["synthetic-audio"],
+    "outputs": ["synthetic-transcript"]
+  }],
+  "permissions": ["read:submitted-synthetic-audio"],
+  "lifecycle": {
+    "status": "draft",
+    "effective_at": "2026-09-01T12:00:00Z",
+    "expires_at": null,
+    "revocation_ref": null
+  },
+  "provenance": [{
+    "sequence": 0,
+    "event_type": "created",
+    "timestamp": "2026-09-01T12:00:00Z",
+    "actor_ref": "human:example-author",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }]
+}

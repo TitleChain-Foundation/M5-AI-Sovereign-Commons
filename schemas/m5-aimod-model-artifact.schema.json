@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:aimod-model-artifact:v1",
+  "title": "M5 AIMOD Model Artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "artifact_version", "digest", "format", "accountable_operator_ref", "capability_function_ids", "named_roles", "runtime_constraints", "lifecycle", "provenance"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_id": {"type": "string", "minLength": 1},
+    "artifact_version": {"type": "string", "minLength": 1},
+    "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "format": {"type": "string", "minLength": 1},
+    "accountable_operator_ref": {"type": "string", "minLength": 1},
+    "capability_function_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^M5CAP\\."}},
+    "named_roles": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "runtime_constraints": {"type": "object", "additionalProperties": false, "required": ["network_access", "tool_access", "max_context_tokens"], "properties": {"network_access": {"type": "boolean"}, "tool_access": {"type": "array", "items": {"type": "string"}}, "max_context_tokens": {"type": "integer", "minimum": 1}}},
+    "lifecycle": {"type": "object", "additionalProperties": false, "required": ["status", "effective_at", "expires_at", "revocation_ref"], "properties": {"status": {"enum": ["draft", "approved", "active", "suspended", "revoked", "expired", "retired"]}, "effective_at": {"type": ["string", "null"], "format": "date-time"}, "expires_at": {"type": ["string", "null"], "format": "date-time"}, "revocation_ref": {"type": ["string", "null"]}}},
+    "provenance": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["sequence", "event_type", "actor_ref", "timestamp", "digest"], "properties": {"sequence": {"type": "integer", "minimum": 0}, "event_type": {"type": "string"}, "actor_ref": {"type": "string"}, "timestamp": {"type": "string", "format": "date-time"}, "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}}}
+    }
+  }
+}

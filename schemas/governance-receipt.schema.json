@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:governance-receipt:v1",
+  "title": "Governance Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "receipt_id", "value_instrument", "denomination", "valuation", "jurisdiction_authority_graph", "standard_refs", "approvals", "named_role_results", "m5canon_decision", "provenance"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "receipt_id": {"type": "string", "pattern": "^urn:m5:receipt:[a-zA-Z0-9._-]+$"},
+    "value_instrument": {"$ref": "#/$defs/instrument"},
+    "denomination": {"$ref": "#/$defs/denomination"},
+    "valuation": {"$ref": "#/$defs/valuation"},
+    "jurisdiction_authority_graph": {"$ref": "#/$defs/authorityGraph"},
+    "standard_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/reference"}},
+    "approvals": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/approval"}},
+    "named_role_results": {"type": "array", "items": {"$ref": "#/$defs/roleResult"}},
+    "m5canon_decision": {"$ref": "#/$defs/decision"},
+    "provenance": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/event"}}
+  },
+  "$defs": {
+    "instrument": {
+      "type": "object", "additionalProperties": false,
+      "required": ["instrument_id", "category", "issuer_ref", "lifecycle_status"],
+      "properties": {
+        "instrument_id": {"type": "string", "minLength": 1},
+        "category": {"enum": ["sovereign_fiat", "retail_cbdc", "wholesale_cbdc", "tokenized_deposit", "payment_stablecoin", "commodity_referenced_token", "crypto_collateralized_token", "algorithmic_stable_value_token", "cryptoasset", "tokenized_financial_instrument", "tokenized_real_world_claim", "non_currency_unit"]},
+        "issuer_ref": {"type": ["string", "null"]},
+        "lifecycle_status": {"enum": ["proposed", "issued", "active", "suspended", "redeemed", "revoked", "expired", "destroyed", "unknown", "disputed"]}
+      }
+    },
+    "denomination": {
+      "type": "object", "additionalProperties": false,
+      "required": ["amount", "kind", "code", "standard_ref"],
+      "properties": {
+        "amount": {"type": "string", "pattern": "^-?[0-9]+(\\.[0-9]+)?$"},
+        "kind": {"enum": ["currency", "commodity_unit", "cryptoasset_unit", "service_unit", "accounting_unit", "other"]},
+        "code": {"type": "string", "minLength": 1},
+        "standard_ref": {"type": ["string", "null"]}
+      }
+    },
+    "valuation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["required", "value", "denomination_code", "source_ref", "observed_at"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "value": {"type": ["string", "null"], "pattern": "^-?[0-9]+(\\.[0-9]+)?$"},
+        "denomination_code": {"type": ["string", "null"]},
+        "source_ref": {"type": ["string", "null"]},
+        "observed_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "authorityGraph": {
+      "type": "object", "additionalProperties": false,
+      "required": ["nodes", "edges"],
+      "properties": {
+        "nodes": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["authority_id", "authority_type", "jurisdiction", "source_ref", "status"], "properties": {"authority_id": {"type": "string"}, "authority_type": {"type": "string"}, "jurisdiction": {"type": "string"}, "source_ref": {"type": "string"}, "status": {"enum": ["asserted", "verified", "registered", "authorized", "recognized", "exempt", "restricted", "prohibited", "disputed", "expired", "unknown"]}}}},
+        "edges": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["from", "to", "relation", "subject_scope"], "properties": {"from": {"type": "string"}, "to": {"type": "string"}, "relation": {"type": "string"}, "subject_scope": {"type": "string"}}}}
+      }
+    },
+    "reference": {"type": "object", "additionalProperties": false, "required": ["id", "version", "purpose"], "properties": {"id": {"type": "string"}, "version": {"type": "string"}, "purpose": {"type": "string"}}},
+    "approval": {"type": "object", "additionalProperties": false, "required": ["approval_id", "approver_ref", "authority_source_ref", "scope", "status", "signed_at"], "properties": {"approval_id": {"type": "string"}, "approver_ref": {"type": "string"}, "authority_source_ref": {"type": "string"}, "scope": {"type": "string"}, "status": {"enum": ["approved", "denied", "revoked", "expired"]}, "signed_at": {"type": "string", "format": "date-time"}}},
+    "roleResult": {"type": "object", "additionalProperties": false, "required": ["function_id", "named_role", "result", "evidence_ref"], "properties": {"function_id": {"type": "string", "pattern": "^M5CAP\\."}, "named_role": {"type": "string"}, "result": {"enum": ["pass", "fail", "unresolved"]}, "evidence_ref": {"type": "string"}}},
+    "decision": {"type": "object", "additionalProperties": false, "required": ["function_id", "deterministic", "outcome", "policy_version", "decided_at"], "properties": {"function_id": {"const": "M5CANON.ACTION.AUTHORIZE.v1"}, "deterministic": {"const": true}, "outcome": {"enum": ["allow", "deny", "unresolved"]}, "policy_version": {"type": "string"}, "decided_at": {"type": "string", "format": "date-time"}}},
+    "event": {"type": "object", "additionalProperties": false, "required": ["sequence", "previous_digest", "event_type", "timestamp", "actor_ref", "digest"], "properties": {"sequence": {"type": "integer", "minimum": 0}, "previous_digest": {"type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$"}, "event_type": {"type": "string"}, "timestamp": {"type": "string", "format": "date-time"}, "actor_ref": {"type": "string"}, "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}}}
+  }
+}
