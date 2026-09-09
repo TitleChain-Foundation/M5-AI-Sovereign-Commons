@@ -20,8 +20,13 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | I want to understand | Visual landing page |
 | --- | --- |
 | What the Commons contains and how the documents fit together | [Documentation map](docs/README.md) |
+| What the four normative proposals cover | [Proposed standards](standards/README.md) |
+| How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
 | How the proposed People's Trust pilot tests the standards | [People's Trust Public Pilot Library](pilots/peoples-trust/README.md) |
 | What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
+| What the reference code demonstrates | [Reference implementations](reference-implementation/README.md) |
+| What the current tests do and do not prove | [Tests and validation](tests/README.md) |
+| Which visuals are approved for public orientation | [Visual assets](assets/README.md) |
 | What is safe to publish or how to report a vulnerability | [Public-review boundaries](#public-review-boundaries) and [Security](SECURITY.md) |
 
 **Public review path:** visual orientation -> maintained source text -> scoped
@@ -108,8 +113,8 @@ Supporting public-review materials:
 - [People's Trust Public Pilot Library](pilots/peoples-trust/README.md)
 - [SEC Public Input Summary](sec-public-input/README.md)
 - [Threat Model](THREAT-MODEL.md)
-- [Draft JSON Schemas](schemas/) and [synthetic examples](examples/)
-- [Schema validation tests](tests/test_schemas.py)
+- [Draft JSON Schemas](schemas/README.md) and [synthetic examples](examples/README.md)
+- [Tests and validation](tests/README.md)
 
 Run the focused schema suite with:
 

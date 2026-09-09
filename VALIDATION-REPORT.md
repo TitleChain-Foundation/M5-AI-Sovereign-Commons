@@ -21,11 +21,11 @@
 | Quarantined-source SHA-256 collision scan | No collisions |
 | Public pilot privacy and regulatory-claim review | PASS; no blocking findings |
 | Generated cache and bytecode removal | PASS |
-| Exact public candidate and local allowlist inventory | 78 files each |
+| Exact public candidate and local allowlist inventory | 94 files each |
 | Post-publication OpenAI fallback audit | Bearer authorization and SDK-error propagation regressions passed |
 | Participation safeguards | Public Code of Conduct added and linked |
 | GitHub security hardening | Secret scanning, push protection, vulnerability reporting, Dependabot alerts, and security updates enabled |
-| Public navigation | Visual root, documentation, People's Trust, and SEC input landing pages added |
+| Public navigation | Visual README landing pages cover all nine major public sections |
 | Public pilot pipeline | Pilot 001, replication, and national-scale framing added with fixed non-reversible redaction labels |
 | Public Pilot Library visuals | Nine-part claims-safe visual sequence rebuilt from reviewed private concepts |
 

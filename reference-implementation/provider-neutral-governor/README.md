@@ -1,5 +1,7 @@
 # M5 AI Governor — Provider-Neutral Reference Implementation
 
+![Read the context before the implementation](../../assets/section-review-path.svg)
+
 Provider-neutral cost/context/policy control plane, plus reference adapters
 for OpenAI and Anthropic. Provider pricing/context facts embedded in the
 adapters are dated configuration snapshots, not M5 canonical truth, and must
