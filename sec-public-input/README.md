@@ -61,7 +61,7 @@ architecture. It calls for technology-neutral resilience properties, explicit
 accountability for protocol selection and operation, and continuity when an
 accountable transfer agent changes.
 
-[Read the official public comment](https://www.sec.gov/comments/S7-2026-30/s7202630-1025059-3321906.html).
+[Read Zayn's September 1 public comment on the official SEC docket](https://www.sec.gov/comments/S7-2026-30/s7202630-1025059-3321906.html).
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
 
