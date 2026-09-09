@@ -2,18 +2,58 @@
 
 ![SEC public input review cycle](visuals/public-input-cycle.svg)
 
-**Docket:** SEC File No. S7-2026-30, Transfer Agent Rules  
-**Summary state:** Human-reviewed public-interest research  
-**Source snapshot:** September 8, 2026 at 05:01 UTC  
-**Official comments visible in that snapshot:** 1  
-**Pending local human review:** 0
+**Docket:** SEC File No. S7-2026-30, Transfer Agent Rules
+
+**Summary state:** Human-reviewed public-interest research
+
+**Source snapshot:** September 9, 2026 at 02:54 UTC
+
+**Official comments visible in that snapshot:** 8
+
+**Human-reviewed summaries:** 1
+
+**Pending local human review:** 7
 
 This page is a dated orientation to public input, not an SEC publication,
 position, endorsement, or substitute for the official docket. The
 [official SEC docket](https://www.sec.gov/rules-regulations/public-comments/s7-2026-30)
 controls and may have changed since this snapshot.
 
-## What the reviewed input says
+## TitleChain Foundation filing is now posted
+
+The SEC docket now lists the Foundation's September 5 public comment from
+Pamela Norton, Founder and Executive Director of TitleChain Foundation and
+Sovereign Chief Architect of TitleChain Registry.
+
+[Read the official TitleChain Foundation filing](https://www.sec.gov/comments/S7-2026-30/s7202630-1029659-3393926.pdf).
+
+The filing asks the Commission to consider voluntary, implementation-neutral
+open standards for interoperable transfer-agent infrastructure while preserving
+each regulated entity's responsibility for its legally authoritative records.
+It addresses credential-bound authority, machine-readable restrictions,
+pre-execution controls for automated agents, separation of origination and
+transfer authority, preservation of the underlying right, and portable
+correction and successor-transfer evidence.
+
+This description identifies the Foundation's submitted position. It is not an
+SEC endorsement, adopted standard, or representation that any TitleChain or M5
+component is registered, mandated, certified, or deployed for regulated use.
+
+## People's Public Trust — Open Commons Review
+
+The inaugural weekly review finds a common public-interest requirement across
+otherwise different comments: modernization needs an accountable operator, an
+explicit authoritative record, reliable reconciliation, enforceable correction,
+successor continuity, and understandable access for the people whose rights are
+recorded.
+
+[Read the September 1–8 Open Commons Review](open-commons-review/2026-09-08.md).
+
+The weekly orientation is approved for public review. It does not change the
+source-level observatory count below: one detailed comment summary is approved
+and seven remain pending detailed human review.
+
+## What the currently reviewed third-party input says
 
 The reviewed comment asks the Commission to distinguish the legal and
 operational roles a distributed ledger may perform in a securities-record
@@ -24,6 +64,10 @@ accountable transfer agent changes.
 [Read the official public comment](https://www.sec.gov/comments/S7-2026-30/s7202630-1025059-3321906.html).
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
+
+The other six third-party comments are indexed in the local observatory and
+remain pending human review. Their presence and frequency do not represent a
+vote, consensus, or SEC position.
 
 ## Emerging ideas
 

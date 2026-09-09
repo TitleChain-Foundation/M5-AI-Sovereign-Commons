@@ -1,18 +1,99 @@
-# People's Trust Public Pilot Library
+# People's Trust Project Simulation
 
-![People's Trust synthetic conformance pilot overview](visuals/pilot-overview.svg)
+![Project wish list: 275,000 acres, back in American hands](visuals/00-project-wish-list.png)
 
 ## What this is
 
-This is the visual front door for the proposed People's Trust Public
-Conformance Pilot. The pilot asks whether title, identity, entity, authority,
-operations, stewardship, economic rights, restrictions, recordkeeping,
-correction, and portability can remain separate and verifiable before a
-consequential action executes.
+This is the visual front door for the People's Trust project simulation. It
+follows one real-world farm use case through the complete TitleChain agent,
+registry, chain, credential, authority, title, stewardship, and activation
+process using sample, non-production records.
 
-The public pilot begins with synthetic evidence. It is not an acquisition,
-offering, ownership claim, live deployment, regulator-approved program, or
-announcement that a private party has agreed to participate.
+The simulation is designed to be inspected in public before a dollar moves or a
+consequential action executes. It asks whether title, identity, entity,
+authority, operations, stewardship, economic rights, restrictions,
+recordkeeping, correction, and portability can remain separate and verifiable.
+
+## How to read the visual story
+
+The seven cards describe the project vision. They are not a contract, current
+ownership record, live transaction, securities offering, or promise of a legal
+or economic right. These current boundaries control where a card uses campaign
+shorthand:
+
+- **275,000 acres** is the target pipeline and project wish list. It is not a
+  claim that the Foundation or the People's Trust owns, controls, has under
+  contract, or is offering those acres.
+- **13.5 million owners** describes the long-term national participation vision,
+  not a count of current owners, members, investors, or account holders.
+- **Running live in the repo** means the sample-data workflow and its evidence
+  can be reviewed as the simulation operates. No live title, ownership, money,
+  property transfer, investment, or securities offer is created.
+- **$10** is the one-time Founding Steward campaign contribution. It supports
+  the People's Trust campaign and begins the IAM and M5-CV pathway after the
+  activation profile and required consents are completed. It is not currently
+  DUNA legal membership, an equal vote, a credential, or an M5POD.
+- A future credentialed, member-controlled **M5POD is a separate $49-per-year
+  activation**. Current service terms and pricing are controlled by M5Bank.
+- Any cooperative participation, voting, funding, farm output, title,
+  stewardship, or economic right requires its own adopted legal structure,
+  eligibility, affirmative consent, authority, disclosures, and recorded
+  admission. A visual card does not create those rights.
+
+## The project vision
+
+### 1. One farm, a national participation vision
+
+![One farm. 13.5 million owners.](visuals/01-the-ask.png)
+
+The farm is the real-world use case; the records used in this public
+demonstration are sample and non-production. The 13.5 million figure expresses
+the scale of the participation vision, not a current ownership count.
+
+### 2. One trust, independently bounded projects
+
+![One trust at the top. Every project beneath it.](visuals/02-the-structure.png)
+
+The architecture is intended to keep each project's title, operator, wallet,
+economics, issuer, and evidence distinct. The People's Trust DUNA is planned;
+the name on this vision card does not represent completed formation or current
+legal membership.
+
+### 3. The service ladder
+
+![Founding membership and registry account vision](visuals/03-the-membership.png)
+
+The current public pathway is: **$10 Founding Steward campaign contribution →
+included IAM starting point and beginning M5-CV → future credentialed M5POD at
+$49 per year**. The $10 is not a lifetime legal membership, and the $49 service
+is a credentialed M5POD rather than the sale of identity or a credential.
+
+### 4. Steward participation
+
+![Lifetime membership and equal-vote vision](visuals/04-what-it-buys.png)
+
+The intended governance principle is broad, human-led participation without
+investor share classes. Current Founding Steward campaign status does not yet
+create DUNA legal membership or voting rights. Those rights require formation,
+adopted governing principles, eligibility, affirmative consent, and admission.
+
+### 5. Growers, communities, and transparent stewardship
+
+![Hyperlocal food, life and business](visuals/05-who-works-it.png)
+
+The simulation tests how growers can retain bounded operating authority while
+stewardship evidence is visible and independently reviewable. Funding,
+cooperative participation, and any right to farm output must be defined in a
+separate approved instrument; they are not created by joining the campaign.
+
+### 6. A path into the simulation
+
+![Four steps to steward](visuals/06-join.png)
+
+The current first step is to become a Founding Steward and then complete the
+activation profile and required consents. The simulation itself issues no
+credential, opens no production M5POD, admits no DUNA member, and creates no
+vote. Public review of the standards and simulation remains free.
 
 ## The pilot in one view
 
@@ -34,7 +115,8 @@ announcement that a private party has agreed to participate.
 ![Pilot 001 to repeatable national conformance framework](visuals/repeatable-pipeline.svg)
 
 This simulation is not intended as a one-off example. It is the first
-conformance instance in a proposed repeatable national framework for:
+sample-data conformance instance in a proposed repeatable national framework
+for:
 
 - authoritative title and rights transfer;
 - permanent public-benefit stewardship without centralized asset ownership;
@@ -46,7 +128,7 @@ conformance instance in a proposed repeatable national framework for:
 
 | Sequence | Public label | What it tests | Public state |
 | --- | --- | --- | --- |
-| Pilot 001 | `████████ AGRICULTURAL PILOT` | Whether the complete transfer, stewardship, operations, authority, M4, and evidence architecture can be simulated end to end | `SYNTHETIC` |
+| Pilot 001 | `████████ AGRICULTURAL PILOT` | Whether the complete transfer, stewardship, operations, authority, M4, and evidence architecture can be simulated end to end | `SAMPLE-DATA SIMULATION` |
 | Pilot 002 | `████████ REPLICATION PILOT` | Whether the same controls can be reused for a second independently bounded project and jurisdiction | `PROPOSED` |
 | Pilot 003+ | `████████ NATIONAL PIPELINE` | Whether the framework can scale across agricultural, food, water, local-enterprise, and community-asset scenarios without collapsing them into one owner, treasury, or authority graph | `PROPOSED` |
 
@@ -72,9 +154,9 @@ Do not use comments, images, metadata, filenames, maps, or guesses to identify
 a nonpublic property, owner, operator, counterparty, location, valuation, or
 transaction.
 
-## What to review
+## Technical review
 
-### Visual review sequence
+### Conformance review sequence
 
 **5. Ten advancement gates**
 
@@ -105,13 +187,8 @@ transaction.
 
 ## Visual provenance
 
-The visual sequence in this Library was rebuilt for this repository from every
-useful concept in the reviewed pilot and onboarding drafts. Earlier private
-carousel files were not republished because
-they included unverified or high-risk claims involving acreage, ownership,
-pricing, funding, governance, benefits, live-project status, and target
-speculation. Photography from those drafts also requires separate rights,
-location, and metadata review.
-
-Visuals are illustrative public-review aids. The maintained pilot specification
-controls where a visual summary differs.
+The seven project-vision cards are the approved visual story supplied for this
+Library. The written explanations beside them distinguish the vision from
+current campaign terms, service status, legal rights, and operational facts.
+The maintained pilot specification and attributable governance records control
+where visual shorthand differs.
