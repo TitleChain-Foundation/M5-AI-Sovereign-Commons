@@ -12,7 +12,7 @@ Use this page to choose a path before opening the detailed source documents.
 | Authority and agents | [M5AGT Authority and Activation](M5AGT-AUTHORITY-AND-ACTIVATION.md) | [M5Canon Function Namespace](M5CANON-FUNCTION-NAMESPACE.md) and [Named Role Crosswalk](NAMED-ROLE-FUNCTION-CROSSWALK.md) |
 | Open standards and portability | [Open Standards Evidence Registry](OPEN-STANDARDS-EVIDENCE-REGISTRY.md) | [M5POD Data Portability Profile](M5POD-DATA-PORTABILITY-PROFILE.md) |
 | Communications | [Sovereign Communications Profile](SOVEREIGN-COMMUNICATIONS-PROFILE.md) | [Threat Model](../THREAT-MODEL.md) |
-| Money, rights, and jurisdiction | [Value Instrument and Jurisdiction Model](VALUE-INSTRUMENT-AND-JURISDICTION.md) | [Draft schemas](../schemas/) and [synthetic examples](../examples/) |
+| Money, rights, and jurisdiction | [Value Instrument and Jurisdiction Model](VALUE-INSTRUMENT-AND-JURISDICTION.md) | [Draft schemas](../schemas/README.md) and [synthetic examples](../examples/README.md) |
 | People's Trust pilot | [Visual Pilot Library](../pilots/peoples-trust/README.md) | [Pilot specification](PEOPLES-TRUST-PUBLIC-PILOT.md) |
 | SEC public input | [SEC Public Input Summary](../sec-public-input/README.md) | [Pilot and SEC RFI Crosswalk](PILOT-SEC-RFI-CROSSWALK.md) |
 

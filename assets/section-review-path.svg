@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title desc">
+  <title id="title">M5 AI Sovereign Commons section review path</title>
+  <desc id="desc">Readers begin with context, continue to maintained sources and inspectable artifacts, and then review evidence and tests.</desc>
+  <style>
+    text { font-family: Arial, sans-serif; }
+    text[font-size="34"] { font-family: Georgia, "Times New Roman", serif; }
+  </style>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#211627"/>
+      <stop offset="1" stop-color="#321b38"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#d53679"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="440" rx="28" fill="url(#background)"/>
+  <text x="70" y="70" fill="#fffdf9" font-size="34" font-weight="700">Read the context before the files</text>
+  <text x="70" y="105" fill="#d8cbd8" font-size="20">Every section connects purpose, maintained sources, inspectable artifacts, and bounded evidence</text>
+  <g text-anchor="middle">
+    <rect x="70" y="160" width="230" height="160" rx="18" fill="#fffdf9"/>
+    <text x="185" y="207" fill="#211627" font-size="21" font-weight="700">README</text>
+    <text x="185" y="247" fill="#4c4650" font-size="17">purpose and limits</text>
+    <text x="185" y="277" fill="#4c4650" font-size="17">visual orientation</text>
+
+    <rect x="345" y="160" width="230" height="160" rx="18" fill="#c7a552"/>
+    <text x="460" y="207" fill="#211627" font-size="21" font-weight="700">SOURCE</text>
+    <text x="460" y="247" fill="#211627" font-size="17">maintained proposal</text>
+    <text x="460" y="277" fill="#211627" font-size="17">status and authority</text>
+
+    <rect x="620" y="160" width="230" height="160" rx="18" fill="#f7f4ee"/>
+    <text x="735" y="207" fill="#211627" font-size="21" font-weight="700">ARTIFACT</text>
+    <text x="735" y="247" fill="#4c4650" font-size="17">schema or example</text>
+    <text x="735" y="277" fill="#4c4650" font-size="17">code or visual</text>
+
+    <rect x="895" y="160" width="235" height="160" rx="18" fill="#fffdf9"/>
+    <text x="1012" y="207" fill="#211627" font-size="21" font-weight="700">EVIDENCE</text>
+    <text x="1012" y="247" fill="#4c4650" font-size="17">tests and review</text>
+    <text x="1012" y="277" fill="#4c4650" font-size="17">recorded outcome</text>
+
+    <path d="M300 240 H335 M575 240 H610 M850 240 H885" stroke="#d53679" stroke-width="5" marker-end="url(#arrow)"/>
+  </g>
+  <text x="600" y="386" text-anchor="middle" fill="#fffdf9" font-size="18">Visuals orient; maintained text, authoritative sources, and evidence control</text>
+</svg>
