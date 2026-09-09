@@ -161,16 +161,14 @@ class OpenAIAdapter:
         }
         body = {k: v for k, v in payload.items() if k in allowed}
 
-        # Prefer SDK support when present.
-        try:
-            responses = getattr(self.client, "responses")
-            sub = getattr(responses, "input_tokens", None)
-            counter = getattr(sub, "count", None)
-            if callable(counter):
-                result = counter(**body)
-                return int(_get(result, "input_tokens", _get(result, "total_tokens", 0)))
-        except Exception:
-            pass
+        # Prefer SDK support when present. A callable counter failure is
+        # authoritative and must not be hidden by retrying through another path.
+        responses = getattr(self.client, "responses", None)
+        sub = getattr(responses, "input_tokens", None)
+        counter = getattr(sub, "count", None)
+        if callable(counter):
+            result = counter(**body)
+            return int(_get(result, "input_tokens", _get(result, "total_tokens", 0)))
 
         if not self.api_key:
             raise GovernorError(
@@ -182,7 +180,7 @@ class OpenAIAdapter:
             "https://api.openai.com/v1/responses/input_tokens",
             data=json.dumps(body).encode("utf-8"),
             headers={
-                "Authorization": f"******",
+                "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
             },
             method="POST",

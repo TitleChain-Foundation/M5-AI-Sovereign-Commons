@@ -84,6 +84,23 @@ distinguishable. Capital or economic participation in one project does not
 purchase greater stewardship control over the commons or create authority over
 another project.
 
+### Repeatable national conformance framework
+
+The initial simulation is Pilot 001 of a proposed repeatable national transfer,
+stewardship, operating-authority, M4 economic-right, recordkeeping, and evidence
+framework. Pilot 001 asks whether the complete architecture can be represented
+and tested. Pilot 002 asks whether the controls can be reused for a second
+independently bounded project and jurisdiction. Pilot 003 and later scenarios
+ask whether the framework can scale without creating a centralized owner,
+treasury, operator, or authority graph.
+
+The Foundation's multi-year private research into asset, title, rights,
+operator, and jurisdiction scenarios is not a public acquisition list. It does
+not establish availability, ownership, control, counterparty engagement,
+contract, valuation, financing, offering, approval, or activation readiness.
+Public pipeline entries remain synthetic, proposed, or otherwise labeled under
+the evidence and claim states in this document.
+
 The local operator controls ordinary operations only within the verified
 operating agreement, budget, credentials, and prohibited-action boundaries.
 The operator does not thereby receive authority to convey title, issue an
@@ -96,19 +113,18 @@ property, owner, seller, operator, address, acreage, valuation, or transaction:
 
 | Public code | Display label | Scenario | Claim state | Pipeline stage |
 | --- | --- | --- | --- | --- |
-| `AG-PILOT-001` | `████████ AGRICULTURAL PILOT` | Northern agricultural production asset with local operator continuity, state ownership rules, title, soil, water, and a possible separately regulated economic layer | `SYNTHETIC` | Proposed initial conformance pilot |
+| `AG-PILOT-001` | `████████ AGRICULTURAL PILOT` | Agricultural production scenario with local operator continuity, applicable ownership rules, title, soil, water, and a possible separately regulated economic layer | `SYNTHETIC` | Proposed initial conformance pilot |
 | `AG-RESEARCH-001` | `████████ RIGHTS RECONSTRUCTION` | Historical multi-jurisdiction title-and-rights reconstruction separating entity, title, tenant, crop, irrigation, water, consideration, and later conveyance | `PROPOSED` | Public-record research only after source and disclosure review |
-| `FW-PILOT-002` | `████████ FOOD + WATER I` | Western food-and-water production project testing groundwater, surface-water, irrigation, operator, and stewardship boundaries | `SYNTHETIC` | Proposed research scenario |
+| `FW-PILOT-002` | `████████ FOOD + WATER I` | Food-and-water production scenario testing groundwater, surface-water, irrigation, operator, and stewardship boundaries | `SYNTHETIC` | Proposed research scenario |
 | `FW-PILOT-003` | `████████ FOOD + WATER II` | Second independent food-and-water project testing whether the first project's controls are reusable | `PROPOSED` | Future synthetic scenario |
-| `FW-PILOT-004` | `████████ ARID PRODUCTION` | Arid-region agricultural scenario involving imported water, conservation, seasonal production, and continuity | `PROPOSED` | Future synthetic scenario |
-| `FW-PILOT-005` | `████████ RIVER STEWARDSHIP` | River-and-delta agricultural scenario involving surface-water systems and long-term stewardship | `PROPOSED` | Future synthetic scenario |
+| `FW-PILOT-004` | `████████ WATER SYSTEM I` | Agricultural scenario involving water conveyance, conservation, seasonal production, and continuity | `PROPOSED` | Future synthetic scenario |
+| `FW-PILOT-005` | `████████ WATER SYSTEM II` | Agricultural scenario involving surface-water systems and long-term stewardship | `PROPOSED` | Future synthetic scenario |
 | `COMMUNITY-006+` | `████████ COMMUNITY ASSET` | Additional agricultural, water, local-enterprise, and community-asset scenarios after the first controls are independently reviewed | `PROPOSED` | Future synthetic scenarios |
 
 These codes are public test categories, not aliases asserting that a particular
-private target exists. A reader may infer the kinds of regions or assets being
-studied, but the repository must not confirm a specific counterparty or
-transaction through direct text, metadata, filenames, source links, diagrams,
-images, comments, commit history, or issue labels.
+private target exists. The repository must not confirm a target, geography,
+counterparty, or transaction through direct text, metadata, filenames, source
+links, diagrams, images, comments, commit history, or issue labels.
 
 The block glyphs are a public design device, not a reversible redaction and not
 an encoding of the omitted name or its length. They mean only:

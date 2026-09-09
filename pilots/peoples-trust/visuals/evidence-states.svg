@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350" role="img" aria-labelledby="title desc">
+  <title id="title">Evidence and claim states</title>
+  <desc id="desc">Large-format card grouping public claims into evidence building, verification and decision, retained history, and do-not-publish states.</desc>
+  <rect width="1080" height="1350" fill="#211627"/>
+  <rect x="48" y="48" width="984" height="1254" fill="none" stroke="#766779" stroke-width="2"/>
+
+  <text x="95" y="125" fill="#c7a552" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="5">EVIDENCE STATES</text>
+  <text x="95" y="220" fill="#fffdf9" font-family="Georgia, 'Times New Roman', serif" font-size="64">Every public claim</text>
+  <text x="95" y="292" fill="#fffdf9" font-family="Georgia, 'Times New Roman', serif" font-size="64">carries a state.</text>
+  <line x1="95" y1="332" x2="255" y2="332" stroke="#d53679" stroke-width="5"/>
+
+  <text x="95" y="402" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="25">A label shows evidence maturity.</text>
+  <text x="95" y="438" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="25">It does not manufacture authority.</text>
+
+  <text x="95" y="520" fill="#c7a552" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">BUILD THE EVIDENCE</text>
+  <text x="95" y="570" fill="#fffdf9" font-family="Arial, sans-serif" font-size="30" font-weight="700">SYNTHETIC</text>
+  <text x="440" y="570" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="26">test-only data</text>
+  <line x1="95" y1="594" x2="985" y2="594" stroke="#4d3a51"/>
+  <text x="95" y="642" fill="#fffdf9" font-family="Arial, sans-serif" font-size="30" font-weight="700">PROPOSED</text>
+  <text x="440" y="642" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="26">a design or intended action</text>
+  <line x1="95" y1="666" x2="985" y2="666" stroke="#4d3a51"/>
+  <text x="95" y="714" fill="#fffdf9" font-family="Arial, sans-serif" font-size="30" font-weight="700">UNVERIFIED LEAD</text>
+  <text x="440" y="714" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="26">requires authoritative confirmation</text>
+
+  <text x="95" y="800" fill="#c7a552" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">VERIFY AND DECIDE</text>
+  <text x="95" y="850" fill="#fffdf9" font-family="Arial, sans-serif" font-size="28" font-weight="700">VERIFIED SOURCE</text>
+  <text x="440" y="850" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="25">source supports the exact fact</text>
+  <line x1="95" y1="874" x2="985" y2="874" stroke="#4d3a51"/>
+  <text x="95" y="922" fill="#fffdf9" font-family="Arial, sans-serif" font-size="28" font-weight="700">UNDER REVIEW</text>
+  <text x="440" y="922" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="25">required review is incomplete</text>
+  <line x1="95" y1="946" x2="985" y2="946" stroke="#4d3a51"/>
+  <text x="95" y="994" fill="#fffdf9" font-family="Arial, sans-serif" font-size="28" font-weight="700">AUTHORIZED / ACTIVE</text>
+  <text x="440" y="994" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="25">exact scope approved / evidenced</text>
+
+  <text x="95" y="1080" fill="#c7a552" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="4">PRESERVE THE RECORD</text>
+  <text x="95" y="1130" fill="#fffdf9" font-family="Arial, sans-serif" font-size="28" font-weight="700">CORRECTED / SUPERSEDED</text>
+  <text x="95" y="1170" fill="#d8cbd8" font-family="Arial, sans-serif" font-size="24">retain the prior claim with an attributable change</text>
+
+  <rect x="95" y="1210" width="890" height="60" rx="8" fill="#c7a552"/>
+  <text x="540" y="1248" text-anchor="middle" fill="#211627" font-family="Arial, sans-serif" font-size="21" font-weight="700">DO NOT PUBLISH: PRIVATE, SENSITIVE, OR UNSUPPORTED</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Ten advancement gates</title>
+  <desc id="desc">A project remains research until asset, title, control, jurisdiction, operator, stewardship, economics, regulation, deterministic rules, and activation gates pass.</desc>
+  <style>
+    text { font-family: Arial, sans-serif; } text[font-size="30"], text[font-size="32"], text[font-size="34"] { font-family: Georgia, "Times New Roman", serif; }
+    [fill="#10152c"] { fill: #211627; } [fill="#28a9a1"] { fill: #f7f4ee; } [fill="#071e24"] { fill: #211627; } [fill="#39405c"] { fill: #4c4650; }
+    [fill="#aeb8d6"] { fill: #d8cbd8; } [fill="#232b50"] { fill: #321b38; } [fill="#d5a84b"] { fill: #c7a552; } [fill="#f7f2e8"] { fill: #fffdf9; } [stroke="#d5a84b"] { stroke: #d53679; }
+  </style>
+  <rect width="1200" height="620" rx="28" fill="#10152c"/>
+  <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">No project activates by appearing in a pipeline</text>
+  <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">Ten evidence gates must be resolved for the exact proposed scope</text>
+  <g font-family="Arial, sans-serif" font-size="18" font-weight="700">
+    <g fill="#f7f2e8"><rect x="70" y="150" width="200" height="100" rx="16"/><rect x="290" y="150" width="200" height="100" rx="16"/><rect x="510" y="150" width="200" height="100" rx="16"/><rect x="730" y="150" width="200" height="100" rx="16"/><rect x="950" y="150" width="180" height="100" rx="16"/></g>
+    <g fill="#28a9a1"><rect x="70" y="285" width="200" height="100" rx="16"/><rect x="290" y="285" width="200" height="100" rx="16"/><rect x="510" y="285" width="200" height="100" rx="16"/><rect x="730" y="285" width="200" height="100" rx="16"/><rect x="950" y="285" width="180" height="100" rx="16"/></g>
+    <g fill="#10152c" text-anchor="middle"><text x="170" y="210">1 ASSET</text><text x="390" y="210">2 TITLE</text><text x="610" y="210">3 CONTROL</text><text x="830" y="210">4 JURISDICTION</text><text x="1040" y="210">5 OPERATOR</text></g>
+    <g fill="#071e24" text-anchor="middle"><text x="170" y="345">6 STEWARDSHIP</text><text x="390" y="345">7 ECONOMICS</text><text x="610" y="345">8 REGULATION</text><text x="830" y="345">9 M5CANON</text><text x="1040" y="345">10 ACTIVATE</text></g>
+  </g>
+  <rect x="145" y="440" width="910" height="95" rx="18" fill="#d5a84b"/>
+  <text x="600" y="478" text-anchor="middle" fill="#10152c" font-family="Arial, sans-serif" font-size="20" font-weight="700">A failed, missing, stale, or disputed gate blocks advancement</text>
+  <text x="600" y="510" text-anchor="middle" fill="#10152c" font-family="Arial, sans-serif" font-size="17">Research, simulation, authorization, and live activation remain separate states</text>
+</svg>

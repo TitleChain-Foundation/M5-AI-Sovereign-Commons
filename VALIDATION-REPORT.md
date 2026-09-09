@@ -10,9 +10,9 @@
 | --- | --- |
 | Eight Draft 2020-12 JSON Schemas and paired synthetic examples | PASS |
 | Schema validity, positive examples, required fields, unknown fields, and schema-specific negative cases | 30 tests passed |
-| Provider-neutral governor, budget projection, malformed ledger, non-finite values, timestamps, and provider adapters | 47 tests passed |
+| Provider-neutral governor, budget projection, malformed ledger, non-finite values, timestamps, and provider adapters | 49 tests passed |
 | Clean-room publication-gate regression suite, including stale-manifest rejection | 10 tests passed |
-| Combined public schema, governor, and publication-gate suite | 87 tests passed |
+| Combined public schema, governor, and publication-gate suite | 89 tests passed |
 | Isolated deterministic instrument-authority gate plus collectible legacy M5Canon tests | 104 tests passed |
 | Python/editor diagnostics for changed authority files | No errors |
 | Editor diagnostics for the public pilot and SEC/RFI crosswalk | No errors |
@@ -21,7 +21,13 @@
 | Quarantined-source SHA-256 collision scan | No collisions |
 | Public pilot privacy and regulatory-claim review | PASS; no blocking findings |
 | Generated cache and bytecode removal | PASS |
-| Exact public candidate and local allowlist inventory | 63 files each |
+| Exact public candidate and local allowlist inventory | 78 files each |
+| Post-publication OpenAI fallback audit | Bearer authorization and SDK-error propagation regressions passed |
+| Participation safeguards | Public Code of Conduct added and linked |
+| GitHub security hardening | Secret scanning, push protection, vulnerability reporting, Dependabot alerts, and security updates enabled |
+| Public navigation | Visual root, documentation, People's Trust, and SEC input landing pages added |
+| Public pilot pipeline | Pilot 001, replication, and national-scale framing added with fixed non-reversible redaction labels |
+| Public Pilot Library visuals | Nine-part claims-safe visual sequence rebuilt from reviewed private concepts |
 
 ## Architecture decisions represented
 
@@ -61,8 +67,10 @@ exact first push on September 7, 2026.
 vulnerability-intake address, and `support@titlechainfoundation.org` is
 documented for general help only. External delivery to and acknowledgment from
 the security address were confirmed on September 7, 2026. GitHub Private
-Vulnerability Reporting should be enabled and tested after the repository
-becomes public.
+Vulnerability Reporting, secret scanning, push protection, Dependabot alerts,
+and Dependabot security updates are enabled. Secret validity checks and
+non-provider-pattern scanning are unavailable on the current repository plan
+and remain disabled.
 
 ## New public-review profiles
 

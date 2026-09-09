@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="540" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Pilot 001 to repeatable national conformance framework</title>
+  <desc id="desc">Pilot 001 tests the complete synthetic framework, Pilot 002 tests replication, and Pilot 003 and beyond test national scale without centralized ownership or authority.</desc>
+  <style>
+    text { font-family: Arial, sans-serif; } text[font-size="30"], text[font-size="32"], text[font-size="34"] { font-family: Georgia, "Times New Roman", serif; }
+    [fill="#10152c"] { fill: #211627; } [fill="#28a9a1"] { fill: #f7f4ee; } [fill="#071e24"] { fill: #211627; } [fill="#39405c"] { fill: #4c4650; }
+    [fill="#aeb8d6"] { fill: #d8cbd8; } [fill="#232b50"] { fill: #321b38; } [fill="#d5a84b"] { fill: #c7a552; } [fill="#f7f2e8"] { fill: #fffdf9; } [stroke="#d5a84b"] { stroke: #d53679; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#d5a84b"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="540" rx="28" fill="#10152c"/>
+  <text x="60" y="66" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="32" font-weight="700">From Pilot 001 to repeatable national infrastructure</text>
+  <text x="60" y="102" fill="#aeb8d6" font-family="Arial, sans-serif" font-size="19">A conformance and research pipeline - not an acquisition list</text>
+
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <rect x="65" y="160" width="310" height="205" rx="20" fill="#d5a84b"/>
+    <text x="220" y="205" fill="#10152c" font-size="23" font-weight="700">PILOT 001</text>
+    <text x="220" y="238" fill="#10152c" font-size="20">████████</text>
+    <text x="220" y="278" fill="#10152c" font-size="17">complete synthetic framework</text>
+    <text x="220" y="307" fill="#10152c" font-size="17">transfer - stewardship - operator</text>
+    <text x="220" y="336" fill="#10152c" font-size="17">M4 analysis - evidence</text>
+
+    <rect x="445" y="160" width="310" height="205" rx="20" fill="#28a9a1"/>
+    <text x="600" y="205" fill="#071e24" font-size="23" font-weight="700">PILOT 002</text>
+    <text x="600" y="238" fill="#071e24" font-size="20">████████</text>
+    <text x="600" y="278" fill="#071e24" font-size="17">independent replication</text>
+    <text x="600" y="307" fill="#071e24" font-size="17">new project and jurisdiction</text>
+    <text x="600" y="336" fill="#071e24" font-size="17">same reusable controls</text>
+
+    <rect x="825" y="160" width="310" height="205" rx="20" fill="#f7f2e8"/>
+    <text x="980" y="205" fill="#10152c" font-size="23" font-weight="700">PILOT 003+</text>
+    <text x="980" y="238" fill="#10152c" font-size="20">████████</text>
+    <text x="980" y="278" fill="#39405c" font-size="17">national conformance pipeline</text>
+    <text x="980" y="307" fill="#39405c" font-size="17">many isolated projects</text>
+    <text x="980" y="336" fill="#39405c" font-size="17">scale without consolidation</text>
+
+    <path d="M375 263 H435 M755 263 H815" stroke="#d5a84b" stroke-width="6" marker-end="url(#arrow)"/>
+  </g>
+
+  <rect x="110" y="410" width="980" height="74" rx="16" fill="#232b50"/>
+  <text x="600" y="440" text-anchor="middle" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="17">One stewardship commons + independently identifiable projects + local operators</text>
+  <text x="600" y="468" text-anchor="middle" fill="#f7f2e8" font-family="Arial, sans-serif" font-size="17">separate economics + deterministic authority + attributable public-safe evidence</text>
+</svg>

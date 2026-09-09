@@ -12,9 +12,9 @@ production endpoint details in a public issue or Discussion.
 
 Report a suspected vulnerability privately to
 [security@titlechainfoundation.org](mailto:security@titlechainfoundation.org).
-This dedicated address is the bootstrap confidential intake channel. After this
-repository becomes public, GitHub Private Vulnerability Reporting should also be
-enabled and used when available.
+This dedicated address is the bootstrap confidential intake channel. GitHub
+Private Vulnerability Reporting is enabled and should also be used when
+available to the reporter.
 
 For general participation, documentation, or account-support questions, contact
 [support@titlechainfoundation.org](mailto:support@titlechainfoundation.org).

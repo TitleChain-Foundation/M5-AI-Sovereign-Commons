@@ -1,9 +1,13 @@
 """Regression tests for the M5-OpenAI adapter's token-counting/pricing glue."""
 from __future__ import annotations
 
+import json
 from types import SimpleNamespace
 
+import pytest
+
 from m5_governor import price_usage
+from providers import openai_adapter
 from providers.openai_adapter import MODEL_SPECS, OpenAIAdapter
 
 
@@ -20,6 +24,37 @@ class _FakeClient:
     responses = _Responses()
 
 
+class _NoCounterClient:
+    pass
+
+
+class _FailingCounter:
+    def count(self, **kwargs):
+        raise RuntimeError("SDK token counter failed")
+
+
+class _FailingResponses:
+    input_tokens = _FailingCounter()
+
+
+class _FailingClient:
+    responses = _FailingResponses()
+
+
+class _HTTPResponse:
+    def __init__(self, payload: dict[str, int]):
+        self._payload = payload
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        return False
+
+    def read(self):
+        return json.dumps(self._payload).encode("utf-8")
+
+
 def _adapter() -> OpenAIAdapter:
     return OpenAIAdapter(_FakeClient())
 
@@ -33,6 +68,33 @@ def test_choose_model_routes_by_risk():
 def test_count_input_tokens_uses_sdk_counter():
     adapter = _adapter()
     assert adapter.count_input_tokens({"model": "gpt-6-astra", "input": "x"}) == 200_000
+
+
+def test_count_input_tokens_http_fallback_uses_bearer_api_key(monkeypatch):
+    captured = {}
+
+    def fake_urlopen(request, timeout):
+        captured["authorization"] = request.get_header("Authorization")
+        captured["timeout"] = timeout
+        return _HTTPResponse({"input_tokens": 42})
+
+    monkeypatch.setattr(openai_adapter.urllib.request, "urlopen", fake_urlopen)
+    adapter = OpenAIAdapter(_NoCounterClient(), api_key="test-api-key")
+
+    count = adapter.count_input_tokens({"model": "gpt-6-astra", "input": "x"})
+
+    assert count == 42
+    assert captured == {
+        "authorization": "Bearer test-api-key",
+        "timeout": 60,
+    }
+
+
+def test_count_input_tokens_does_not_hide_sdk_failure():
+    adapter = OpenAIAdapter(_FailingClient(), api_key="test-api-key")
+
+    with pytest.raises(RuntimeError, match="SDK token counter failed"):
+        adapter.count_input_tokens({"model": "gpt-6-astra", "input": "x"})
 
 
 def test_tpm_limit_by_tier():
