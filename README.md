@@ -21,6 +21,7 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | --- | --- |
 | What the Commons contains and how the documents fit together | [Documentation map](docs/README.md) |
 | What the four normative proposals cover | [Proposed standards](standards/README.md) |
+| How the public waitlist, demo, M5-CV, Commons, and project pathways connect | [Activation pathway](docs/activation/README.md) |
 | How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
 | How the proposed People's Trust pilot tests the standards | [People's Trust Public Pilot Library](pilots/peoples-trust/README.md) |
 | What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
@@ -107,6 +108,7 @@ Supporting public-review materials:
 - [Named Role and Function Crosswalk](docs/NAMED-ROLE-FUNCTION-CROSSWALK.md)
 - [Open Standards Evidence Registry](docs/OPEN-STANDARDS-EVIDENCE-REGISTRY.md)
 - [M5POD Data Portability Profile](docs/M5POD-DATA-PORTABILITY-PROFILE.md)
+- [Activation Pathway](docs/activation/README.md)
 - [Sovereign Communications Profile](docs/SOVEREIGN-COMMUNICATIONS-PROFILE.md)
 - [People's Trust Public Conformance Pilot](docs/PEOPLES-TRUST-PUBLIC-PILOT.md)
 - [Pilot and SEC Request-for-Input Crosswalk](docs/PILOT-SEC-RFI-CROSSWALK.md)

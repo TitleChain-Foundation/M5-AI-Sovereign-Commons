@@ -2,7 +2,7 @@
 
 **Candidate:** M5 AI Sovereign Commons Release Candidate v0.7  
 **Status:** Draft for Public Comment  
-**Validation date:** September 7, 2026
+**Validation date:** September 10, 2026
 
 ## Completed checks
 
@@ -21,11 +21,12 @@
 | Quarantined-source SHA-256 collision scan | No collisions |
 | Public pilot privacy and regulatory-claim review | PASS; no blocking findings |
 | Generated cache and bytecode removal | PASS |
-| Exact public candidate and local allowlist inventory | 94 files each |
+| Exact public candidate and local allowlist inventory | 98 files each |
 | Post-publication OpenAI fallback audit | Bearer authorization and SDK-error propagation regressions passed |
 | Participation safeguards | Public Code of Conduct added and linked |
 | GitHub security hardening | Secret scanning, push protection, vulnerability reporting, Dependabot alerts, and security updates enabled |
 | Public navigation | Visual README landing pages cover all nine major public sections |
+| Public activation links | Only `m5bank.app` for IAM setup and the root M5POD waitlist are presented as live starting actions |
 | Public pilot pipeline | Pilot 001, replication, and national-scale framing added with fixed non-reversible redaction labels |
 | Public Pilot Library visuals | Nine-part claims-safe visual sequence rebuilt from reviewed private concepts |
 
