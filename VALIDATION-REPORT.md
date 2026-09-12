@@ -12,7 +12,7 @@
 | Schema validity, positive examples, required fields, unknown fields, and schema-specific negative cases | 30 tests passed |
 | Provider-neutral governor, budget projection, malformed ledger, non-finite values, timestamps, and provider adapters | 49 tests passed |
 | Clean-room publication-gate regression suite, including stale-manifest rejection | 10 tests passed |
-| Combined public schema, governor, and publication-gate suite | 89 tests passed |
+| Combined public schema, governor, SEC observatory, and publication-gate suite | 96 tests passed |
 | Isolated deterministic instrument-authority gate plus collectible legacy M5Canon tests | 104 tests passed |
 | Python/editor diagnostics for changed authority files | No errors |
 | Editor diagnostics for the public pilot and SEC/RFI crosswalk | No errors |
@@ -21,12 +21,13 @@
 | Quarantined-source SHA-256 collision scan | No collisions |
 | Public pilot privacy and regulatory-claim review | PASS; no blocking findings |
 | Generated cache and bytecode removal | PASS |
-| Exact public candidate and local allowlist inventory | 98 files each |
+| Exact public candidate and local allowlist inventory | 106 files each |
 | Post-publication OpenAI fallback audit | Bearer authorization and SDK-error propagation regressions passed |
 | Participation safeguards | Public Code of Conduct added and linked |
 | GitHub security hardening | Secret scanning, push protection, vulnerability reporting, Dependabot alerts, and security updates enabled |
 | Public navigation | Visual README landing pages cover all nine major public sections |
 | Public activation links | Only `m5bank.app` for IAM setup and the root M5POD waitlist are presented as live starting actions |
+| SEC Public Comment Observatory | 7 focused tests passed; live source build indexed 13 official filings with exact source links and hashes |
 | Public pilot pipeline | Pilot 001, replication, and national-scale framing added with fixed non-reversible redaction labels |
 | Public Pilot Library visuals | Nine-part claims-safe visual sequence rebuilt from reviewed private concepts |
 
