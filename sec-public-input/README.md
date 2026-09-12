@@ -6,18 +6,29 @@
 
 **Summary state:** Human-reviewed public-interest research
 
-**Source snapshot:** September 9, 2026 at 02:54 UTC
+**Source snapshot:** September 11, 2026 at 18:31 UTC
 
-**Official comments visible in that snapshot:** 8
+**Official comments visible in that snapshot:** 13
 
 **Human-reviewed summaries:** 1
 
-**Pending local human review:** 7
+**Pending local human review:** 12
 
 This page is a dated orientation to public input, not an SEC publication,
 position, endorsement, or substitute for the official docket. The
 [official SEC docket](https://www.sec.gov/rules-regulations/public-comments/s7-2026-30)
 controls and may have changed since this snapshot.
+
+## Live automated observatory
+
+The [SEC Public Comment Observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/)
+checks the official docket every hour. It publishes the exact SEC docket
+metadata, official filing URL, retrieval time, media type, and source SHA-256
+for each listed filing.
+
+Automated topic signals are labeled **not human reviewed**. Narrative summaries
+appear only after an attributable review record is checked against the
+collected filing and approved.
 
 ## TitleChain Foundation filing is now posted
 
@@ -51,7 +62,7 @@ recorded.
 
 The weekly orientation is approved for public review. It does not change the
 source-level observatory count below: one detailed comment summary is approved
-and seven remain pending detailed human review.
+and twelve remain pending detailed human review.
 
 ## What the currently reviewed third-party input says
 
@@ -65,7 +76,7 @@ accountable transfer agent changes.
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
 
-The other six third-party comments are indexed in the local observatory and
+The other eleven third-party comments are indexed in the observatory and
 remain pending human review. Their presence and frequency do not represent a
 vote, consensus, or SEC position.
 
@@ -148,6 +159,7 @@ Commission.
 
 Future summaries should preserve the official source URL, retrieval time,
 source hash, review state, taxonomy codes, risks, questions, actions, and
-reviewer attribution. Automated collection must not automatically publish a
-model-generated summary. Source collection, analysis, human approval, and
-public release remain separate steps.
+reviewer attribution. Automated collection may publish exact source metadata
+and clearly labeled topic signals. It must not present generated interpretation
+as a human-reviewed summary. Source collection, automated signal detection,
+human analysis, and approval remain distinguishable states.

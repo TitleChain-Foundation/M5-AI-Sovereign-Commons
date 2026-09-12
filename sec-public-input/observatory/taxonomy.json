@@ -1,0 +1,75 @@
+{
+  "version": "0.1",
+  "topics": {
+    "TA-AUTHORITY": {
+      "label": "Accountable authority and authoritative records",
+      "keywords": [
+        "accountable",
+        "authority",
+        "authoritative record",
+        "master securityholder file",
+        "official record"
+      ]
+    },
+    "TA-CORRECTION": {
+      "label": "Correction, reconciliation, and legal orders",
+      "keywords": [
+        "correction",
+        "court order",
+        "legal hold",
+        "reconcile",
+        "reconciliation"
+      ]
+    },
+    "TA-DIGITAL-ASSETS": {
+      "label": "Digital assets and distributed ledgers",
+      "keywords": [
+        "blockchain",
+        "digital asset",
+        "distributed ledger",
+        "onchain",
+        "tokenization"
+      ]
+    },
+    "TA-IDENTITY": {
+      "label": "Identity, credentials, and access",
+      "keywords": [
+        "credential",
+        "identity",
+        "investor access",
+        "securityholder",
+        "wallet"
+      ]
+    },
+    "TA-PORTABILITY": {
+      "label": "Portability, succession, and interoperability",
+      "keywords": [
+        "interoperability",
+        "portable",
+        "portability",
+        "successor",
+        "transfer agent replacement"
+      ]
+    },
+    "TA-RISK": {
+      "label": "Security, resilience, and operational risk",
+      "keywords": [
+        "business continuity",
+        "cybersecurity",
+        "incident response",
+        "resilience",
+        "risk management"
+      ]
+    },
+    "TA-SMALL-ENTITY": {
+      "label": "Implementation burden and proportionality",
+      "keywords": [
+        "burden",
+        "compliance cost",
+        "implementation period",
+        "small entity",
+        "small transfer agent"
+      ]
+    }
+  }
+}
