@@ -6,13 +6,13 @@
 
 **Summary state:** Human-reviewed public-interest research
 
-**Source snapshot:** September 11, 2026 at 18:31 UTC
+**Source snapshot:** September 16, 2026 at 17:11 UTC
 
-**Official comments visible in that snapshot:** 13
+**Official comments visible in that snapshot:** 14
 
 **Human-reviewed summaries:** 1
 
-**Pending local human review:** 12
+**Pending local human review:** 13
 
 This page is a dated orientation to public input, not an SEC publication,
 position, endorsement, or substitute for the official docket. The
@@ -52,17 +52,19 @@ component is registered, mandated, certified, or deployed for regulated use.
 
 ## People's Public Trust — Open Commons Review
 
-The inaugural weekly review finds a common public-interest requirement across
-otherwise different comments: modernization needs an accountable operator, an
-explicit authoritative record, reliable reconciliation, enforceable correction,
-successor continuity, and understandable access for the people whose rights are
-recorded.
+The latest weekly review finds that modernization needs an accountable operator,
+explicit records of authority, continuous reconciliation, governed correction,
+and portable successor evidence. It also identifies a need to preserve what a
+security represents, which source supports each material fact, which record
+controls each legal object, and what changed under whose authority.
 
-[Read the September 1–8 Open Commons Review](open-commons-review/2026-09-08.md).
+[Read the September 9–15 Open Commons Review](open-commons-review/2026-09-15.md).
+The [September 1–8 inaugural review](open-commons-review/2026-09-08.md) remains
+available as its dated record.
 
 The weekly orientation is approved for public review. It does not change the
 source-level observatory count below: one detailed comment summary is approved
-and twelve remain pending detailed human review.
+and thirteen remain pending detailed human review.
 
 ## What the currently reviewed third-party input says
 
@@ -76,7 +78,7 @@ accountable transfer agent changes.
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
 
-The other eleven third-party comments are indexed in the observatory and
+The other twelve third-party comments are indexed in the observatory and
 remain pending human review. Their presence and frequency do not represent a
 vote, consensus, or SEC position.
 
