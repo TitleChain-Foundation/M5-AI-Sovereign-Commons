@@ -82,18 +82,26 @@ The project is simultaneously benchmarking a TitleChain/M5 protocol for title-st
 
 ## 4. Document library
 
-**⚠️ Every document below is a draft, published for demonstration purposes only.** This package is a 22-document, M5Canon-conformant investor/legal review set (v0.2, September 17, 2026). It is organized here by how it's shared, not by document number — some of it is built for open public review, and some of it is being held for direct request while it clears counsel review. Final legal documents, once they exist, will replace the corresponding draft in this same location and will be clearly labeled as final.
+**⚠️ Every document below is a placeholder template published for viewing and workflow demonstration only.** This complete 22-document set (v0.2, September 17, 2026) shows how M5Canon Ricardian contracts can connect human-readable terms, machine-readable policy, accountable executive authority, and executable code without allowing any one layer to silently replace the others. These files are not final or executable instruments, do not authorize a transaction, and are not an offer, commitment, executed agreement, or legal advice. Final documents would require completed facts, authorized parties, applicable approvals, counsel review, signatures, and separately recorded execution state.
 
-### 🟢 Open for public review
+### Complete placeholder-template set
 
-Standards, disclosures, and project-framing documents. Full text available now.
+The master index and full text of DOC-01 through DOC-22 are available for public process review.
 
 | Doc | Title |
 |---|---|
 | DOC-01 | Master Deal Term Sheet |
+| DOC-02 | Conditional Capital Commitment Letter |
 | DOC-03 | Public Grantee MOU |
+| DOC-04 | Master Lease Term Sheet |
 | DOC-05 | Investor Executive Brief |
+| DOC-06 | Capital Escrow and Draw Agreement |
+| DOC-07 | Rehabilitation and Development Agreement |
+| DOC-08 | Historic Tax Credit Investor Term Sheet |
+| DOC-09 | NMTC / CDE Transaction Term Sheet |
 | DOC-10 | TitleChain Evidence and Digital Records Schedule |
+| DOC-11 | Private Offering / PPM Framework |
+| DOC-12 | Subscription Agreement and Investor Questionnaire |
 | DOC-13 | Philanthropic Grant and PRI Agreement |
 | DOC-14 | Worker and Cooperative Participation Agreement |
 | DOC-15 | Master Risk Factors and Disclosure Schedule |
@@ -107,9 +115,9 @@ Standards, disclosures, and project-framing documents. Full text available now.
 
 **[Browse the full public document set →](./documents/public/)**
 
-### 🟡 Summary published, full document on request
+### Companion summaries
 
-Deal-economics documents with terms that are still TBD or under counsel review. A short public summary is posted here; the full draft is shared directly on request.
+Short summaries remain available as reading aids for six deal-economics templates. They do not replace or limit access to the complete placeholder documents above.
 
 | Doc | Title |
 |---|---|
@@ -122,17 +130,6 @@ Deal-economics documents with terms that are still TBD or under counsel review. 
 
 **[Read the summaries →](./documents/summaries/)**
 
-### 🔒 Available on direct request only
-
-Offering-specific documents. These are not distributed through this public repository.
-
-| Doc | Title |
-|---|---|
-| DOC-11 | Private Offering / PPM Framework |
-| DOC-12 | Subscription Agreement and Investor Questionnaire |
-
-**[How to request access →](#6-request-access-to-gated-documents)**
-
 ## 5. Key risks (from the Master Risk Factors and Disclosure Schedule)
 
 - Loss of all invested capital; no guaranteed distribution, yield, redemption, refinancing, or exit
@@ -143,17 +140,10 @@ Offering-specific documents. These are not distributed through this public repos
 
 This is a summary, not the full disclosure schedule. **[Read the complete Master Risk Factors and Disclosure Schedule →](./documents/public/DOC-15-Master-Risk-Factors-and-Disclosure-Schedule.pdf)**
 
-## 6. Request access to gated documents
+## 6. What this is and isn't
 
-To request the Private Offering/PPM Framework or the Subscription Agreement and Investor Questionnaire, contact the Foundation directly:
-
-**[iam@titlechainfoundation.org](mailto:iam@titlechainfoundation.org?subject=PPT-EZ-CA-0001%20—%20Document%20Access%20Request)**
-
-Please include your name, organization, and the basis on which you are requesting offering documents (e.g., accredited-investor status, institutional review, philanthropic/PRI review).
-
-## 7. What this is and isn't
-
-- **Every document in this library is a draft, published only to demonstrate the TitleChain executable-workflow process.** Final, execution-ready legal documents will be placed in this same location once they exist and are not represented by anything currently published here.
+- **Every document in this library is a non-executable placeholder template published only to demonstrate the complete TitleChain and M5Canon Ricardian workflow.** Publication shows how human terms, machine policy, executive authority, and code can be coordinated; it does not execute any document or transaction.
+- DOC-11 and DOC-12 demonstrate where private-offering and subscription workflows would fit. Their publication does not constitute an offer to sell or solicitation to buy a security, establish investor eligibility, accept a subscription, or authorize the handling of funds.
 - This is a **project simulation and diligence package**, not a completed transaction. Public grantee, operator, final scope, financing, and required government approvals are not yet in place.
 - Publication, review, or contact does **not** create an investment, a credential, an account, governance authority, or legal representation.
 - "People's Public Trust Economic Zone 0001" is a project benchmark designation, **not** an official state economic-zone designation unless separately authorized.
