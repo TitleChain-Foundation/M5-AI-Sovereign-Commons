@@ -19,6 +19,15 @@ position, endorsement, or substitute for the official docket. The
 [official SEC docket](https://www.sec.gov/rules-regulations/public-comments/s7-2026-30)
 controls and may have changed since this snapshot.
 
+## Related public-workflow demonstration
+
+The draft [PPT-EZ-CA-0001 / 312 Spring Commons pilot](../pilots/312-spring-commons/README.md)
+tests a public-benefit asset workflow and cites SEC Release 34-106246 / File
+S7-2026-30 only as a proposed rule relevant to parts of its recordkeeping and
+investor-review context. The pilot is demonstration and diligence material,
+not a securities offering, an SEC filing, an adopted compliance standard, or
+an indication of SEC review, approval, or endorsement.
+
 ## Live automated observatory
 
 The [SEC Public Comment Observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/)
