@@ -2,7 +2,12 @@
 
 **Status: Release Candidate v0.7 — Draft for Public Comment**
 
+<details>
+<summary>View the M5 AI Sovereign Commons overview diagram</summary>
+
 ![M5 AI Sovereign Commons: human authority, open standards, public pilots, and evidence](assets/commons-overview.svg)
+
+</details>
 
 This repository is a proposed public standards commons for governing AI models,
 agents, providers, plugins, connectors, MCP servers, local runtimes, sensors,
