@@ -53,7 +53,7 @@ The Spring Street Courthouse is a 17-story Streamline Moderne building completed
 </details>
 
 <details>
-<summary>Concept vision — illustrative only, not an approved design</summary>
+<summary><strong>Click to view the 3 concept images ↓</strong> — illustrative only, not an approved design</summary>
 
 A speculative rendering of the program described above — ground-floor open-air market and civic uses, upper-floor mixed program, rooftop solar and green space — shown here to illustrate the *kind* of activation being tested, not a specific design commitment.
 
