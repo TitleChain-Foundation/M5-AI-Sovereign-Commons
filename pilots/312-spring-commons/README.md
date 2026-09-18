@@ -41,16 +41,37 @@ The public keeps the land. Capital finances rehabilitation and a defined operati
 
 > ⚠️ **The renderings below are AI-generated concept illustrations, not architectural plans.** They have not been reviewed by GSA, NPS, or any State Historic Preservation Office, and do not represent an approved design. Because this building is a National Historic Landmark, any exterior alteration — additional floors, balconies, glass atria, rooftop structures — would require historic-preservation review and may not be permitted for character-defining features. Treat these as a vision-stage illustration of program potential, not a depiction of what will be built.
 
-<details>
-<summary>Building today</summary>
+### Building Today
 
-*(Photo pending — see note below)*
+**Spring Street Courthouse — Los Angeles, California**
 
-The Spring Street Courthouse is a 17-story Streamline Moderne building completed in 1940, designed by Gilbert Stanley Underwood and Louis A. Simon. It served as the federal courthouse for the Central District of California until 2016 and has since housed Los Angeles Superior Court civil operations and other federal offices. GSA placed it on its accelerated-disposition list.
+The Spring Street Courthouse is a 17-story Streamline Moderne building completed in 1940, designed by Gilbert Stanley Underwood and Louis A. Simon. It served as the federal courthouse for the Central District of California until 2016 and has since housed Los Angeles Superior Court civil operations and other federal offices. GSA subsequently identified the property for federal disposition.
 
-*A current-condition photo will be added here once sourced with a clear public-domain or Creative Commons license — for example, from the NPS National Historic Landmark nomination record or a compatibly-licensed Wikimedia Commons image. A previously proposed image carried a Getty Images commercial license and could not be used here.*
+#### Historical Image Reference
 
-</details>
+A Getty Images photograph documenting the Spring Street Courthouse has been identified as a useful visual reference for this public research project.
+
+**Image source:** Getty Images
+
+**Copyright:** © 2023 Michael Lee. All rights reserved.
+
+**Use on this page:** Source/reference citation only. The Getty Images photograph is not reproduced or distributed through this repository without an applicable license or other lawful authorization.
+
+The image is referenced here for historical, educational, and research context as part of the TitleChain Foundation Public Commons documentation.
+
+[**View the referenced photograph at Getty Images →**](https://www.gettyimages.com/detail/2168588402)
+
+#### Open-Licensed Image Wanted
+
+We are seeking a current or historical photograph of the Spring Street Courthouse that is:
+
+- U.S. Government/public domain;
+- released under a compatible Creative Commons license; or
+- contributed by a photographer who authorizes its use in this open public research repository.
+
+Potential sources include National Park Service historic documentation, federal archives, Wikimedia Commons, or an original photograph contributed to the project.
+
+**Public Commons note:** This project distinguishes between source material used for research and content licensed for redistribution. Third-party copyrighted material is not automatically placed under the repository's open-source or open-content license merely because it is cited here.
 
 <details>
 <summary><strong>Click to view the 3 concept images ↓</strong> — illustrative only, not an approved design</summary>
