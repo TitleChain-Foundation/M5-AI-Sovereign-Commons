@@ -1,0 +1,315 @@
+{
+  "record_id": "M5-JCP-PPT-EZ-CA-0001-EXAMPLE-0001",
+  "project_id": "PPT-EZ-CA-0001",
+  "version": "0.6-example",
+  "event_state": "SOURCE_CHAIN_ACTIVATED",
+  "capital_provider": {
+    "entity_id": "M5BOI-EXAMPLE-CAPITAL-PROVIDER",
+    "legal_name": "Example Capital Provider Pte. Ltd.",
+    "entity_jurisdiction": {
+      "canonical_code": "SG",
+      "name": "Singapore",
+      "level": "NATION",
+      "jnr_id": "JNR:SG",
+      "technical_alias": "singaporechain.eth",
+      "alias_status": "PROJECT_ALIAS",
+      "authority_reference": "Illustrative alias only; not a Singapore government identifier"
+    },
+    "m5_account_class": "M5BOI",
+    "verification_status": "EXAMPLE_VERIFIED_STATUS",
+    "accountable_human_ref": "M5BOM-EXAMPLE-SIGNATORY",
+    "authority_ref": "AUTH-EXAMPLE-BOARD-DELEGATION"
+  },
+  "source_of_funds": {
+    "category": "INSTITUTIONAL_CAPITAL",
+    "description_public": "Illustrative institutional capital for architecture demonstration only",
+    "verification_status": "EXAMPLE_SOURCE_EVIDENCE_REVIEWED",
+    "source_of_wealth_review_required": false,
+    "restricted_evidence_refs": [],
+    "source_of_wealth_status": "NOT_REQUIRED",
+    "ultimate_source_status": "PARTIALLY_VERIFIED"
+  },
+  "jurisdiction_path": [
+    {
+      "sequence": 1,
+      "hop_type": "PROVIDER_DOMICILE",
+      "jurisdiction": {
+        "canonical_code": "SG",
+        "name": "Singapore",
+        "level": "NATION",
+        "jnr_id": "JNR:SG",
+        "technical_alias": "singaporechain.eth",
+        "alias_status": "PROJECT_ALIAS"
+      },
+      "entity_ref": "M5BOI-EXAMPLE-CAPITAL-PROVIDER",
+      "public_label": "Provider domicile",
+      "verification_state": "VERIFIED",
+      "event_time": "2026-09-19T18:00:00Z"
+    },
+    {
+      "sequence": 2,
+      "hop_type": "INTERMEDIATE_ENTITY",
+      "jurisdiction": {
+        "canonical_code": "US-DE",
+        "name": "Delaware, United States",
+        "level": "STATE_PROVINCE",
+        "jnr_id": "JNR:US-DE"
+      },
+      "entity_ref": "M5BOB-EXAMPLE-SPV",
+      "public_label": "Investing vehicle",
+      "verification_state": "VERIFIED",
+      "event_time": "2026-09-19T18:00:00Z"
+    },
+    {
+      "sequence": 3,
+      "hop_type": "REMITTING_INSTITUTION",
+      "jurisdiction": {
+        "canonical_code": "GB",
+        "name": "United Kingdom",
+        "level": "NATION",
+        "jnr_id": "JNR:GB",
+        "technical_alias": "unitedkingdomchain.eth",
+        "alias_status": "PROJECT_ALIAS"
+      },
+      "public_label": "Remitting-institution jurisdiction",
+      "verification_state": "VERIFIED",
+      "event_time": "2026-09-19T18:00:00Z"
+    },
+    {
+      "sequence": 4,
+      "hop_type": "PROJECT_DESTINATION",
+      "jurisdiction": {
+        "canonical_code": "US-CA",
+        "name": "California, United States",
+        "level": "STATE_PROVINCE",
+        "jnr_id": "JNR:US-CA",
+        "technical_alias": "californiachain.unitedstateschain.eth",
+        "alias_status": "PROJECT_ALIAS"
+      },
+      "entity_ref": "PPT-EZ-CA-0001",
+      "public_label": "Project destination",
+      "verification_state": "VERIFIED",
+      "event_time": "2026-09-19T18:00:00Z"
+    }
+  ],
+  "instrument": {
+    "instrument_id": "EXAMPLE-INSTRUMENT-0001",
+    "instrument_class": "ILLUSTRATIVE_PROJECT_CAPITAL",
+    "tranche": "EXAMPLE ONLY",
+    "controlling_document_ref": "NOT_EXECUTED-EXAMPLE",
+    "material_terms_public": [
+      "No economic terms are created by this example."
+    ],
+    "restriction_refs": [],
+    "regulated_participant_refs": []
+  },
+  "funds": {
+    "currency": "USD",
+    "amount_exact_visibility": "PRIVATE",
+    "amount_public_band": "EXAMPLE / NOT A REAL TRANSACTION",
+    "settlement_rail": "REGULATED_BANK_RAIL_EXAMPLE",
+    "escrow_or_receiving_record_ref": "NO_REAL_ACCOUNT"
+  },
+  "destination": {
+    "project_jurisdiction": {
+      "canonical_code": "US-CA",
+      "name": "California, United States",
+      "level": "STATE_PROVINCE",
+      "jnr_id": "JNR:US-CA"
+    },
+    "use_of_proceeds_category": "EXAMPLE_PRODUCTIVE_INFRASTRUCTURE",
+    "asset_or_milestone_refs": []
+  },
+  "related_party": {
+    "has_related_party_relationship": false,
+    "relationship_refs": [],
+    "conflict_review_ref": "EXAMPLE-NONE",
+    "procurement_review_ref": "EXAMPLE-NONE"
+  },
+  "regulatory_routing": [
+    {
+      "requirement_class": "SECURITIES_AND_TRANSACTION_CLASSIFICATION",
+      "status": "REVIEW_REQUIRED_IN_REAL_TRANSACTION",
+      "responsible_party_ref": "QUALIFIED_COUNSEL_TBD",
+      "authority_source_ref": "APPLICABLE_LAW_AT_TIME_OF_TRANSACTION",
+      "evidence_refs": []
+    }
+  ],
+  "evidence": [],
+  "disclosure": {
+    "public_fields": [
+      "provider domicile",
+      "jurisdiction path",
+      "instrument class",
+      "project destination",
+      "use category"
+    ],
+    "regulator_fields": [
+      "complete source-of-funds evidence",
+      "beneficial/control evidence if required",
+      "bank/escrow records"
+    ],
+    "protected_fields": [
+      "account numbers",
+      "identity documents",
+      "private keys",
+      "nonpublic personal data"
+    ],
+    "privacy_threshold_rule": "Apply project privacy threshold before publishing small-cohort analytics.",
+    "publication_delay_rule": "Delay or band values when real-time disclosure could create privacy, security, or market-integrity risk."
+  },
+  "titlechain_receipt": {
+    "receipt_id": "EXAMPLE-RECEIPT-NOT-ONCHAIN",
+    "policy_version": "DOC-23-v0.6",
+    "content_digest": "EXAMPLE_ONLY",
+    "timestamp": "2026-09-19T00:00:00Z",
+    "authoritative_record_refs": []
+  },
+  "schema_version": "0.6-draft",
+  "opportunity_status": "CAPITAL_DESIGN",
+  "source_chain_activation": {
+    "activated": true,
+    "activated_at": "2026-09-19T18:00:00Z",
+    "activation_rule_version": "DOC-23-v0.6-draft",
+    "canonical_path_complete": true,
+    "public_path_publishable": true,
+    "activation_note": "Illustrative only. Activation means the permitted jurisdiction-path metadata has reached the example verified state; it does not mean government endorsement or completed regulated settlement.",
+    "required_preconditions": [
+      "ENTITY_RESOLVED",
+      "AUTHORITY_VERIFIED",
+      "SOURCE_EVIDENCE_VERIFIED",
+      "JURISDICTION_PATH_RESOLVED",
+      "REGULATORY_ROUTING_COMPLETE"
+    ],
+    "unresolved_preconditions": [],
+    "destination_chain_confirmed": false,
+    "destination_confirmed_at": null,
+    "historical_path_version": "v1",
+    "supersedes_path_version": null
+  },
+  "public_capital_authority": null,
+  "side_arrangements": [],
+  "analytics": {
+    "eligible_for_public_aggregation": true,
+    "observation_label": "OBSERVED",
+    "methodology_version": "M5-GCFI-draft-0.6",
+    "confidence": "illustrative only",
+    "source_period": "example record; not a real transaction",
+    "limitations": [
+      "No real participant or capital event is represented.",
+      "Technical .eth aliases are illustrative and do not establish government affiliation."
+    ],
+    "revision_id": "example-r1",
+    "source_snapshots": [
+      {
+        "provider": "OpenData.org",
+        "dataset_or_product": "Open Global Entity Graph",
+        "release_or_snapshot": "provider snapshot accessed 2026-09-19",
+        "retrieved_at": "2026-09-19T18:00:00Z",
+        "license_or_terms_ref": "https://opendata.org/",
+        "source_lineage_ref": "https://opendata.org/",
+        "transformations": [
+          "illustrative identifier crosswalk only"
+        ],
+        "coverage_note": "Provider-reported coverage is metadata, not transaction verification.",
+        "authoritative_for_transaction": false
+      },
+      {
+        "provider": "Overture Maps Foundation",
+        "dataset_or_product": "Places / GERS",
+        "release_or_snapshot": "2026 reference",
+        "retrieved_at": "2026-09-19T18:00:00Z",
+        "license_or_terms_ref": "https://docs.overturemaps.org/",
+        "source_lineage_ref": "https://overturemaps.org/",
+        "transformations": [
+          "illustrative place crosswalk only"
+        ],
+        "coverage_note": "Spatial grounding only; does not establish legal authority or ownership.",
+        "authoritative_for_transaction": false
+      }
+    ],
+    "minimum_public_cohort": 5,
+    "aggregation_or_suppression_method": "Illustrative: aggregate, band, delay, or suppress small-sample data.",
+    "public_inference_warning": "Observed jurisdiction flows do not prove motive, control, creditworthiness, investment quality, or government policy."
+  },
+  "entity_grounding": {
+    "m5_canonical_entity_id": "M5BOI-EXAMPLE-CAPITAL-PROVIDER",
+    "legal_entity_identifiers": [
+      {
+        "scheme": "OFFICIAL_COMPANY_NUMBER",
+        "value": "EXAMPLE-ONLY",
+        "issuer": "Authoritative registry TBD",
+        "status": "EXAMPLE"
+      },
+      {
+        "scheme": "LEI",
+        "value": "NOT_ASSIGNED_IN_EXAMPLE",
+        "issuer": "GLEIF/LEI issuer if applicable",
+        "status": "NOT_APPLICABLE_EXAMPLE"
+      }
+    ],
+    "open_reference_identifiers": [
+      {
+        "scheme": "BRIGHTQUERY_BQ_ID",
+        "value": "EXAMPLE-BQ-ID",
+        "issuer": "BrightQuery",
+        "status": "REFERENCE_ONLY"
+      },
+      {
+        "scheme": "OPENCORPORATES",
+        "value": "EXAMPLE-OC-ID",
+        "issuer": "OpenCorporates",
+        "status": "REFERENCE_ONLY"
+      },
+      {
+        "scheme": "OPENDATA_ODC_ID",
+        "value": "EXAMPLE-ODC-ID",
+        "issuer": "OpenData.org",
+        "status": "REFERENCE_ONLY"
+      }
+    ],
+    "spatial_reference_identifiers": [
+      {
+        "scheme": "OVERTURE_GERS",
+        "value": "EXAMPLE-GERS-ID",
+        "issuer": "Overture Maps Foundation",
+        "status": "REFERENCE_ONLY"
+      }
+    ],
+    "dataset_snapshots": [
+      {
+        "provider": "OpenData.org",
+        "dataset_or_product": "Open Global Entity Graph",
+        "release_or_snapshot": "provider snapshot accessed 2026-09-19",
+        "retrieved_at": "2026-09-19T18:00:00Z",
+        "license_or_terms_ref": "https://opendata.org/",
+        "source_lineage_ref": "https://opendata.org/",
+        "transformations": [
+          "illustrative identifier crosswalk only"
+        ],
+        "coverage_note": "Provider-reported coverage is metadata, not transaction verification.",
+        "authoritative_for_transaction": false
+      },
+      {
+        "provider": "Overture Maps Foundation",
+        "dataset_or_product": "Places / GERS",
+        "release_or_snapshot": "2026 reference",
+        "retrieved_at": "2026-09-19T18:00:00Z",
+        "license_or_terms_ref": "https://docs.overturemaps.org/",
+        "source_lineage_ref": "https://overturemaps.org/",
+        "transformations": [
+          "illustrative place crosswalk only"
+        ],
+        "coverage_note": "Spatial grounding only; does not establish legal authority or ownership.",
+        "authoritative_for_transaction": false
+      }
+    ],
+    "match_method": "MANUAL_REVIEW",
+    "match_confidence": null,
+    "review_state": "VERIFIED",
+    "valid_from": "2026-09-19T18:00:00Z",
+    "valid_to": null,
+    "superseded_by": null,
+    "correction_or_dispute_ref": null
+  }
+}

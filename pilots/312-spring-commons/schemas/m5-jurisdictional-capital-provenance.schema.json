@@ -1,0 +1,954 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titlechainfoundation.org/schemas/m5-jurisdictional-capital-provenance.schema.json",
+  "title": "M5 Jurisdictional Capital Provenance Record",
+  "description": "Draft reference schema for DOC-23 / M5-CAPGRAPH-001 v0.6. Evidence/coordination only; records entity grounding, multi-hop capital provenance, jurisdiction roles, source-chain activation, authority state, disclosure class, and analytics eligibility. It does not create legal authority, governmental affiliation, or replace authoritative records.",
+  "type": "object",
+  "required": [
+    "record_id",
+    "project_id",
+    "event_state",
+    "entity_grounding",
+    "capital_provider",
+    "jurisdiction_path",
+    "instrument",
+    "destination",
+    "evidence",
+    "disclosure"
+  ],
+  "properties": {
+    "record_id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "event_state": {
+      "type": "string",
+      "enum": [
+        "DISCOVERED",
+        "ENTITY_RESOLVED",
+        "AUTHORITY_VERIFIED",
+        "SOURCE_EVIDENCE_PENDING",
+        "SOURCE_EVIDENCE_VERIFIED",
+        "REGULATORY_ROUTING_COMPLETE",
+        "INSTRUMENT_EXECUTED",
+        "FUNDS_COMMITTED",
+        "ESCROW_RECEIVED",
+        "CONDITIONS_PRECEDENT_SATISFIED",
+        "DRAW_AUTHORIZED",
+        "FUNDS_DISBURSED",
+        "USE_RECONCILED",
+        "ASSET_OR_MILESTONE_EVIDENCED",
+        "REPORTING_CURRENT",
+        "HOLD",
+        "REVIEW_REQUIRED",
+        "REJECTED",
+        "REVOKED",
+        "CORRECTED",
+        "REVERSED",
+        "DISPUTED",
+        "FROZEN",
+        "MIGRATED",
+        "JURISDICTION_PATH_RESOLVED",
+        "SOURCE_CHAIN_ACTIVATED",
+        "DESTINATION_CHAIN_CONFIRMED"
+      ]
+    },
+    "capital_provider": {
+      "type": "object",
+      "required": [
+        "entity_id",
+        "legal_name",
+        "entity_jurisdiction",
+        "verification_status"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": "string"
+        },
+        "legal_name": {
+          "type": "string"
+        },
+        "entity_jurisdiction": {
+          "$ref": "#/$defs/jurisdictionRef"
+        },
+        "m5_account_class": {
+          "type": "string"
+        },
+        "entity_identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/externalIdentifier"
+          }
+        },
+        "verification_status": {
+          "type": "string"
+        },
+        "verification_sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceRef"
+          }
+        },
+        "accountable_human_ref": {
+          "type": "string"
+        },
+        "authority_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "source_of_funds": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "description_public": {
+          "type": "string"
+        },
+        "verification_status": {
+          "type": "string"
+        },
+        "source_of_wealth_review_required": {
+          "type": "boolean"
+        },
+        "restricted_evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceRef"
+          }
+        },
+        "source_of_wealth_status": {
+          "type": "string",
+          "enum": [
+            "NOT_REQUIRED",
+            "PENDING",
+            "VERIFIED",
+            "REJECTED",
+            "STALE"
+          ]
+        },
+        "ultimate_source_status": {
+          "type": "string",
+          "enum": [
+            "NOT_REQUIRED",
+            "PENDING",
+            "VERIFIED",
+            "PARTIALLY_VERIFIED",
+            "UNKNOWN_LAWFULLY_UNAVAILABLE",
+            "REJECTED"
+          ]
+        }
+      }
+    },
+    "jurisdiction_path": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "sequence",
+          "hop_type",
+          "jurisdiction"
+        ],
+        "properties": {
+          "sequence": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "hop_type": {
+            "type": "string",
+            "enum": [
+              "ULTIMATE_SOURCE",
+              "FUND_DOMICILE",
+              "PROVIDER_DOMICILE",
+              "INTERMEDIATE_ENTITY",
+              "REMITTING_ACCOUNT",
+              "REMITTING_INSTITUTION",
+              "SETTLEMENT_RAIL",
+              "RECEIVING_INSTITUTION",
+              "PROJECT_DESTINATION",
+              "ECONOMIC_RISK",
+              "OTHER",
+              "CONTROL_JURISDICTION",
+              "INSTRUMENT_GOVERNING_JURISDICTION",
+              "PUBLIC_AUTHORITY_JURISDICTION"
+            ]
+          },
+          "jurisdiction": {
+            "$ref": "#/$defs/jurisdictionRef"
+          },
+          "entity_ref": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/evidenceRef"
+            }
+          },
+          "public_label": {
+            "type": "string"
+          },
+          "destination_entity_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "verification_state": {
+            "type": "string",
+            "enum": [
+              "VERIFIED",
+              "PARTIALLY_VERIFIED",
+              "PENDING",
+              "DISPUTED",
+              "STALE"
+            ]
+          },
+          "event_time": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "instrument": {
+      "type": "object",
+      "required": [
+        "instrument_id",
+        "instrument_class",
+        "controlling_document_ref"
+      ],
+      "properties": {
+        "instrument_id": {
+          "type": "string"
+        },
+        "instrument_class": {
+          "type": "string"
+        },
+        "tranche": {
+          "type": "string"
+        },
+        "controlling_document_ref": {
+          "type": "string"
+        },
+        "material_terms_public": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "restriction_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "regulated_participant_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "funds": {
+      "type": "object",
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "amount_exact_visibility": {
+          "type": "string",
+          "enum": [
+            "PUBLIC",
+            "REGULATOR",
+            "PRIVATE"
+          ]
+        },
+        "amount_public_band": {
+          "type": "string"
+        },
+        "settlement_rail": {
+          "type": "string"
+        },
+        "escrow_or_receiving_record_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "destination": {
+      "type": "object",
+      "required": [
+        "project_jurisdiction",
+        "use_of_proceeds_category"
+      ],
+      "properties": {
+        "project_jurisdiction": {
+          "$ref": "#/$defs/jurisdictionRef"
+        },
+        "use_of_proceeds_category": {
+          "type": "string"
+        },
+        "asset_or_milestone_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "related_party": {
+      "type": "object",
+      "properties": {
+        "has_related_party_relationship": {
+          "type": "boolean"
+        },
+        "relationship_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "conflict_review_ref": {
+          "type": "string"
+        },
+        "procurement_review_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "regulatory_routing": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "requirement_class",
+          "status"
+        ],
+        "properties": {
+          "requirement_class": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "responsible_party_ref": {
+            "type": "string"
+          },
+          "authority_source_ref": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/evidenceRef"
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidenceRef"
+      }
+    },
+    "disclosure": {
+      "type": "object",
+      "required": [
+        "public_fields",
+        "regulator_fields",
+        "protected_fields"
+      ],
+      "properties": {
+        "public_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "regulator_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "protected_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "privacy_threshold_rule": {
+          "type": "string"
+        },
+        "publication_delay_rule": {
+          "type": "string"
+        }
+      }
+    },
+    "titlechain_receipt": {
+      "type": "object",
+      "properties": {
+        "receipt_id": {
+          "type": "string"
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "content_digest": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "authoritative_record_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "0.6-draft"
+    },
+    "opportunity_status": {
+      "type": "string",
+      "enum": [
+        "PUBLIC_INFORMATION_ONLY",
+        "PARTICIPANTS_SOUGHT",
+        "CAPITAL_DESIGN",
+        "QUALIFICATION_OPEN",
+        "OFFERING_OR_TRANSACTION_ACTIVE",
+        "FUNDED",
+        "ACTIVATING",
+        "OPERATING",
+        "CLOSED",
+        "ARCHIVED"
+      ]
+    },
+    "public_capital_authority": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "authority_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "program_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fiscal_period": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "award_or_resolution_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "use_restrictions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audit_or_clawback_terms_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authority_evidence_refs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidenceRef"
+          }
+        }
+      }
+    },
+    "side_arrangements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "arrangement_id",
+          "exists",
+          "material_effect_class",
+          "access_class"
+        ],
+        "properties": {
+          "arrangement_id": {
+            "type": "string"
+          },
+          "exists": {
+            "type": "boolean"
+          },
+          "material_effect_class": {
+            "type": "string"
+          },
+          "access_class": {
+            "type": "string",
+            "enum": [
+              "PUBLIC",
+              "REGULATOR_OR_QUALIFIED_ASSURANCE",
+              "PRIVATE_PROTECTED"
+            ]
+          },
+          "public_summary": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "evidence_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_digest": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "source_chain_activation": {
+      "type": "object",
+      "properties": {
+        "activated": {
+          "type": "boolean"
+        },
+        "activated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "activation_rule_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_path_complete": {
+          "type": "boolean"
+        },
+        "public_path_publishable": {
+          "type": "boolean"
+        },
+        "activation_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "required_preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unresolved_preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "destination_chain_confirmed": {
+          "type": "boolean"
+        },
+        "destination_confirmed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "historical_path_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supersedes_path_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "analytics": {
+      "type": "object",
+      "properties": {
+        "eligible_for_public_aggregation": {
+          "type": "boolean"
+        },
+        "observation_label": {
+          "type": "string",
+          "enum": [
+            "OBSERVED",
+            "ESTIMATED",
+            "MODELED",
+            "SCENARIO",
+            "FORECAST"
+          ]
+        },
+        "methodology_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_period": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revision_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_snapshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/datasetSnapshot"
+          }
+        },
+        "minimum_public_cohort": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "aggregation_or_suppression_method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "public_inference_warning": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "entity_grounding": {
+      "type": "object",
+      "properties": {
+        "m5_canonical_entity_id": {
+          "type": "string"
+        },
+        "legal_entity_identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/externalIdentifier"
+          }
+        },
+        "open_reference_identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/externalIdentifier"
+          }
+        },
+        "spatial_reference_identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/externalIdentifier"
+          }
+        },
+        "dataset_snapshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/datasetSnapshot"
+          }
+        },
+        "match_method": {
+          "type": "string",
+          "enum": [
+            "EXACT_IDENTIFIER",
+            "AUTHORITATIVE_CROSSWALK",
+            "DETERMINISTIC_COMPOSITE",
+            "PROBABILISTIC_CANDIDATE",
+            "MANUAL_REVIEW"
+          ]
+        },
+        "match_confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "review_state": {
+          "type": "string",
+          "enum": [
+            "VERIFIED",
+            "PARTIALLY_VERIFIED",
+            "PENDING",
+            "REVIEW_REQUIRED",
+            "DISPUTED",
+            "STALE",
+            "REVOKED"
+          ]
+        },
+        "valid_from": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "valid_to": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "superseded_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "correction_or_dispute_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "jurisdictionRef": {
+      "type": "object",
+      "required": [
+        "canonical_code",
+        "level"
+      ],
+      "properties": {
+        "canonical_code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string",
+          "enum": [
+            "NATION",
+            "STATE_PROVINCE",
+            "TERRITORY",
+            "TRIBAL_INDIGENOUS",
+            "LOCAL",
+            "TREATY_INTERGOVERNMENTAL",
+            "OTHER"
+          ]
+        },
+        "jnr_id": {
+          "type": "string"
+        },
+        "technical_alias": {
+          "type": "string"
+        },
+        "alias_status": {
+          "type": "string",
+          "enum": [
+            "PROJECT_ALIAS",
+            "COMMUNITY_ALIAS",
+            "VERIFIED_EXTERNAL_REFERENCE",
+            "GOVERNMENT_VERIFIED",
+            "REVOKED_OR_STALE",
+            "NONE"
+          ]
+        },
+        "authority_reference": {
+          "type": "string"
+        },
+        "country_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subdivision_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authoritative_reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "externalIdentifier": {
+      "type": "object",
+      "required": [
+        "scheme",
+        "value"
+      ],
+      "properties": {
+        "scheme": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "evidenceRef": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "evidence_class",
+        "access_class"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string"
+        },
+        "evidence_class": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "source_record_id": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "content_digest": {
+          "type": "string"
+        },
+        "access_class": {
+          "type": "string",
+          "enum": [
+            "PUBLIC",
+            "REGULATOR_OR_QUALIFIED_ASSURANCE",
+            "PRIVATE_PROTECTED"
+          ]
+        },
+        "authoritative": {
+          "type": "boolean"
+        }
+      }
+    },
+    "datasetSnapshot": {
+      "type": "object",
+      "required": [
+        "provider",
+        "retrieved_at"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "dataset_or_product": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "release_or_snapshot": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "retrieved_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "license_or_terms_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_lineage_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transformations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "coverage_note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authoritative_for_transaction": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
