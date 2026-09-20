@@ -18,6 +18,13 @@
     "record_ref": "consent:synthetic-001",
     "revocable": true
   },
+  "refusal_evaluation": {
+    "profile_ref": "refusal:synthetic-human-001",
+    "status": "active",
+    "evaluated_pre_capture": true,
+    "decision": "deny",
+    "receipt_ref": "receipt:synthetic-refusal-evaluation-001"
+  },
   "accessibility": {
     "accommodations_available": ["text alternative"],
     "contact_ref": "contact:example-support"

@@ -10,6 +10,7 @@ Use this page to choose a path before opening the detailed source documents.
 | Path | Start with | Then review |
 | --- | --- | --- |
 | Authority and agents | [M5AGT Authority and Activation](M5AGT-AUTHORITY-AND-ACTIVATION.md) | [M5Canon Function Namespace](M5CANON-FUNCTION-NAMESPACE.md) and [Named Role Crosswalk](NAMED-ROLE-FUNCTION-CROSSWALK.md) |
+| Human refusal and consent | [M5HUM Refusal and Consent Profile](M5HUM-REFUSAL-CONSENT-PROFILE.md) | [M5POD Data Portability Profile](M5POD-DATA-PORTABILITY-PROFILE.md) and [M5-AISPACE-001](../standards/M5-AISPACE-001.md) |
 | Open standards and portability | [Open Standards Evidence Registry](OPEN-STANDARDS-EVIDENCE-REGISTRY.md) | [M5POD Data Portability Profile](M5POD-DATA-PORTABILITY-PROFILE.md) |
 | Activation and M5-CV | [Activation Pathway](activation/README.md) | [Canonical public links](activation/CTA-LINKS.md) and [People's Trust bridge](../pilots/peoples-trust/ACTIVATION-BRIDGE.md) |
 | Communications | [Sovereign Communications Profile](SOVEREIGN-COMMUNICATIONS-PROFILE.md) | [Threat Model](../THREAT-MODEL.md) |

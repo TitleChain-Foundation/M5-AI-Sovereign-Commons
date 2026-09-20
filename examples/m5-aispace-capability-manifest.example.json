@@ -10,6 +10,12 @@
   "actuators": [],
   "spatial_bounds": {"frame": "synthetic-grid", "description": "Ten by ten test grid"},
   "data_handling": {"minimized": true, "retention_seconds": 60, "residency": ["synthetic-region-1"]},
+  "refusal_controls": {
+    "evaluated_pre_capture": true,
+    "supported_channels": ["glyph", "signed_profile"],
+    "unresolved_action": "pause_and_deny",
+    "spoof_suspected_action": "pause_deny_and_escalate"
+  },
   "prohibited_effects": ["physical actuation", "authority determination"],
   "emergency_stop": {"independent_of_model": true, "method": "operator stop control"},
   "lifecycle": {"status": "draft", "expires_at": null}

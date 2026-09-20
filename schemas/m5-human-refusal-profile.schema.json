@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:human-refusal-profile:v1",
+  "title": "M5 Human Refusal Profile",
+  "description": "A portable, human-controlled refusal constraint for an M5HUM subject. Schema validity does not prove identity, authority, legal effect, or device compliance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "subject_ref",
+    "account_context",
+    "human_controlled",
+    "protocol_evidence",
+    "signal_channels",
+    "refusal",
+    "validity",
+    "verification",
+    "enforcement",
+    "exceptions",
+    "receipts",
+    "lifecycle"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "profile_id": {"type": "string", "minLength": 1},
+    "subject_ref": {"type": "string", "minLength": 1},
+    "account_context": {"const": "BOM"},
+    "human_controlled": {"const": true},
+    "protocol_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version", "publication_uri", "publication_sha256", "publication_sha512", "glyph_uri", "glyph_sha256", "publication_intent", "repository_license"],
+      "properties": {
+        "name": {"const": "Refuse Consent Protocol"},
+        "version": {"const": "1.1"},
+        "publication_uri": {"type": "string", "format": "uri"},
+        "publication_sha256": {"const": "2f6db7b61e964e4b36af44ba1255666b1de3830b05ac8d35f057f00d033f2237"},
+        "publication_sha512": {"const": "bb79784df46a40990f4357e3eb28c1966fc812c4d0b1dcbd4e23214ae481edbcf6e331ddcae3506492afbd516b9a8e75029b66d38c8a883ad7a538d878345127"},
+        "glyph_uri": {"type": "string", "format": "uri"},
+        "glyph_sha256": {"const": "e3a599737982f4ef22117bae49e42336d3dad03b2fb8776405392c3875021b06"},
+        "publication_intent": {"const": "defensive_publication_public_domain_prior_art_statement"},
+        "repository_license": {"const": "MIT"}
+      }
+    },
+    "signal_channels": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["glyph", "2d_barcode", "url", "rfid_nfc", "signed_profile", "offline_ledger"]}
+    },
+    "refusal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sensor_classes", "operation_classes", "effect"],
+      "properties": {
+        "sensor_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["visual", "audio", "biometric", "location", "spatial", "environmental", "neural", "other"]}
+        },
+        "operation_classes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["capture", "process", "store", "identify", "track", "infer", "train", "share", "actuate"]}
+        },
+        "effect": {"const": "deny"}
+      }
+    },
+    "validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spatial_mode", "spatial_description", "effective_from", "expires_at"],
+      "properties": {
+        "spatial_mode": {"enum": ["subject_proximity", "marker_defined", "fixed_zone", "digital_session", "global_assertion"]},
+        "spatial_description": {"type": "string", "minLength": 1},
+        "effective_from": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["issuer_ref", "proof_ref", "revocation_status_ref", "offline_verification_supported"],
+      "properties": {
+        "issuer_ref": {"type": "string", "minLength": 1},
+        "proof_ref": {"type": "string", "minLength": 1},
+        "revocation_status_ref": {"type": "string", "minLength": 1},
+        "offline_verification_supported": {"type": "boolean"},
+        "offline_ledger_ref": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"offline_verification_supported": {"const": true}}},
+          "then": {"required": ["offline_ledger_ref"]}
+        }
+      ]
+    },
+    "enforcement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pre_capture", "verified_signal_actions", "unresolved_signal_action", "spoof_suspected_action", "m5canon_result"],
+      "properties": {
+        "pre_capture": {"const": true, "description": "Evaluated before persistent capture or downstream use; minimal transient processing solely to detect and enforce refusal is permitted and must be discarded when refusal applies."},
+        "verified_signal_actions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["drop_frame", "mute_payload", "disable_sensor", "redact_subject", "halt_processing", "halt_storage", "halt_sharing", "halt_actuation", "reroute"]}
+        },
+        "unresolved_signal_action": {"const": "pause_and_deny"},
+        "spoof_suspected_action": {"const": "pause_deny_and_escalate"},
+        "m5canon_result": {"const": "deny_when_active_or_unresolved"}
+      }
+    },
+    "exceptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["no_implied_exceptions", "authorized_exception_refs"],
+      "properties": {
+        "no_implied_exceptions": {"const": true},
+        "authorized_exception_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "receipts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "privacy_preserving", "incident_ref"],
+      "properties": {
+        "required": {"const": true},
+        "privacy_preserving": {"const": true},
+        "incident_ref": {"type": "string", "minLength": 1}
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "supersedes_ref", "updated_at"],
+      "properties": {
+        "status": {"enum": ["active", "withdrawn", "superseded", "expired"]},
+        "supersedes_ref": {"type": ["string", "null"]},
+        "updated_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

@@ -38,6 +38,17 @@ Silence, presence, biometric response, model inference, or continued use
 **MUST NOT** be treated as consent unless an authoritative rule expressly makes
 it valid in the recorded context.
 
+Every M5HUM **MUST** be able to maintain a portable refusal profile in their
+M5POD BOM account context. Participating systems **MUST** evaluate applicable
+physical and digital refusal signals before persistent recording, retention,
+identification, tracking, unrelated inference, training, sharing, or actuation.
+Minimal transient sensor processing may be used only to detect, authenticate,
+scope, and enforce a refusal; it must not be retained or repurposed. An active
+or unresolved applicable refusal fails closed. Absence, withdrawal, or expiry
+of a refusal profile does not grant consent. Implementations **MUST** provide an
+accessible non-visual path and follow the
+[M5HUM Refusal and Consent Profile](../docs/M5HUM-REFUSAL-CONSENT-PROFILE.md).
+
 ## 5. Authorization and safety
 
 Consequential sensing or actuation **MUST** pass M5Canon’s Six Gates: principal,
@@ -45,6 +56,11 @@ standing, delegation, context, deterministic decision and accountable approval,
 then receipt commit and bounded activation. Missing, revoked, expired,
 disputed, or out-of-scope evidence fails closed. Emergency stop **MUST** remain
 available independently of model output.
+
+Suspected refusal-signal spoofing **MUST** pause and deny the covered operation,
+create a security event, and route to an accountable human. It **MUST NOT**
+silently resume capture. Any exception requires separately verified authority,
+scope, necessity, proportionality, expiry, and an attributable receipt.
 
 ## 6. Separate dimensions and evidence
 

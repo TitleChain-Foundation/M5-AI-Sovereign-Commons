@@ -20,6 +20,7 @@ organization, model deployment, or transaction.
 | [Hardware profile](m5-aimod-hardware-profile.example.json) | [Hardware profile schema](../schemas/m5-aimod-hardware-profile.schema.json) |
 | [Capability manifest](m5-aispace-capability-manifest.example.json) | [Capability manifest schema](../schemas/m5-aispace-capability-manifest.schema.json) |
 | [Human-experience boundary](m5-human-experience-boundary.example.json) | [Human-experience boundary schema](../schemas/m5-human-experience-boundary.schema.json) |
+| [Human refusal profile](m5-human-refusal-profile.example.json) | [Human refusal profile schema](../schemas/m5-human-refusal-profile.schema.json) |
 
 ## How to use these examples
 

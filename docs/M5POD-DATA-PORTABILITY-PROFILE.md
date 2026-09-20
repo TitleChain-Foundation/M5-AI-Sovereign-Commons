@@ -52,6 +52,10 @@ A conforming M5POD portability implementation **MUST**:
     jurisdictional metadata without claiming to determine the law;
 12. record the accountable request, authorization decision, execution result,
     and errors.
+13. preserve human refusal profiles, denial scope, lifecycle and revocation
+   state, protocol version, integrity digests, and enforcement intent;
+14. support selective disclosure of a refusal assertion without exporting
+   private keys, exact location history, or unrelated personal data.
 
 ## Portable package layers
 
@@ -68,6 +72,10 @@ An export package should separate:
    jurisdictional constraints.
 7. **Receipts** — export, transport, import, reconciliation, and deletion
    evidence.
+
+For BOM accounts, restrictions include the portable
+[M5HUM Refusal and Consent Profile](M5HUM-REFUSAL-CONSENT-PROFILE.md). A transfer
+or storage provider cannot remove, weaken, or convert refusal into consent.
 
 ## Authorization boundary
 

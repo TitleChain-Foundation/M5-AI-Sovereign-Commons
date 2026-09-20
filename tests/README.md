@@ -14,7 +14,7 @@ secure, a system complies with law, or the release is production-ready.
 
 | Test surface | What it checks | Location |
 | --- | --- | --- |
-| Schema and example pairs | Exactly eight named pairs, Draft 2020-12 validity, required fields, unknown fields, and selected fail-closed cases | [Schema tests](test_schemas.py) |
+| Schema and example pairs | Exactly nine named pairs, Draft 2020-12 validity, required fields, unknown fields, and selected fail-closed cases | [Schema tests](test_schemas.py) |
 | Provider-neutral governor | Budget projection, ledger integrity, provider adapters, and shared control behavior | [Governor tests](../reference-implementation/provider-neutral-governor/tests/) |
 | Recorded release evidence | Dated results, scope, and explicit non-claims | [Validation report](../VALIDATION-REPORT.md) |
 
