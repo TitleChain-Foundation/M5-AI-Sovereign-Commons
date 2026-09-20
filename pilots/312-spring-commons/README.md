@@ -109,7 +109,7 @@ The public view may show privacy-safe source-to-destination flows while protecte
 The **ICSN Jurisdiction Naming & Resolution Registry (JNR)** provides the canonical jurisdiction layer. Optional aliases such as `singaporechain.eth`, `japanchain.eth`, `canadachain.eth`, `unitedkingdomchain.eth`, `unitedstateschain.eth`, or state-level aliases may be used as technical adapters only if actually registered and mapped.
 
 
-**Machine-readable companion artifacts:** [`M5 Jurisdictional Capital Provenance schema`](./schemas/m5-jurisdictional-capital-provenance.schema.json) and [`Spring Commons example record`](./examples/PPT-EZ-CA-0001-jurisdictional-capital-provenance-example.json). These are draft reference artifacts for public review and do not evidence a real capital event.
+**Capital-provenance guide:** Start with the human-readable [schema guide](./schemas/README.md) and [example guide](./examples/README.md). Technical users can continue from those pages to the raw JSON Schema and synthetic JSON record. These are draft reference artifacts for public review and do not evidence a real capital event.
 **A `.eth` name does not establish government sponsorship, delegated authority, sovereignty, or control of an official government domain.** The canonical JNR record and authoritative jurisdiction evidence control.
 
 ### M5Global capital-flow intelligence
@@ -337,7 +337,7 @@ The full placeholder-template set remains the legal/process reference package. v
 | DOC-22 | M5Canon State-to-Entity Due Process Channel Standard |
 | DOC-23 | Source of Funds, Entity Provenance, Jurisdiction Chain & Public Transaction Graph Standard |
 
-**[Browse the public document set →](./documents/public/)**
+**[Browse the human-readable document library →](./documents/README.md)**
 
 ---
 
