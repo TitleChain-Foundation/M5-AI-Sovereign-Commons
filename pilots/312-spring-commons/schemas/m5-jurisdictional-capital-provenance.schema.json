@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://titlechainfoundation.org/schemas/m5-jurisdictional-capital-provenance.schema.json",
+  "$id": "https://raw.githubusercontent.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/main/pilots/312-spring-commons/schemas/m5-jurisdictional-capital-provenance.schema.json",
   "title": "M5 Jurisdictional Capital Provenance Record",
   "description": "Draft reference schema for DOC-23 / M5-CAPGRAPH-001 v0.6. Evidence/coordination only; records entity grounding, multi-hop capital provenance, jurisdiction roles, source-chain activation, authority state, disclosure class, and analytics eligibility. It does not create legal authority, governmental affiliation, or replace authoritative records.",
   "type": "object",
