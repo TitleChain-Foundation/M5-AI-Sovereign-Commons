@@ -31,3 +31,12 @@ organization, model deployment, or transaction.
 
 Do not copy sample identifiers or values into a production system without an
 independent authority, privacy, security, and implementation review.
+
+## Sanitized member-supplied illustration
+
+The [Sovereign Self refusal projection](member-supplied/README.md) illustrates
+how a Refuse Consent Genesis Mark may appear in an M5POD Bank of Me account. It
+is deliberately separate from the synthetic conformance fixtures above. It
+contains no Ownership Key, recovery card, wallet secret, legal name, or private
+M5POD identifier, and it does not prove ownership, authority, consent, patent
+rights, legal effect, or device compliance.

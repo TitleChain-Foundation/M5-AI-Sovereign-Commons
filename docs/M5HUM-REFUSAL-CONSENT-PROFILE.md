@@ -35,6 +35,13 @@ A conforming record **MUST** include:
 
 The portable record **MUST** preserve refusals, denials, expiry, supersession, revocation information, signatures, provenance, and integrity digests during M5POD export and import. Private keys, precise location history, and unrelated personal data **MUST NOT** be included merely to prove refusal.
 
+A BOM record **MAY** reference a member-supplied Genesis Mark or similar public
+display artifact. The public projection **MUST NOT** contain an ownership key,
+recovery card, wallet secret, private account identifier, or other
+authentication material. A displayed serial number and image digest record what
+the member supplied; they do not prove possession, ownership, identity,
+transferability controls, protocol authority, consent status, or legal effect.
+
 ## Detection and enforcement
 
 A participating sensor or autonomous system **MUST** evaluate applicable physical and digital refusal signals before persistent recording, retention, identification, tracking, unrelated inference, training, sharing, or actuation. Minimal transient acquisition and processing **MAY** occur only to detect, authenticate, scope, and enforce a refusal signal. That transient data **MUST NOT** be retained or reused for another purpose and **MUST** be discarded when refusal applies. A verified active refusal produces an M5Canon denial for the covered operation and triggers the declared action, such as dropping a frame, muting a payload, disabling a sensor, redacting the subject, halting processing, or rerouting.
@@ -94,3 +101,11 @@ A conformance suite **MUST** demonstrate:
 - accessibility through non-visual signal and control paths.
 
 Passing schema tests proves only record shape. Device behavior, identity, legal effect, interoperability, security, and universal adoption require separate evidence.
+
+## Illustrative member account projection
+
+The [sanitized Sovereign Self example](../examples/member-supplied/m5pod-sovereign-self-refusal.json)
+shows how a member-supplied Refuse Consent Genesis Mark may be referenced from a
+private M5POD BOM refusal profile while exposing only a public social image,
+public mark number, and integrity digest. It is illustrative and unverified; it
+is not a credential, ownership record, or export of private M5POD evidence.

@@ -43,6 +43,25 @@
         "repository_license": {"const": "MIT"}
       }
     },
+    "member_artifacts": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["artifact_type", "edition", "public_identifier", "display_asset_ref", "display_asset_sha256", "assertion_basis", "ownership_key_included", "authority_effect"],
+        "properties": {
+          "artifact_type": {"const": "refuse_consent_genesis_mark"},
+          "edition": {"const": "genesis_2026"},
+          "public_identifier": {"type": "string", "pattern": "^#[0-9]{4}$"},
+          "display_asset_ref": {"type": "string", "minLength": 1},
+          "display_asset_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "assertion_basis": {"const": "member_supplied_unverified"},
+          "ownership_key_included": {"const": false},
+          "authority_effect": {"const": "none"}
+        }
+      }
+    },
     "signal_channels": {
       "type": "array",
       "minItems": 1,

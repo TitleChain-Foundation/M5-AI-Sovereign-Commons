@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "refusal:member-private-projection-0045",
+  "subject_ref": "m5hum:private-member",
+  "account_context": "BOM",
+  "human_controlled": true,
+  "protocol_evidence": {
+    "name": "Refuse Consent Protocol",
+    "version": "1.1",
+    "publication_uri": "https://refuseconsent.com/downloads/Defensive_Publication_The_Refuse_Consent_Protocol_v1.1_18.Aug.2026_D._BRACK.pdf",
+    "publication_sha256": "2f6db7b61e964e4b36af44ba1255666b1de3830b05ac8d35f057f00d033f2237",
+    "publication_sha512": "bb79784df46a40990f4357e3eb28c1966fc812c4d0b1dcbd4e23214ae481edbcf6e331ddcae3506492afbd516b9a8e75029b66d38c8a883ad7a538d878345127",
+    "glyph_uri": "https://refuseconsent.com/downloads/refuse_consent_logo.svg",
+    "glyph_sha256": "e3a599737982f4ef22117bae49e42336d3dad03b2fb8776405392c3875021b06",
+    "publication_intent": "defensive_publication_public_domain_prior_art_statement",
+    "repository_license": "MIT"
+  },
+  "member_artifacts": [
+    {
+      "artifact_type": "refuse_consent_genesis_mark",
+      "edition": "genesis_2026",
+      "public_identifier": "#0045",
+      "display_asset_ref": "assets/RefuseConsent_Genesis_0045.png",
+      "display_asset_sha256": "7dccb73cf71c744a04bbc7f694060731e0c7edec7f0651db06899e6d36201c77",
+      "assertion_basis": "member_supplied_unverified",
+      "ownership_key_included": false,
+      "authority_effect": "none"
+    }
+  ],
+  "signal_channels": ["glyph", "signed_profile", "offline_ledger"],
+  "refusal": {
+    "sensor_classes": ["visual", "audio", "biometric", "location", "spatial"],
+    "operation_classes": ["capture", "process", "store", "identify", "track", "infer", "train", "share"],
+    "effect": "deny"
+  },
+  "validity": {
+    "spatial_mode": "subject_proximity",
+    "spatial_description": "The detectable vicinity of the private member; exact coordinates are not disclosed.",
+    "effective_from": "2026-09-20T00:00:00Z",
+    "expires_at": null
+  },
+  "verification": {
+    "issuer_ref": "m5hum:private-member",
+    "proof_ref": "private:withheld-from-public-example",
+    "revocation_status_ref": "private:withheld-from-public-example",
+    "offline_verification_supported": false
+  },
+  "enforcement": {
+    "pre_capture": true,
+    "verified_signal_actions": ["drop_frame", "mute_payload", "halt_processing", "halt_storage", "halt_sharing"],
+    "unresolved_signal_action": "pause_and_deny",
+    "spoof_suspected_action": "pause_deny_and_escalate",
+    "m5canon_result": "deny_when_active_or_unresolved"
+  },
+  "exceptions": {
+    "no_implied_exceptions": true,
+    "authorized_exception_refs": []
+  },
+  "receipts": {
+    "required": true,
+    "privacy_preserving": true,
+    "incident_ref": "private:withheld-from-public-example"
+  },
+  "lifecycle": {
+    "status": "active",
+    "supersedes_ref": null,
+    "updated_at": "2026-09-20T00:00:00Z"
+  }
+}

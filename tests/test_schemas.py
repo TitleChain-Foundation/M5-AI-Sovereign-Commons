@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -115,6 +116,26 @@ def test_refusal_profile_fails_closed_and_requires_offline_evidence():
     missing_offline_ledger = copy.deepcopy(example)
     del missing_offline_ledger["verification"]["offline_ledger_ref"]
     assert not validator(schema).is_valid(missing_offline_ledger)
+
+
+def test_member_supplied_refusal_projection_excludes_ownership_key():
+    schema, _ = load_pair("m5-human-refusal-profile")
+    example = json.loads(
+        (EXAMPLE_DIR / "member-supplied" / "m5pod-sovereign-self-refusal.json").read_text()
+    )
+    validator(schema).validate(example)
+
+    artifact = example["member_artifacts"][0]
+    assert artifact["public_identifier"] == "#0045"
+    assert artifact["assertion_basis"] == "member_supplied_unverified"
+    assert artifact["ownership_key_included"] is False
+    assert artifact["authority_effect"] == "none"
+    asset = EXAMPLE_DIR / "member-supplied" / artifact["display_asset_ref"]
+    assert hashlib.sha256(asset.read_bytes()).hexdigest() == artifact["display_asset_sha256"]
+
+    unsafe = copy.deepcopy(example)
+    unsafe["member_artifacts"][0]["ownership_key_included"] = True
+    assert not validator(schema).is_valid(unsafe)
 
 
 @pytest.mark.parametrize(
