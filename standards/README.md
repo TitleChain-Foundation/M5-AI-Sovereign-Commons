@@ -2,12 +2,13 @@
 
 ![Read the context before the standards](../assets/section-review-path.svg)
 
-This folder contains the four normative proposals in the M5 AI Sovereign
+This folder contains the normative proposals in the M5 AI Sovereign
 Commons. They define bounded controls for AI governance, model artifacts,
-spatial capabilities, and provider identity without treating an agent, model,
-wallet, credential, or technical record as an independent source of authority.
+spatial capabilities, provider identity, and Ricardian execution without treating
+an agent, model, wallet, credential, token, or technical record as an independent
+source of authority.
 
-All four documents are **Draft for Public Comment**. Normative words such as
+All documents are **Draft for Public Comment**. Normative words such as
 `MUST` and `MUST NOT` describe the proposal; they do not establish law,
 certification, provider enrollment, production readiness, or external approval.
 
@@ -19,6 +20,7 @@ certification, provider enrollment, production readiness, or external approval.
 | [M5-AIMOD-001 — Model Artifacts and Hardware Profiles](M5-AIMOD-001.md) | Model provenance, open-weight artifacts, hardware requirements, portability, and replacement |
 | [M5-AISPACE-001 — Spatial and Human-Experience Capabilities](M5-AISPACE-001.md) | Sensors, simulations, embodied systems, human-experience boundaries, and actuators |
 | [M5-AIPROV-001 — Provider Enrollment and Endpoint Binding](M5-AIPROV-001.md) | Provider identity, credential status, endpoints, redirects, and substitution controls |
+| [M5-RICARDIAN-TRIPLE-LAYER-001 — Ricardian Contract Binding and Execution](M5-RICARDIAN-TRIPLE-LAYER-001.md) | Human terms, machine policy/evidence, executable settlement, M5-x402 binding, and no-value token separation |
 
 ## Read with
 

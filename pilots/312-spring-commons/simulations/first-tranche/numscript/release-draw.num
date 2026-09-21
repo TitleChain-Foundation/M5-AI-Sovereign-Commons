@@ -1,0 +1,23 @@
+vars {
+  account $escrow
+  account $permitted_use
+  monetary $amount
+  string $contract_id
+  string $terms_digest
+  string $policy_digest
+  string $draw_id
+  string $approval_receipt
+}
+
+send $amount (
+  source = $escrow
+  destination = $permitted_use
+)
+
+set_tx_meta("m5_contract_id", $contract_id)
+set_tx_meta("m5_human_terms_digest", $terms_digest)
+set_tx_meta("m5_machine_policy_digest", $policy_digest)
+set_tx_meta("m5_draw_id", $draw_id)
+set_tx_meta("m5_approval_receipt", $approval_receipt)
+set_tx_meta("m5_execution_stage", "DESTINATION_RELEASED")
+set_tx_meta("m5_simulation", "true")

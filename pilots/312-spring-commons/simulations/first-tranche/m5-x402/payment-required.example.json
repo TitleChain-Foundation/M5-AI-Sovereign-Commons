@@ -1,0 +1,106 @@
+{
+  "x402Version": 2,
+  "error": "PAYMENT-SIGNATURE header is required; synthetic demonstration only",
+  "resource": {
+    "url": "https://sandbox.invalid/spring-commons/tranche-01/reserve",
+    "description": "Synthetic first-tranche escrow reservation; no authority or financial effect",
+    "mimeType": "application/json",
+    "serviceName": "M5 Sandbox",
+    "tags": ["synthetic", "spring-commons", "ricardian"]
+  },
+  "accepts": [
+    {
+      "scheme": "exact",
+      "network": "m5sandbox:local",
+      "amount": "2500000000",
+      "asset": "USD",
+      "payTo": "role:escrow:synthetic",
+      "maxTimeoutSeconds": 300,
+      "extra": {
+        "paymentFlow": "upfront",
+        "implementationStatus": "CUSTOM_DRY_RUN_NOT_SUPPORTED_BY_STANDARD_X402_FACILITATORS",
+        "numscriptAsset": "USD/2"
+      }
+    }
+  ],
+  "extensions": {
+    "payment-identifier": {
+      "info": {
+        "required": true,
+        "id": "m5pay_spring_commons_tranche_01"
+      },
+      "schema": {
+        "type": "object"
+      }
+    },
+    "m5-ricardian": {
+      "info": {
+        "profile": "M5-X402-001-draft",
+        "contract": {
+          "id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+          "version": "simulation-1",
+          "digest": "sha256:615993c075a6bc73c8b28c328b2cfcbdfb64c5a822eb0d54a1fcaddf943d64e0"
+        },
+        "human_terms": {
+          "id": "SPRING-COMMONS-DOC-SET-01-23",
+          "version": "v0.6-draft-package",
+          "digest": "sha256:99bd703d670a5b7a446c7dad3c13f3db70a0d0b26b3590f2592c1b09ec6f72b4",
+          "uri": "../../../documents/public/README.md"
+        },
+        "machine_policy": {
+          "id": "SPRING-COMMONS-FIRST-TRANCHE-GATES",
+          "version": "1.0-draft",
+          "digest": "sha256:aba0895ab6a91e1318c060c6400cc85bddd723db79fd488554f0caad19a90cda",
+          "uri": "../../../schemas/m5-first-tranche-simulation.schema.json"
+        },
+        "executable_plan": {
+          "id": "SPRING-COMMONS-RESERVE-TRANCHE",
+          "version": "1.0-draft",
+          "digest": "sha256:f721bfaeb8e3da403ec472cdda895a3215e4629b174b2b8f7f976589e19c73a7",
+          "uri": "../numscript/reserve-tranche.num",
+          "language": "Numscript"
+        },
+        "authority": {
+          "principal_ref": "SYNTHETIC-CAPITAL-PROVIDER",
+          "role_ref": "CAPITAL_PROVIDER",
+          "credential_state": "PENDING_EXTERNAL",
+          "delegation_ref": null,
+          "approval_state": "PENDING_EXTERNAL",
+          "evidence_refs": []
+        },
+        "token_representation": {
+          "token_id": "M5MARKER:PPT-EZ-CA-0001:TRANCHE-01",
+          "asset_code": "M5MARKER",
+          "quantity": "1",
+          "valuation_status": "NO_ASSIGNED_MONETARY_VALUE",
+          "transferability": "NON_TRANSFERABLE",
+          "redeemability": "NONE",
+          "fee_title_effect": "NONE",
+          "security_or_investment_rights": "NONE_UNLESS_SEPARATELY_CREATED",
+          "settlement_eligibility": "NOT_A_SETTLEMENT_ASSET"
+        },
+        "execution_safety": {
+          "synthetic": true,
+          "authority_effect": "NONE",
+          "network_write": false,
+          "financial_movement": false,
+          "settlement_status": "NOT_SUBMITTED"
+        },
+        "request_fingerprint": {
+          "payment_id": "m5pay_spring_commons_tranche_01",
+          "http_method": "POST",
+          "resource": "https://sandbox.invalid/spring-commons/tranche-01/reserve",
+          "scheme": "exact",
+          "network": "m5sandbox:local",
+          "asset": "USD",
+          "amount": "2500000000",
+          "pay_to": "role:escrow:synthetic",
+          "operation_id": "RESERVE-TRANCHE-01"
+        }
+      },
+      "schema": {
+        "$ref": "./m5-x402-extension.schema.json"
+      }
+    }
+  }
+}

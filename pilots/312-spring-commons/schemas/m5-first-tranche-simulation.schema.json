@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/main/pilots/312-spring-commons/schemas/m5-first-tranche-simulation.schema.json",
+  "title": "M5 Spring Commons First-Tranche Simulation",
+  "description": "Synthetic, non-authoritative, write-disabled stage-gate record for the illustrative Spring Commons private-project tranche. Validation confirms structure only and creates no approval, commitment, legal effect, settlement, draw authority, or achieved impact.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "simulation_id",
+    "project_id",
+    "safety",
+    "tranche",
+    "documents",
+    "participants",
+    "evidence_catalog",
+    "checkpoints",
+    "state_machine",
+    "impact_metrics",
+    "expected_decision"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0-draft" },
+    "simulation_id": { "type": "string", "minLength": 1 },
+    "project_id": { "const": "PPT-EZ-CA-0001" },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["synthetic", "authority_effect", "network_write", "financial_movement", "data_classification", "notice"],
+      "properties": {
+        "synthetic": { "const": true },
+        "authority_effect": { "const": "NONE" },
+        "network_write": { "const": false },
+        "financial_movement": { "const": false },
+        "data_classification": { "const": "PUBLIC_SYNTHETIC" },
+        "notice": { "type": "string", "minLength": 20 }
+      }
+    },
+    "tranche": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tranche_id", "capital_lane", "amount", "currency", "economic_terms_status", "fee_title_effect", "current_status"],
+      "properties": {
+        "tranche_id": { "type": "string" },
+        "capital_lane": { "const": "ILLUSTRATIVE_PRIVATE_PROJECT_CAPITAL" },
+        "amount": { "const": 25000000 },
+        "currency": { "const": "USD" },
+        "economic_terms_status": { "const": "TBD_NOT_OFFERED" },
+        "fee_title_effect": { "const": "NONE" },
+        "current_status": { "const": "CAPITAL_DESIGN" }
+      }
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 23,
+      "maxItems": 23,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["document_id", "title", "simulation_role", "legal_status"],
+        "properties": {
+          "document_id": { "pattern": "^DOC-(0[1-9]|1[0-9]|2[0-3])$" },
+          "title": { "type": "string" },
+          "simulation_role": { "type": "string" },
+          "legal_status": { "const": "DRAFT_REFERENCE_ONLY" }
+        }
+      }
+    },
+    "participants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["participant_id", "stakeholder_class", "role", "selection_status", "authority_status", "accountable_human_status", "system_of_record"],
+        "properties": {
+          "participant_id": { "type": "string" },
+          "stakeholder_class": { "enum": ["AGENCY", "PUBLIC_GRANTEE", "PROJECT_ENTITY", "CAPITAL_PROVIDER", "REGULATED_PROVIDER", "PROFESSIONAL", "WORKER", "COMMUNITY", "EVIDENCE_SYSTEM"] },
+          "role": { "type": "string" },
+          "selection_status": { "enum": ["EXPECTED_IN_PATHWAY", "TBD", "CONDITIONAL", "SYNTHETIC"] },
+          "authority_status": { "enum": ["PENDING_EXTERNAL", "NOT_APPLICABLE", "SYNTHETIC_NO_AUTHORITY"] },
+          "accountable_human_status": { "enum": ["TBD", "NOT_APPLICABLE", "SYNTHETIC"] },
+          "system_of_record": { "type": "string" }
+        }
+      }
+    },
+    "evidence_catalog": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "evidence_class", "status", "authoritative", "synthetic", "access_class", "source_system"],
+        "properties": {
+          "evidence_id": { "type": "string" },
+          "evidence_class": { "type": "string" },
+          "status": { "enum": ["CURRENT", "PENDING", "STALE", "REVOKED", "DISPUTED"] },
+          "authoritative": { "type": "boolean" },
+          "synthetic": { "type": "boolean" },
+          "access_class": { "enum": ["PUBLIC", "REGULATOR_OR_QUALIFIED_ASSURANCE", "PRIVATE_PROTECTED"] },
+          "source_system": { "type": "string" }
+        }
+      }
+    },
+    "checkpoints": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["checkpoint_id", "stage", "requirement", "source_documents", "stakeholder_classes", "gate_type", "required", "status", "evidence_refs", "blocks_states"],
+        "properties": {
+          "checkpoint_id": { "type": "string" },
+          "stage": { "enum": ["INTAKE", "AUTHORITY_FORMATION", "DILIGENCE", "CAPITAL_STRUCTURE", "COMMITMENT", "DEFINITIVE_CLOSING", "ESCROW", "DRAW", "DEVELOPMENT", "COMMUNITY_AND_WORKERS", "IMPACT_AND_REPORTING"] },
+          "requirement": { "type": "string" },
+          "source_documents": { "type": "array", "minItems": 1, "items": { "pattern": "^DOC-(0[1-9]|1[0-9]|2[0-3])$" } },
+          "stakeholder_classes": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "gate_type": { "enum": ["EXTERNAL_AUTHORITY", "REGULATED_PROVIDER", "PROFESSIONAL_JUDGMENT", "HUMAN_FIDUCIARY", "DETERMINISTIC_POLICY", "DOCUMENTATION"] },
+          "required": { "type": "boolean" },
+          "status": { "enum": ["PENDING_EXTERNAL", "SIMULATED_PASS", "EVIDENCED_AUTHORITY", "NOT_APPLICABLE_CONDITIONAL", "FAILED", "STALE", "REVOKED", "DISPUTED"] },
+          "evidence_refs": { "type": "array", "items": { "type": "string" } },
+          "blocks_states": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "state_machine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current_state", "requested_state", "permitted_states", "fail_closed_state", "transition_order"],
+      "properties": {
+        "current_state": { "const": "CAPITAL_DESIGN" },
+        "requested_state": { "const": "INITIAL_FUNDING_REVIEW" },
+        "permitted_states": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "fail_closed_state": { "const": "HOLD" },
+        "transition_order": { "type": "array", "minItems": 1, "items": { "type": "string" } }
+      }
+    },
+    "impact_metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric_id", "label", "value_class", "baseline", "target", "actual", "unit", "status", "source_documents", "limitations"],
+        "properties": {
+          "metric_id": { "type": "string" },
+          "label": { "type": "string" },
+          "value_class": { "enum": ["PROGRAMMED_TARGET", "MEASURE_AFTER_EVENT"] },
+          "baseline": {},
+          "target": {},
+          "actual": { "type": "null" },
+          "unit": { "type": "string" },
+          "status": { "const": "NOT_MEASURED" },
+          "source_documents": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+          "limitations": { "type": "string" }
+        }
+      }
+    },
+    "expected_decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision", "execution_authorized", "reason"],
+      "properties": {
+        "decision": { "const": "HOLD" },
+        "execution_authorized": { "const": false },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

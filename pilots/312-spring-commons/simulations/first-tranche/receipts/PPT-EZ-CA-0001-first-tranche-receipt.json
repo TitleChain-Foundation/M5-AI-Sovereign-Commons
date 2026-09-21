@@ -1,0 +1,29 @@
+{
+  "receipt_id": "SIM-PPT-EZ-CA-0001-TRANCHE-01-RECEIPT",
+  "receipt_version": "1.0",
+  "simulation_id": "SIM-PPT-EZ-CA-0001-TRANCHE-01",
+  "project_id": "PPT-EZ-CA-0001",
+  "tranche_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+  "fixture_digest": "sha256:d221c42c95ccd281fde3174f7b2dfd9a0cb5e1fb5071bded548fa87721559a54",
+  "decision": "HOLD",
+  "execution_authorized": false,
+  "authority_effect": "NONE",
+  "network_write_performed": false,
+  "financial_movement_performed": false,
+  "required_checkpoint_count": 5,
+  "satisfied_checkpoint_count": 1,
+  "unresolved_checkpoint_ids": [
+    "CP-01-FEDERAL-PATHWAY",
+    "CP-02-PUBLIC-GRANTEE",
+    "CP-03-CAPITAL-AUTHORITY",
+    "CP-04-ESCROW-READY"
+  ],
+  "current_state": "CAPITAL_DESIGN",
+  "requested_state": "INITIAL_FUNDING_REVIEW",
+  "notices": [
+    "Synthetic developer demonstration only.",
+    "A ready result routes evidence to authorized humans; it never approves closing, source-chain activation, escrow release, draw authorization, settlement, or legal state.",
+    "Authoritative external records and executed instruments control their respective domains.",
+    "Targets and modeled values are not achieved impact or investment performance."
+  ]
+}

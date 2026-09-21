@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/formancehq/numscript/refs/heads/main/v1.inputs.schema.json",
+  "variables": {
+    "escrow": "escrow:tranche-01:synthetic",
+    "permitted_use": "permitted-use:predevelopment:synthetic",
+    "amount": "USD/2 100000000",
+    "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+    "terms_digest": "sha256:99bd703d670a5b7a446c7dad3c13f3db70a0d0b26b3590f2592c1b09ec6f72b4",
+    "policy_digest": "sha256:aba0895ab6a91e1318c060c6400cc85bddd723db79fd488554f0caad19a90cda",
+    "draw_id": "SIM-DRAW-001",
+    "approval_receipt": "SIMULATED-NON-AUTHORITATIVE-APPROVAL-RECEIPT"
+  },
+  "balances": [
+    {
+      "account": "escrow:tranche-01:synthetic",
+      "asset": "USD/2",
+      "amount": 2500000000
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+vars {
+  account $marker_registry
+  string $contract_id
+  string $terms_digest
+  string $policy_digest
+}
+
+send [M5MARKER 1] (
+  source = @world
+  destination = $marker_registry
+)
+
+set_account_meta($marker_registry, "m5_contract_id", $contract_id)
+set_account_meta($marker_registry, "m5_human_terms_digest", $terms_digest)
+set_account_meta($marker_registry, "m5_machine_policy_digest", $policy_digest)
+set_account_meta($marker_registry, "valuation_status", "NO_ASSIGNED_MONETARY_VALUE")
+set_account_meta($marker_registry, "transferability", "NON_TRANSFERABLE")
+set_account_meta($marker_registry, "redeemability", "NONE")
+set_account_meta($marker_registry, "fee_title_effect", "NONE")
+set_account_meta($marker_registry, "settlement_eligibility", "NOT_A_SETTLEMENT_ASSET")
+set_tx_meta("m5_simulation", "true")
