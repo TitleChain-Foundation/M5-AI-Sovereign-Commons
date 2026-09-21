@@ -56,7 +56,7 @@
           "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
           "id": "SPRING-COMMONS-FIRST-TRANCHE-GATES",
           "version": "1.0-draft",
-          "digest": "sha256:585e6f8911c16523ebb58a2c2cd53e9aa0321b56e9c9f7fa1bc309d544f2660a",
+          "digest": "sha256:ab3f0d619ce506fd56fc110b893baa4594b43245a6ae43b57e8e7fc975f059df",
           "uri": "../../../schemas/m5-first-tranche-simulation.schema.json",
           "supersession_history": {"supersedes": [], "superseded_by": null}
         },
@@ -73,7 +73,7 @@
           "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
           "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
           "version": "1.0-draft",
-          "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+          "digest": "sha256:b8aa1bf344699d43f9d524d70c28a23a8b4ec4f31333794a68234cbaa331518a",
           "uri": "../../../examples/PPT-EZ-CA-0001-m5canon-decision-context.json",
           "supersession_history": {"supersedes": [], "superseded_by": null}
         },
@@ -122,14 +122,14 @@
           "taxonomy_profile_id": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft",
           "taxonomy_version": "1.0-draft",
           "taxonomy_digest": "sha256:50ed025e01085aba63f4d8ca2f16b4ebaaf5107ee6db727dfc17de728c51af0b",
-          "decision_context_digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
-          "asset_classification_digest": "sha256:361c98f6c9a6154beac92bf7bf6c9c54d7aad5710fde1eac2c44916342826d57",
-          "external_legal_classification_digest": "sha256:c2875a211e9fdde7b75ed4b0407445f9eec3be0dfb991f76e02691dd40179953",
-          "jurisdiction_graph_digest": "sha256:db739f6b3d2b904ba8b3b76ed1473aa847cacf6157d14d1da63eae0555804c27",
-          "account_authority_digest": "sha256:82e95d2c676a5658774a2057dbb128c04882cc6aef651ca156efdab9a7a81795",
+          "decision_context_digest": "sha256:b8aa1bf344699d43f9d524d70c28a23a8b4ec4f31333794a68234cbaa331518a",
+          "asset_classification_digest": "sha256:76f9dbb742b1b0f46214d7ce724f2cda9d71cc885865e3d7f18e163248eacf78",
+          "external_legal_classification_digest": "sha256:8a3551a14df62143545540b7b3de7d329065e6fc9e9e014c8a4a78d8b8497f2f",
+          "jurisdiction_graph_digest": "sha256:9c73d91bb30e67501a89aa57a2f71d13e978e3f6957151f547d3a2c3b13c07f9",
+          "account_authority_digest": "sha256:26e06697029763f3d1d5609a4b55722b5b27a4aaa3d96e5fcb6cb1ac25779373",
           "credential_delegation_mandate_digest": "sha256:332f25f14f872d7ba813d6c19ae266f272d9f1df250e8bb68e6a78d3218c416a",
-          "institutional_route_digest": "sha256:ddc75608e81d0e3f64f1f377197771d867798a7058d989099a8c9c037bdcb977",
-          "receipt_access_policy_digest": "sha256:3699c5fea1f912f6dbe452571ae556e16f31c82919f5efeb2f1e02b4a43ad249"
+          "institutional_route_digest": "sha256:bdb3a3a3587cfd5394483eb1f23a9d86ceb3e55ec25fd5744fe4ffed8bc8f53f",
+          "receipt_access_policy_digest": "sha256:5e49ea9a4c4df6c79c83aef8a4a2db40c657ceb5ace02dcb4b6bfdf9dadfc93f"
         }
       },
       "schema": {

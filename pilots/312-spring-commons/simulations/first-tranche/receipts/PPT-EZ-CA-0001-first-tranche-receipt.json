@@ -15,7 +15,7 @@
         "implementation_version": "1.1.0-draft",
         "function_id": "M5CANON.PRINCIPAL.RESOLVE.v1",
         "function_uri": "urn:m5:function:m5canon:principal:resolve:v1",
-        "outcome": "SATISFIED"
+        "outcome": "UNRESOLVED"
       },
       {
         "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
@@ -79,8 +79,8 @@
     "fixture": {
       "id": "SIM-PPT-EZ-CA-0001-TRANCHE-01",
       "version": "1.0-draft",
-      "digest": "sha256:4d69614ef3e751b15f13c066949f37b6681cf96e4138e1cf1950158be91c6785",
-      "uri": "urn:sha256:4d69614ef3e751b15f13c066949f37b6681cf96e4138e1cf1950158be91c6785"
+      "digest": "sha256:1fa8e87230a57ebacd995728884bd8455e48b065d74dc8bc1756e982ebc36901",
+      "uri": "urn:sha256:1fa8e87230a57ebacd995728884bd8455e48b065d74dc8bc1756e982ebc36901"
     },
     "human_terms_manifest": {
       "id": "SPRING-COMMONS-DOC-SET-01-23",
@@ -91,7 +91,7 @@
     "machine_policy": {
       "id": "SPRING-COMMONS-FIRST-TRANCHE-GATES",
       "version": "1.0-draft",
-      "digest": "sha256:585e6f8911c16523ebb58a2c2cd53e9aa0321b56e9c9f7fa1bc309d544f2660a",
+      "digest": "sha256:ab3f0d619ce506fd56fc110b893baa4594b43245a6ae43b57e8e7fc975f059df",
       "uri": "pilots/312-spring-commons/schemas/m5-first-tranche-simulation.schema.json"
     },
     "executable_instruction": {
@@ -103,7 +103,7 @@
     "decision_context": {
       "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
       "version": "1.0-draft",
-      "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+      "digest": "sha256:b8aa1bf344699d43f9d524d70c28a23a8b4ec4f31333794a68234cbaa331518a",
       "uri": "PPT-EZ-CA-0001-m5canon-decision-context.json"
     },
     "taxonomy_profile": {
@@ -210,7 +210,7 @@
   ],
   "receipt_access": {
     "policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01",
-    "policy_digest": "sha256:3699c5fea1f912f6dbe452571ae556e16f31c82919f5efeb2f1e02b4a43ad249",
+    "policy_digest": "sha256:5e49ea9a4c4df6c79c83aef8a4a2db40c657ceb5ace02dcb4b6bfdf9dadfc93f",
     "default_access": "DENY",
     "public_field_scope": [
       "decision",
@@ -226,10 +226,11 @@
       "SECURITY_RESTRICTED"
     ],
     "authorized_grant_refs": [
-      "ACCESS-PUBLIC-SUMMARY",
+      "ACCESS-PUBLIC-SUMMARY"
+    ],
+    "pending_grant_refs": [
       "ACCESS-REGULATOR-EXAMINATION"
     ],
-    "pending_grant_refs": [],
     "access_log_required": true,
     "access_log_refs": []
   },
@@ -246,14 +247,16 @@
   "financial_movement_performed": false,
   "checkpoint_summary": {
     "required": 5,
-    "satisfied": 0,
-    "unresolved_ids": [
-      "ASSET_CLASSIFICATION",
-      "AUTHORITY_REVOCATION_STATE",
+    "satisfied": 1,
+    "unresolved_checkpoint_ids": [
       "CP-01-FEDERAL-PATHWAY",
       "CP-02-PUBLIC-GRANTEE",
       "CP-03-CAPITAL-AUTHORITY",
-      "CP-04-ESCROW-READY",
+      "CP-04-ESCROW-READY"
+    ],
+    "unresolved_context_requirements": [
+      "ASSET_CLASSIFICATION",
+      "AUTHORITY_REVOCATION_STATE",
       "CREDENTIAL",
       "DELEGATION",
       "EXTERNAL_LEGAL_CLASSIFICATION",
@@ -271,16 +274,6 @@
     "resulting_state": "HOLD"
   },
   "exceptions": [
-    {
-      "code": "ASSET_CLASSIFICATION",
-      "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
-    },
-    {
-      "code": "AUTHORITY_REVOCATION_STATE",
-      "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
-    },
     {
       "code": "CP-01-FEDERAL-PATHWAY",
       "status": "UNRESOLVED",
@@ -302,49 +295,59 @@
       "detail": "Required checkpoint is not satisfied"
     },
     {
+      "code": "ASSET_CLASSIFICATION",
+      "status": "UNRESOLVED",
+      "detail": "Decision-context requirement is not satisfied"
+    },
+    {
+      "code": "AUTHORITY_REVOCATION_STATE",
+      "status": "UNRESOLVED",
+      "detail": "Decision-context requirement is not satisfied"
+    },
+    {
       "code": "CREDENTIAL",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "DELEGATION",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "EXTERNAL_LEGAL_CLASSIFICATION",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "INSTITUTIONAL_ROUTE",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "JURISDICTION_GRAPH",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "MANDATE",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "ROUTE-REQ-DTTC",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "ROUTE-REQ-ESCROW",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     },
     {
       "code": "ROUTE-REQ-LEGAL-CLASSIFICATION",
       "status": "UNRESOLVED",
-      "detail": "Required checkpoint is not satisfied"
+      "detail": "Decision-context requirement is not satisfied"
     }
   ],
   "reconciliation": {
@@ -352,7 +355,7 @@
     "provider_receipt_refs": []
   },
   "observations": {
-    "fixture_digest": "sha256:4d69614ef3e751b15f13c066949f37b6681cf96e4138e1cf1950158be91c6785",
+    "fixture_digest": "sha256:1fa8e87230a57ebacd995728884bd8455e48b065d74dc8bc1756e982ebc36901",
     "validation_status": "VALID"
   },
   "notices": [

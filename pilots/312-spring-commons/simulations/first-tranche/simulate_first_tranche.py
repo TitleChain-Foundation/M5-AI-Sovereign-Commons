@@ -11,7 +11,13 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 
-from canonical import canonical_digest, draft_asset_policy_blockers, file_digest, jurisdiction_graph_errors
+from canonical import (
+    canonical_digest,
+    draft_asset_policy_blockers,
+    file_digest,
+    jurisdiction_graph_errors,
+    verify_bound_artifact,
+)
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent.parent
@@ -144,25 +150,33 @@ def _load_decision_context(record: Any) -> tuple[dict[str, Any] | None, list[str
     binding = record["decision_context"]
     uri = binding.get("uri")
     schema_uri = binding.get("schema_uri")
-    if not isinstance(uri, str) or not isinstance(schema_uri, str):
-        return None, ["decision_context: URI and schema URI must be strings"]
-    context_path = (DEFAULT_FIXTURE.parent / uri).resolve()
-    schema_path = (DEFAULT_FIXTURE.parent / schema_uri).resolve()
-    errors: list[str] = []
-    for label, path in (("record", context_path), ("schema", schema_path)):
-        if not path.is_relative_to(PROJECT) or not path.is_file():
-            errors.append(f"decision_context: {label} URI is outside the project or missing")
-    if errors:
-        return None, errors
-    if file_digest(context_path) != binding.get("digest"):
-        return None, ["decision_context: URI and digest do not identify the same artifact"]
-    context = json.loads(context_path.read_text())
-    schema = json.loads(schema_path.read_text())
+    expected_schema_path = DECISION_CONTEXT_SCHEMA_PATH.resolve()
+    if not isinstance(schema_uri, str):
+        return None, ["decision_context: schema URI must be a string"]
+    declared_schema_path = (DEFAULT_FIXTURE.parent / schema_uri).resolve()
+    if declared_schema_path != expected_schema_path:
+        return None, ["decision_context: schema URI does not identify the required schema"]
+    if file_digest(expected_schema_path) != binding.get("schema_digest"):
+        return None, ["decision_context: required schema digest mismatch"]
+    try:
+        context_path = verify_bound_artifact(
+            DEFAULT_FIXTURE.parent,
+            uri,
+            binding.get("digest"),
+            PROJECT,
+            "decision_context",
+        )
+        context = json.loads(context_path.read_text())
+        schema = json.loads(expected_schema_path.read_text())
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        return None, [f"decision_context: {error}"]
     validator = Draft202012Validator(schema, format_checker=FormatChecker())
-    errors.extend(
+    errors = [
         f"decision_context.{'.'.join(str(part) for part in error.absolute_path) or '$'}: {error.message}"
         for error in sorted(validator.iter_errors(context), key=lambda item: list(item.absolute_path))
-    )
+    ]
+    if not isinstance(context, dict):
+        return None, errors or ["decision_context: record must be an object"]
     if (
         context.get("context_id") != binding.get("id")
         or context.get("version") != binding.get("version")
@@ -174,34 +188,106 @@ def _load_decision_context(record: Any) -> tuple[dict[str, Any] | None, list[str
     if not isinstance(taxonomy_uri, str):
         errors.append("decision_context.taxonomy: missing URI")
     else:
-        taxonomy_path = (context_path.parent / taxonomy_uri).resolve()
-        if not taxonomy_path.is_relative_to(PROJECT) or not taxonomy_path.is_file():
-            errors.append("decision_context.taxonomy: URI is outside the project or missing")
-        elif file_digest(taxonomy_path) != taxonomy.get("digest"):
-            errors.append("decision_context.taxonomy: URI and digest do not identify the same artifact")
+        try:
+            taxonomy_path = verify_bound_artifact(
+                context_path.parent,
+                taxonomy_uri,
+                taxonomy.get("digest"),
+                PROJECT,
+                "decision_context.taxonomy",
+            )
+            taxonomy_record = json.loads(taxonomy_path.read_text())
+            if (
+                taxonomy_record.get("profile_id") != taxonomy.get("profile_id")
+                or taxonomy_record.get("version") != taxonomy.get("version")
+                or taxonomy_record.get("authority_effect") != "NONE"
+                or taxonomy_record.get("status") != "DRAFT_PROFILE"
+            ):
+                errors.append("decision_context.taxonomy: binding does not match the pilot-scoped draft profile")
+        except (OSError, ValueError, json.JSONDecodeError) as error:
+            errors.append(str(error))
     return context, errors
 
 
 def _decision_context_errors(
-    context: dict[str, Any], evidence: dict[str, dict[str, Any]] | None = None
+    context: dict[str, Any],
+    evidence: dict[str, dict[str, Any]] | None = None,
+    observed_at: str = "2026-09-20T00:00:00Z",
 ) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     unresolved: list[str] = []
     evidence = evidence or {}
+    if not isinstance(context, dict):
+        return ["decision_context: record must be an object"], ["DECISION_CONTEXT"]
+    try:
+        observed = _timestamp(observed_at)
+    except (TypeError, ValueError):
+        return ["decision_context: observed_at must be a valid date-time"], ["DECISION_CONTEXT"]
 
-    def evidence_is_current(reference: Any) -> bool:
-        item = evidence.get(reference) if isinstance(reference, str) else None
-        return bool(
-            item
-            and item.get("status") == "CURRENT"
-            and item.get("authoritative") is True
-            and item.get("synthetic") is False
+    def claim_is_current(claim: Any) -> bool:
+        if not isinstance(claim, dict):
+            return False
+        item = evidence.get(claim.get("evidence_ref"))
+        if not isinstance(item, dict):
+            return False
+        claim_fields = ("subject_ref", "claim_type", "issuer_ref", "source_system", "jurisdiction_ref")
+        if any(item.get(field) != claim.get(field) for field in claim_fields):
+            return False
+        if (
+            item.get("status") != "CURRENT"
+            or item.get("authoritative") is not True
+            or item.get("synthetic") is not False
+            or item.get("revocation_state") != "NOT_REVOKED"
+        ):
+            return False
+        try:
+            valid_from = _timestamp(item["valid_from"])
+            valid_until = _timestamp(item["valid_until"]) if item.get("valid_until") else None
+        except (KeyError, TypeError, ValueError):
+            return False
+        return valid_from <= observed and (valid_until is None or observed <= valid_until)
+
+    def claims_are_current(
+        owner: dict[str, Any],
+        expected: list[tuple[str, str, str | None]],
+    ) -> bool:
+        claims = owner.get("evidence_claims", [])
+        refs = owner.get("evidence_refs", [])
+        if not isinstance(claims, list) or not isinstance(refs, list) or not claims:
+            return False
+        if {claim.get("evidence_ref") for claim in claims if isinstance(claim, dict)} != set(refs):
+            return False
+        for subject_ref, claim_type, issuer_ref in expected:
+            if not any(
+                isinstance(claim, dict)
+                and claim.get("subject_ref") == subject_ref
+                and claim.get("claim_type") == claim_type
+                and (issuer_ref is None or claim.get("issuer_ref") == issuer_ref)
+                and claim_is_current(claim)
+                for claim in claims
+            ):
+                return False
+        return all(claim_is_current(claim) for claim in claims)
+
+    def claims_use_jurisdictions(owner: dict[str, Any], allowed: list[Any]) -> bool:
+        claims = owner.get("evidence_claims", [])
+        return bool(claims) and all(
+            isinstance(claim, dict)
+            and any(claim.get("jurisdiction_ref") == candidate for candidate in allowed)
+            for claim in claims
         )
 
-    graph = context.get("jurisdiction_graph", {})
+    graph_value = context.get("jurisdiction_graph")
+    graph = graph_value if isinstance(graph_value, dict) else {}
     nodes = graph.get("nodes", []) if isinstance(graph, dict) else []
     relationships = graph.get("relationships", []) if isinstance(graph, dict) else []
-    node_ids = {item.get("jurisdiction_id") for item in nodes if isinstance(item, dict)}
+    nodes = nodes if isinstance(nodes, list) else []
+    relationships = relationships if isinstance(relationships, list) else []
+    node_ids = {
+        item["jurisdiction_id"]
+        for item in nodes
+        if isinstance(item, dict) and isinstance(item.get("jurisdiction_id"), str)
+    }
     errors.extend(
         f"decision_context.jurisdiction_graph: {detail}"
         for detail in jurisdiction_graph_errors(graph)
@@ -213,12 +299,19 @@ def _decision_context_errors(
             if relationship.get(field) not in node_ids:
                 errors.append(f"decision_context.jurisdiction_graph: unresolved {field}")
 
-    asset = context.get("asset_classification", {})
-    authority = context.get("account_authority", {})
-    route = context.get("institutional_route", {})
-    legal = context.get("external_legal_classification", {})
-    access = context.get("receipt_access_policy", {})
-    if isinstance(asset, dict) and isinstance(authority, dict):
+    asset_value = context.get("asset_classification")
+    authority_value = context.get("account_authority")
+    route_value = context.get("institutional_route")
+    legal_value = context.get("external_legal_classification")
+    access_value = context.get("receipt_access_policy")
+    asset = asset_value if isinstance(asset_value, dict) else {}
+    authority = authority_value if isinstance(authority_value, dict) else {}
+    route = route_value if isinstance(route_value, dict) else {}
+    legal = legal_value if isinstance(legal_value, dict) else {}
+    access = access_value if isinstance(access_value, dict) else {}
+    if not all(isinstance(value, dict) for value in (asset_value, authority_value, route_value, legal_value, access_value, graph_value)):
+        errors.append("decision_context: required nested records must be objects")
+    if asset and authority:
         errors.extend(
             f"decision_context.asset_classification: {detail}"
             for detail in draft_asset_policy_blockers(asset, str(authority.get("account_type")))
@@ -238,7 +331,17 @@ def _decision_context_errors(
             set(authority.get("credential_refs", []))
         ):
             errors.append("decision_context: required asset credentials are absent from account authority")
-    if isinstance(authority, dict):
+    if asset.get("classification_state") == "CURRENT" and not (
+        claims_are_current(asset, [(str(asset.get("asset_id")), "ASSET_CLASSIFICATION", None)])
+        and claims_use_jurisdictions(
+            asset,
+            authority.get("jurisdiction_refs", [])
+            if isinstance(authority.get("jurisdiction_refs"), list)
+            else [],
+        )
+    ):
+        errors.append("decision_context: current asset classification requires claim-bound authoritative evidence")
+    if authority:
         for field, refs_field in (
             ("credential_state", "credential_refs"),
             ("delegation_state", "delegation_refs"),
@@ -247,19 +350,87 @@ def _decision_context_errors(
                 errors.append(f"decision_context: CURRENT {field} requires {refs_field}")
         if authority.get("mandate_state") == "CURRENT" and not authority.get("mandate_ref"):
             errors.append("decision_context: CURRENT mandate requires mandate_ref")
-        if authority.get("credential_state") == "CURRENT" or authority.get("delegation_state") == "CURRENT" or authority.get("mandate_state") == "CURRENT":
-            authority_evidence = authority.get("evidence_refs", [])
-            if not authority_evidence or not all(evidence_is_current(ref) for ref in authority_evidence):
-                errors.append("decision_context: current account authority requires resolved authoritative evidence")
-    if isinstance(legal, dict) and legal.get("status") == "CURRENT":
-        legal_evidence = legal.get("evidence_refs", [])
-        if not legal_evidence or not all(evidence_is_current(ref) for ref in legal_evidence):
-            errors.append("decision_context: current legal classification requires resolved authoritative evidence")
-    if isinstance(graph, dict) and graph.get("status") == "CURRENT":
-        graph_evidence = graph.get("evidence_refs", [])
-        if not graph_evidence or not all(evidence_is_current(ref) for ref in graph_evidence):
-            errors.append("decision_context: current jurisdiction graph requires resolved authoritative evidence")
-    if isinstance(route, dict):
+        expected_authority_claims: list[tuple[str, str, str | None]] = []
+        if authority.get("credential_state") == "CURRENT":
+            expected_authority_claims.extend(
+                (str(reference), "ACCOUNT_CREDENTIAL_STATUS", None)
+                for reference in authority.get("credential_refs", [])
+            )
+        if authority.get("delegation_state") == "CURRENT":
+            expected_authority_claims.extend(
+                (str(reference), "DELEGATION_STATUS", None)
+                for reference in authority.get("delegation_refs", [])
+            )
+        if authority.get("mandate_state") == "CURRENT":
+            expected_authority_claims.append((str(authority.get("mandate_ref")), "MANDATE_STATUS", None))
+        if expected_authority_claims and not (
+            claims_are_current(authority, expected_authority_claims)
+            and claims_use_jurisdictions(
+                authority,
+                authority.get("jurisdiction_refs", [])
+                if isinstance(authority.get("jurisdiction_refs"), list)
+                else [],
+            )
+        ):
+            errors.append("decision_context: current account authority requires claim-bound authoritative evidence")
+    if legal.get("status") == "CURRENT" and not (
+        claims_are_current(
+            legal,
+            [(
+                str(legal.get("classification_id")),
+                "EXTERNAL_LEGAL_CLASSIFICATION",
+                str(legal.get("qualified_reviewer_ref")),
+            )],
+        )
+        and claims_use_jurisdictions(legal, list(node_ids))
+    ):
+        errors.append("decision_context: current legal classification requires claim-bound authoritative evidence")
+    if graph.get("status") == "CURRENT":
+        graph_ready = (
+            not graph.get("conflicts")
+            and claims_are_current(graph, [(str(graph.get("graph_id")), "JURISDICTION_GRAPH", None)])
+            and claims_use_jurisdictions(graph, list(node_ids))
+        )
+        for node in nodes:
+            if not isinstance(node, dict):
+                graph_ready = False
+                continue
+            try:
+                node_current = (
+                    node.get("verification_status") == "CURRENT"
+                    and node.get("revocation_ref") is None
+                    and isinstance(node.get("effective_from"), str)
+                    and _timestamp(node["effective_from"]) <= observed
+                    and (node.get("expires_at") is None or observed <= _timestamp(node["expires_at"]))
+                )
+            except (TypeError, ValueError):
+                node_current = False
+            graph_ready = (
+                graph_ready
+                and node_current
+                and claims_are_current(node, [(str(node.get("jurisdiction_id")), "JURISDICTION_NODE", None)])
+                and claims_use_jurisdictions(node, [node.get("jurisdiction_id")])
+            )
+        for relationship in relationships:
+            if not isinstance(relationship, dict):
+                graph_ready = False
+                continue
+            graph_ready = (
+                graph_ready
+                and relationship.get("status") == "CURRENT"
+                and bool(relationship.get("authority_basis_refs"))
+                and claims_are_current(
+                    relationship,
+                    [(str(relationship.get("relationship_id")), "JURISDICTION_RELATIONSHIP", None)],
+                )
+                and claims_use_jurisdictions(
+                    relationship,
+                    [relationship.get("from_ref"), relationship.get("to_ref")],
+                )
+            )
+        if not graph_ready:
+            errors.append("decision_context: current jurisdiction graph requires current claim-bound nodes and relationships without conflicts")
+    if route:
         if route.get("subject_asset_ref") != asset.get("asset_id"):
             errors.append("decision_context: institutional route subject asset is unresolved")
         if route.get("jurisdiction_graph_ref") != graph.get("graph_id"):
@@ -267,16 +438,20 @@ def _decision_context_errors(
         requirement_ids = set()
         required_route_semantics = {
             "ROUTE-REQ-LEGAL-CLASSIFICATION": {
+                "participant_ref": legal.get("qualified_reviewer_ref"),
                 "organization_type": "QUALIFIED_PROFESSIONAL",
                 "institution_identifier": "OTHER",
                 "function": "EXTERNAL_LEGAL_CLASSIFICATION",
                 "required_action": "QUALIFIED_PROFESSIONAL_REVIEW",
+                "account_or_entity_ref": authority.get("legal_entity_ref"),
             },
             "ROUTE-REQ-ESCROW": {
+                "participant_ref": "ROLE-ESCROW",
                 "organization_type": "BANK_FSP_ESCROW",
                 "institution_identifier": "OTHER",
                 "function": "ESCROW_ACCOUNT_AND_SETTLEMENT",
                 "required_action": "LICENSE_OR_CREDENTIAL_VERIFICATION",
+                "account_or_entity_ref": authority.get("account_ref"),
             },
             "ROUTE-REQ-DTTC": {
                 "participant_ref": "M5-DTTC",
@@ -284,9 +459,13 @@ def _decision_context_errors(
                 "institution_identifier": "M5_DTTC",
                 "function": "INTERNAL_DISTRIBUTED_TRUST_AND_TITLE_MEMBER_POOL",
                 "required_action": "MEMBERSHIP_STATUS_VERIFICATION",
+                "account_or_entity_ref": authority.get("legal_entity_ref"),
             },
         }
-        for requirement in route.get("requirements", []):
+        route_requirements = route.get("requirements", [])
+        if not isinstance(route_requirements, list):
+            route_requirements = []
+        for requirement in route_requirements:
             if not isinstance(requirement, dict):
                 continue
             requirement_id = requirement.get("requirement_id")
@@ -295,16 +474,27 @@ def _decision_context_errors(
             requirement_ids.add(requirement_id)
             if requirement.get("jurisdiction_ref") not in node_ids:
                 errors.append(f"decision_context: {requirement_id} jurisdiction is unresolved")
+            if requirement.get("subject_asset_ref") != asset.get("asset_id"):
+                errors.append(f"decision_context: {requirement_id} subject asset is unresolved")
             if requirement.get("receipt_access_policy_ref") != access.get("policy_id"):
                 errors.append(f"decision_context: {requirement_id} receipt policy is unresolved")
             expected = required_route_semantics.get(requirement_id)
             if expected and any(requirement.get(field) != value for field, value in expected.items()):
                 errors.append(f"decision_context: {requirement_id} institution or function semantics mismatch")
-            route_evidence = requirement.get("evidence_refs", [])
-            if requirement.get("status") != "CURRENT" or not route_evidence:
+            if requirement.get("status") != "CURRENT":
                 unresolved.append(str(requirement_id))
-            elif not all(evidence_is_current(ref) for ref in route_evidence):
-                errors.append(f"decision_context: {requirement_id} evidence is unresolved or non-authoritative")
+            elif not (
+                claims_are_current(
+                    requirement,
+                    [(
+                        str(requirement.get("participant_ref")),
+                        "INSTITUTIONAL_ROUTE_REQUIREMENT",
+                        str(requirement.get("participant_ref")),
+                    )],
+                )
+                and claims_use_jurisdictions(requirement, [requirement.get("jurisdiction_ref")])
+            ):
+                errors.append(f"decision_context: {requirement_id} evidence is not claim-bound, current, or authoritative")
         required_route_ids = {
             "ROUTE-REQ-LEGAL-CLASSIFICATION",
             "ROUTE-REQ-ESCROW",
@@ -347,15 +537,47 @@ def _checkpoint_satisfied(checkpoint: dict[str, Any], evidence: dict[str, Any]) 
     return True
 
 
+def _unresolved_checkpoints(record: Any) -> list[str]:
+    """Return required checkpoint IDs that cannot be safely proven satisfied."""
+    if not isinstance(record, dict) or not isinstance(record.get("checkpoints"), list):
+        return []
+    evidence_items = record.get("evidence_catalog", [])
+    if not isinstance(evidence_items, list):
+        evidence_items = []
+    evidence = {
+        item["evidence_id"]: item
+        for item in evidence_items
+        if isinstance(item, dict)
+        and isinstance(item.get("evidence_id"), str)
+    }
+    unresolved: list[str] = []
+    for index, checkpoint in enumerate(record["checkpoints"]):
+        if not isinstance(checkpoint, dict) or checkpoint.get("required") is not True:
+            continue
+        checkpoint_id = checkpoint.get("checkpoint_id")
+        if not isinstance(checkpoint_id, str) or not checkpoint_id:
+            checkpoint_id = f"UNRESOLVED-CHECKPOINT-{index}"
+        safely_shaped = (
+            isinstance(checkpoint.get("status"), str)
+            and isinstance(checkpoint.get("gate_type"), str)
+            and isinstance(checkpoint.get("evidence_refs"), list)
+        )
+        if not safely_shaped or not _checkpoint_satisfied(checkpoint, evidence):
+            unresolved.append(checkpoint_id)
+    return sorted(set(unresolved))
+
+
 def _receipt(
     record: Any,
     validation_errors: list[str],
-    unresolved: list[str],
+    unresolved_checkpoint_ids: list[str],
+    unresolved_context_requirements: list[str],
     decision_context: dict[str, Any] | None = None,
     fixture_digest: str | None = None,
 ) -> dict[str, Any]:
     if not isinstance(record, dict):
         record = {}
+    fixture_digest = fixture_digest or canonical_digest(record)
     simulation_id = record.get("simulation_id")
     if not isinstance(simulation_id, str) or not simulation_id:
         simulation_id = "UNRESOLVED-SIMULATION"
@@ -366,6 +588,20 @@ def _receipt(
         checkpoints = []
     required_count = sum(
         item.get("required") is True for item in checkpoints if isinstance(item, dict)
+    )
+    evidence_items = record.get("evidence_catalog", [])
+    if not isinstance(evidence_items, list):
+        evidence_items = []
+    evidence = {
+        item["evidence_id"]: item
+        for item in evidence_items
+        if isinstance(item, dict) and isinstance(item.get("evidence_id"), str)
+    }
+    satisfied_count = sum(
+        item.get("required") is True and _checkpoint_satisfied(item, evidence)
+        for item in checkpoints
+        if isinstance(item, dict)
+        and all(key in item for key in ("status", "gate_type", "evidence_refs"))
     )
     timestamp = context.get("timestamp")
     if not isinstance(timestamp, str) or not FormatChecker().conforms(timestamp, "date-time"):
@@ -378,15 +614,18 @@ def _receipt(
     if anchor != "PREVIOUS_RECEIPT" or not isinstance(previous_digest, str):
         anchor = "GENESIS"
         previous_digest = None
-    decision = "HOLD" if validation_errors or unresolved else "READY_FOR_AUTHORIZED_HUMAN_REVIEW"
+    decision = "HOLD" if validation_errors or unresolved_checkpoint_ids or unresolved_context_requirements else "READY_FOR_AUTHORIZED_HUMAN_REVIEW"
     exceptions = [
         {"code": "INPUT_VALIDATION_FAILED", "status": "UNRESOLVED", "detail": detail}
         for detail in validation_errors
     ] + [
         {"code": checkpoint_id, "status": "UNRESOLVED", "detail": "Required checkpoint is not satisfied"}
-        for checkpoint_id in unresolved
+        for checkpoint_id in unresolved_checkpoint_ids
+    ] + [
+        {"code": requirement, "status": "UNRESOLVED", "detail": "Decision-context requirement is not satisfied"}
+        for requirement in unresolved_context_requirements
     ]
-    policy_outcome = "UNRESOLVED" if validation_errors or unresolved else "READY_FOR_AUTHORIZED_HUMAN_REVIEW"
+    policy_outcome = "UNRESOLVED" if validation_errors or unresolved_checkpoint_ids or unresolved_context_requirements else "READY_FOR_AUTHORIZED_HUMAN_REVIEW"
     function_base = {
         "policy_version": POLICY_VERSION,
         "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
@@ -404,10 +643,31 @@ def _receipt(
     requirements = route.get("requirements", []) if isinstance(route.get("requirements"), list) else []
     grants = access.get("grants", []) if isinstance(access.get("grants"), list) else []
     receipt_id = f"{simulation_id}-RECEIPT"
-    unresolved_requirements = sorted(set((["INPUT_VALIDATION_FAILED"] if validation_errors else []) + unresolved))
+    unresolved_requirements = sorted(set(
+        (["INPUT_VALIDATION_FAILED"] if validation_errors else [])
+        + unresolved_checkpoint_ids
+        + unresolved_context_requirements
+    ))
     authority_evidence = authority.get("evidence_refs", [])
+    principal_refs = authority.get("human_principal_refs", [])
+    safe_principal_refs = [ref for ref in principal_refs if isinstance(ref, str)] if isinstance(principal_refs, list) else []
+    safe_credential_refs = [ref for ref in authority.get("credential_refs", []) if isinstance(ref, str)] if isinstance(authority.get("credential_refs"), list) else []
+    safe_delegation_refs = [ref for ref in authority.get("delegation_refs", []) if isinstance(ref, str)] if isinstance(authority.get("delegation_refs"), list) else []
+    safe_jurisdiction_refs = [ref for ref in authority.get("jurisdiction_refs", []) if isinstance(ref, str)] if isinstance(authority.get("jurisdiction_refs"), list) else []
+    safe_authority_evidence = [ref for ref in authority_evidence if isinstance(ref, str)] if isinstance(authority_evidence, list) else []
+    principal_resolved = bool(
+        not validation_errors
+        and safe_principal_refs
+        and len(safe_principal_refs) == len(principal_refs)
+        and all("SYNTHETIC" not in ref and "TBD" not in ref for ref in safe_principal_refs)
+        and authority.get("credential_state") == "CURRENT"
+        and authority.get("delegation_state") == "CURRENT"
+        and authority.get("mandate_state") == "CURRENT"
+        and authority.get("revocation_state") == "NOT_REVOKED"
+        and authority_evidence
+    )
     function_outcomes = {
-        "M5CANON.PRINCIPAL.RESOLVE.v1": "SATISFIED" if authority.get("human_principal_refs") and not validation_errors else "UNRESOLVED",
+        "M5CANON.PRINCIPAL.RESOLVE.v1": "SATISFIED" if principal_resolved else "UNRESOLVED",
         "M5CANON.CREDENTIAL.VERIFY.v1": "SATISFIED" if not validation_errors and authority.get("credential_state") == "CURRENT" and authority_evidence else "UNRESOLVED",
         "M5CANON.DELEGATION.VERIFY.v1": "SATISFIED" if not validation_errors and authority.get("delegation_state") == "CURRENT" and authority_evidence else "UNRESOLVED",
         "M5CANON.JURISDICTION.RESOLVE.v1": "SATISFIED" if not validation_errors and graph.get("status") == "CURRENT" and graph.get("evidence_refs") else "UNRESOLVED",
@@ -440,8 +700,8 @@ def _receipt(
             "fixture": {
                 "id": simulation_id,
                 "version": record.get("schema_version", "UNRESOLVED"),
-                "digest": fixture_digest or canonical_digest(record),
-                "uri": f"urn:sha256:{(fixture_digest or canonical_digest(record)).removeprefix('sha256:')}",
+                "digest": fixture_digest,
+                "uri": f"urn:sha256:{fixture_digest.removeprefix('sha256:')}",
             },
             "human_terms_manifest": {
                 "id": "SPRING-COMMONS-DOC-SET-01-23",
@@ -489,7 +749,7 @@ def _receipt(
             "jurisdiction_graph_ref": graph.get("graph_id", "UNRESOLVED-JURISDICTION-GRAPH"),
             "account_ref": authority.get("account_ref", "UNRESOLVED-ACCOUNT"),
             "account_type": authority.get("account_type", "UNRESOLVED"),
-            "human_principal_refs": authority.get("human_principal_refs", []),
+            "human_principal_refs": safe_principal_refs,
             "credential_state": authority.get("credential_state", "UNRESOLVED"),
             "delegation_state": authority.get("delegation_state", "UNRESOLVED"),
             "mandate_ref": authority.get("mandate_ref", "UNRESOLVED-MANDATE"),
@@ -501,20 +761,20 @@ def _receipt(
         },
         "actor_authority": {
             "actor_ref": "OFFLINE-DETERMINISTIC-SIMULATOR",
-            "principal_ref": (authority.get("human_principal_refs") or ["UNRESOLVED-PRINCIPAL"])[0],
+            "principal_ref": (safe_principal_refs or ["UNRESOLVED-PRINCIPAL"])[0],
             "legal_entity_ref": authority.get("legal_entity_ref", "UNRESOLVED-ENTITY"),
             "account_ref": authority.get("account_ref", "UNRESOLVED-ACCOUNT"),
             "account_type": authority.get("account_type", "UNRESOLVED"),
             "role_ref": "CAPITAL_PROVIDER",
-            "credential_refs": authority.get("credential_refs", []),
+            "credential_refs": safe_credential_refs,
             "credential_state": authority.get("credential_state", "UNRESOLVED"),
-            "delegation_refs": authority.get("delegation_refs", []),
+            "delegation_refs": safe_delegation_refs,
             "delegation_state": authority.get("delegation_state", "UNRESOLVED"),
             "mandate_ref": authority.get("mandate_ref", "UNRESOLVED-MANDATE"),
             "mandate_state": authority.get("mandate_state", "UNRESOLVED"),
-            "jurisdiction_refs": authority.get("jurisdiction_refs", []),
+            "jurisdiction_refs": safe_jurisdiction_refs,
             "revocation_state": authority.get("revocation_state", "UNRESOLVED"),
-            "authority_evidence_refs": authority.get("evidence_refs", []),
+            "authority_evidence_refs": safe_authority_evidence,
         },
         "approvals": [],
         "adapter_provider_refs": [
@@ -552,8 +812,9 @@ def _receipt(
         "financial_movement_performed": False,
         "checkpoint_summary": {
             "required": required_count,
-            "satisfied": max(0, required_count - len(unresolved)) if not validation_errors else 0,
-            "unresolved_ids": ["INPUT_VALIDATION_FAILED"] if validation_errors else unresolved,
+            "satisfied": satisfied_count,
+            "unresolved_checkpoint_ids": sorted(set(unresolved_checkpoint_ids)),
+            "unresolved_context_requirements": sorted(set(unresolved_context_requirements)),
         },
         "state_transition": {
             "prior_state": state_machine.get("current_state", "UNRESOLVED"),
@@ -566,7 +827,7 @@ def _receipt(
             "provider_receipt_refs": [],
         },
         "observations": {
-            "fixture_digest": fixture_digest or canonical_digest(record),
+            "fixture_digest": fixture_digest,
             "validation_status": "INVALID_UNRESOLVED" if validation_errors else "VALID",
         },
         "notices": [
@@ -585,10 +846,10 @@ def _receipt(
 
 def evaluate(record: Any) -> dict[str, Any]:
     """Evaluate fixture gates without authorizing or executing any transaction."""
+    fixture_digest = canonical_digest(record)
     schema_errors = _schema_errors(record)
     validation_errors = schema_errors + _relational_errors(record)
-    if schema_errors:
-        return _receipt({}, validation_errors, [], fixture_digest=canonical_digest(record))
+    unresolved_checkpoints = _unresolved_checkpoints(record)
     decision_context, context_binding_errors = _load_decision_context(record)
     validation_errors.extend(context_binding_errors)
     context_unresolved: list[str] = []
@@ -598,19 +859,28 @@ def evaluate(record: Any) -> dict[str, Any]:
             for item in record.get("evidence_catalog", [])
             if isinstance(item, dict) and isinstance(item.get("evidence_id"), str)
         }
-        context_errors, context_unresolved = _decision_context_errors(decision_context, evidence)
+        receipt_context = record.get("receipt_context", {})
+        observed_at = receipt_context.get("timestamp", "1970-01-01T00:00:00Z") if isinstance(receipt_context, dict) else "1970-01-01T00:00:00Z"
+        context_errors, context_unresolved = _decision_context_errors(decision_context, evidence, observed_at)
         validation_errors.extend(context_errors)
     if validation_errors:
-        return _receipt(record, validation_errors, [], decision_context if not context_binding_errors else None)
+        return _receipt(
+            record,
+            validation_errors,
+            unresolved_checkpoints,
+            context_unresolved,
+            decision_context if not context_binding_errors else None,
+            fixture_digest,
+        )
 
-    evidence = {item["evidence_id"]: item for item in record["evidence_catalog"]}
-    required = [item for item in record["checkpoints"] if item["required"]]
-    unresolved = [
-        item["checkpoint_id"]
-        for item in required
-        if not _checkpoint_satisfied(item, evidence)
-    ]
-    return _receipt(record, [], sorted(set(unresolved + context_unresolved)), decision_context)
+    return _receipt(
+        record,
+        [],
+        unresolved_checkpoints,
+        sorted(set(context_unresolved)),
+        decision_context,
+        fixture_digest,
+    )
 
 
 def render_receipt_view(
@@ -618,39 +888,92 @@ def render_receipt_view(
     decision_context: dict[str, Any],
     *,
     grantee_ref: str,
-    credential_refs: set[str],
-    jurisdiction_refs: set[str],
+    verified_credentials: list[dict[str, Any]],
     access_purpose: str,
-    access_log_ref: str,
+    access_log_receipt: dict[str, Any],
     observed_at: str,
 ) -> dict[str, Any]:
-    """Return a policy-bounded synthetic receipt view or deny access."""
+    """Return a policy-bounded view only after verified access inputs."""
+    if not isinstance(decision_context, dict) or not isinstance(
+        decision_context.get("receipt_access_policy"), dict
+    ):
+        raise PermissionError("receipt access policy is malformed")
     policy = decision_context["receipt_access_policy"]
+    grants = policy.get("grants", [])
+    if not isinstance(grants, list):
+        raise PermissionError("receipt access policy is malformed")
     grant = next(
         (
             item
-            for item in policy["grants"]
-            if item["grantee_ref"] == grantee_ref
-            and item["access_purpose"] == access_purpose
-            and item["access_state"] == "AUTHORIZED"
+            for item in grants
+            if isinstance(item, dict)
+            and item.get("grantee_ref") == grantee_ref
+            and item.get("access_purpose") == access_purpose
+            and item.get("access_state") == "AUTHORIZED"
         ),
         None,
     )
     if grant is None:
         raise PermissionError("receipt access denied by default")
-    if not set(grant["credential_requirement_refs"]).issubset(credential_refs):
-        raise PermissionError("receipt access credential requirement not satisfied")
-    if grant["jurisdiction_ref"] is not None and grant["jurisdiction_ref"] not in jurisdiction_refs:
-        raise PermissionError("receipt access jurisdiction requirement not satisfied")
-    observed = _timestamp(observed_at)
+    if grant.get("grantee_type") != "PUBLIC" and any(
+        marker in grantee_ref.upper() for marker in ("TBD", "SYNTHETIC", "PLACEHOLDER")
+    ):
+        raise PermissionError("receipt access placeholder grantee cannot be authorized")
+    try:
+        observed = _timestamp(observed_at)
+    except (TypeError, ValueError) as error:
+        raise PermissionError("receipt access observation time is invalid") from error
+    verified_by_ref = {
+        result.get("credential_ref"): result
+        for result in verified_credentials
+        if isinstance(result, dict) and isinstance(result.get("credential_ref"), str)
+    }
+    for required_ref in grant.get("credential_requirement_refs", []):
+        result = verified_by_ref.get(required_ref)
+        if not isinstance(result, dict):
+            raise PermissionError("receipt access credential requirement not satisfied")
+        try:
+            valid_from = _timestamp(result["valid_from"])
+            valid_until = _timestamp(result["valid_until"]) if result.get("valid_until") else None
+        except (KeyError, TypeError, ValueError) as error:
+            raise PermissionError("receipt access credential verification is malformed") from error
+        if (
+            result.get("subject_ref") != grantee_ref
+            or result.get("status") != "VERIFIED"
+            or result.get("signature_verified") is not True
+            or result.get("issuer_validated") is not True
+            or result.get("revocation_state") != "NOT_REVOKED"
+            or not isinstance(result.get("issuer_ref"), str)
+            or not result.get("issuer_ref")
+            or not isinstance(result.get("evidence_ref"), str)
+            or not result.get("evidence_ref")
+            or observed < valid_from
+            or (valid_until is not None and observed > valid_until)
+        ):
+            raise PermissionError("receipt access credential verification failed")
+        jurisdiction_ref = grant.get("jurisdiction_ref")
+        if jurisdiction_ref is not None and jurisdiction_ref not in result.get("jurisdiction_refs", []):
+            raise PermissionError("receipt access jurisdiction requirement not satisfied")
     if grant["effective_from"] is not None and observed < _timestamp(grant["effective_from"]):
         raise PermissionError("receipt access grant is not yet effective")
     if grant["expires_at"] is not None and observed > _timestamp(grant["expires_at"]):
         raise PermissionError("receipt access grant has expired")
     if grant["revocation_ref"] is not None:
         raise PermissionError("receipt access grant is revoked")
-    if policy["access_log_required"] and not access_log_ref:
-        raise PermissionError("receipt access requires an attributable access log")
+    if policy.get("access_log_required"):
+        expected_log_ref = grant.get("access_log_receipt_ref")
+        if not expected_log_ref or not isinstance(access_log_receipt, dict):
+            raise PermissionError("receipt access requires a bound committed access log")
+        log_payload = {key: value for key, value in access_log_receipt.items() if key != "digest"}
+        if (
+            access_log_receipt.get("receipt_id") != expected_log_ref
+            or access_log_receipt.get("grant_ref") != grant.get("grant_id")
+            or access_log_receipt.get("grantee_ref") != grantee_ref
+            or access_log_receipt.get("access_purpose") != access_purpose
+            or access_log_receipt.get("status") != "COMMITTED"
+            or access_log_receipt.get("digest") != canonical_digest(log_payload)
+        ):
+            raise PermissionError("receipt access log receipt is not committed or bound")
 
     if grant["grantee_type"] == "PUBLIC":
         allowed = {
@@ -683,7 +1006,7 @@ def render_receipt_view(
         "grantee_ref": grantee_ref,
         "access_purpose": access_purpose,
         "field_scope": grant["field_scope"],
-        "access_log_ref": access_log_ref,
+        "access_log_ref": access_log_receipt["receipt_id"],
         "view": allowed,
     }
 

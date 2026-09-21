@@ -33,6 +33,25 @@ def file_digest(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
 
 
+def verify_bound_artifact(
+    base_dir: Path,
+    uri: Any,
+    expected_digest: Any,
+    project_root: Path,
+    label: str,
+) -> Path:
+    """Resolve and verify one project-contained, digest-bound artifact."""
+    if not isinstance(uri, str) or not isinstance(expected_digest, str):
+        raise ValueError(f"{label} URI and digest must be strings")
+    path = (base_dir / uri).resolve()
+    root = project_root.resolve()
+    if not path.is_relative_to(root):
+        raise ValueError(f"{label} URI escapes the Spring Commons project")
+    if not path.is_file() or file_digest(path) != expected_digest:
+        raise ValueError(f"{label} URI and digest do not identify the same artifact")
+    return path
+
+
 def draft_asset_policy_blockers(asset: dict[str, Any], account_type: str) -> list[str]:
     """Evaluate pilot-only M1–M5 invariants without creating legal authority."""
     blockers: list[str] = []

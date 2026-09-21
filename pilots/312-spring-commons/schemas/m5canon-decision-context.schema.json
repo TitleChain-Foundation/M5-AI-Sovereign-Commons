@@ -13,22 +13,32 @@
       "type": "object", "additionalProperties": false, "required": ["supersedes", "superseded_by"],
       "properties": {"supersedes": {"type": "array", "items": {"type": "string"}}, "superseded_by": {"type": ["string", "null"]}}
     },
+    "evidenceClaim": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_ref", "subject_ref", "claim_type", "issuer_ref", "source_system", "jurisdiction_ref"],
+      "properties": {
+        "evidence_ref": {"type": "string", "minLength": 1}, "subject_ref": {"type": "string", "minLength": 1},
+        "claim_type": {"enum": ["ASSET_CLASSIFICATION", "ACCOUNT_CREDENTIAL_STATUS", "DELEGATION_STATUS", "MANDATE_STATUS", "EXTERNAL_LEGAL_CLASSIFICATION", "JURISDICTION_GRAPH", "JURISDICTION_NODE", "JURISDICTION_RELATIONSHIP", "INSTITUTIONAL_ROUTE_REQUIREMENT"]},
+        "issuer_ref": {"type": "string", "minLength": 1}, "source_system": {"type": "string", "minLength": 1},
+        "jurisdiction_ref": {"type": ["string", "null"]}
+      }
+    },
     "jurisdictionNode": {
       "type": "object", "additionalProperties": false,
-      "required": ["jurisdiction_id", "canonical_name", "native_name", "normalized_level", "native_level_term", "technical_alias", "alias_status", "verification_status", "evidence_refs", "effective_from", "expires_at", "revocation_ref", "supersession_history"],
+      "required": ["jurisdiction_id", "canonical_name", "native_name", "normalized_level", "native_level_term", "technical_alias", "alias_status", "verification_status", "evidence_refs", "evidence_claims", "effective_from", "expires_at", "revocation_ref", "supersession_history"],
       "properties": {
         "jurisdiction_id": {"type": "string", "minLength": 1}, "canonical_name": {"type": "string", "minLength": 1}, "native_name": {"type": "string", "minLength": 1},
         "normalized_level": {"enum": ["NATION", "SOVEREIGN", "FEDERATION", "TERRITORY", "TRIBAL_INDIGENOUS", "STATE_PROVINCE", "REGIONAL_SUBDIVISION", "LOCAL_SUBDIVISION", "TREATY_INTERGOVERNMENTAL", "SUPRANATIONAL", "OTHER"]},
         "native_level_term": {"type": "string", "minLength": 1}, "technical_alias": {"type": ["string", "null"]},
         "alias_status": {"enum": ["PROJECT_ALIAS", "VERIFIED_EXTERNAL_REFERENCE", "GOVERNMENT_VERIFIED", "REVOKED_OR_STALE", "NONE"]},
-        "verification_status": {"$ref": "#/$defs/lifecycle"}, "evidence_refs": {"type": "array", "items": {"type": "string"}},
+        "verification_status": {"$ref": "#/$defs/lifecycle"}, "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}},
         "effective_from": {"type": ["string", "null"], "format": "date-time"}, "expires_at": {"type": ["string", "null"], "format": "date-time"},
         "revocation_ref": {"type": ["string", "null"]}, "supersession_history": {"$ref": "#/$defs/supersession"}
       }
     },
     "routeRequirement": {
       "type": "object", "additionalProperties": false,
-      "required": ["requirement_id", "participant_ref", "organization_type", "institution_identifier", "function", "required_action", "jurisdiction_ref", "subject_asset_ref", "account_or_entity_ref", "legal_basis_refs", "status", "evidence_refs", "receipt_access_policy_ref"],
+      "required": ["requirement_id", "participant_ref", "organization_type", "institution_identifier", "function", "required_action", "jurisdiction_ref", "subject_asset_ref", "account_or_entity_ref", "legal_basis_refs", "status", "evidence_refs", "evidence_claims", "receipt_access_policy_ref"],
       "properties": {
         "requirement_id": {"type": "string"}, "participant_ref": {"type": "string"},
         "organization_type": {"enum": ["ISSUER", "ASSET_OWNER", "BANK_FSP_ESCROW", "BROKER_DEALER", "VENUE", "TRANSFER_AGENT", "REGISTRAR", "CUSTODIAN", "CLEARING_INFRASTRUCTURE", "REGULATOR", "GOVERNMENT_BODY", "COURT", "LEGISLATURE", "OFFICIAL_REGISTRY", "QUALIFIED_PROFESSIONAL", "INTERNAL_MEMBER_POOL"]},
@@ -37,7 +47,7 @@
         "required_action": {"enum": ["TRANSACTION_APPROVAL", "REGISTRATION_STATUS_VERIFICATION", "LICENSE_OR_CREDENTIAL_VERIFICATION", "NOTICE_OR_FILING", "EXEMPTION_DETERMINATION", "REGISTRATION_OR_EXEMPTION_RECORD", "QUALIFIED_PROFESSIONAL_REVIEW", "MEMBERSHIP_STATUS_VERIFICATION", "EXAMINATION_ACCESS", "RECORDKEEPING", "TRANSFER_AGENCY", "CUSTODY", "CLEARING", "SETTLEMENT", "RECONCILIATION", "NO_REQUIRED_ACTION"]},
         "jurisdiction_ref": {"type": "string"}, "subject_asset_ref": {"type": "string"}, "account_or_entity_ref": {"type": "string"},
         "legal_basis_refs": {"type": "array", "items": {"type": "string"}}, "status": {"$ref": "#/$defs/lifecycle"},
-        "evidence_refs": {"type": "array", "items": {"type": "string"}}, "receipt_access_policy_ref": {"type": "string"}
+        "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}}, "receipt_access_policy_ref": {"type": "string"}
       }
     }
   },
@@ -49,31 +59,31 @@
       "properties": {"profile_id": {"const": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft"}, "version": {"const": "1.0-draft"}, "digest": {"$ref": "#/$defs/digest"}, "uri": {"type": "string"}, "adoption_state": {"const": "PROPOSED_FOR_PUBLIC_REVIEW"}}
     },
     "asset_classification": {
-      "type": "object", "additionalProperties": false, "required": ["asset_id", "m5_class", "m5_type", "taxonomy_version", "source_asset_refs", "external_legal_classification_refs", "permitted_account_types", "required_credential_refs", "institutional_routing_refs", "jurisdiction_graph_ref", "receipt_policy_ref", "classification_state", "investment_rights"],
+      "type": "object", "additionalProperties": false, "required": ["asset_id", "m5_class", "m5_type", "taxonomy_version", "source_asset_refs", "external_legal_classification_refs", "permitted_account_types", "required_credential_refs", "institutional_routing_refs", "jurisdiction_graph_ref", "receipt_policy_ref", "classification_state", "evidence_refs", "evidence_claims", "investment_rights"],
       "properties": {
         "asset_id": {"const": "M4-SPRING-COMMONS-TRANCHE-01"}, "m5_class": {"const": "M4"}, "m5_type": {"const": "PROJECT_DEBT_INSTRUMENT"}, "taxonomy_version": {"const": "1.0-draft"},
         "source_asset_refs": {"type": "array", "items": {"type": "string"}}, "external_legal_classification_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
         "permitted_account_types": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"const": "BOI"}},
         "required_credential_refs": {"type": "array", "items": {"type": "string"}}, "institutional_routing_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-        "jurisdiction_graph_ref": {"type": "string"}, "receipt_policy_ref": {"type": "string"}, "classification_state": {"$ref": "#/$defs/lifecycle"},
+        "jurisdiction_graph_ref": {"type": "string"}, "receipt_policy_ref": {"type": "string"}, "classification_state": {"$ref": "#/$defs/lifecycle"}, "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}},
         "investment_rights": {"type": "boolean"}
       }
     },
     "external_legal_classification": {
-      "type": "object", "additionalProperties": false, "required": ["classification_id", "classification", "status", "qualified_reviewer_ref", "legal_basis_refs", "evidence_refs"],
-      "properties": {"classification_id": {"type": "string"}, "classification": {"const": "DEBT_OR_SECURITY_REVIEW_REQUIRED"}, "status": {"$ref": "#/$defs/lifecycle"}, "qualified_reviewer_ref": {"type": "string"}, "legal_basis_refs": {"type": "array", "items": {"type": "string"}}, "evidence_refs": {"type": "array", "items": {"type": "string"}}}
+      "type": "object", "additionalProperties": false, "required": ["classification_id", "classification", "status", "qualified_reviewer_ref", "legal_basis_refs", "evidence_refs", "evidence_claims"],
+      "properties": {"classification_id": {"type": "string"}, "classification": {"const": "DEBT_OR_SECURITY_REVIEW_REQUIRED"}, "status": {"$ref": "#/$defs/lifecycle"}, "qualified_reviewer_ref": {"type": "string"}, "legal_basis_refs": {"type": "array", "items": {"type": "string"}}, "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}}}
     },
     "jurisdiction_graph": {
-      "type": "object", "additionalProperties": false, "required": ["graph_id", "version", "nodes", "relationships", "subject_matter", "evidence_refs", "conflicts", "status"],
+      "type": "object", "additionalProperties": false, "required": ["graph_id", "version", "nodes", "relationships", "subject_matter", "evidence_refs", "evidence_claims", "conflicts", "status"],
       "properties": {
         "graph_id": {"type": "string"}, "version": {"type": "string"}, "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/jurisdictionNode"}},
-        "relationships": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["relationship_id", "from_ref", "to_ref", "relationship_type", "subject_matter", "authority_basis_refs", "evidence_refs", "status"], "properties": {"relationship_id": {"type": "string"}, "from_ref": {"type": "string"}, "to_ref": {"type": "string"}, "relationship_type": {"enum": ["SUBDIVISION_OF", "TERRITORY_OF", "APPLICABLE_FEDERAL_RELATIONSHIP", "GEOGRAPHIC_OVERLAP_OR_COMPACT", "TREATY_OR_COMPACT", "CONCURRENT_AUTHORITY", "OTHER"]}, "subject_matter": {"type": "array", "items": {"type": "string"}}, "authority_basis_refs": {"type": "array", "items": {"type": "string"}}, "evidence_refs": {"type": "array", "items": {"type": "string"}}, "status": {"$ref": "#/$defs/lifecycle"}}}},
-        "subject_matter": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "evidence_refs": {"type": "array", "items": {"type": "string"}}, "conflicts": {"type": "array", "items": {"type": "string"}}, "status": {"$ref": "#/$defs/lifecycle"}
+        "relationships": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["relationship_id", "from_ref", "to_ref", "relationship_type", "subject_matter", "authority_basis_refs", "evidence_refs", "evidence_claims", "status"], "properties": {"relationship_id": {"type": "string"}, "from_ref": {"type": "string"}, "to_ref": {"type": "string"}, "relationship_type": {"enum": ["SUBDIVISION_OF", "TERRITORY_OF", "APPLICABLE_FEDERAL_RELATIONSHIP", "GEOGRAPHIC_OVERLAP_OR_COMPACT", "TREATY_OR_COMPACT", "CONCURRENT_AUTHORITY", "OTHER"]}, "subject_matter": {"type": "array", "items": {"type": "string"}}, "authority_basis_refs": {"type": "array", "items": {"type": "string"}}, "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}}, "status": {"$ref": "#/$defs/lifecycle"}}}},
+        "subject_matter": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}}, "conflicts": {"type": "array", "items": {"type": "string"}}, "status": {"$ref": "#/$defs/lifecycle"}
       }
     },
     "account_authority": {
-      "type": "object", "additionalProperties": false, "required": ["account_ref", "account_type", "legal_entity_ref", "human_principal_refs", "credential_refs", "credential_state", "delegation_refs", "delegation_state", "mandate_ref", "mandate_state", "jurisdiction_refs", "revocation_state", "evidence_refs"],
-      "properties": {"account_ref": {"type": "string"}, "account_type": {"enum": ["BOM", "BOU", "BOB", "BOI", "BOG"]}, "legal_entity_ref": {"type": "string"}, "human_principal_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "credential_refs": {"type": "array", "items": {"type": "string"}}, "credential_state": {"$ref": "#/$defs/lifecycle"}, "delegation_refs": {"type": "array", "items": {"type": "string"}}, "delegation_state": {"$ref": "#/$defs/lifecycle"}, "mandate_ref": {"type": "string"}, "mandate_state": {"$ref": "#/$defs/lifecycle"}, "jurisdiction_refs": {"type": "array", "items": {"type": "string"}}, "revocation_state": {"enum": ["NOT_REVOKED", "REVOKED", "UNRESOLVED"]}, "evidence_refs": {"type": "array", "items": {"type": "string"}}}
+      "type": "object", "additionalProperties": false, "required": ["account_ref", "account_type", "legal_entity_ref", "human_principal_refs", "credential_refs", "credential_state", "delegation_refs", "delegation_state", "mandate_ref", "mandate_state", "jurisdiction_refs", "revocation_state", "evidence_refs", "evidence_claims"],
+      "properties": {"account_ref": {"type": "string"}, "account_type": {"enum": ["BOM", "BOU", "BOB", "BOI", "BOG"]}, "legal_entity_ref": {"type": "string"}, "human_principal_refs": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "credential_refs": {"type": "array", "items": {"type": "string"}}, "credential_state": {"$ref": "#/$defs/lifecycle"}, "delegation_refs": {"type": "array", "items": {"type": "string"}}, "delegation_state": {"$ref": "#/$defs/lifecycle"}, "mandate_ref": {"type": "string"}, "mandate_state": {"$ref": "#/$defs/lifecycle"}, "jurisdiction_refs": {"type": "array", "items": {"type": "string"}}, "revocation_state": {"enum": ["NOT_REVOKED", "REVOKED", "UNRESOLVED"]}, "evidence_refs": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}, "evidence_claims": {"type": "array", "items": {"$ref": "#/$defs/evidenceClaim"}}}
     },
     "institutional_route": {
       "type": "object", "additionalProperties": false, "required": ["route_id", "subject_asset_ref", "activity", "jurisdiction_graph_ref", "requirements", "status"],
@@ -81,7 +91,39 @@
     },
     "receipt_access_policy": {
       "type": "object", "additionalProperties": false, "required": ["policy_id", "version", "default_access", "protected_field_classes", "grants", "access_log_required"],
-      "properties": {"policy_id": {"type": "string"}, "version": {"type": "string"}, "default_access": {"const": "DENY"}, "protected_field_classes": {"type": "array", "minItems": 1, "items": {"enum": ["PRIVATE_KEYS", "RAW_CREDENTIALS", "IDENTITY_DOCUMENTS", "KYC_KYB", "PERSONAL_DATA", "SECURITY_RESTRICTED"]}}, "grants": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["grant_id", "grantee_ref", "grantee_type", "jurisdiction_ref", "access_purpose", "field_scope", "legal_basis_refs", "credential_requirement_refs", "access_state", "effective_from", "expires_at", "revocation_ref", "access_log_receipt_ref"], "properties": {"grant_id": {"type": "string"}, "grantee_ref": {"type": "string"}, "grantee_type": {"enum": ["PUBLIC", "REGULATOR", "AUDITOR", "FIDUCIARY", "QUALIFIED_ASSURANCE", "SUBJECT"]}, "jurisdiction_ref": {"type": ["string", "null"]}, "access_purpose": {"type": "string"}, "field_scope": {"type": "array", "items": {"type": "string"}}, "legal_basis_refs": {"type": "array", "items": {"type": "string"}}, "credential_requirement_refs": {"type": "array", "items": {"type": "string"}}, "access_state": {"enum": ["AUTHORIZED", "PENDING", "DENIED", "REVOKED"]}, "effective_from": {"type": ["string", "null"], "format": "date-time"}, "expires_at": {"type": ["string", "null"], "format": "date-time"}, "revocation_ref": {"type": ["string", "null"]}, "access_log_receipt_ref": {"type": ["string", "null"]}}}}, "access_log_required": {"const": true}}
+      "properties": {
+        "policy_id": {"type": "string"}, "version": {"type": "string"}, "default_access": {"const": "DENY"},
+        "protected_field_classes": {"type": "array", "minItems": 1, "items": {"enum": ["PRIVATE_KEYS", "RAW_CREDENTIALS", "IDENTITY_DOCUMENTS", "KYC_KYB", "PERSONAL_DATA", "SECURITY_RESTRICTED"]}},
+        "grants": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["grant_id", "grantee_ref", "grantee_type", "jurisdiction_ref", "access_purpose", "field_scope", "legal_basis_refs", "credential_requirement_refs", "access_state", "effective_from", "expires_at", "revocation_ref", "access_log_receipt_ref"],
+            "properties": {
+              "grant_id": {"type": "string"}, "grantee_ref": {"type": "string"},
+              "grantee_type": {"enum": ["PUBLIC", "REGULATOR", "AUDITOR", "FIDUCIARY", "QUALIFIED_ASSURANCE", "SUBJECT"]},
+              "jurisdiction_ref": {"type": ["string", "null"]}, "access_purpose": {"type": "string"},
+              "field_scope": {"type": "array", "items": {"type": "string"}}, "legal_basis_refs": {"type": "array", "items": {"type": "string"}},
+              "credential_requirement_refs": {"type": "array", "items": {"type": "string"}}, "access_state": {"enum": ["AUTHORIZED", "PENDING", "DENIED", "REVOKED"]},
+              "effective_from": {"type": ["string", "null"], "format": "date-time"}, "expires_at": {"type": ["string", "null"], "format": "date-time"},
+              "revocation_ref": {"type": ["string", "null"]}, "access_log_receipt_ref": {"type": ["string", "null"]}
+            },
+            "allOf": [{
+              "if": {
+                "properties": {"access_state": {"const": "AUTHORIZED"}, "grantee_type": {"not": {"const": "PUBLIC"}}},
+                "required": ["access_state", "grantee_type"]
+              },
+              "then": {
+                "properties": {
+                  "legal_basis_refs": {"minItems": 1}, "credential_requirement_refs": {"minItems": 1},
+                  "access_log_receipt_ref": {"type": "string", "minLength": 1}
+                }
+              }
+            }]
+          }
+        },
+        "access_log_required": {"const": true}
+      }
     },
     "supersession_history": {"$ref": "#/$defs/supersession"}
   }

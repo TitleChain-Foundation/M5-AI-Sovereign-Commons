@@ -211,12 +211,19 @@
     "checkpoint_summary": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["required", "satisfied", "unresolved_ids"],
+      "required": ["required", "satisfied", "unresolved_checkpoint_ids", "unresolved_context_requirements"],
       "properties": {
         "required": { "type": "integer", "minimum": 0 },
         "satisfied": { "type": "integer", "minimum": 0 },
-        "unresolved_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
-      }
+        "unresolved_checkpoint_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "unresolved_context_requirements": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "required": { "const": 5 } }, "required": ["required"] },
+          "then": { "properties": { "satisfied": { "maximum": 5 } } }
+        }
+      ]
     },
     "state_transition": {
       "type": "object",

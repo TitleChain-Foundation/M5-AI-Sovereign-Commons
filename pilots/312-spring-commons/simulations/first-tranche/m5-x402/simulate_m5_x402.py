@@ -11,12 +11,14 @@ from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from jsonschema import Draft202012Validator, FormatChecker
+from jsonschema.exceptions import ValidationError
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent.parent.parent
 sys.path.insert(0, str(HERE.parent))
 
-from canonical import canonical_digest, file_digest  # noqa: E402
+from canonical import canonical_digest, verify_bound_artifact  # noqa: E402
+from simulate_first_tranche import _decision_context_errors  # noqa: E402
 
 DECISION_CONTEXT_SCHEMA_PATH = PROJECT / "schemas" / "m5canon-decision-context.schema.json"
 MANIFEST_SCHEMA_PATH = PROJECT / "schemas" / "spring-commons-human-terms-manifest.schema.json"
@@ -29,6 +31,17 @@ AUTHORITY_SCOPE_FIELDS = (
     "mandate_state",
     "revocation_state",
 )
+
+
+def _validate_or_value_error(
+    validator: Draft202012Validator,
+    record: Any,
+    label: str,
+) -> None:
+    try:
+        validator.validate(record)
+    except ValidationError as error:
+        raise ValueError(f"{label} schema validation failed: {error.message}") from error
 
 
 def _normalize_resource(value: str) -> str:
@@ -97,21 +110,21 @@ def _verify_artifact_bindings(info: dict[str, Any]) -> dict[str, Any]:
     for name in ("contract", "human_terms", "machine_policy", "executable_plan", "decision_context"):
         binding = info[name]
         contract_ids.add(binding["contract_id"])
-        path = (HERE / binding["uri"]).resolve()
-        if not path.is_relative_to(PROJECT):
-            raise ValueError(f"{name} URI escapes the Spring Commons project")
-        if not path.is_file() or file_digest(path) != binding["digest"]:
-            raise ValueError(f"{name} URI and digest do not identify the same artifact")
+        verify_bound_artifact(HERE, binding.get("uri"), binding.get("digest"), PROJECT, name)
     if len(contract_ids) != 1:
         raise ValueError("Ricardian layers do not share one contract identifier")
 
     manifest_binding = info["human_terms"]
-    manifest_path = (HERE / manifest_binding["uri"]).resolve()
+    manifest_path = verify_bound_artifact(
+        HERE, manifest_binding.get("uri"), manifest_binding.get("digest"), PROJECT, "human_terms"
+    )
     manifest = json.loads(manifest_path.read_text())
     manifest_schema = json.loads(MANIFEST_SCHEMA_PATH.read_text())
-    Draft202012Validator(
-        manifest_schema, format_checker=FormatChecker()
-    ).validate(manifest)
+    _validate_or_value_error(
+        Draft202012Validator(manifest_schema, format_checker=FormatChecker()),
+        manifest,
+        "human-terms manifest",
+    )
     if (
         manifest["contract_id"] != manifest_binding["contract_id"]
         or manifest["artifact_id"] != manifest_binding["id"]
@@ -125,19 +138,29 @@ def _verify_artifact_bindings(info: dict[str, Any]) -> dict[str, Any]:
     if document_ids != expected_document_ids or len(document_uris) != len(set(document_uris)):
         raise ValueError("human-terms manifest must identify unique ordered DOC-01 through DOC-23")
     for document in manifest["documents"]:
-        path = (manifest_path.parent / document["uri"]).resolve()
-        if not path.is_relative_to(PROJECT):
-            raise ValueError(f"manifest URI escapes the Spring Commons project for {document['id']}")
-        if not path.is_file() or file_digest(path) != document["digest"]:
-            raise ValueError(f"manifest digest mismatch for {document['id']}")
+        verify_bound_artifact(
+            manifest_path.parent,
+            document.get("uri"),
+            document.get("digest"),
+            PROJECT,
+            f"manifest document {document.get('id', 'UNRESOLVED')}",
+        )
 
     context_binding = info["decision_context"]
-    context_path = (HERE / context_binding["uri"]).resolve()
+    context_path = verify_bound_artifact(
+        HERE,
+        context_binding.get("uri"),
+        context_binding.get("digest"),
+        PROJECT,
+        "decision_context",
+    )
     context = json.loads(context_path.read_text())
     context_schema = json.loads(DECISION_CONTEXT_SCHEMA_PATH.read_text())
-    Draft202012Validator(
-        context_schema, format_checker=FormatChecker()
-    ).validate(context)
+    _validate_or_value_error(
+        Draft202012Validator(context_schema, format_checker=FormatChecker()),
+        context,
+        "decision context",
+    )
     if (
         context["context_id"] != context_binding["id"]
         or context["version"] != context_binding["version"]
@@ -145,11 +168,13 @@ def _verify_artifact_bindings(info: dict[str, Any]) -> dict[str, Any]:
     ):
         raise ValueError("decision-context binding does not match its artifact identity")
     taxonomy = context["taxonomy"]
-    taxonomy_path = (context_path.parent / taxonomy["uri"]).resolve()
-    if not taxonomy_path.is_relative_to(PROJECT):
-        raise ValueError("taxonomy URI escapes the Spring Commons project")
-    if not taxonomy_path.is_file() or file_digest(taxonomy_path) != taxonomy["digest"]:
-        raise ValueError("taxonomy URI and digest do not identify the same artifact")
+    taxonomy_path = verify_bound_artifact(
+        context_path.parent,
+        taxonomy.get("uri"),
+        taxonomy.get("digest"),
+        PROJECT,
+        "taxonomy",
+    )
     taxonomy_record = json.loads(taxonomy_path.read_text())
     if (
         taxonomy_record.get("profile_id") != taxonomy["profile_id"]
@@ -161,7 +186,7 @@ def _verify_artifact_bindings(info: dict[str, Any]) -> dict[str, Any]:
     return context
 
 
-def simulate(
+def _simulate(
     payment_required: dict[str, Any],
     payment_payload: dict[str, Any],
     schema: dict[str, Any],
@@ -177,8 +202,8 @@ def simulate(
     required_extension = payment_required["extensions"]["m5-ricardian"]
     payload_extension = payment_payload["extensions"]["m5-ricardian"]
     validator = Draft202012Validator(schema, format_checker=FormatChecker())
-    validator.validate(required_extension)
-    validator.validate(payload_extension)
+    _validate_or_value_error(validator, required_extension, "PaymentRequired M5 extension")
+    _validate_or_value_error(validator, payload_extension, "PaymentPayload M5 extension")
 
     if payment_required.get("x402Version") != 2 or payment_payload.get("x402Version") != 2:
         raise ValueError("x402 version must be v2")
@@ -252,6 +277,13 @@ def simulate(
         blockers.append("JURISDICTION_GRAPH_UNRESOLVED")
     if decision_context["institutional_route"]["status"] != "CURRENT":
         blockers.append("INSTITUTIONAL_ROUTE_UNRESOLVED")
+    context_errors, context_unresolved = _decision_context_errors(
+        decision_context,
+        {},
+        observed_at,
+    )
+    blockers.extend(f"DECISION_CONTEXT_INVALID: {detail}" for detail in context_errors)
+    blockers.extend(f"DECISION_CONTEXT_UNRESOLVED: {detail}" for detail in context_unresolved)
     if safety["synthetic"]:
         blockers.append("SYNTHETIC_MODE")
     if not payment_payload["payload"].get("settleable", False):
@@ -278,6 +310,33 @@ def simulate(
         "token_valuation_status": marker["valuation_status"],
         "blockers": blockers,
     }
+
+
+def simulate(
+    payment_required: dict[str, Any],
+    payment_payload: dict[str, Any],
+    schema: dict[str, Any],
+    *,
+    request_method: str,
+    request_resource: str,
+    observed_at: str,
+    clock_source: str,
+) -> dict[str, Any]:
+    """Fail closed with one public ValueError contract for malformed inputs."""
+    try:
+        return _simulate(
+            payment_required,
+            payment_payload,
+            schema,
+            request_method=request_method,
+            request_resource=request_resource,
+            observed_at=observed_at,
+            clock_source=clock_source,
+        )
+    except ValueError:
+        raise
+    except (KeyError, IndexError, TypeError, AttributeError) as error:
+        raise ValueError(f"malformed x402 input: {error}") from error
 
 
 def main() -> int:
