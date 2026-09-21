@@ -14,7 +14,7 @@ Every conforming M5 Ricardian contract MUST contain or reference:
 2. **Machine policy and evidence** — a deterministic representation of the authorized terms, participants, credentials, delegations, restrictions, states, conditions precedent, approvals, evidence, privacy classes, and conflict rules.
 3. **Executable instructions** — bounded code or declarative programs that can prepare and route permitted actions through named adapters and authoritative systems of record.
 
-All three layers MUST share a contract identifier, version, content digest or digest manifest, and explicit supersession history. The executable layer MUST identify the exact human-terms and machine-policy versions it implements.
+All three layers MUST share a contract identifier and MUST identify their own artifact identifier, version, content digest or digest manifest, URI, and explicit supersession history. A digest MUST cover the exact bytes resolved by its declared URI. A package binding MUST identify and hash a canonical manifest that, in turn, identifies and hashes every member. The executable layer MUST identify the exact human-terms and machine-policy versions it implements.
 
 ## 3. Authority and conflict rule
 
@@ -54,14 +54,17 @@ Adapters MUST declare provider identity, regulated role where applicable, enviro
 
 An M5-x402 profile MUST preserve the x402 core version, scheme, network, asset, amount, recipient, timeout, payload, verification, and settlement semantics. M5 terms MUST be carried as a versioned extension rather than silently changing core x402 fields.
 
-The extension SHOULD bind:
+The extension MUST bind:
 
 - Ricardian contract ID, version, and human-terms digest;
 - machine-policy ID, version, and digest;
 - executable-plan ID, version, language, and digest;
 - principal, role, credential, delegation, approval, and evidence references;
-- source and destination economic and jurisdiction context;
-- privacy/access class;
+- the applicable versioned M1–M5 taxonomy and internal asset classification, separately from external legal classification;
+- source and destination economic context and a versioned jurisdiction-authority graph;
+- account context, human principal, credential, delegation, mandate, and revocation state;
+- institution-specific routing functions and required actions without treating every institution as an approver;
+- privacy/access policy and access-log requirements;
 - payment identifier and normalized request fingerprint; and
 - receipt, correction, supersession, and reconciliation references.
 
@@ -86,7 +89,7 @@ A no-value project token MUST NOT be substituted for the payment asset in an x40
 
 ## 8. Receipts and privacy
 
-Every material transition MUST produce an attributable receipt containing the contract and policy versions, instruction digest, actor and authority references, approvals, adapter/provider references, prior and resulting states, timestamps, exceptions, and reconciliation status.
+Every material transition MUST produce an attributable receipt containing the contract and policy versions, exact M5Canon function identifiers and matching canonical URIs, implementation version, instruction digest, actor and authority references, approvals, adapter/provider references and their distinct functions, prior and resulting states, timestamps and ordering anchor, exceptions, reconciliation status, field-level access policy and access-log references, and either a previous-receipt digest or an explicit genesis marker.
 
 Receipts MUST distinguish simulation from production and observed facts from estimates or modeled outputs. Public receipts MUST NOT expose private keys, raw bank credentials, identity documents, unnecessary personal data, protected KYC/KYB evidence, or security-sensitive infrastructure details.
 

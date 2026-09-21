@@ -10,6 +10,14 @@
     "data_classification": "PUBLIC_SYNTHETIC",
     "notice": "Developer demonstration only; no real party, approval, offer, commitment, settlement, draw, or achieved result is represented."
   },
+  "decision_context": {
+    "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+    "version": "1.0-draft",
+    "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+    "uri": "PPT-EZ-CA-0001-m5canon-decision-context.json",
+    "schema_uri": "../schemas/m5canon-decision-context.schema.json",
+    "supersession_history": {"supersedes": [], "superseded_by": null}
+  },
   "tranche": {
     "tranche_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
     "capital_lane": "ILLUSTRATIVE_PRIVATE_PROJECT_CAPITAL",
@@ -68,6 +76,12 @@
     "permitted_states": ["CAPITAL_DESIGN","COMMITMENT_REVIEW","SOURCE_CHAIN_REVIEW","DEFINITIVE_CLOSING_REVIEW","INITIAL_FUNDING_REVIEW","ESCROW_RECEIPT_REVIEW","DRAW_REVIEW","HOLD"],
     "fail_closed_state": "HOLD",
     "transition_order": ["evidence received","authority validated","deterministic conditions satisfied","professional certification","human or fiduciary approval","provider settlement","evidence receipt"]
+  },
+  "receipt_context": {
+    "timestamp": "2026-09-20T00:00:00Z",
+    "sequence": 0,
+    "ordering_anchor": "GENESIS",
+    "previous_receipt_digest": null
   },
   "impact_metrics": [
     {"metric_id":"METRIC-TIMELINE","label":"End-to-end transaction timeline","value_class":"PROGRAMMED_TARGET","baseline":12,"target":2,"actual":null,"unit":"months","status":"NOT_MEASURED","source_documents":["DOC-01","DOC-21"],"limitations":"Design target only; no closing or activation has occurred."},

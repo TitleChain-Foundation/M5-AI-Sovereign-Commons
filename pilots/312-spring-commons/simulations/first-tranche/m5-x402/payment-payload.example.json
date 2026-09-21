@@ -39,28 +39,45 @@
       "info": {
         "profile": "M5-X402-001-draft",
         "contract": {
-          "id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
-          "version": "simulation-1",
-          "digest": "sha256:615993c075a6bc73c8b28c328b2cfcbdfb64c5a822eb0d54a1fcaddf943d64e0"
+          "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+          "id": "DOC-02-CONDITIONAL-CAPITAL-COMMITMENT-LETTER",
+          "version": "v0.6-draft",
+          "digest": "sha256:615993c075a6bc73c8b28c328b2cfcbdfb64c5a822eb0d54a1fcaddf943d64e0",
+          "uri": "../../../documents/public/DOC-02-Conditional-Capital-Commitment-Letter.pdf",
+          "supersession_history": {"supersedes": [], "superseded_by": null}
         },
         "human_terms": {
+          "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
           "id": "SPRING-COMMONS-DOC-SET-01-23",
           "version": "v0.6-draft-package",
-          "digest": "sha256:99bd703d670a5b7a446c7dad3c13f3db70a0d0b26b3590f2592c1b09ec6f72b4",
-          "uri": "../../../documents/public/README.md"
+          "digest": "sha256:e358609b54e7501e741ead56d2a3b11bc8e7c000d35899be38c9d733e0a212f5",
+          "uri": "../manifests/SPRING-COMMONS-DOC-SET-01-23.v0.6-draft.json",
+          "supersession_history": {"supersedes": [], "superseded_by": null}
         },
         "machine_policy": {
+          "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
           "id": "SPRING-COMMONS-FIRST-TRANCHE-GATES",
           "version": "1.0-draft",
-          "digest": "sha256:aba0895ab6a91e1318c060c6400cc85bddd723db79fd488554f0caad19a90cda",
-          "uri": "../../../schemas/m5-first-tranche-simulation.schema.json"
+          "digest": "sha256:585e6f8911c16523ebb58a2c2cd53e9aa0321b56e9c9f7fa1bc309d544f2660a",
+          "uri": "../../../schemas/m5-first-tranche-simulation.schema.json",
+          "supersession_history": {"supersedes": [], "superseded_by": null}
         },
         "executable_plan": {
+          "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
           "id": "SPRING-COMMONS-RESERVE-TRANCHE",
           "version": "1.0-draft",
           "digest": "sha256:f721bfaeb8e3da403ec472cdda895a3215e4629b174b2b8f7f976589e19c73a7",
           "uri": "../numscript/reserve-tranche.num",
-          "language": "Numscript"
+          "language": "Numscript",
+          "supersession_history": {"supersedes": [], "superseded_by": null}
+        },
+        "decision_context": {
+          "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+          "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+          "version": "1.0-draft",
+          "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+          "uri": "../../../examples/PPT-EZ-CA-0001-m5canon-decision-context.json",
+          "supersession_history": {"supersedes": [], "superseded_by": null}
         },
         "authority": {
           "principal_ref": "SYNTHETIC-CAPITAL-PROVIDER",
@@ -89,7 +106,9 @@
           "settlement_status": "NOT_SUBMITTED"
         },
         "request_fingerprint": {
+          "x402_version": 2,
           "payment_id": "m5pay_spring_commons_tranche_01",
+          "payment_identifier_digest": "sha256:023c78beeba0e1bb7503ec86505afc9805d9bcc058151199df56ebc33da389ef",
           "http_method": "POST",
           "resource": "https://sandbox.invalid/spring-commons/tranche-01/reserve",
           "scheme": "exact",
@@ -97,7 +116,22 @@
           "asset": "USD",
           "amount": "2500000000",
           "pay_to": "role:escrow:synthetic",
-          "operation_id": "RESERVE-TRANCHE-01"
+          "max_timeout_seconds": 300,
+          "accepted_extra_digest": "sha256:a4bafc98f88b7e7b319b1139527eb5a466b1e000c8dfbf6d56cbf09ce22c5177",
+          "issued_at": "2026-09-20T00:00:00Z",
+          "expires_at": "2026-09-20T00:05:00Z",
+          "operation_id": "RESERVE-TRANCHE-01",
+          "taxonomy_profile_id": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft",
+          "taxonomy_version": "1.0-draft",
+          "taxonomy_digest": "sha256:50ed025e01085aba63f4d8ca2f16b4ebaaf5107ee6db727dfc17de728c51af0b",
+          "decision_context_digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+          "asset_classification_digest": "sha256:361c98f6c9a6154beac92bf7bf6c9c54d7aad5710fde1eac2c44916342826d57",
+          "external_legal_classification_digest": "sha256:c2875a211e9fdde7b75ed4b0407445f9eec3be0dfb991f76e02691dd40179953",
+          "jurisdiction_graph_digest": "sha256:db739f6b3d2b904ba8b3b76ed1473aa847cacf6157d14d1da63eae0555804c27",
+          "account_authority_digest": "sha256:82e95d2c676a5658774a2057dbb128c04882cc6aef651ca156efdab9a7a81795",
+          "credential_delegation_mandate_digest": "sha256:332f25f14f872d7ba813d6c19ae266f272d9f1df250e8bb68e6a78d3218c416a",
+          "institutional_route_digest": "sha256:ddc75608e81d0e3f64f1f377197771d867798a7058d989099a8c9c037bdcb977",
+          "receipt_access_policy_digest": "sha256:3699c5fea1f912f6dbe452571ae556e16f31c82919f5efeb2f1e02b4a43ad249"
         }
       },
       "schema": {

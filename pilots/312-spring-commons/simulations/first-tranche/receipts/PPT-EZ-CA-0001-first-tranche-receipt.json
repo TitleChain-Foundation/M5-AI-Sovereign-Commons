@@ -1,25 +1,360 @@
 {
+  "schema_version": "1.0-draft",
   "receipt_id": "SIM-PPT-EZ-CA-0001-TRANCHE-01-RECEIPT",
-  "receipt_version": "1.0",
+  "receipt_version": "1.2",
+  "receipt_class": "PUBLIC_SYNTHETIC_NON_AUTHORITATIVE",
   "simulation_id": "SIM-PPT-EZ-CA-0001-TRANCHE-01",
   "project_id": "PPT-EZ-CA-0001",
   "tranche_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
-  "fixture_digest": "sha256:d221c42c95ccd281fde3174f7b2dfd9a0cb5e1fb5071bded548fa87721559a54",
+  "m5canon": {
+    "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+    "functions": [
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.PRINCIPAL.RESOLVE.v1",
+        "function_uri": "urn:m5:function:m5canon:principal:resolve:v1",
+        "outcome": "SATISFIED"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.CREDENTIAL.VERIFY.v1",
+        "function_uri": "urn:m5:function:m5canon:credential:verify:v1",
+        "outcome": "UNRESOLVED"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.DELEGATION.VERIFY.v1",
+        "function_uri": "urn:m5:function:m5canon:delegation:verify:v1",
+        "outcome": "UNRESOLVED"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.JURISDICTION.RESOLVE.v1",
+        "function_uri": "urn:m5:function:m5canon:jurisdiction:resolve:v1",
+        "outcome": "UNRESOLVED"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.POLICY.EVALUATE.v1",
+        "function_uri": "urn:m5:function:m5canon:policy:evaluate:v1",
+        "outcome": "UNRESOLVED"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.APPROVAL.VERIFY.v1",
+        "function_uri": "urn:m5:function:m5canon:approval:verify:v1",
+        "outcome": "UNRESOLVED"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.ACTION.AUTHORIZE.v1",
+        "function_uri": "urn:m5:function:m5canon:action:authorize:v1",
+        "outcome": "HOLD"
+      },
+      {
+        "policy_version": "M5-RICARDIAN-TRIPLE-LAYER-001:draft-2026-09-20",
+        "implementation_id": "SPRING-COMMONS-FIRST-TRANCHE-EVALUATOR",
+        "implementation_version": "1.1.0-draft",
+        "function_id": "M5CANON.RECEIPT.COMMIT.v1",
+        "function_uri": "urn:m5:function:m5canon:receipt:commit:v1",
+        "outcome": "COMMITTED_SIMULATION_RECEIPT"
+      }
+    ]
+  },
+  "artifacts": {
+    "fixture": {
+      "id": "SIM-PPT-EZ-CA-0001-TRANCHE-01",
+      "version": "1.0-draft",
+      "digest": "sha256:4d69614ef3e751b15f13c066949f37b6681cf96e4138e1cf1950158be91c6785",
+      "uri": "urn:sha256:4d69614ef3e751b15f13c066949f37b6681cf96e4138e1cf1950158be91c6785"
+    },
+    "human_terms_manifest": {
+      "id": "SPRING-COMMONS-DOC-SET-01-23",
+      "version": "v0.6-draft-package",
+      "digest": "sha256:e358609b54e7501e741ead56d2a3b11bc8e7c000d35899be38c9d733e0a212f5",
+      "uri": "pilots/312-spring-commons/simulations/first-tranche/manifests/SPRING-COMMONS-DOC-SET-01-23.v0.6-draft.json"
+    },
+    "machine_policy": {
+      "id": "SPRING-COMMONS-FIRST-TRANCHE-GATES",
+      "version": "1.0-draft",
+      "digest": "sha256:585e6f8911c16523ebb58a2c2cd53e9aa0321b56e9c9f7fa1bc309d544f2660a",
+      "uri": "pilots/312-spring-commons/schemas/m5-first-tranche-simulation.schema.json"
+    },
+    "executable_instruction": {
+      "id": "SPRING-COMMONS-RESERVE-TRANCHE",
+      "version": "1.0-draft",
+      "digest": "sha256:f721bfaeb8e3da403ec472cdda895a3215e4629b174b2b8f7f976589e19c73a7",
+      "uri": "pilots/312-spring-commons/simulations/first-tranche/numscript/reserve-tranche.num"
+    },
+    "decision_context": {
+      "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+      "version": "1.0-draft",
+      "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+      "uri": "PPT-EZ-CA-0001-m5canon-decision-context.json"
+    },
+    "taxonomy_profile": {
+      "id": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft",
+      "version": "1.0-draft",
+      "digest": "sha256:50ed025e01085aba63f4d8ca2f16b4ebaaf5107ee6db727dfc17de728c51af0b",
+      "uri": "../simulations/first-tranche/profiles/SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft.json"
+    }
+  },
+  "decision_record": {
+    "decision_id": "DECISION-SIM-PPT-EZ-CA-0001-TRANCHE-01",
+    "result": "HOLD",
+    "unresolved_requirements": [
+      "ASSET_CLASSIFICATION",
+      "AUTHORITY_REVOCATION_STATE",
+      "CP-01-FEDERAL-PATHWAY",
+      "CP-02-PUBLIC-GRANTEE",
+      "CP-03-CAPITAL-AUTHORITY",
+      "CP-04-ESCROW-READY",
+      "CREDENTIAL",
+      "DELEGATION",
+      "EXTERNAL_LEGAL_CLASSIFICATION",
+      "INSTITUTIONAL_ROUTE",
+      "JURISDICTION_GRAPH",
+      "MANDATE",
+      "ROUTE-REQ-DTTC",
+      "ROUTE-REQ-ESCROW",
+      "ROUTE-REQ-LEGAL-CLASSIFICATION"
+    ],
+    "receipt_ref": "SIM-PPT-EZ-CA-0001-TRANCHE-01-RECEIPT"
+  },
+  "decision_context": {
+    "context_ref": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+    "taxonomy_profile_ref": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft",
+    "asset_ref": "M4-SPRING-COMMONS-TRANCHE-01",
+    "m5_class": "M4",
+    "external_legal_classification_ref": "LEGAL-CLASS-SPRING-COMMONS-01",
+    "jurisdiction_graph_ref": "JGRAPH-SPRING-COMMONS-01",
+    "account_ref": "ACCOUNT-SYNTHETIC-CAPITAL-PROVIDER",
+    "account_type": "BOI",
+    "human_principal_refs": [
+      "M5HUM-SYNTHETIC-SIGNATORY"
+    ],
+    "credential_state": "PENDING",
+    "delegation_state": "PENDING",
+    "mandate_ref": "M5MANDATE-SPRING-COMMONS-01",
+    "mandate_state": "PENDING",
+    "revocation_state": "UNRESOLVED",
+    "institutional_route_ref": "ROUTE-M4-SPRING-COMMONS-US-01",
+    "institutional_route_status": "UNRESOLVED",
+    "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
+  },
+  "actor_authority": {
+    "actor_ref": "OFFLINE-DETERMINISTIC-SIMULATOR",
+    "principal_ref": "M5HUM-SYNTHETIC-SIGNATORY",
+    "legal_entity_ref": "SYNTHETIC-CAPITAL-PROVIDER",
+    "account_ref": "ACCOUNT-SYNTHETIC-CAPITAL-PROVIDER",
+    "account_type": "BOI",
+    "role_ref": "CAPITAL_PROVIDER",
+    "credential_refs": [
+      "CREDENTIAL-QUALIFIED-INSTITUTION",
+      "CREDENTIAL-AUTHORIZED-SIGNATORY"
+    ],
+    "credential_state": "PENDING",
+    "delegation_refs": [
+      "DELEGATION-SYNTHETIC-SIGNATORY"
+    ],
+    "delegation_state": "PENDING",
+    "mandate_ref": "M5MANDATE-SPRING-COMMONS-01",
+    "mandate_state": "PENDING",
+    "jurisdiction_refs": [
+      "JNR:US",
+      "JNR:US-CA"
+    ],
+    "revocation_state": "UNRESOLVED",
+    "authority_evidence_refs": []
+  },
+  "approvals": [],
+  "adapter_provider_refs": [
+    {
+      "participant_ref": "QUALIFIED-SECURITIES-COUNSEL-TBD",
+      "institution_identifier": "OTHER",
+      "function": "EXTERNAL_LEGAL_CLASSIFICATION",
+      "required_action": "QUALIFIED_PROFESSIONAL_REVIEW",
+      "status": "PENDING",
+      "evidence_refs": []
+    },
+    {
+      "participant_ref": "ROLE-ESCROW",
+      "institution_identifier": "OTHER",
+      "function": "ESCROW_ACCOUNT_AND_SETTLEMENT",
+      "required_action": "LICENSE_OR_CREDENTIAL_VERIFICATION",
+      "status": "PENDING",
+      "evidence_refs": []
+    },
+    {
+      "participant_ref": "M5-DTTC",
+      "institution_identifier": "M5_DTTC",
+      "function": "INTERNAL_DISTRIBUTED_TRUST_AND_TITLE_MEMBER_POOL",
+      "required_action": "MEMBERSHIP_STATUS_VERIFICATION",
+      "status": "PENDING",
+      "evidence_refs": []
+    }
+  ],
+  "receipt_access": {
+    "policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01",
+    "policy_digest": "sha256:3699c5fea1f912f6dbe452571ae556e16f31c82919f5efeb2f1e02b4a43ad249",
+    "default_access": "DENY",
+    "public_field_scope": [
+      "decision",
+      "public_exceptions",
+      "safety"
+    ],
+    "protected_field_classes": [
+      "PRIVATE_KEYS",
+      "RAW_CREDENTIALS",
+      "IDENTITY_DOCUMENTS",
+      "KYC_KYB",
+      "PERSONAL_DATA",
+      "SECURITY_RESTRICTED"
+    ],
+    "authorized_grant_refs": [
+      "ACCESS-PUBLIC-SUMMARY",
+      "ACCESS-REGULATOR-EXAMINATION"
+    ],
+    "pending_grant_refs": [],
+    "access_log_required": true,
+    "access_log_refs": []
+  },
+  "ordering": {
+    "timestamp": "2026-09-20T00:00:00Z",
+    "sequence": 0,
+    "anchor": "GENESIS",
+    "previous_receipt_digest": null
+  },
   "decision": "HOLD",
   "execution_authorized": false,
   "authority_effect": "NONE",
   "network_write_performed": false,
   "financial_movement_performed": false,
-  "required_checkpoint_count": 5,
-  "satisfied_checkpoint_count": 1,
-  "unresolved_checkpoint_ids": [
-    "CP-01-FEDERAL-PATHWAY",
-    "CP-02-PUBLIC-GRANTEE",
-    "CP-03-CAPITAL-AUTHORITY",
-    "CP-04-ESCROW-READY"
+  "checkpoint_summary": {
+    "required": 5,
+    "satisfied": 0,
+    "unresolved_ids": [
+      "ASSET_CLASSIFICATION",
+      "AUTHORITY_REVOCATION_STATE",
+      "CP-01-FEDERAL-PATHWAY",
+      "CP-02-PUBLIC-GRANTEE",
+      "CP-03-CAPITAL-AUTHORITY",
+      "CP-04-ESCROW-READY",
+      "CREDENTIAL",
+      "DELEGATION",
+      "EXTERNAL_LEGAL_CLASSIFICATION",
+      "INSTITUTIONAL_ROUTE",
+      "JURISDICTION_GRAPH",
+      "MANDATE",
+      "ROUTE-REQ-DTTC",
+      "ROUTE-REQ-ESCROW",
+      "ROUTE-REQ-LEGAL-CLASSIFICATION"
+    ]
+  },
+  "state_transition": {
+    "prior_state": "CAPITAL_DESIGN",
+    "requested_state": "INITIAL_FUNDING_REVIEW",
+    "resulting_state": "HOLD"
+  },
+  "exceptions": [
+    {
+      "code": "ASSET_CLASSIFICATION",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "AUTHORITY_REVOCATION_STATE",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "CP-01-FEDERAL-PATHWAY",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "CP-02-PUBLIC-GRANTEE",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "CP-03-CAPITAL-AUTHORITY",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "CP-04-ESCROW-READY",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "CREDENTIAL",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "DELEGATION",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "EXTERNAL_LEGAL_CLASSIFICATION",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "INSTITUTIONAL_ROUTE",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "JURISDICTION_GRAPH",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "MANDATE",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "ROUTE-REQ-DTTC",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "ROUTE-REQ-ESCROW",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    },
+    {
+      "code": "ROUTE-REQ-LEGAL-CLASSIFICATION",
+      "status": "UNRESOLVED",
+      "detail": "Required checkpoint is not satisfied"
+    }
   ],
-  "current_state": "CAPITAL_DESIGN",
-  "requested_state": "INITIAL_FUNDING_REVIEW",
+  "reconciliation": {
+    "status": "NOT_APPLICABLE_SIMULATION",
+    "provider_receipt_refs": []
+  },
+  "observations": {
+    "fixture_digest": "sha256:4d69614ef3e751b15f13c066949f37b6681cf96e4138e1cf1950158be91c6785",
+    "validation_status": "VALID"
+  },
   "notices": [
     "Synthetic developer demonstration only.",
     "A ready result routes evidence to authorized humans; it never approves closing, source-chain activation, escrow release, draw authorization, settlement, or legal state.",

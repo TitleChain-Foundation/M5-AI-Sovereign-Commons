@@ -14,13 +14,23 @@
     "artifactBinding": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "version", "digest"],
+      "required": ["contract_id", "id", "version", "digest", "uri", "supersession_history"],
       "properties": {
+        "contract_id": { "const": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01" },
         "id": { "type": "string", "minLength": 1 },
         "version": { "type": "string", "minLength": 1 },
         "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
-        "uri": { "type": "string" },
-        "language": { "type": "string" }
+        "uri": { "type": "string", "minLength": 1 },
+        "language": { "type": "string" },
+        "supersession_history": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["supersedes", "superseded_by"],
+          "properties": {
+            "supersedes": { "type": "array", "items": { "type": "string" } },
+            "superseded_by": { "type": ["string", "null"] }
+          }
+        }
       }
     },
     "tokenRepresentation": {
@@ -42,13 +52,14 @@
     "info": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["profile", "contract", "human_terms", "machine_policy", "executable_plan", "authority", "token_representation", "execution_safety", "request_fingerprint"],
+      "required": ["profile", "contract", "human_terms", "machine_policy", "executable_plan", "decision_context", "authority", "token_representation", "execution_safety", "request_fingerprint"],
       "properties": {
         "profile": { "const": "M5-X402-001-draft" },
         "contract": { "$ref": "#/$defs/artifactBinding" },
         "human_terms": { "$ref": "#/$defs/artifactBinding" },
         "machine_policy": { "$ref": "#/$defs/artifactBinding" },
         "executable_plan": { "$ref": "#/$defs/artifactBinding" },
+        "decision_context": { "$ref": "#/$defs/artifactBinding" },
         "authority": {
           "type": "object",
           "additionalProperties": false,
@@ -78,17 +89,34 @@
         "request_fingerprint": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["payment_id", "http_method", "resource", "scheme", "network", "asset", "amount", "pay_to", "operation_id"],
+          "required": ["x402_version", "payment_id", "payment_identifier_digest", "http_method", "resource", "scheme", "network", "asset", "amount", "pay_to", "max_timeout_seconds", "accepted_extra_digest", "issued_at", "expires_at", "operation_id", "taxonomy_profile_id", "taxonomy_version", "taxonomy_digest", "decision_context_digest", "asset_classification_digest", "external_legal_classification_digest", "jurisdiction_graph_digest", "account_authority_digest", "credential_delegation_mandate_digest", "institutional_route_digest", "receipt_access_policy_digest"],
           "properties": {
+            "x402_version": { "const": 2 },
             "payment_id": { "type": "string", "minLength": 16, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
-            "http_method": { "type": "string" },
-            "resource": { "type": "string" },
+            "payment_identifier_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "http_method": { "type": "string", "pattern": "^[A-Z]+$" },
+            "resource": { "type": "string", "format": "uri" },
             "scheme": { "type": "string" },
             "network": { "type": "string" },
             "asset": { "not": { "const": "M5MARKER" } },
             "amount": { "type": "string", "pattern": "^[1-9][0-9]*$" },
             "pay_to": { "type": "string" },
-            "operation_id": { "type": "string" }
+            "max_timeout_seconds": { "type": "integer", "minimum": 1 },
+            "accepted_extra_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "issued_at": { "type": "string", "format": "date-time" },
+            "expires_at": { "type": "string", "format": "date-time" },
+            "operation_id": { "type": "string" },
+            "taxonomy_profile_id": { "const": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft" },
+            "taxonomy_version": { "const": "1.0-draft" },
+            "taxonomy_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "decision_context_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "asset_classification_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "external_legal_classification_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "jurisdiction_graph_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "account_authority_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "credential_delegation_mandate_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "institutional_route_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "receipt_access_policy_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
           }
         }
       }

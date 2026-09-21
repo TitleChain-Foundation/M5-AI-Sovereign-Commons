@@ -1,0 +1,37 @@
+{
+  "manifest_schema_version": "1.0",
+  "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+  "artifact_id": "SPRING-COMMONS-DOC-SET-01-23",
+  "artifact_version": "v0.6-draft-package",
+  "supersession_history": {
+    "supersedes": [],
+    "superseded_by": null
+  },
+  "digest_algorithm": "sha256",
+  "digest_scope": "Exact bytes of each URI-resolved PDF",
+  "documents": [
+    {"id":"DOC-01","version":"v0.6-draft","uri":"../../../documents/public/DOC-01-Master-Deal-Term-Sheet.pdf","digest":"sha256:99bd703d670a5b7a446c7dad3c13f3db70a0d0b26b3590f2592c1b09ec6f72b4"},
+    {"id":"DOC-02","version":"v0.6-draft","uri":"../../../documents/public/DOC-02-Conditional-Capital-Commitment-Letter.pdf","digest":"sha256:615993c075a6bc73c8b28c328b2cfcbdfb64c5a822eb0d54a1fcaddf943d64e0"},
+    {"id":"DOC-03","version":"v0.6-draft","uri":"../../../documents/public/DOC-03-Public-Grantee-MOU.pdf","digest":"sha256:1786bcf6c988c4cb4e848115366560ea8504a5ff38c494b1a5e62a4e1b3512d0"},
+    {"id":"DOC-04","version":"v0.6-draft","uri":"../../../documents/public/DOC-04-Master-Lease-Term-Sheet.pdf","digest":"sha256:9177ee0bbc82bf49a1c203bf9312288da3dc9d3af155ea0d1f3d3cfd278e60a2"},
+    {"id":"DOC-05","version":"v0.6-draft","uri":"../../../documents/public/DOC-05-Investor-Executive-Brief.pdf","digest":"sha256:048639715eebad4349974f4884d189962dc2ddb5b9a826e5567cf064f6eba90d"},
+    {"id":"DOC-06","version":"v0.6-draft","uri":"../../../documents/public/DOC-06-Capital-Escrow-and-Draw-Agreement.pdf","digest":"sha256:a012129896c8a9e6dab30f1aab30f2b9f907cb2c8ada7501fe45ac14878e81f3"},
+    {"id":"DOC-07","version":"v0.6-draft","uri":"../../../documents/public/DOC-07-Rehabilitation-and-Development-Agreement.pdf","digest":"sha256:89d29436e53e2287b7e105d7a4333b7a22c3653ef9deea8184d15cec6d4f49b4"},
+    {"id":"DOC-08","version":"v0.6-draft","uri":"../../../documents/public/DOC-08-Historic-Tax-Credit-Investor-Term-Sheet.pdf","digest":"sha256:bea30a8f54eea9b4448d165aa80fd489e094d3668cd84bc92e7498dd822765df"},
+    {"id":"DOC-09","version":"v0.6-draft","uri":"../../../documents/public/DOC-09-NMTC-CDE-Transaction-Term-Sheet.pdf","digest":"sha256:6af1677789b1a4fcffbaa1eb9856d4217caa4834f32f5bc53bc89ae550abab0f"},
+    {"id":"DOC-10","version":"v0.6-draft","uri":"../../../documents/public/DOC-10-TitleChain-Evidence-and-Digital-Records-Schedule.pdf","digest":"sha256:68484f7c2016c021c308abb2646d4165ba7a5829c328a1e5b1b3ce267dca92b1"},
+    {"id":"DOC-11","version":"v0.6-draft","uri":"../../../documents/public/DOC-11-Private-Offering-PPM-Framework.pdf","digest":"sha256:cefc686700ed3b55c077402616e82775ed49cef6212da7e62880fc7b00ea1fae"},
+    {"id":"DOC-12","version":"v0.6-draft","uri":"../../../documents/public/DOC-12-Subscription-Agreement-and-Investor-Questionnaire.pdf","digest":"sha256:be0f5fe7624c1fd375ea0187c3399d4a9ed8afdb64e1b441fdecdf294c3badf0"},
+    {"id":"DOC-13","version":"v0.6-draft","uri":"../../../documents/public/DOC-13-Philanthropic-Grant-and-PRI-Agreement.pdf","digest":"sha256:5a2a941e5aa4378e9fe5d9be26084b2f1415de8fa9996220ffce90bc1a2a7c63"},
+    {"id":"DOC-14","version":"v0.6-draft","uri":"../../../documents/public/DOC-14-Worker-and-Cooperative-Participation-Agreement.pdf","digest":"sha256:770da5e593f98f723ba01657d58df2dd3ebc42979cfe733fd40a854163ea15d7"},
+    {"id":"DOC-15","version":"v0.6-draft","uri":"../../../documents/public/DOC-15-Master-Risk-Factors-and-Disclosure-Schedule.pdf","digest":"sha256:8045d85f15efc8ec26207d5a0af7001e8dee1d72a5feed676a8dc328174dfcab"},
+    {"id":"DOC-16","version":"v0.6-draft","uri":"../../../documents/public/DOC-16-M5Canon-Master-Ricardian-and-Machine-Policy-Standard.pdf","digest":"sha256:1b12724cd6689dbd41e96131dde88819ac6ef50a19c8d43d8939b38ce2af8f9b"},
+    {"id":"DOC-17","version":"v0.6-draft","uri":"../../../documents/public/DOC-17-M5Canon-Authority-Jurisdiction-and-Source-of-Truth-Matrix.pdf","digest":"sha256:1aeb847791d023721119cd4ecc20670bf0c6a2bc3c99c4c2417f5638cbd5cc0c"},
+    {"id":"DOC-18","version":"v0.6-draft","uri":"../../../documents/public/DOC-18-TitleChain-CER-UCC12-and-Article9-Rights-Schedule.pdf","digest":"sha256:c35e42d38e9b90c70db609fc6542786d87b167f63b3e616d9e060b38f7ee0c42"},
+    {"id":"DOC-19","version":"v0.6-draft","uri":"../../../documents/public/DOC-19-PPT-Federated-Registry-and-Child-Collective-Governance-Agreement.pdf","digest":"sha256:33055f877be44cdc4c224508513340656debec43f5575dd7cb25cff418104541"},
+    {"id":"DOC-20","version":"v0.6-draft","uri":"../../../documents/public/DOC-20-M5CV-W3C-Credential-Privacy-and-ZK-Requirements-Manifest.pdf","digest":"sha256:2c60630ebac6c4304f11f4ee9f3a811fa3ad8c1324c4d91b656244828c86f575"},
+    {"id":"DOC-21","version":"v0.6-draft","uri":"../../../documents/public/DOC-21-M5Canon-Project-Benchmark-and-Performance-Methodology.pdf","digest":"sha256:f18fd79a972b4ac5bf8ceea1c4f732a047f6f9c565f8af960e9d38b0ec84974b"},
+    {"id":"DOC-22","version":"v0.6-draft","uri":"../../../documents/public/DOC-22-M5Canon-State-to-Entity-Due-Process-Channel-Standard.pdf","digest":"sha256:61a1bc298e607e5ad234bdb20d06abac072897f7d6387d950776ad02e52c0e09"},
+    {"id":"DOC-23","version":"v0.6-draft","uri":"../../../documents/public/DOC-23-Source-of-Funds-Entity-Provenance-Jurisdiction-Chain-and-Public-Transaction-Graph-Standard.pdf","digest":"sha256:d7661f7c69a6be33b3383ab73dba4a513eb282488ec53754937fd27f43ff915e"}
+  ]
+}

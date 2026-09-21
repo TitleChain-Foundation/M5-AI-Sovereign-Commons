@@ -2,7 +2,15 @@
   "record_id": "M5-JCP-PPT-EZ-CA-0001-EXAMPLE-0001",
   "project_id": "PPT-EZ-CA-0001",
   "version": "0.6-example",
-  "event_state": "SOURCE_CHAIN_ACTIVATED",
+  "event_state": "REVIEW_REQUIRED",
+  "m5canon_decision_context": {
+    "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+    "version": "1.0-draft",
+    "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+    "uri": "PPT-EZ-CA-0001-m5canon-decision-context.json",
+    "schema_uri": "../schemas/m5canon-decision-context.schema.json",
+    "authority_effect": "NONE"
+  },
   "capital_provider": {
     "entity_id": "M5BOI-EXAMPLE-CAPITAL-PROVIDER",
     "legal_name": "Example Capital Provider Pte. Ltd.",
@@ -168,12 +176,12 @@
   "schema_version": "0.6-draft",
   "opportunity_status": "CAPITAL_DESIGN",
   "source_chain_activation": {
-    "activated": true,
-    "activated_at": "2026-09-19T18:00:00Z",
+    "activated": false,
+    "activated_at": null,
     "activation_rule_version": "DOC-23-v0.6-draft",
-    "canonical_path_complete": true,
-    "public_path_publishable": true,
-    "activation_note": "Illustrative only. Activation means the permitted jurisdiction-path metadata has reached the example verified state; it does not mean government endorsement or completed regulated settlement.",
+    "canonical_path_complete": false,
+    "public_path_publishable": false,
+    "activation_note": "Not activated. The bound decision context has unresolved classification, jurisdiction, authority, and institutional-routing requirements.",
     "required_preconditions": [
       "ENTITY_RESOLVED",
       "AUTHORITY_VERIFIED",
@@ -181,7 +189,12 @@
       "JURISDICTION_PATH_RESOLVED",
       "REGULATORY_ROUTING_COMPLETE"
     ],
-    "unresolved_preconditions": [],
+    "unresolved_preconditions": [
+      "AUTHORITY_VERIFIED",
+      "SOURCE_EVIDENCE_VERIFIED",
+      "JURISDICTION_PATH_RESOLVED",
+      "REGULATORY_ROUTING_COMPLETE"
+    ],
     "destination_chain_confirmed": false,
     "destination_confirmed_at": null,
     "historical_path_version": "v1",
