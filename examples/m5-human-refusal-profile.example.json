@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "refusal:synthetic-human-001",
+  "subject_ref": "human:example-participant",
+  "account_context": "BOM",
+  "human_controlled": true,
+  "protocol_evidence": {
+    "name": "Refuse Consent Protocol",
+    "version": "1.1",
+    "publication_uri": "https://github.com/Silkproof/refuse-consent-protocol/raw/refs/heads/main/Defensive%20Publication_%20The%20Refuse%20Consent%20Protocol%20v1.1%2018.Aug.2026%20D.%20BRACK.pdf",
+    "publication_sha256": "2f6db7b61e964e4b36af44ba1255666b1de3830b05ac8d35f057f00d033f2237",
+    "publication_sha512": "bb79784df46a40990f4357e3eb28c1966fc812c4d0b1dcbd4e23214ae481edbcf6e331ddcae3506492afbd516b9a8e75029b66d38c8a883ad7a538d878345127",
+    "glyph_uri": "https://github.com/Silkproof/refuse-consent-protocol/raw/refs/heads/main/refuse_consent_logo.svg",
+    "glyph_sha256": "e3a599737982f4ef22117bae49e42336d3dad03b2fb8776405392c3875021b06",
+    "publication_intent": "defensive_publication_public_domain_prior_art_statement",
+    "repository_license": "MIT"
+  },
+  "signal_channels": ["glyph", "signed_profile", "offline_ledger"],
+  "refusal": {
+    "sensor_classes": ["visual", "audio", "biometric", "location", "spatial"],
+    "operation_classes": ["capture", "process", "store", "identify", "track", "infer", "train", "share"],
+    "effect": "deny"
+  },
+  "validity": {
+    "spatial_mode": "subject_proximity",
+    "spatial_description": "The detectable vicinity of the synthetic subject; exact coordinates are not disclosed.",
+    "effective_from": "2026-09-08T00:00:00Z",
+    "expires_at": null
+  },
+  "verification": {
+    "issuer_ref": "human:example-participant",
+    "proof_ref": "proof:synthetic-refusal-001",
+    "revocation_status_ref": "status:synthetic-refusal-001",
+    "offline_verification_supported": true,
+    "offline_ledger_ref": "ledger:synthetic-refusal-snapshot-001"
+  },
+  "enforcement": {
+    "pre_capture": true,
+    "verified_signal_actions": ["drop_frame", "mute_payload", "halt_processing", "halt_storage", "halt_sharing"],
+    "unresolved_signal_action": "pause_and_deny",
+    "spoof_suspected_action": "pause_deny_and_escalate",
+    "m5canon_result": "deny_when_active_or_unresolved"
+  },
+  "exceptions": {
+    "no_implied_exceptions": true,
+    "authorized_exception_refs": []
+  },
+  "receipts": {
+    "required": true,
+    "privacy_preserving": true,
+    "incident_ref": "contact:synthetic-privacy-response"
+  },
+  "lifecycle": {
+    "status": "active",
+    "supersedes_ref": null,
+    "updated_at": "2026-09-08T00:00:00Z"
+  }
+}

@@ -96,6 +96,7 @@ implementation or relationship:
 | Open Mainframe Project | Stewardship/ecosystem organization | `REFERENCE_ONLY` | Legacy-system migration ecosystem reference |
 | Open Data Institute | Stewardship organization | `EVALUATED` | Stewardship and open-data governance reference |
 | Solid technical reports | Published Community Group reports | `EVALUATED` | Candidate M5POD portability baseline; not a W3C Recommendation |
+| Refuse Consent Protocol v1.1 | Published specification and open-source glyph generator | `PROFILED` | Candidate machine-readable refusal signal mapped by M5; no universal device compliance, legal override, patent, partnership, or endorsement claim |
 | iMasons | Stewardship/ecosystem organization | `REFERENCE_ONLY` | Digital-infrastructure and sustainability reference |
 | Canton | Commercial or permissioned network/service | `REFERENCE_ONLY` | Optional regulated-finance interoperability research |
 | MEST | Candidate corridor | `REFERENCE_ONLY` | Workforce and security-training concept pending an authoritative public record |
@@ -152,6 +153,20 @@ authority.
 A credential format does not prove that an issuer is authoritative for the
 claim or that the credential is current and in scope.
 
+### Human refusal and spatial consent
+
+- Refuse Consent Protocol v1.1 defensive publication and glyph artifacts
+- M5HUM Refusal and Consent Profile
+- M5-AISPACE pre-capture refusal evaluation
+
+The external publication is attributed to Dominique Brack. Its publisher states
+that the disclosed methods and systems are released into the public domain as a
+defensive publication intended to establish prior art; the Silkproof repository
+also carries an MIT License. M5 records independently verified SHA-256 and
+SHA-512 digests but does not independently determine the legal effect of either
+statement. The publication does not by itself establish universal device
+support, legal effect, a patent right, or a relationship with M5.
+
 ## Public review questions
 
 1. Are reference types and evidence states sufficiently distinct?
@@ -174,4 +189,5 @@ claim or that the credential is current and in scope.
 - W3C standards and drafts: <https://www.w3.org/TR/>
 - OpenFHE: <https://openfhe.org/>
 - HomomorphicEncryption.org: <https://homomorphicencryption.org/>
+- Refuse Consent Protocol: <https://github.com/Silkproof/refuse-consent-protocol>
 

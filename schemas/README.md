@@ -2,7 +2,7 @@
 
 ![Read the context before the schemas](../assets/section-review-path.svg)
 
-This folder contains eight JSON Schema Draft 2020-12 definitions for
+This folder contains nine JSON Schema Draft 2020-12 definitions for
 inspectable governance, provider, model, hardware, context, capability, and
 human-experience records. Schema validity means only that a document has the
 required machine-readable shape. It does not prove that a claim is true, an
@@ -20,10 +20,11 @@ authority is current, a provider is approved, or an action is lawful.
 | [Hardware profile](m5-aimod-hardware-profile.schema.json) | Runtime hardware and resource requirements | [Example](../examples/m5-aimod-hardware-profile.example.json) |
 | [Capability manifest](m5-aispace-capability-manifest.schema.json) | Bounded spatial or embodied capabilities | [Example](../examples/m5-aispace-capability-manifest.example.json) |
 | [Human-experience boundary](m5-human-experience-boundary.schema.json) | Consent, safety, accessibility, sensor, and actuator limits | [Example](../examples/m5-human-experience-boundary.example.json) |
+| [Human refusal profile](m5-human-refusal-profile.schema.json) | Portable M5HUM/M5POD refusal scope, verification, enforcement, and lifecycle | [Example](../examples/m5-human-refusal-profile.example.json) |
 
 ## Validation path
 
 Review the [synthetic examples](../examples/README.md), then the
 [schema test landing page](../tests/README.md). The focused schema suite checks
-all eight pairs, required fields, unknown fields, and selected fail-closed
+all nine pairs, required fields, unknown fields, and selected fail-closed
 conditions.

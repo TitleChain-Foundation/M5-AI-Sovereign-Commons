@@ -4,7 +4,7 @@
   "title": "M5 Human Experience Boundary",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "boundary_id", "accountable_entity_ref", "notice", "lawful_basis", "consent", "accessibility", "human_override", "safety_limits", "data_controls", "recovery", "m5canon_gate_status"],
+  "required": ["schema_version", "boundary_id", "accountable_entity_ref", "notice", "lawful_basis", "consent", "refusal_evaluation", "accessibility", "human_override", "safety_limits", "data_controls", "recovery", "m5canon_gate_status"],
   "properties": {
     "schema_version": {"const": "1.0.0"},
     "boundary_id": {"type": "string", "minLength": 1},
@@ -12,6 +12,7 @@
     "notice": {"type": "object", "additionalProperties": false, "required": ["provided", "content_ref", "provided_at"], "properties": {"provided": {"type": "boolean"}, "content_ref": {"type": "string"}, "provided_at": {"type": "string", "format": "date-time"}}},
     "lawful_basis": {"type": "object", "additionalProperties": false, "required": ["basis", "authority_source_ref"], "properties": {"basis": {"type": "string"}, "authority_source_ref": {"type": "string"}}},
     "consent": {"type": "object", "additionalProperties": false, "required": ["required", "status", "subject_ref", "record_ref", "revocable"], "properties": {"required": {"type": "boolean"}, "status": {"enum": ["not_requested", "granted", "declined", "withdrawn", "expired", "not_applicable"]}, "subject_ref": {"type": "string"}, "record_ref": {"type": ["string", "null"]}, "revocable": {"type": "boolean"}}},
+    "refusal_evaluation": {"type": "object", "additionalProperties": false, "required": ["profile_ref", "status", "evaluated_pre_capture", "decision", "receipt_ref"], "properties": {"profile_ref": {"type": ["string", "null"]}, "status": {"enum": ["active", "not_present", "withdrawn", "superseded", "expired", "unresolved"]}, "evaluated_pre_capture": {"const": true, "description": "Evaluated before persistent capture or downstream use; minimal transient processing solely to detect and enforce refusal is permitted and must be discarded when refusal applies."}, "decision": {"enum": ["allow_out_of_scope", "deny", "unresolved_deny"]}, "receipt_ref": {"type": "string", "minLength": 1}}},
     "accessibility": {"type": "object", "additionalProperties": false, "required": ["accommodations_available", "contact_ref"], "properties": {"accommodations_available": {"type": "array", "items": {"type": "string"}}, "contact_ref": {"type": "string"}}},
     "human_override": {"type": "object", "additionalProperties": false, "required": ["available", "method"], "properties": {"available": {"const": true}, "method": {"type": "string"}}},
     "safety_limits": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["category", "limit", "response"], "properties": {"category": {"enum": ["physical", "psychological", "privacy", "other"]}, "limit": {"type": "string"}, "response": {"type": "string"}}}},

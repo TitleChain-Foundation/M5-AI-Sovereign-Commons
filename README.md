@@ -110,6 +110,7 @@ Supporting public-review materials:
 - [Visual documentation map](docs/README.md)
 - [M5Canon Function Namespace](docs/M5CANON-FUNCTION-NAMESPACE.md)
 - [M5AGT Authority and Activation](docs/M5AGT-AUTHORITY-AND-ACTIVATION.md)
+- [M5HUM Refusal and Consent Profile](docs/M5HUM-REFUSAL-CONSENT-PROFILE.md)
 - [Named Role and Function Crosswalk](docs/NAMED-ROLE-FUNCTION-CROSSWALK.md)
 - [Open Standards Evidence Registry](docs/OPEN-STANDARDS-EVIDENCE-REGISTRY.md)
 - [M5POD Data Portability Profile](docs/M5POD-DATA-PORTABILITY-PROFILE.md)

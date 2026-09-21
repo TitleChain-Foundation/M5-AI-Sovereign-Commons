@@ -51,34 +51,43 @@ The public architecture uses one activation sequence:
    digest, declared operator, software bill of materials where required,
    deployment boundary, and provenance.
 
-4. **Rights-constraint evaluation**  
+4. **Human-refusal evaluation**
+   Before any covered persistent recording, retention, identification,
+   tracking, unrelated inference, training, sharing, or actuation, M5Canon
+   evaluates applicable human refusal profiles and signals. Minimal transient
+   sensor processing may be used only to detect and enforce a refusal and must
+   not be retained or repurposed. Active or unresolved refusal denies the
+   covered operation. Absence, withdrawal, or expiry of refusal does not
+   establish consent.
+
+5. **Rights-constraint evaluation**
    A conforming `M5CAP.RIGHTS.CONSTRAINT.EVALUATE.v1` implementation may produce
    a signed result. Cyrus is the M5 reference named role for this capability.
    The result cannot create, waive, or remove rights.
 
-5. **Provenance and continuity validation**  
+6. **Provenance and continuity validation**
    A conforming `M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1` implementation may
    validate origin, custody, transformation, attribution, and continuity and
    produce a signed attestation. Savant is the M5 reference named role. The
    attestation is not an approval.
 
-6. **Deterministic policy decision**  
+7. **Deterministic policy decision**
    M5Canon evaluates the verified evidence against a versioned policy and
    produces an allow or deny result. Supporting capabilities cannot replace
    this step.
 
-7. **Accountable approval**  
+8. **Accountable approval**
    Where policy, law, contract, governance, or risk classification requires an
    approval, M5Canon verifies the current signed approval of the accountable
    human, entity, board, officer, regulator, court, or other competent body.
    An M5AGT cannot approve itself or another M5AGT.
 
-8. **Registry write and receipt**  
+9. **Registry write and receipt**
    M5Canon records the status, scope, policy version, evidence references,
    approvals, restrictions, effective period, suspension and revocation
    controls, and an append-only receipt.
 
-9. **Bounded runtime activation**  
+10. **Bounded runtime activation**
    The implementation may operate only within the authorized scope and must be
    re-evaluated when its identity, operator, model, endpoint, artifact,
    credential, delegation, jurisdiction, policy, or risk state changes.

@@ -20,6 +20,7 @@ organization, model deployment, or transaction.
 | [Hardware profile](m5-aimod-hardware-profile.example.json) | [Hardware profile schema](../schemas/m5-aimod-hardware-profile.schema.json) |
 | [Capability manifest](m5-aispace-capability-manifest.example.json) | [Capability manifest schema](../schemas/m5-aispace-capability-manifest.schema.json) |
 | [Human-experience boundary](m5-human-experience-boundary.example.json) | [Human-experience boundary schema](../schemas/m5-human-experience-boundary.schema.json) |
+| [Human refusal profile](m5-human-refusal-profile.example.json) | [Human refusal profile schema](../schemas/m5-human-refusal-profile.schema.json) |
 
 ## How to use these examples
 
@@ -30,3 +31,12 @@ organization, model deployment, or transaction.
 
 Do not copy sample identifiers or values into a production system without an
 independent authority, privacy, security, and implementation review.
+
+## Sanitized member-supplied illustration
+
+The [Sovereign Self refusal projection](member-supplied/README.md) illustrates
+how a Refuse Consent Genesis Mark may appear in an M5POD Bank of Me account. It
+is deliberately separate from the synthetic conformance fixtures above. It
+contains no Ownership Key, recovery card, wallet secret, legal name, or private
+M5POD identifier, and it does not prove ownership, authority, consent, patent
+rights, legal effect, or device compliance.
