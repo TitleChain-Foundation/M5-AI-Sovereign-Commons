@@ -29,6 +29,7 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | How the public waitlist, demo, M5-CV, Commons, and project pathways connect | [Activation pathway](docs/activation/README.md) |
 | How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
 | How the proposed People's Trust pilot tests the standards | [People's Trust Public Pilot Library](pilots/peoples-trust/README.md) |
+| How the 312 Spring Commons initiative fits its vision and what blocks launch | [Spring Commons fit-gap review](pilots/312-spring-commons/INITIATIVE-FIT-GAP-REVIEW.md) |
 | What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
 | What the reference code demonstrates | [Reference implementations](reference-implementation/README.md) |
 | What the current tests do and do not prove | [Tests and validation](tests/README.md) |

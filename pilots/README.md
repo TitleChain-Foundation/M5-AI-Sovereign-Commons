@@ -17,6 +17,7 @@ regulatory status.
 | Pilot | What it tests | State |
 | --- | --- | --- |
 | [People's Trust Project Simulation](peoples-trust/README.md) | Title, stewardship, operations, authority, separately analyzed economic rights, correction, portability, and public-safe evidence | Pilot 001 — sample-data simulation |
+| [312 Spring Commons](312-spring-commons/README.md) | Public-title stewardship, community benefit, productive civic infrastructure, capital provenance, and fail-closed first-tranche controls | Conditional go / diligence — no transaction or operational launch |
 
 ## How pilots connect to the Commons
 

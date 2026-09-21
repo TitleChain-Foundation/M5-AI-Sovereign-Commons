@@ -27,7 +27,7 @@ USER_AGENT = (
     "security@titlechainfoundation.org"
 )
 COMMENT_PATH = re.compile(
-    r"^/comments/S7-2026-30/[A-Za-z0-9._-]+\.(?:html|pdf)$",
+    r"^/comments/S7-2026-30/[A-Za-z0-9._-]+\.(?:html?|pdf)$",
     re.IGNORECASE,
 )
 FOUNDATION_COMMENT_IDS = {"s7202630-1029659-3393926"}

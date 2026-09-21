@@ -13,6 +13,8 @@ supporting visual and summary material.
 | [Schema guide](../schemas/README.md) | Human explanation of the capital-provenance JSON Schema |
 | [Synthetic example guide](../examples/README.md) | Human explanation of the example JSON record |
 | [Release and implementation notes](../update-notes/README.md) | v0.4/v0.6 controls, crosswalks, methodology, and release notes |
+| [Initiative fit-gap review](../INITIATIVE-FIT-GAP-REVIEW.md) | Vision alignment, blockers, dependencies, governance milestones, and Phase 1/2 gates |
+| [Simulated GSA/NPS submission](../simulations/gsa-historic-pbc/README.md) | Mock federal application binder and full-party completion matrix, with external requirements left pending |
 
 All documents remain drafts for public, technical, counsel, and regulatory
 review. A PDF, Markdown file, schema, example, or TitleChain record does not by
