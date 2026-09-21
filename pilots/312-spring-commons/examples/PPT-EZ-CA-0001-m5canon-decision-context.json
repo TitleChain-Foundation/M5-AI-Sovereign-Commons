@@ -1,0 +1,198 @@
+{
+  "context_id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+  "version": "1.0-draft",
+  "status": "DRAFT_PROFILE",
+  "scope": "SYNTHETIC_SPRING_COMMONS_SIMULATION",
+  "authority_effect": "NONE",
+  "taxonomy": {
+    "profile_id": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft",
+    "version": "1.0-draft",
+    "digest": "sha256:50ed025e01085aba63f4d8ca2f16b4ebaaf5107ee6db727dfc17de728c51af0b",
+    "uri": "../simulations/first-tranche/profiles/SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft.json",
+    "adoption_state": "PROPOSED_FOR_PUBLIC_REVIEW"
+  },
+  "asset_classification": {
+    "asset_id": "M4-SPRING-COMMONS-TRANCHE-01",
+    "m5_class": "M4",
+    "m5_type": "PROJECT_DEBT_INSTRUMENT",
+    "taxonomy_version": "1.0-draft",
+    "source_asset_refs": ["M3-SPRING-COMMONS-PROJECT-ASSET"],
+    "external_legal_classification_refs": ["LEGAL-CLASS-SPRING-COMMONS-01"],
+    "permitted_account_types": ["BOI"],
+    "required_credential_refs": ["CREDENTIAL-QUALIFIED-INSTITUTION", "CREDENTIAL-AUTHORIZED-SIGNATORY"],
+    "institutional_routing_refs": ["ROUTE-M4-SPRING-COMMONS-US-01"],
+    "jurisdiction_graph_ref": "JGRAPH-SPRING-COMMONS-01",
+    "receipt_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01",
+    "classification_state": "UNRESOLVED",
+    "investment_rights": true
+  },
+  "external_legal_classification": {
+    "classification_id": "LEGAL-CLASS-SPRING-COMMONS-01",
+    "classification": "DEBT_OR_SECURITY_REVIEW_REQUIRED",
+    "status": "PENDING",
+    "qualified_reviewer_ref": "QUALIFIED-SECURITIES-COUNSEL-TBD",
+    "legal_basis_refs": [],
+    "evidence_refs": []
+  },
+  "jurisdiction_graph": {
+    "graph_id": "JGRAPH-SPRING-COMMONS-01",
+    "version": "1.0-draft",
+    "nodes": [
+      {
+        "jurisdiction_id": "JNR:US",
+        "canonical_name": "United States",
+        "native_name": "United States",
+        "normalized_level": "NATION",
+        "native_level_term": "federal republic",
+        "technical_alias": "unitedstateschain.eth",
+        "alias_status": "PROJECT_ALIAS",
+        "verification_status": "PENDING",
+        "evidence_refs": [],
+        "effective_from": null,
+        "expires_at": null,
+        "revocation_ref": null,
+        "supersession_history": {"supersedes": [], "superseded_by": null}
+      },
+      {
+        "jurisdiction_id": "JNR:US-CA",
+        "canonical_name": "California",
+        "native_name": "California",
+        "normalized_level": "STATE_PROVINCE",
+        "native_level_term": "state",
+        "technical_alias": "californiachain.unitedstateschain.eth",
+        "alias_status": "PROJECT_ALIAS",
+        "verification_status": "PENDING",
+        "evidence_refs": [],
+        "effective_from": null,
+        "expires_at": null,
+        "revocation_ref": null,
+        "supersession_history": {"supersedes": [], "superseded_by": null}
+      }
+    ],
+    "relationships": [
+      {
+        "relationship_id": "JREL-US-CA-01",
+        "from_ref": "JNR:US-CA",
+        "to_ref": "JNR:US",
+        "relationship_type": "SUBDIVISION_OF",
+        "subject_matter": ["SECURITIES", "BANKING", "PROPERTY"],
+        "authority_basis_refs": [],
+        "evidence_refs": [],
+        "status": "UNRESOLVED"
+      }
+    ],
+    "subject_matter": ["SECURITIES", "BANKING", "PROPERTY"],
+    "evidence_refs": [],
+    "conflicts": [],
+    "status": "UNRESOLVED"
+  },
+  "account_authority": {
+    "account_ref": "ACCOUNT-SYNTHETIC-CAPITAL-PROVIDER",
+    "account_type": "BOI",
+    "legal_entity_ref": "SYNTHETIC-CAPITAL-PROVIDER",
+    "human_principal_refs": ["M5HUM-SYNTHETIC-SIGNATORY"],
+    "credential_refs": ["CREDENTIAL-QUALIFIED-INSTITUTION", "CREDENTIAL-AUTHORIZED-SIGNATORY"],
+    "credential_state": "PENDING",
+    "delegation_refs": ["DELEGATION-SYNTHETIC-SIGNATORY"],
+    "delegation_state": "PENDING",
+    "mandate_ref": "M5MANDATE-SPRING-COMMONS-01",
+    "mandate_state": "PENDING",
+    "jurisdiction_refs": ["JNR:US", "JNR:US-CA"],
+    "revocation_state": "UNRESOLVED",
+    "evidence_refs": []
+  },
+  "institutional_route": {
+    "route_id": "ROUTE-M4-SPRING-COMMONS-US-01",
+    "subject_asset_ref": "M4-SPRING-COMMONS-TRANCHE-01",
+    "activity": "ESCROW_RESERVATION",
+    "jurisdiction_graph_ref": "JGRAPH-SPRING-COMMONS-01",
+    "requirements": [
+      {
+        "requirement_id": "ROUTE-REQ-LEGAL-CLASSIFICATION",
+        "participant_ref": "QUALIFIED-SECURITIES-COUNSEL-TBD",
+        "organization_type": "QUALIFIED_PROFESSIONAL",
+        "institution_identifier": "OTHER",
+        "function": "EXTERNAL_LEGAL_CLASSIFICATION",
+        "required_action": "QUALIFIED_PROFESSIONAL_REVIEW",
+        "jurisdiction_ref": "JNR:US",
+        "subject_asset_ref": "M4-SPRING-COMMONS-TRANCHE-01",
+        "account_or_entity_ref": "SYNTHETIC-CAPITAL-PROVIDER",
+        "legal_basis_refs": [],
+        "status": "PENDING",
+        "evidence_refs": [],
+        "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
+      },
+      {
+        "requirement_id": "ROUTE-REQ-ESCROW",
+        "participant_ref": "ROLE-ESCROW",
+        "organization_type": "BANK_FSP_ESCROW",
+        "institution_identifier": "OTHER",
+        "function": "ESCROW_ACCOUNT_AND_SETTLEMENT",
+        "required_action": "LICENSE_OR_CREDENTIAL_VERIFICATION",
+        "jurisdiction_ref": "JNR:US-CA",
+        "subject_asset_ref": "M4-SPRING-COMMONS-TRANCHE-01",
+        "account_or_entity_ref": "ACCOUNT-SYNTHETIC-CAPITAL-PROVIDER",
+        "legal_basis_refs": [],
+        "status": "PENDING",
+        "evidence_refs": [],
+        "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
+      },
+      {
+        "requirement_id": "ROUTE-REQ-DTTC",
+        "participant_ref": "M5-DTTC",
+        "organization_type": "INTERNAL_MEMBER_POOL",
+        "institution_identifier": "M5_DTTC",
+        "function": "INTERNAL_DISTRIBUTED_TRUST_AND_TITLE_MEMBER_POOL",
+        "required_action": "MEMBERSHIP_STATUS_VERIFICATION",
+        "jurisdiction_ref": "JNR:US",
+        "subject_asset_ref": "M4-SPRING-COMMONS-TRANCHE-01",
+        "account_or_entity_ref": "SYNTHETIC-CAPITAL-PROVIDER",
+        "legal_basis_refs": [],
+        "status": "PENDING",
+        "evidence_refs": [],
+        "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
+      }
+    ],
+    "status": "UNRESOLVED"
+  },
+  "receipt_access_policy": {
+    "policy_id": "RECEIPT-POLICY-SPRING-COMMONS-01",
+    "version": "1.0-draft",
+    "default_access": "DENY",
+    "protected_field_classes": ["PRIVATE_KEYS", "RAW_CREDENTIALS", "IDENTITY_DOCUMENTS", "KYC_KYB", "PERSONAL_DATA", "SECURITY_RESTRICTED"],
+    "grants": [
+      {
+        "grant_id": "ACCESS-PUBLIC-SUMMARY",
+        "grantee_ref": "PUBLIC",
+        "grantee_type": "PUBLIC",
+        "jurisdiction_ref": null,
+        "access_purpose": "PUBLIC_SYNTHETIC_REVIEW",
+        "field_scope": ["decision", "safety", "public_exceptions"],
+        "legal_basis_refs": [],
+        "credential_requirement_refs": [],
+        "access_state": "AUTHORIZED",
+        "effective_from": "2026-09-20T00:00:00Z",
+        "expires_at": null,
+        "revocation_ref": null,
+        "access_log_receipt_ref": null
+      },
+      {
+        "grant_id": "ACCESS-REGULATOR-EXAMINATION",
+        "grantee_ref": "AUTHORIZED-REGULATOR-ROLE-TBD",
+        "grantee_type": "REGULATOR",
+        "jurisdiction_ref": "JNR:US",
+        "access_purpose": "AUTHORIZED_EXAMINATION",
+        "field_scope": ["classification", "authority", "approvals", "transfers", "settlement", "reconciliation"],
+        "legal_basis_refs": [],
+        "credential_requirement_refs": ["CREDENTIAL-AUTHORIZED-REGULATOR"],
+        "access_state": "AUTHORIZED",
+        "effective_from": "2026-09-20T00:00:00Z",
+        "expires_at": null,
+        "revocation_ref": null,
+        "access_log_receipt_ref": null
+      }
+    ],
+    "access_log_required": true
+  },
+  "supersession_history": {"supersedes": [], "superseded_by": null}
+}

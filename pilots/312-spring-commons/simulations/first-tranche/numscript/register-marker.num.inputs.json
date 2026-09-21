@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/formancehq/numscript/refs/heads/main/v1.inputs.schema.json",
+  "variables": {
+    "marker_registry": "marker-registry:PPT-EZ-CA-0001:tranche-01",
+    "contract_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+    "terms_digest": "sha256:e358609b54e7501e741ead56d2a3b11bc8e7c000d35899be38c9d733e0a212f5",
+    "policy_digest": "sha256:585e6f8911c16523ebb58a2c2cd53e9aa0321b56e9c9f7fa1bc309d544f2660a"
+  },
+  "balances": []
+}

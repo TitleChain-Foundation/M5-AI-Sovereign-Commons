@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0-draft",
+  "simulation_id": "SIM-PPT-EZ-CA-0001-TRANCHE-01",
+  "project_id": "PPT-EZ-CA-0001",
+  "safety": {
+    "synthetic": true,
+    "authority_effect": "NONE",
+    "network_write": false,
+    "financial_movement": false,
+    "data_classification": "PUBLIC_SYNTHETIC",
+    "notice": "Developer demonstration only; no real party, approval, offer, commitment, settlement, draw, or achieved result is represented."
+  },
+  "decision_context": {
+    "id": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT",
+    "version": "1.0-draft",
+    "digest": "sha256:22b0b1716dc0f5795a60640fd932beef8b95b2bcd537310180168cd77c4bbd23",
+    "uri": "PPT-EZ-CA-0001-m5canon-decision-context.json",
+    "schema_uri": "../schemas/m5canon-decision-context.schema.json",
+    "supersession_history": {"supersedes": [], "superseded_by": null}
+  },
+  "tranche": {
+    "tranche_id": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01",
+    "capital_lane": "ILLUSTRATIVE_PRIVATE_PROJECT_CAPITAL",
+    "amount": 25000000,
+    "currency": "USD",
+    "economic_terms_status": "TBD_NOT_OFFERED",
+    "fee_title_effect": "NONE",
+    "current_status": "CAPITAL_DESIGN"
+  },
+  "documents": [
+    {"document_id":"DOC-01","title":"Master Deal Term Sheet","simulation_role":"Lifecycle and closing conditions","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-02","title":"Conditional Capital Commitment Letter","simulation_role":"Conditional interest and funding gates","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-03","title":"Public Grantee MOU","simulation_role":"Public authority and covenant role","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-04","title":"Master Lease Term Sheet","simulation_role":"Lease and fee-title separation","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-05","title":"Investor Executive Brief","simulation_role":"Investor context and authority registry","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-06","title":"Capital Escrow and Draw Agreement","simulation_role":"Escrow, draw, and stop controls","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-07","title":"Rehabilitation and Development Agreement","simulation_role":"Diligence, procurement, and milestones","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-08","title":"Historic Tax Credit Investor Term Sheet","simulation_role":"Conditional HTC lane","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-09","title":"NMTC CDE Transaction Term Sheet","simulation_role":"Conditional NMTC lane","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-10","title":"TitleChain Evidence and Digital Records Schedule","simulation_role":"Evidence and receipt controls","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-11","title":"Private Offering PPM Framework","simulation_role":"Private instrument and risk disclosures","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-12","title":"Subscription Agreement and Investor Questionnaire","simulation_role":"Investor qualification and subscription","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-13","title":"Philanthropic Grant and PRI Agreement","simulation_role":"Conditional grant and PRI lane","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-14","title":"Worker and Cooperative Participation Agreement","simulation_role":"Worker rights and title separation","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-15","title":"Master Risk Factors and Disclosure Schedule","simulation_role":"Risk and pre-closing updates","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-16","title":"M5Canon Master Ricardian and Machine Policy Standard","simulation_role":"Authority hierarchy and deterministic constraints","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-17","title":"M5Canon Authority Jurisdiction and Source of Truth Matrix","simulation_role":"Authority and source-of-truth map","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-18","title":"TitleChain CER UCC Article 12 and Article 9 Rights Schedule","simulation_role":"Legal-right and digital-object separation","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-19","title":"PPT Federated Registry and Child Collective Governance Agreement","simulation_role":"Governance and membership boundaries","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-20","title":"M5CV W3C Credential Privacy and ZK Requirements Manifest","simulation_role":"Credential and privacy controls","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-21","title":"M5Canon Project Benchmark and Performance Methodology","simulation_role":"Target versus actual measurement","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-22","title":"M5Canon State to Entity Due Process Channel Standard","simulation_role":"Notice and due-process controls","legal_status":"DRAFT_REFERENCE_ONLY"},
+    {"document_id":"DOC-23","title":"Source of Funds Entity Provenance Jurisdiction Chain and Public Transaction Graph Standard","simulation_role":"Capital provenance and disclosure planes","legal_status":"DRAFT_REFERENCE_ONLY"}
+  ],
+  "participants": [
+    {"participant_id":"ROLE-GSA","stakeholder_class":"AGENCY","role":"Federal disposition authority","selection_status":"EXPECTED_IN_PATHWAY","authority_status":"PENDING_EXTERNAL","accountable_human_status":"TBD","system_of_record":"GSA official record"},
+    {"participant_id":"ROLE-NPS","stakeholder_class":"AGENCY","role":"Historic Surplus review","selection_status":"EXPECTED_IN_PATHWAY","authority_status":"PENDING_EXTERNAL","accountable_human_status":"TBD","system_of_record":"NPS official record"},
+    {"participant_id":"ROLE-PUBLIC-GRANTEE","stakeholder_class":"PUBLIC_GRANTEE","role":"Eligible public fee-title recipient","selection_status":"TBD","authority_status":"PENDING_EXTERNAL","accountable_human_status":"TBD","system_of_record":"Official public record"},
+    {"participant_id":"SYNTHETIC-CAPITAL-PROVIDER","stakeholder_class":"CAPITAL_PROVIDER","role":"Illustrative provider","selection_status":"SYNTHETIC","authority_status":"SYNTHETIC_NO_AUTHORITY","accountable_human_status":"SYNTHETIC","system_of_record":"No real system of record"},
+    {"participant_id":"ROLE-ESCROW","stakeholder_class":"REGULATED_PROVIDER","role":"Bank or escrow provider","selection_status":"TBD","authority_status":"PENDING_EXTERNAL","accountable_human_status":"TBD","system_of_record":"Bank or escrow ledger"},
+    {"participant_id":"ROLE-TITLECHAIN","stakeholder_class":"EVIDENCE_SYSTEM","role":"Parallel evidence and receipt layer","selection_status":"EXPECTED_IN_PATHWAY","authority_status":"NOT_APPLICABLE","accountable_human_status":"NOT_APPLICABLE","system_of_record":"Evidence only; authoritative external records control"}
+  ],
+  "evidence_catalog": [
+    {"evidence_id":"SIM-DOCUMENT-MANIFEST","evidence_class":"SIMULATION_DOCUMENT_COVERAGE","status":"CURRENT","authoritative":false,"synthetic":true,"access_class":"PUBLIC","source_system":"Local simulation fixture"}
+  ],
+  "checkpoints": [
+    {"checkpoint_id":"CP-01-FEDERAL-PATHWAY","stage":"INTAKE","requirement":"GSA confirms the applicable disposition pathway.","source_documents":["DOC-01","DOC-02","DOC-03","DOC-17"],"stakeholder_classes":["AGENCY"],"gate_type":"EXTERNAL_AUTHORITY","required":true,"status":"PENDING_EXTERNAL","evidence_refs":[],"blocks_states":["INITIAL_FUNDING_REVIEW"]},
+    {"checkpoint_id":"CP-02-PUBLIC-GRANTEE","stage":"AUTHORITY_FORMATION","requirement":"An eligible public grantee is selected and legally authorized.","source_documents":["DOC-01","DOC-03","DOC-04","DOC-17","DOC-20"],"stakeholder_classes":["PUBLIC_GRANTEE"],"gate_type":"EXTERNAL_AUTHORITY","required":true,"status":"PENDING_EXTERNAL","evidence_refs":[],"blocks_states":["INITIAL_FUNDING_REVIEW"]},
+    {"checkpoint_id":"CP-03-CAPITAL-AUTHORITY","stage":"CAPITAL_STRUCTURE","requirement":"Provider entity, source evidence, signatory authority, instrument, and regulatory routing are evidenced.","source_documents":["DOC-02","DOC-10","DOC-11","DOC-12","DOC-15","DOC-20","DOC-23"],"stakeholder_classes":["CAPITAL_PROVIDER","PROFESSIONAL","REGULATED_PROVIDER"],"gate_type":"REGULATED_PROVIDER","required":true,"status":"PENDING_EXTERNAL","evidence_refs":[],"blocks_states":["INITIAL_FUNDING_REVIEW"]},
+    {"checkpoint_id":"CP-04-ESCROW-READY","stage":"ESCROW","requirement":"A selected regulated escrow has valid agreements, accounts, signers, and instructions.","source_documents":["DOC-02","DOC-06","DOC-10","DOC-17"],"stakeholder_classes":["REGULATED_PROVIDER"],"gate_type":"REGULATED_PROVIDER","required":true,"status":"PENDING_EXTERNAL","evidence_refs":[],"blocks_states":["INITIAL_FUNDING_REVIEW","DRAW_REVIEW"]},
+    {"checkpoint_id":"CP-05-DOCUMENT-COVERAGE","stage":"IMPACT_AND_REPORTING","requirement":"Every DOC-01 through DOC-23 is mapped as a draft reference.","source_documents":["DOC-01","DOC-02","DOC-03","DOC-04","DOC-05","DOC-06","DOC-07","DOC-08","DOC-09","DOC-10","DOC-11","DOC-12","DOC-13","DOC-14","DOC-15","DOC-16","DOC-17","DOC-18","DOC-19","DOC-20","DOC-21","DOC-22","DOC-23"],"stakeholder_classes":["EVIDENCE_SYSTEM"],"gate_type":"DETERMINISTIC_POLICY","required":true,"status":"SIMULATED_PASS","evidence_refs":["SIM-DOCUMENT-MANIFEST"],"blocks_states":[]}
+  ],
+  "state_machine": {
+    "current_state": "CAPITAL_DESIGN",
+    "requested_state": "INITIAL_FUNDING_REVIEW",
+    "permitted_states": ["CAPITAL_DESIGN","COMMITMENT_REVIEW","SOURCE_CHAIN_REVIEW","DEFINITIVE_CLOSING_REVIEW","INITIAL_FUNDING_REVIEW","ESCROW_RECEIPT_REVIEW","DRAW_REVIEW","HOLD"],
+    "fail_closed_state": "HOLD",
+    "transition_order": ["evidence received","authority validated","deterministic conditions satisfied","professional certification","human or fiduciary approval","provider settlement","evidence receipt"]
+  },
+  "receipt_context": {
+    "timestamp": "2026-09-20T00:00:00Z",
+    "sequence": 0,
+    "ordering_anchor": "GENESIS",
+    "previous_receipt_digest": null
+  },
+  "impact_metrics": [
+    {"metric_id":"METRIC-TIMELINE","label":"End-to-end transaction timeline","value_class":"PROGRAMMED_TARGET","baseline":12,"target":2,"actual":null,"unit":"months","status":"NOT_MEASURED","source_documents":["DOC-01","DOC-21"],"limitations":"Design target only; no closing or activation has occurred."},
+    {"metric_id":"METRIC-JCP-COVERAGE","label":"Capital with complete provenance path","value_class":"MEASURE_AFTER_EVENT","baseline":null,"target":100,"actual":null,"unit":"percent","status":"NOT_MEASURED","source_documents":["DOC-10","DOC-21","DOC-23"],"limitations":"Calculate only from authoritative evidence after a real event."}
+  ],
+  "expected_decision": {
+    "decision": "HOLD",
+    "execution_authorized": false,
+    "reason": "Required external agency, public-grantee, provider, professional, escrow, and human evidence remains pending."
+  }
+}

@@ -1,0 +1,21 @@
+vars {
+  account $capital_provider
+  account $escrow
+  monetary $amount
+  string $contract_id
+  string $terms_digest
+  string $policy_digest
+  string $payment_id
+}
+
+send $amount (
+  source = $capital_provider
+  destination = $escrow
+)
+
+set_tx_meta("m5_contract_id", $contract_id)
+set_tx_meta("m5_human_terms_digest", $terms_digest)
+set_tx_meta("m5_machine_policy_digest", $policy_digest)
+set_tx_meta("m5_payment_id", $payment_id)
+set_tx_meta("m5_execution_stage", "SOURCE_RESERVED")
+set_tx_meta("m5_simulation", "true")

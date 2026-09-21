@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/main/pilots/312-spring-commons/simulations/first-tranche/m5-x402/m5-x402-extension.schema.json",
+  "title": "M5 Ricardian x402 Extension",
+  "description": "Draft x402 v2 extension binding human terms, machine policy, executable instructions, authority evidence, and a separately typed no-value project marker. Structural validation creates no authority or settlement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["info", "schema"],
+  "properties": {
+    "info": { "$ref": "#/$defs/info" },
+    "schema": { "type": "object" }
+  },
+  "$defs": {
+    "artifactBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contract_id", "id", "version", "digest", "uri", "supersession_history"],
+      "properties": {
+        "contract_id": { "const": "PPT-EZ-CA-0001-ILLUSTRATIVE-PRIVATE-TRANCHE-01" },
+        "id": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "uri": { "type": "string", "minLength": 1 },
+        "language": { "type": "string" },
+        "supersession_history": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["supersedes", "superseded_by"],
+          "properties": {
+            "supersedes": { "type": "array", "items": { "type": "string" } },
+            "superseded_by": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "tokenRepresentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["token_id", "asset_code", "quantity", "valuation_status", "transferability", "redeemability", "fee_title_effect", "security_or_investment_rights", "settlement_eligibility"],
+      "properties": {
+        "token_id": { "type": "string" },
+        "asset_code": { "const": "M5MARKER" },
+        "quantity": { "const": "1" },
+        "valuation_status": { "const": "NO_ASSIGNED_MONETARY_VALUE" },
+        "transferability": { "const": "NON_TRANSFERABLE" },
+        "redeemability": { "const": "NONE" },
+        "fee_title_effect": { "const": "NONE" },
+        "security_or_investment_rights": { "const": "NONE_UNLESS_SEPARATELY_CREATED" },
+        "settlement_eligibility": { "const": "NOT_A_SETTLEMENT_ASSET" }
+      }
+    },
+    "info": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "contract", "human_terms", "machine_policy", "executable_plan", "decision_context", "authority", "token_representation", "execution_safety", "request_fingerprint"],
+      "properties": {
+        "profile": { "const": "M5-X402-001-draft" },
+        "contract": { "$ref": "#/$defs/artifactBinding" },
+        "human_terms": { "$ref": "#/$defs/artifactBinding" },
+        "machine_policy": { "$ref": "#/$defs/artifactBinding" },
+        "executable_plan": { "$ref": "#/$defs/artifactBinding" },
+        "decision_context": { "$ref": "#/$defs/artifactBinding" },
+        "authority": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["principal_ref", "role_ref", "credential_state", "delegation_ref", "approval_state", "evidence_refs"],
+          "properties": {
+            "principal_ref": { "type": "string" },
+            "role_ref": { "type": "string" },
+            "credential_state": { "enum": ["PENDING_EXTERNAL", "CURRENT", "STALE", "REVOKED", "DISPUTED"] },
+            "delegation_ref": { "type": ["string", "null"] },
+            "approval_state": { "enum": ["PENDING_EXTERNAL", "APPROVED", "REFUSED", "REVOKED"] },
+            "evidence_refs": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "token_representation": { "$ref": "#/$defs/tokenRepresentation" },
+        "execution_safety": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["synthetic", "authority_effect", "network_write", "financial_movement", "settlement_status"],
+          "properties": {
+            "synthetic": { "const": true },
+            "authority_effect": { "const": "NONE" },
+            "network_write": { "const": false },
+            "financial_movement": { "const": false },
+            "settlement_status": { "const": "NOT_SUBMITTED" }
+          }
+        },
+        "request_fingerprint": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["x402_version", "payment_id", "payment_identifier_digest", "http_method", "resource", "scheme", "network", "asset", "amount", "pay_to", "max_timeout_seconds", "accepted_extra_digest", "issued_at", "expires_at", "operation_id", "taxonomy_profile_id", "taxonomy_version", "taxonomy_digest", "decision_context_digest", "asset_classification_digest", "external_legal_classification_digest", "jurisdiction_graph_digest", "account_authority_digest", "credential_delegation_mandate_digest", "institutional_route_digest", "receipt_access_policy_digest"],
+          "properties": {
+            "x402_version": { "const": 2 },
+            "payment_id": { "type": "string", "minLength": 16, "maxLength": 128, "pattern": "^[a-zA-Z0-9_-]+$" },
+            "payment_identifier_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "http_method": { "type": "string", "pattern": "^[A-Z]+$" },
+            "resource": { "type": "string", "format": "uri" },
+            "scheme": { "type": "string" },
+            "network": { "type": "string" },
+            "asset": { "not": { "const": "M5MARKER" } },
+            "amount": { "type": "string", "pattern": "^[1-9][0-9]*$" },
+            "pay_to": { "type": "string" },
+            "max_timeout_seconds": { "type": "integer", "minimum": 1 },
+            "accepted_extra_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "issued_at": { "type": "string", "format": "date-time" },
+            "expires_at": { "type": "string", "format": "date-time" },
+            "operation_id": { "type": "string" },
+            "taxonomy_profile_id": { "const": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft" },
+            "taxonomy_version": { "const": "1.0-draft" },
+            "taxonomy_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "decision_context_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "asset_classification_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "external_legal_classification_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "jurisdiction_graph_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "account_authority_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "credential_delegation_mandate_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "institutional_route_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+            "receipt_access_policy_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,12 +9,14 @@
     "project_id",
     "event_state",
     "entity_grounding",
+    "m5canon_decision_context",
     "capital_provider",
     "jurisdiction_path",
     "instrument",
     "destination",
     "evidence",
-    "disclosure"
+    "disclosure",
+    "source_chain_activation"
   ],
   "properties": {
     "record_id": {
@@ -22,6 +24,19 @@
     },
     "project_id": {
       "type": "string"
+    },
+    "m5canon_decision_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "digest", "uri", "schema_uri", "authority_effect"],
+      "properties": {
+        "id": { "const": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT" },
+        "version": { "const": "1.0-draft" },
+        "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+        "uri": { "type": "string", "minLength": 1 },
+        "schema_uri": { "type": "string", "minLength": 1 },
+        "authority_effect": { "const": "NONE" }
+      }
     },
     "version": {
       "type": "string"
@@ -541,6 +556,7 @@
     },
     "source_chain_activation": {
       "type": "object",
+      "required": ["activated", "activated_at", "canonical_path_complete", "public_path_publishable", "unresolved_preconditions"],
       "properties": {
         "activated": {
           "type": "boolean"
@@ -768,6 +784,30 @@
       }
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "m5canon_decision_context": {
+            "properties": {"authority_effect": {"const": "NONE"}},
+            "required": ["authority_effect"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "event_state": {"not": {"const": "SOURCE_CHAIN_ACTIVATED"}},
+          "source_chain_activation": {
+            "properties": {
+              "activated": {"const": false},
+              "activated_at": {"type": "null"},
+              "unresolved_preconditions": {"minItems": 1}
+            }
+          }
+        }
+      }
+    }
+  ],
   "$defs": {
     "jurisdictionRef": {
       "type": "object",

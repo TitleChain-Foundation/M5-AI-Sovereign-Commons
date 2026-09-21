@@ -1,0 +1,52 @@
+{
+  "profile_id": "SPRING-COMMONS-M5-ASSET-TAXONOMY-PROFILE-v1-draft",
+  "version": "1.0-draft",
+  "status": "DRAFT_PROFILE",
+  "scope": "SYNTHETIC_SPRING_COMMONS_SIMULATION",
+  "authority_effect": "NONE",
+  "adoption_state": "PROPOSED_FOR_PUBLIC_REVIEW",
+  "notice": "Pilot-scoped test profile only. It does not amend, resolve, or claim adoption of an ecosystem-wide M1-M5 taxonomy.",
+  "supersession_history": {
+    "supersedes": [],
+    "superseded_by": null
+  },
+  "classes": [
+    {
+      "m5_class": "M1",
+      "permanent_meaning": "UTILITY",
+      "representative_scope": ["AI_USAGE", "INFERENCE", "COMPUTE", "TIME", "LABOR", "ACCESS", "SERVICE_CREDIT", "ROYALTY_ACCOUNTING_UNIT"]
+    },
+    {
+      "m5_class": "M2",
+      "permanent_meaning": "COMMODITIES",
+      "representative_scope": ["ENERGY", "METALS", "MINERALS", "AGRICULTURE", "CARBON", "RENEWABLE_ENERGY_CERTIFICATE", "COMMODITY_BACKED_INSTRUMENT"]
+    },
+    {
+      "m5_class": "M3",
+      "permanent_meaning": "TITLED_ASSETS",
+      "representative_scope": ["PATENT", "INTELLECTUAL_PROPERTY", "VEHICLE", "EQUIPMENT", "DEVICE", "REAL_PROPERTY"]
+    },
+    {
+      "m5_class": "M4",
+      "permanent_meaning": "SECURITIES_AND_FINANCIAL_INSTRUMENTS",
+      "representative_scope": ["EQUITY", "DEBT", "BOND", "NOTE", "INVESTMENT_CONTRACT", "SECURITY_TOKEN", "FUND_INTEREST"]
+    },
+    {
+      "m5_class": "M5",
+      "permanent_meaning": "CENTRAL_GOVERNMENT_AND_INTERBANK_INSTRUMENTS",
+      "representative_scope": ["CENTRAL_BANK_MONEY", "CBDC", "RESERVE", "SOVEREIGN_TREASURY_INSTRUMENT", "GOVERNMENT_SETTLEMENT", "INTERBANK_SETTLEMENT"]
+    }
+  ],
+  "invariants": {
+    "classification_selected_by_party": false,
+    "external_legal_classification_is_separate": true,
+    "unknown_or_conflicting_classification_result": "HOLD",
+    "m3_source_may_produce_separately_classified_m1_utility": true,
+    "m1_investment_rights_require_m4_review": true,
+    "m3_fungibility_is_separate": true,
+    "m5_isolated_domains": ["CENTRAL_GOVERNMENT", "CENTRAL_BANK", "AUTHORIZED_INTERBANK"],
+    "m5_prohibited_direct_account_domains": ["M1", "M2", "M3"],
+    "m5_direct_cross_class_posting": false,
+    "m5_retail_access": false
+  }
+}
