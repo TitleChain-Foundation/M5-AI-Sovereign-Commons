@@ -1,0 +1,47 @@
+{
+  "profile_id": "M5EVE-PPT-EZ-CA-0001-PR1",
+  "version": "0.1.0",
+  "status": "SPECIFIED",
+  "synthetic": true,
+  "project_id": "PPT-EZ-CA-0001",
+  "account_context": {
+    "type": "BOU",
+    "id": "PPT-EZ-CA-0001",
+    "lifecycle_state": "SPECIFIED",
+    "authority_effect": "NONE"
+  },
+  "transaction_posture": "HOLD",
+  "external_requirements": "PENDING_EXTERNAL",
+  "capabilities": {
+    "public_source_read": false,
+    "private_record_read": false,
+    "analysis": false,
+    "drafting": false,
+    "evidence_publish": false,
+    "external_submit": false,
+    "legal_signature": false,
+    "financial_commitment": false,
+    "financial_movement": false,
+    "title_or_registry_write": false,
+    "procurement_award": false,
+    "construction_or_physical_action": false
+  },
+  "required_controls": {
+    "verified_principal": true,
+    "authorized_context": true,
+    "explicit_delegation": true,
+    "current_jurisdiction": true,
+    "required_approvals": true,
+    "evidence_receipt": true,
+    "human_review_for_publication": true,
+    "fail_closed": true
+  },
+  "non_claims": [
+    "No GSA or NPS approval",
+    "No eligible public applicant selected",
+    "No title transfer",
+    "No committed or escrowed 25 million dollar tranche",
+    "No procurement or construction authorization",
+    "No production M5 member service deployed"
+  ]
+}

@@ -31,6 +31,7 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | How the 312 Spring Commons initiative fits its vision and what blocks launch | [Spring Commons fit-gap review](pilots/312-spring-commons/INITIATIVE-FIT-GAP-REVIEW.md) |
 | How the proposed People's Trust farmland pilot tests the standards | [People's Trust Farmland Project Simulation](pilots/peoples-trust/README.md) |
 | I want to understand real-world assets, title state, debt, ownership, banking risk, deal flow, and People's Trust opportunities | [SHADOW M5Index](shadow-m5index/README.md) |
+| How a member-facing conversational workspace can navigate BOM/BOU/BOB/BOI/BOG contexts without creating authority | [M5 Eve Member Workspace](m5-eve/README.md) |
 | What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
 | What the reference code demonstrates | [Reference implementations](reference-implementation/README.md) |
 | What the current tests do and do not prove | [Tests and validation](tests/README.md) |
@@ -151,6 +152,7 @@ Supporting public-review materials:
 - [People's Trust Public Pilot Library](pilots/peoples-trust/README.md)
 - [SHADOW M5Index public research seed](shadow-m5index/README.md)
 - [SHADOW M5Index Engineering Epic](docs/SHADOW-M5INDEX-ENGINEERING-EPIC.md)
+- [M5 Eve Member Workspace](m5-eve/README.md)
 - [SEC Public Input Summary](sec-public-input/README.md)
 - [Threat Model](THREAT-MODEL.md)
 - [Draft JSON Schemas](schemas/README.md) and [synthetic examples](examples/README.md)

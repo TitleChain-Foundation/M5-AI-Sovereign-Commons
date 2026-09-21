@@ -16,6 +16,7 @@ secure, a system complies with law, or the release is production-ready.
 | --- | --- | --- |
 | Schema and example pairs | Exactly nine named pairs, Draft 2020-12 validity, required fields, unknown fields, and selected fail-closed cases | [Schema tests](test_schemas.py) |
 | SHADOW M5Index seed | Imported-source fingerprints, normalized workbook surfaces, IDs, evidence posture, scores, queues, and Spring Commons boundaries | [SHADOW tests](test_shadow_m5index.py) |
+| M5 Eve authority adapter | Authentication/context separation, delegation scope, lifecycle, approvals, disabled capabilities, and Spring Commons default-deny behavior | [M5 Eve tests](test_m5_eve_adapter.py) |
 | Provider-neutral governor | Budget projection, ledger integrity, provider adapters, and shared control behavior | [Governor tests](../reference-implementation/provider-neutral-governor/tests/) |
 | Recorded release evidence | Dated results, scope, and explicit non-claims | [Validation report](../VALIDATION-REPORT.md) |
 
