@@ -15,6 +15,7 @@ secure, a system complies with law, or the release is production-ready.
 | Test surface | What it checks | Location |
 | --- | --- | --- |
 | Schema and example pairs | Exactly nine named pairs, Draft 2020-12 validity, required fields, unknown fields, and selected fail-closed cases | [Schema tests](test_schemas.py) |
+| SHADOW M5Index seed | Imported-source fingerprints, normalized workbook surfaces, IDs, evidence posture, scores, queues, and Spring Commons boundaries | [SHADOW tests](test_shadow_m5index.py) |
 | Provider-neutral governor | Budget projection, ledger integrity, provider adapters, and shared control behavior | [Governor tests](../reference-implementation/provider-neutral-governor/tests/) |
 | Recorded release evidence | Dated results, scope, and explicit non-claims | [Validation report](../VALIDATION-REPORT.md) |
 
@@ -23,7 +24,7 @@ secure, a system complies with law, or the release is production-ready.
 From the repository root:
 
 ```text
-python -m pytest tests/test_schemas.py reference-implementation/provider-neutral-governor/tests
+python -m pytest tests reference-implementation/provider-neutral-governor/tests
 ```
 
 Review failures against the relevant [standard](../standards/README.md),

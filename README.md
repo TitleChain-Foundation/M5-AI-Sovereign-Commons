@@ -28,8 +28,9 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | What the four normative proposals cover | [Proposed standards](standards/README.md) |
 | How the public waitlist, demo, M5-CV, Commons, and project pathways connect | [Activation pathway](docs/activation/README.md) |
 | How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
-| How the proposed People's Trust pilot tests the standards | [People's Trust Public Pilot Library](pilots/peoples-trust/README.md) |
 | How the 312 Spring Commons initiative fits its vision and what blocks launch | [Spring Commons fit-gap review](pilots/312-spring-commons/INITIATIVE-FIT-GAP-REVIEW.md) |
+| How the proposed People's Trust farmland pilot tests the standards | [People's Trust Farmland Project Simulation](pilots/peoples-trust/README.md) |
+| I want to understand real-world assets, title state, debt, ownership, banking risk, deal flow, and People's Trust opportunities | [SHADOW M5Index](shadow-m5index/README.md) |
 | What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
 | What the reference code demonstrates | [Reference implementations](reference-implementation/README.md) |
 | What the current tests do and do not prove | [Tests and validation](tests/README.md) |
@@ -52,6 +53,34 @@ decision.
 The standards are proposed for public criticism and independent implementation.
 They do not replace law, regulation, contracts, official records, qualified
 professional judgment, or the accountability of a regulated entity.
+
+## SHADOW M5Index
+
+**SHADOW — Systemic Holdings, Assets, Debt & Ownership Watch** is the proposed
+public research layer connecting real-world asset state, title provenance,
+ownership, capital, debt, rights, obligations, environmental conditions,
+disposition activity, threats, and public-benefit feasibility.
+
+- **Systemic:** what else is the asset connected to?
+- **Holdings:** what does a person or entity demonstrably hold or control?
+- **Assets:** what is the thing of legal or economic value?
+- **Debt:** who is owed money, on what terms, and when does it matter?
+- **Ownership:** who is the recorded owner, and is ultimate economic control
+  resolved?
+- **Watch:** what verified state or evidence changed?
+
+The accountable principal remains the issuer of bounded authority; a platform,
+score, model, wallet, agent, or research nomination cannot create it.
+TitleChain represents asset identity, evidence, provenance, and current Asset
+State. Orbitalys maps threats without deciding authority. SHADOW organizes
+public-safe research and the TSI, ASI, DPI, OOI, CCI, PVMI, and PBOI index
+family. SHADOW CAMEL is a proposed public-data C/A/M*/E/L/S* methodology—not an
+official CAMELS rating. People's Trust review may evaluate feasibility but
+creates no ownership, investment, financing, membership, or acquisition right.
+Only approved public-safe aggregate events may flow to M5 Global.
+
+[Inspect the seed, challenge a claim, add evidence, or review the engineering
+roadmap.](shadow-m5index/README.md)
 
 ## Authority boundary
 
@@ -120,6 +149,8 @@ Supporting public-review materials:
 - [People's Trust Public Conformance Pilot](docs/PEOPLES-TRUST-PUBLIC-PILOT.md)
 - [Pilot and SEC Request-for-Input Crosswalk](docs/PILOT-SEC-RFI-CROSSWALK.md)
 - [People's Trust Public Pilot Library](pilots/peoples-trust/README.md)
+- [SHADOW M5Index public research seed](shadow-m5index/README.md)
+- [SHADOW M5Index Engineering Epic](docs/SHADOW-M5INDEX-ENGINEERING-EPIC.md)
 - [SEC Public Input Summary](sec-public-input/README.md)
 - [Threat Model](THREAT-MODEL.md)
 - [Draft JSON Schemas](schemas/README.md) and [synthetic examples](examples/README.md)
