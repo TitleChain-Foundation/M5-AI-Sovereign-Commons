@@ -19,6 +19,12 @@ The v0.6 project architecture also tests whether the building can operate as a *
 
 > **Current status: Conditional go / diligence.** The federal Historic Surplus pathway remains to be confirmed as available. Public grantee, operator, final scope, financing, permitted uses, technology selection, and required approvals are not yet established.
 
+> **Capital partner front door:** Start with
+> [SPRING — Initial Capital Tranche Brief](documents/summaries/SPRING-INITIAL-CAPITAL-TRANCHE-BRIEF.md)
+> for the illustrative $25M tranche, the $200M+ blended-capital rehabilitation
+> frame, gating diligence, and core reviewer question: **what would you need to
+> see, change, or diligence before capital could move?**
+
 The [initiative fit-gap review and milestone plan](INITIATIVE-FIT-GAP-REVIEW.md)
 translates that status into evidence gates for accountable sponsorship,
 community co-design, public-pathway diligence, a controlled first phase, and
