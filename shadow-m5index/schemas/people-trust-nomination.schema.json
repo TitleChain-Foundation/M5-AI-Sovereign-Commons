@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "People's Trust Nomination",
+  "type": "object",
+  "properties": {
+    "asset_id": {
+      "type": "string"
+    },
+    "community": {
+      "type": "string"
+    },
+    "proposed_public_benefit": {
+      "type": "string"
+    },
+    "review_state": {
+      "type": "string"
+    }
+  }
+}

@@ -1,23 +1,15 @@
-name: SHADOW — nominate a public asset
-description: Suggest a government, CRE, or farmland asset using public, source-linked information.
-title: "[SHADOW new asset] "
-labels:
-  - shadow
-  - submission
+name: SHADOW — Add a new asset
+description: Nominate a Government, CRE, or Farmland asset for research.
+title: "[SHADOW NEW ASSET] "
+labels: ["shadow", "submission", "new-asset"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        This form creates a `SUBMITTED` research lead only. It does not establish title, ownership, availability, eligibility, valuation, authority, or a People's Trust right.
-
-        Submit only public information you are authorized to share. Do not include personal data, credentials, private M5POD evidence, confidential title or bank records, production endpoints, or nonpublic transaction details.
   - type: dropdown
     id: sector
     attributes:
       label: Sector
       options:
-        - Government buildings and land
-        - Commercial real estate
+        - Government Buildings & Land
+        - Commercial Real Estate
         - Farmland
     validations:
       required: true
@@ -25,47 +17,27 @@ body:
     id: asset_name
     attributes:
       label: Asset name
-      description: Use the public or registry name.
     validations:
       required: true
   - type: input
-    id: jurisdiction
+    id: location
     attributes:
-      label: Jurisdiction and public location
-      placeholder: City, county, state/province, country
+      label: Address or location
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should SHADOW track it?
     validations:
       required: true
   - type: input
-    id: source_url
+    id: source
     attributes:
-      label: Authoritative public source URL
-      description: Link to an official registry, agency, recorder, assessor, regulator, court, or other suitable public source.
+      label: Authoritative/public source URL
     validations:
       required: true
   - type: textarea
-    id: public_observation
+    id: notes
     attributes:
-      label: What does the source support?
-      description: State only the scoped observation supported by the linked source and identify the relevant date.
-    validations:
-      required: true
-  - type: textarea
-    id: open_questions
-    attributes:
-      label: What remains unknown?
-      description: Examples include current deed, lender, rights, environmental state, closing, ultimate capital, or transfer authority.
-    validations:
-      required: true
-  - type: checkboxes
-    id: boundaries
-    attributes:
-      label: Submission boundaries
-      options:
-        - label: I have the right to submit this public information and source link.
-          required: true
-        - label: I did not include private, personal, confidential, credential, security-sensitive, or nonpublic transaction data.
-          required: true
-        - label: I understand this nomination creates no title, membership, financing, investment, acquisition, or decision right.
-          required: true
-        - label: I understand the submission remains non-canonical until reviewed and verified.
-          required: true
+      label: Notes

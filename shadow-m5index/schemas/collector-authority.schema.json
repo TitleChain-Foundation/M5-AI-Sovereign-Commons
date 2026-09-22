@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Collector Authority",
+  "type": "object",
+  "properties": {
+    "collector": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "claim_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authority_state": {
+      "type": "string"
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

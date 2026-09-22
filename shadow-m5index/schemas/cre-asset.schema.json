@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CRE Asset Extension",
+  "type": "object",
+  "properties": {
+    "Property_Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Rentable_SF": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Occupancy_Pct": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "NOI": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Appraised_Value": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Borrower": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Original_Lender": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Current_Lender": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Loan_Balance": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Maturity_Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "LTV": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "DSCR": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "CMBS_Trust": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Special_Servicer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Foreclosure_State": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "REO_State": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

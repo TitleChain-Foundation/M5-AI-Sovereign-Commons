@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Debt Assignment",
+  "type": "object",
+  "properties": {
+    "assignment_id": {
+      "type": "string"
+    },
+    "from_party": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "to_party": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "effective_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

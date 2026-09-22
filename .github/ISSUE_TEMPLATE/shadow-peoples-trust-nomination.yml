@@ -1,0 +1,35 @@
+name: SHADOW — People's Trust review nomination
+description: Nominate an existing asset for public-benefit feasibility review. A nomination creates no ownership, financing, investment, or acquisition right.
+title: "[PEOPLE'S TRUST REVIEW] "
+labels: ["shadow", "peoples-trust", "nomination"]
+body:
+  - type: input
+    id: asset_id
+    attributes:
+      label: Asset ID
+    validations:
+      required: true
+  - type: input
+    id: community
+    attributes:
+      label: Community / jurisdiction
+    validations:
+      required: true
+  - type: textarea
+    id: benefit
+    attributes:
+      label: Proposed public benefit
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why is review warranted?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Public source
+    validations:
+      required: true

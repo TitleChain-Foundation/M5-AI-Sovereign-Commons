@@ -1,0 +1,19 @@
+name: SHADOW Build Index
+on:
+  pull_request:
+    paths:
+      - "shadow-m5index/data/canonical/**"
+      - "shadow-m5index/scripts/**"
+jobs:
+  generated-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install qrcode[pil]
+      - run: python shadow-m5index/scripts/build_completeness.py
+      - run: python shadow-m5index/scripts/build_index.py
+      - run: python shadow-m5index/scripts/generate_qr.py
+      - run: git diff --exit-code

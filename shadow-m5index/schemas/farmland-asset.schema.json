@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Farmland Asset Extension",
+  "type": "object",
+  "properties": {
+    "Total_Acres": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Tillable_Acres": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Irrigated_Acres": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Current_Operator": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Lease_State": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Crop_Type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Water_Rights": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Mineral_Rights": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Conservation_Easements": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Mortgage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Lender": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Maturity_Date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Corporate_Farming_Restrictions": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Foreign_Ownership_Restrictions": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

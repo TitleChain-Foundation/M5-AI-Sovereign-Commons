@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Notice Event",
+  "type": "object",
+  "properties": {
+    "notice_id": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "issued_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "delivery_state": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

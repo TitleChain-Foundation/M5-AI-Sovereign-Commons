@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titlechainfoundation.org/schemas/shadow/asset.schema.json",
+  "title": "SHADOW M5Index Asset",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "asset_id",
+    "canonical_url",
+    "primary_sector",
+    "sector_tags",
+    "identity",
+    "research"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "asset_id": {
+      "type": "string",
+      "pattern": "^SHD-[0-9]{3,}$"
+    },
+    "canonical_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "primary_sector": {
+      "enum": [
+        "government",
+        "cre",
+        "farmland"
+      ]
+    },
+    "sector_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "tranche": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "city": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "asset_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "size_sf": {
+          "type": [
+            "number",
+            "integer",
+            "null"
+          ]
+        },
+        "acreage": {
+          "type": [
+            "number",
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "origin": {
+      "type": "object"
+    },
+    "disposition": {
+      "type": "object"
+    },
+    "ownership": {
+      "type": "object"
+    },
+    "title_state": {
+      "type": "object"
+    },
+    "debt_liens": {
+      "type": "object"
+    },
+    "rights_obligations": {
+      "type": "array"
+    },
+    "shadow_scores": {
+      "type": "object"
+    },
+    "people_trust_review": {
+      "type": "object"
+    },
+    "profile": {
+      "type": "object"
+    },
+    "evidence": {
+      "type": "array"
+    },
+    "contributor_tasks": {
+      "type": "array"
+    },
+    "research": {
+      "type": "object",
+      "required": [
+        "completion_pct",
+        "checklist"
+      ],
+      "properties": {
+        "completion_pct": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "checklist": {
+          "type": "object"
+        }
+      }
+    },
+    "source_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

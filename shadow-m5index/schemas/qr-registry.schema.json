@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QR Registry Entry",
+  "type": "object",
+  "properties": {
+    "asset_id": {
+      "type": "string"
+    },
+    "canonical_url": {
+      "type": "string"
+    },
+    "qr_png": {
+      "type": "string"
+    },
+    "qr_svg": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}
