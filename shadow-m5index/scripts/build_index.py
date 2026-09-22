@@ -16,6 +16,7 @@ for r in records:
         "primary_sector":r["primary_sector"],"sector_tags":";".join(r["sector_tags"]),
         "disposition_state":r.get("disposition",{}).get("Disposition_State"),
         "transaction_proof_state":r.get("disposition",{}).get("Transaction_Proof_State"),
+        "ownership_resolution_state":r.get("ownership",{}).get("Ownership_Resolution_State"),
         "consideration_usd":r.get("disposition",{}).get("Consideration_USD"),
         "research_priority":r.get("research",{}).get("research_priority"),
         "evidence_state":r.get("research",{}).get("evidence_state"),

@@ -3,6 +3,10 @@ description: Add a public record or source to an existing SHADOW asset.
 title: "[SHADOW EVIDENCE] "
 labels: ["shadow", "submission", "evidence"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit only public-safe evidence. Do not include private identity data, account identifiers, credentials, keys, confidential evidence, or personal records. No public form writes directly to `CANONICAL`; evidence enters review.
   - type: input
     id: asset_id
     attributes:
@@ -33,13 +37,13 @@ body:
   - type: input
     id: source_office
     attributes:
-      label: Source office / agency
+      label: Source agency, registry, court, or publisher
     validations:
       required: true
   - type: input
     id: source_url
     attributes:
-      label: Source URL
+      label: Public source URL
     validations:
       required: true
   - type: input

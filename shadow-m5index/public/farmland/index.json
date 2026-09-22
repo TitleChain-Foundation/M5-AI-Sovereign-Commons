@@ -8,7 +8,7 @@
     "sector_tags": "farmland;government",
     "disposition_state": "P6 CLOSED",
     "transaction_proof_state": "S3 CLOSING_CONFIRMED",
-    "ownership_resolution_state": "O0 BUYER_UNDISCLOSED",
+    "ownership_resolution_state": null,
     "consideration_usd": 425000,
     "research_priority": "HIGH",
     "evidence_state": "SUBMITTED",

@@ -3,6 +3,10 @@ description: Challenge or correct a field using supporting public evidence.
 title: "[SHADOW CORRECTION] "
 labels: ["shadow", "submission", "correction"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit only public-safe corrections and supporting sources. Do not include private identity data, account identifiers, credentials, keys, confidential evidence, or personal records. No public form writes directly to `CANONICAL`; corrections enter review.
   - type: input
     id: asset_id
     attributes:

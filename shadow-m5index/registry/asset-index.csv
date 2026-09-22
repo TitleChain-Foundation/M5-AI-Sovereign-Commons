@@ -1,37 +1,37 @@
 asset_id,name,city,state,primary_sector,sector_tags,disposition_state,transaction_proof_state,ownership_resolution_state,consideration_usd,research_priority,evidence_state,completion_pct,canonical_url
-SHD-001,Former USGS / Rockaway Grove,Menlo Park,CA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,137000006,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-001
-SHD-002,GSA Regional Office Building,Washington,DC,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,24260000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-002
-SHD-003,Old Post Office,Washington,DC,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,80000000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-003
-SHD-004,Liberty Loan Building,Washington,DC,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O4,17000000,HIGH,SUBMITTED,67,https://titlechainfoundation.org/shadow/assets/SHD-004
-SHD-005,Gus J. Solomon U.S. Courthouse,Portland,OR,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,1800000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-005
-SHD-006,Historic U.S. Courthouse,Des Moines,IA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O2,2600000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-006
-SHD-007,Twin Cities Army Ammunition Plant parcel,Arden Hills,MN,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,3580000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-007
-SHD-008,Former Madawaska Land Port of Entry,Madawaska,ME,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O2,173000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-008
-SHD-009,Big Spring mineral acres,Big Spring,TX,government,government;land_rights,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,3900000,VERY HIGH,SUBMITTED,67,https://titlechainfoundation.org/shadow/assets/SHD-009
-SHD-010,Chet Holifield Federal Building / Ziggurat,Laguna Niguel,CA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,207000000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-010
-SHD-011,Kefauver Federal Building site,Nashville,TN,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,52030000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-011
-SHD-012,Federal Building West + parking parcels,San Antonio,TX,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,30000000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-012
-SHD-013,Former DOL property / Texas State transfer,San Marcos,TX,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,1680000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-013
-SHD-014,Phillips Memorial Army Reserve Center,Silver City,NM,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,340000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-014
-SHD-015,Federal Executive Institute campus,Charlottesville,VA,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-015
-SHD-016,Huntsville Courthouse / Post Office,Huntsville,AL,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O3,,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-016
-SHD-017,Former NCUA Office Condo — Building 5,Austin,TX,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,3490000,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-017
-SHD-018,Former SSA Office,Racine,WI,government,cre;government,P6 CLOSED,S4 DEED_CONFIRMED,O1,625151,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-018
-SHD-019,Former Coast Guard Housing,Jonesport,ME,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,1175000,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-019
-SHD-020,Former Atterbury Job Corps parcel,Edinburgh / Nineveh,IN,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,1642030,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-020
-SHD-021,Former Hawkinsville Air Force Space Surveillance Station,Hawkinsville,GA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,730000,CRITICAL,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-021
-SHD-022,FAA NDB Site,Helena / East Helena,MT,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,625000,HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-022
-SHD-023,Former U.S. Army Reserve Center,Washington,IA,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,610000,HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-023
-SHD-024,Agua Fria parcel,Peoria,AZ,government,farmland;government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,425000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-024
-SHD-025,Teeds Grove repeater site,Teeds Grove,IA,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,O0 BUYER_UNDISCLOSED,83500,MEDIUM,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-025
-SHD-026,Former Navy & Marine Corps Reserve Center,Grand Rapids,MI,government,cre;government,P4 HIGH_BIDDER,S1 AUCTION_COMPLETED,O3,,HIGH,SOURCE_VERIFIED,56,https://titlechainfoundation.org/shadow/assets/SHD-026
-SHD-027,Montpelier Federal Building,Montpelier,VT,government,cre;government,P4 HIGH_BIDDER,S1 AUCTION_COMPLETED,O3,,VERY HIGH,SOURCE_VERIFIED,78,https://titlechainfoundation.org/shadow/assets/SHD-027
-SHD-028,The Depot at Somerville,Hillsborough Township / Somerville,NJ,government,cre;government,P5 UNDER_CONTRACT,S2 AWARD_ANNOUNCED,O0 BUYER_UNDISCLOSED,,CRITICAL,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-028
-SHD-029,Spring Street Courthouse,Los Angeles,CA,government,cre;government,P2 MARKETED,S0 LISTED,O0 BUYER_UNDISCLOSED,,CRITICAL,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-029
-SHD-030,Fort Worth Federal Center,Fort Worth,TX,government,cre;government,P2 MARKETED,S0 LISTED,O0 BUYER_UNDISCLOSED,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-030
-SHD-031,Fritz G. Lanham Federal Building,Fort Worth,TX,government,cre;government,P1 REVIEW,S0 LISTED,O0 BUYER_UNDISCLOSED,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-031
-SHD-032,Federal Parking Garage,Fort Worth,TX,government,cre;government,P1 REVIEW,S0 LISTED,O0 BUYER_UNDISCLOSED,,HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-032
-SHD-033,Anthony J. Celebrezze Federal Building,Cleveland,OH,government,cre;government,P2 MARKETED,S0 LISTED,O0 BUYER_UNDISCLOSED,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-033
-SHD-034,Goodfellow Federal Facility,St. Louis,MO,government,cre;government,P2 MARKETED,S0 LISTED,O0 BUYER_UNDISCLOSED,,CRITICAL,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-034
-SHD-035,Federal Center South — disposition portion,Seattle,WA,government,cre;government,P2 MARKETED,S0 LISTED,O0 BUYER_UNDISCLOSED,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-035
-SHD-036,Bozeman Federal Building and Post Office,Bozeman,MT,government,cre;government,P2 MARKETED,S0 LISTED,O0 BUYER_UNDISCLOSED,,HIGH,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-036
+SHD-001,Former USGS / Rockaway Grove,Menlo Park,CA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,137000006,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-001
+SHD-002,GSA Regional Office Building,Washington,DC,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,24260000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-002
+SHD-003,Old Post Office,Washington,DC,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,80000000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-003
+SHD-004,Liberty Loan Building,Washington,DC,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,17000000,HIGH,SUBMITTED,67,https://titlechainfoundation.org/shadow/assets/SHD-004
+SHD-005,Gus J. Solomon U.S. Courthouse,Portland,OR,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,1800000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-005
+SHD-006,Historic U.S. Courthouse,Des Moines,IA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,2600000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-006
+SHD-007,Twin Cities Army Ammunition Plant parcel,Arden Hills,MN,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,3580000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-007
+SHD-008,Former Madawaska Land Port of Entry,Madawaska,ME,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,173000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-008
+SHD-009,Big Spring mineral acres,Big Spring,TX,government,government;land_rights,P6 CLOSED,S3 CLOSING_CONFIRMED,,3900000,VERY HIGH,SUBMITTED,67,https://titlechainfoundation.org/shadow/assets/SHD-009
+SHD-010,Chet Holifield Federal Building / Ziggurat,Laguna Niguel,CA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,207000000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-010
+SHD-011,Kefauver Federal Building site,Nashville,TN,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,52030000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-011
+SHD-012,Federal Building West + parking parcels,San Antonio,TX,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,30000000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-012
+SHD-013,Former DOL property / Texas State transfer,San Marcos,TX,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,1680000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-013
+SHD-014,Phillips Memorial Army Reserve Center,Silver City,NM,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,,340000,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-014
+SHD-015,Federal Executive Institute campus,Charlottesville,VA,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,,,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-015
+SHD-016,Huntsville Courthouse / Post Office,Huntsville,AL,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,,MEDIUM,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-016
+SHD-017,Former NCUA Office Condo — Building 5,Austin,TX,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,3490000,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-017
+SHD-018,Former SSA Office,Racine,WI,government,cre;government,P6 CLOSED,S4 DEED_CONFIRMED,,625151,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-018
+SHD-019,Former Coast Guard Housing,Jonesport,ME,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,1175000,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-019
+SHD-020,Former Atterbury Job Corps parcel,Edinburgh / Nineveh,IN,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,,1642030,VERY HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-020
+SHD-021,Former Hawkinsville Air Force Space Surveillance Station,Hawkinsville,GA,government,cre;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,730000,CRITICAL,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-021
+SHD-022,FAA NDB Site,Helena / East Helena,MT,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,,625000,HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-022
+SHD-023,Former U.S. Army Reserve Center,Washington,IA,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,,610000,HIGH,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-023
+SHD-024,Agua Fria parcel,Peoria,AZ,government,farmland;government,P6 CLOSED,S3 CLOSING_CONFIRMED,,425000,HIGH,SUBMITTED,56,https://titlechainfoundation.org/shadow/assets/SHD-024
+SHD-025,Teeds Grove repeater site,Teeds Grove,IA,government,government,P6 CLOSED,S3 CLOSING_CONFIRMED,,83500,MEDIUM,SUBMITTED,44,https://titlechainfoundation.org/shadow/assets/SHD-025
+SHD-026,Former Navy & Marine Corps Reserve Center,Grand Rapids,MI,government,cre;government,P4 HIGH_BIDDER,S1 AUCTION_COMPLETED,,,HIGH,SOURCE_VERIFIED,56,https://titlechainfoundation.org/shadow/assets/SHD-026
+SHD-027,Montpelier Federal Building,Montpelier,VT,government,cre;government,P4 HIGH_BIDDER,S1 AUCTION_COMPLETED,,,VERY HIGH,SOURCE_VERIFIED,78,https://titlechainfoundation.org/shadow/assets/SHD-027
+SHD-028,The Depot at Somerville,Hillsborough Township / Somerville,NJ,government,cre;government,P5 UNDER_CONTRACT,S2 AWARD_ANNOUNCED,,,CRITICAL,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-028
+SHD-029,Spring Street Courthouse,Los Angeles,CA,government,cre;government,P2 MARKETED,S0 LISTED,,,CRITICAL,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-029
+SHD-030,Fort Worth Federal Center,Fort Worth,TX,government,cre;government,P2 MARKETED,S0 LISTED,,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-030
+SHD-031,Fritz G. Lanham Federal Building,Fort Worth,TX,government,cre;government,P1 REVIEW,S0 LISTED,,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-031
+SHD-032,Federal Parking Garage,Fort Worth,TX,government,cre;government,P1 REVIEW,S0 LISTED,,,HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-032
+SHD-033,Anthony J. Celebrezze Federal Building,Cleveland,OH,government,cre;government,P2 MARKETED,S0 LISTED,,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-033
+SHD-034,Goodfellow Federal Facility,St. Louis,MO,government,cre;government,P2 MARKETED,S0 LISTED,,,CRITICAL,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-034
+SHD-035,Federal Center South — disposition portion,Seattle,WA,government,cre;government,P2 MARKETED,S0 LISTED,,,VERY HIGH,SOURCE_VERIFIED,33,https://titlechainfoundation.org/shadow/assets/SHD-035
+SHD-036,Bozeman Federal Building and Post Office,Bozeman,MT,government,cre;government,P2 MARKETED,S0 LISTED,,,HIGH,SOURCE_VERIFIED,44,https://titlechainfoundation.org/shadow/assets/SHD-036

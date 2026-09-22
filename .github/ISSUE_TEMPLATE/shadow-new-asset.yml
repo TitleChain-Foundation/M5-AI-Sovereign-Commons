@@ -3,6 +3,10 @@ description: Nominate a Government, CRE, or Farmland asset for research.
 title: "[SHADOW NEW ASSET] "
 labels: ["shadow", "submission", "new-asset"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit only public-safe information. Do not include private identity data, account identifiers, credentials, keys, confidential evidence, or personal records. No public form writes directly to `CANONICAL`; submissions enter review.
   - type: dropdown
     id: sector
     attributes:

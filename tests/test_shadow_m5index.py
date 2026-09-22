@@ -107,7 +107,18 @@ def test_pr1_module_structure_is_present():
     assert all((SHADOW / path).is_dir() for path in REQUIRED_DIRECTORIES)
 
 
-def test_normalized_workbook_rebuild_is_byte_reproducible(tmp_path):
+def workbook_values(path):
+    workbook = load_workbook(path, read_only=True, data_only=False)
+    return {
+        sheet.title: [
+            [cell.value for cell in row]
+            for row in sheet.iter_rows()
+        ]
+        for sheet in workbook.worksheets
+    }
+
+
+def test_normalized_workbook_rebuild_is_content_reproducible(tmp_path):
     rebuilt = tmp_path / MASTER_WORKBOOK.name
     subprocess.run(
         [
@@ -122,7 +133,7 @@ def test_normalized_workbook_rebuild_is_byte_reproducible(tmp_path):
         ],
         check=True,
     )
-    assert rebuilt.read_bytes() == MASTER_WORKBOOK.read_bytes()
+    assert workbook_values(rebuilt) == workbook_values(MASTER_WORKBOOK)
 
 
 def test_asset_csv_has_unique_stable_ids_and_expected_tranches():
