@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 
 OBSERVATORY = Path(__file__).resolve().parents[1]
@@ -243,6 +244,97 @@ class ReviewTests(unittest.TestCase):
         )
         self.assertNotIn("human_review", entry)
         self.assertNotIn("A retracted summary.", render_dashboard(feed))
+
+    def test_feed_surfaces_new_entries_since_previous_feed(self) -> None:
+        now = datetime.now(UTC).isoformat()
+        previous = {
+            "docket": "S7-2026-30",
+            "last_full_source_refresh_at": now,
+            "official_entries": [
+                {
+                    "comment_id": "existing",
+                    "date": "Sept. 9, 2026",
+                    "letter_type": "Public Comment",
+                    "commenter_name": "Existing Commenter",
+                    "source_url": (
+                        "https://www.sec.gov/comments/S7-2026-30/existing.html"
+                    ),
+                    "source_sha256": "1" * 64,
+                    "analysis_text_sha256": "2" * 64,
+                    "source_media_type": "text/html",
+                    "retrieved_at": now,
+                    "automated_topics": [],
+                    "automated_analysis": "No configured signals detected.",
+                    "analysis_status": (
+                        "AUTOMATED SIGNAL SCAN — NOT HUMAN REVIEWED"
+                    ),
+                    "is_foundation_submission": False,
+                }
+            ],
+        }
+
+        def fake_collect(
+            entry: IndexEntry,
+            *,
+            taxonomy: dict[str, dict[str, str]],
+            retrieved_at: str,
+            timeout: float,
+        ) -> dict[str, object]:
+            del taxonomy, timeout
+            return {
+                "comment_id": entry.comment_id,
+                "date": entry.date,
+                "letter_type": entry.letter_type,
+                "commenter_name": entry.commenter_name,
+                "source_url": entry.source_url,
+                "source_sha256": "3" * 64,
+                "analysis_text_sha256": "4" * 64,
+                "source_media_type": "text/html",
+                "retrieved_at": retrieved_at,
+                "automated_topics": [],
+                "automated_analysis": "No configured signals detected.",
+                "analysis_status": "AUTOMATED SIGNAL SCAN — NOT HUMAN REVIEWED",
+                "is_foundation_submission": False,
+            }
+
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "update_observatory.collect_entry",
+            side_effect=fake_collect,
+        ):
+            feed = build_feed(
+                entries=[
+                    IndexEntry(
+                        comment_id="existing",
+                        date="Sept. 9, 2026",
+                        letter_type="Public Comment",
+                        commenter_name="Existing Commenter",
+                        source_url=(
+                            "https://www.sec.gov/comments/S7-2026-30/existing.html"
+                        ),
+                    ),
+                    IndexEntry(
+                        comment_id="new-comment",
+                        date="Sept. 15, 2026",
+                        letter_type="Public Comment",
+                        commenter_name="New Commenter",
+                        source_url=(
+                            "https://www.sec.gov/comments/S7-2026-30/new-comment.html"
+                        ),
+                    ),
+                ],
+                taxonomy={},
+                reviews_dir=Path(directory),
+                previous_feed=previous,
+                retrieved_at=now,
+                timeout=1,
+                delay=0,
+            )
+
+        self.assertEqual(feed["new_since_previous_count"], 1)
+        self.assertEqual(feed["new_since_previous_comment_ids"], ["new-comment"])
+        dashboard = render_dashboard(feed)
+        self.assertIn("new since previous feed", dashboard)
+        self.assertIn("New Commenter", dashboard)
 
 
 if __name__ == "__main__":
