@@ -331,6 +331,7 @@ def build_feed(
 ) -> dict[str, Any]:
     now = datetime.fromisoformat(retrieved_at)
     previous = prior_entries(previous_feed)
+    previous_ids = set(previous)
     full_refresh = needs_full_refresh(previous_feed, now)
     collected: list[dict[str, Any]] = []
     for entry in entries:
@@ -364,6 +365,11 @@ def build_feed(
         )
 
     by_id = {entry["comment_id"]: entry for entry in collected}
+    new_comment_ids = [
+        entry["comment_id"]
+        for entry in collected
+        if entry["comment_id"] not in previous_ids
+    ]
     reviews, review_warnings = load_reviews(reviews_dir, by_id)
     for entry in collected:
         entry.pop("human_review", None)
@@ -380,6 +386,8 @@ def build_feed(
         "official_index_count": len(collected),
         "human_reviewed_count": len(reviews),
         "pending_human_review_count": len(collected) - len(reviews),
+        "new_since_previous_count": len(new_comment_ids),
+        "new_since_previous_comment_ids": new_comment_ids,
         "review_warnings": review_warnings,
         "last_sec_retrieval_at": retrieved_at,
         "last_full_source_refresh_at": (
@@ -395,6 +403,30 @@ def build_feed(
 def render_dashboard(feed: dict[str, Any]) -> str:
     rows = []
     review_cards = []
+    entries_by_id = {
+        entry["comment_id"]: entry
+        for entry in feed["official_entries"]
+    }
+    latest_entry = feed["official_entries"][0] if feed["official_entries"] else None
+    new_entries = [
+        entries_by_id[comment_id]
+        for comment_id in feed.get("new_since_previous_comment_ids", [])
+        if comment_id in entries_by_id
+    ]
+    if new_entries:
+        new_entries_html = "<ul>" + "".join(
+            "<li>"
+            f"{html.escape(entry['date'])}: "
+            f"{html.escape(entry['commenter_name'])} "
+            f"(<a href=\"{html.escape(entry['source_url'])}\">official filing</a>)"
+            "</li>"
+            for entry in new_entries
+        ) + "</ul>"
+    else:
+        new_entries_html = (
+            "<p>No newly listed official filings were detected since the "
+            "previous published feed.</p>"
+        )
     for entry in feed["official_entries"]:
         topics = ", ".join(
             topic["label"] for topic in entry["automated_topics"]
@@ -488,6 +520,26 @@ def render_dashboard(feed: dict[str, Any]) -> str:
     <div class="metric"><strong>{feed['official_index_count']}</strong>official filings indexed</div>
     <div class="metric"><strong>{feed['human_reviewed_count']}</strong>human-reviewed summaries</div>
     <div class="metric"><strong>{feed['pending_human_review_count']}</strong>awaiting human review</div>
+    <div class="metric"><strong>{feed.get('new_since_previous_count', 0)}</strong>new since previous feed</div>
+  </section>
+  <section>
+    <h2>Latest SEC scan</h2>
+    <p>Last SEC retrieval: <code>{html.escape(feed['last_sec_retrieval_at'])}</code></p>
+    {
+        (
+            '<p><strong>Latest official filing listed:</strong> '
+            + html.escape(latest_entry['date'])
+            + ' — '
+            + html.escape(latest_entry['commenter_name'])
+            + ' (<a href="'
+            + html.escape(latest_entry['source_url'])
+            + '">official filing</a>).</p>'
+        )
+        if latest_entry
+        else '<p>No official filings were indexed.</p>'
+    }
+    <h3>New official filings detected in this run</h3>
+    {new_entries_html}
   </section>
   <section>
     <h2>Official filing index</h2>

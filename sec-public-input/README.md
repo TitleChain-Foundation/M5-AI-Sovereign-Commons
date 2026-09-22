@@ -4,20 +4,23 @@
 
 **Docket:** SEC File No. S7-2026-30, Transfer Agent Rules
 
-**Summary state:** Human-reviewed public-interest research
+**Summary state:** Human-reviewed public-interest research with a live automated
+observatory.
 
-**Source snapshot:** September 16, 2026 at 17:11 UTC
+**Live source snapshot:** The
+[SEC Public Comment Observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/)
+checks the official docket every hour and publishes the current filing count,
+last SEC retrieval time, latest listed filing, and newly detected filings in
+[`feed.json`](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/feed.json).
 
-**Official comments visible in that snapshot:** 14
+**Human-reviewed summaries:** Narrative summaries appear only after an
+attributable review record is approved and matches the collected SEC filing
+digest.
 
-**Human-reviewed summaries:** 1
-
-**Pending local human review:** 13
-
-This page is a dated orientation to public input, not an SEC publication,
-position, endorsement, or substitute for the official docket. The
+This page is an orientation to public input, not an SEC publication, position,
+endorsement, or substitute for the official docket. The
 [official SEC docket](https://www.sec.gov/rules-regulations/public-comments/s7-2026-30)
-controls and may have changed since this snapshot.
+controls.
 
 ## Related public-workflow demonstration
 
@@ -72,8 +75,8 @@ The [September 1–8 inaugural review](open-commons-review/2026-09-08.md) remain
 available as its dated record.
 
 The weekly orientation is approved for public review. It does not change the
-source-level observatory count below: one detailed comment summary is approved
-and thirteen remain pending detailed human review.
+source-level observatory counts. Use the live observatory for the current
+official filing count and pending human-review count.
 
 ## What the currently reviewed third-party input says
 
@@ -87,9 +90,9 @@ accountable transfer agent changes.
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
 
-The other twelve third-party comments are indexed in the observatory and
-remain pending human review. Their presence and frequency do not represent a
-vote, consensus, or SEC position.
+The other third-party comments indexed in the live observatory remain pending
+human review until an approved review record is published. Their presence and
+frequency do not represent a vote, consensus, or SEC position.
 
 ## Emerging ideas
 
