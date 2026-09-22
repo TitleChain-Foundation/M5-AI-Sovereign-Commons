@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dispute Event",
+  "type": "object",
+  "properties": {
+    "dispute_id": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "received_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

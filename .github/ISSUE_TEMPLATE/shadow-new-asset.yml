@@ -1,0 +1,47 @@
+name: SHADOW — Add a new asset
+description: Nominate a Government, CRE, or Farmland asset for research.
+title: "[SHADOW NEW ASSET] "
+labels: ["shadow", "submission", "new-asset"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit only public-safe information. Do not include private identity data, account identifiers, credentials, keys, confidential evidence, or personal records. No public form writes directly to `CANONICAL`; submissions enter review.
+  - type: dropdown
+    id: sector
+    attributes:
+      label: Sector
+      options:
+        - Government Buildings & Land
+        - Commercial Real Estate
+        - Farmland
+    validations:
+      required: true
+  - type: input
+    id: asset_name
+    attributes:
+      label: Asset name
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Address or location
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why should SHADOW track it?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Authoritative/public source URL
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes

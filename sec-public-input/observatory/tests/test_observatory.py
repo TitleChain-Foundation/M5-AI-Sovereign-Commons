@@ -47,6 +47,32 @@ class IndexTests(unittest.TestCase):
             ],
         )
 
+    def test_parse_index_accepts_all_supported_filing_extensions(self) -> None:
+        rows = "".join(
+            f"""
+            <tr>
+              <td>Sept. {day}, 2026</td>
+              <td>Public Comment</td>
+              <td><a href="/comments/S7-2026-30/{name}.{extension}">
+                {name.title()}
+              </a></td>
+            </tr>
+            """
+            for day, name, extension in (
+                (15, "monica-pagano", "htm"),
+                (11, "steven-quinn-singleton", "html"),
+                (7, "courtney-nisbett", "pdf"),
+            )
+        )
+
+        entries = parse_index(f"<table>{rows}</table>")
+
+        self.assertEqual(len(entries), 3)
+        self.assertEqual(
+            [entry.source_url.rsplit(".", 1)[-1] for entry in entries],
+            ["htm", "html", "pdf"],
+        )
+
     def test_parse_index_fails_closed_on_empty_docket(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "refusing to publish"):
             parse_index("<html><body>No recognized table</body></html>")

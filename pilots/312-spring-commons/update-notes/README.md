@@ -11,6 +11,8 @@ retain v0.4 materials as historical SEC-alignment and authority controls.
 | [v0.6 release notes](V0.6-RELEASE-NOTES.md) | Human summary of the current release |
 | [v0.6 cross-document update map](V0.6-CROSS-DOCUMENT-UPDATE-MAP.md) | Coordinated changes across DOC-01 through DOC-23 |
 | [M5Global capital-flow intelligence methodology](M5GLOBAL-CAPITAL-FLOW-INTELLIGENCE-METHODOLOGY.md) | Research labels, lineage, privacy, and publication controls |
+| [GSA pathway and application readiness](GSA-PATHWAY-AND-APPLICATION-READINESS.md) | Separates public-benefit conveyance from public sale and identifies the missing applicant, application, plans, and funding evidence |
+| [Simulated GSA/NPS submission](../simulations/gsa-historic-pbc/README.md) | Mock EOI, application cover, Program of Preservation and Utilization, and dual-status transaction checklist |
 | [Push manifest](PUSH-MANIFEST.md) | Repository file-selection record |
 
 ## Retained v0.4 controls

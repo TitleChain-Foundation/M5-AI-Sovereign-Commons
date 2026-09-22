@@ -67,6 +67,33 @@ def simulate_x402(required=PAYMENT_REQUIRED, payload=PAYMENT_PAYLOAD, **override
     return X402_MODULE.simulate(required, payload, SCHEMA, **arguments)
 
 
+def committed_access_log(grant_ref, grantee_ref, access_purpose, receipt_id):
+    payload = {
+        "receipt_id": receipt_id,
+        "grant_ref": grant_ref,
+        "grantee_ref": grantee_ref,
+        "access_purpose": access_purpose,
+        "status": "COMMITTED",
+    }
+    return {**payload, "digest": canonical_digest(payload)}
+
+
+def verified_credential(credential_ref, subject_ref, jurisdiction_refs=None):
+    return {
+        "credential_ref": credential_ref,
+        "subject_ref": subject_ref,
+        "issuer_ref": "TRUSTED-CREDENTIAL-ISSUER",
+        "issuer_validated": True,
+        "signature_verified": True,
+        "status": "VERIFIED",
+        "revocation_state": "NOT_REVOKED",
+        "jurisdiction_refs": jurisdiction_refs or [],
+        "valid_from": "2026-09-20T00:00:00Z",
+        "valid_until": None,
+        "evidence_ref": "EVIDENCE-CREDENTIAL-VERIFICATION",
+    }
+
+
 def test_m5_x402_extension_schema_and_examples_validate():
     Draft202012Validator.check_schema(SCHEMA)
     validator = Draft202012Validator(SCHEMA)
@@ -274,10 +301,78 @@ def test_tranche_evaluator_never_throws_for_malformed_json_shapes(record):
     assert receipt["observations"]["validation_status"] == "INVALID_UNRESOLVED"
 
 
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("jurisdiction_graph", "not-a-graph"),
+        ("asset_classification", None),
+        ("account_authority", {**DECISION_CONTEXT["account_authority"], "jurisdiction_refs": [["JNR:US"]]}),
+    ],
+)
+def test_tranche_evaluator_fails_closed_for_malformed_nested_decision_context(
+    monkeypatch, field, value
+):
+    context = copy.deepcopy(DECISION_CONTEXT)
+    context[field] = value
+    monkeypatch.setattr(TRANCHE_MODULE, "_load_decision_context", lambda record: (context, []))
+    receipt = TRANCHE_MODULE.evaluate(copy.deepcopy(TRANCHE_FIXTURE))
+    assert receipt["decision"] == "HOLD"
+    if field in {"jurisdiction_graph", "asset_classification"}:
+        assert receipt["observations"]["validation_status"] == "INVALID_UNRESOLVED"
+        assert any("nested records must be objects" in item["detail"] for item in receipt["exceptions"])
+
+
+def test_decision_context_schema_path_and_digest_are_verifier_controlled():
+    fixture = copy.deepcopy(TRANCHE_FIXTURE)
+    fixture["decision_context"]["schema_uri"] = "../examples/PPT-EZ-CA-0001-m5canon-decision-context.json"
+    fixture["decision_context"]["schema_digest"] = fixture["decision_context"]["digest"]
+    receipt = TRANCHE_MODULE.evaluate(fixture)
+    assert receipt["decision"] == "HOLD"
+    assert any("required schema" in item["detail"] for item in receipt["exceptions"])
+
+
+def test_rfc3339_date_time_format_is_enforced():
+    assert FormatChecker().conforms("NOT-A-VALID-DATE-AT-ALL", "date-time") is False
+
+
 def test_receipt_schema_binds_each_function_id_to_its_exact_uri():
     tampered = copy.deepcopy(TRANCHE_RECEIPT)
     tampered["m5canon"]["functions"][0]["function_uri"] = "urn:m5:function:m5canon:receipt:commit:v1"
     assert not Draft202012Validator(RECEIPT_SCHEMA).is_valid(tampered)
+
+
+def test_receipt_checkpoint_summary_and_context_failures_are_separate():
+    receipt = TRANCHE_MODULE.evaluate(copy.deepcopy(TRANCHE_FIXTURE))
+    summary = receipt["checkpoint_summary"]
+    assert summary == {
+        "required": 5,
+        "satisfied": 1,
+        "unresolved_checkpoint_ids": [
+            "CP-01-FEDERAL-PATHWAY",
+            "CP-02-PUBLIC-GRANTEE",
+            "CP-03-CAPITAL-AUTHORITY",
+            "CP-04-ESCROW-READY",
+        ],
+        "unresolved_context_requirements": summary["unresolved_context_requirements"],
+    }
+    assert "ASSET_CLASSIFICATION" in summary["unresolved_context_requirements"]
+
+
+def test_early_validation_failure_retains_context_requirements():
+    fixture = copy.deepcopy(TRANCHE_FIXTURE)
+    fixture["documents"].append(copy.deepcopy(fixture["documents"][0]))
+    receipt = TRANCHE_MODULE.evaluate(fixture)
+    codes = {item["code"] for item in receipt["exceptions"]}
+    assert "INPUT_VALIDATION_FAILED" in codes
+    assert "ASSET_CLASSIFICATION" in codes
+    assert "MANDATE" in codes
+    assert receipt["checkpoint_summary"]["unresolved_checkpoint_ids"] == [
+        "CP-01-FEDERAL-PATHWAY",
+        "CP-02-PUBLIC-GRANTEE",
+        "CP-03-CAPITAL-AUTHORITY",
+        "CP-04-ESCROW-READY",
+    ]
+    assert "CP-01-FEDERAL-PATHWAY" in codes
 
 
 def test_receipt_access_defaults_to_deny_and_requires_credentials_and_log():
@@ -286,47 +381,70 @@ def test_receipt_access_defaults_to_deny_and_requires_credentials_and_log():
             TRANCHE_RECEIPT,
             DECISION_CONTEXT,
             grantee_ref="UNKNOWN",
-            credential_refs=set(),
-            jurisdiction_refs=set(),
+            verified_credentials=[],
             access_purpose="AUTHORIZED_EXAMINATION",
-            access_log_ref="ACCESS-LOG-001",
+            access_log_receipt={},
             observed_at="2026-09-20T00:00:00Z",
         )
-    with pytest.raises(PermissionError, match="credential"):
+
+
+def test_placeholder_grantee_cannot_be_promoted_to_protected_access():
+    context = copy.deepcopy(DECISION_CONTEXT)
+    grant = context["receipt_access_policy"]["grants"][1]
+    grant.update({
+        "access_state": "AUTHORIZED",
+        "legal_basis_refs": ["LAW-US-EXAMINATION-001"],
+        "access_log_receipt_ref": "ACCESS-LOG-PLACEHOLDER-001",
+    })
+    with pytest.raises(PermissionError, match="placeholder grantee"):
+        TRANCHE_MODULE.render_receipt_view(
+            TRANCHE_RECEIPT,
+            context,
+            grantee_ref=grant["grantee_ref"],
+            verified_credentials=[verified_credential(
+                "CREDENTIAL-AUTHORIZED-REGULATOR",
+                grant["grantee_ref"],
+                ["JNR:US"],
+            )],
+            access_purpose=grant["access_purpose"],
+            access_log_receipt=committed_access_log(
+                grant["grant_id"],
+                grant["grantee_ref"],
+                grant["access_purpose"],
+                grant["access_log_receipt_ref"],
+            ),
+            observed_at="2026-09-20T00:00:00Z",
+        )
+    with pytest.raises(PermissionError, match="denied"):
         TRANCHE_MODULE.render_receipt_view(
             TRANCHE_RECEIPT,
             DECISION_CONTEXT,
             grantee_ref="AUTHORIZED-REGULATOR-ROLE-TBD",
-            credential_refs=set(),
-            jurisdiction_refs={"JNR:US"},
+            verified_credentials=[verified_credential(
+                "CREDENTIAL-AUTHORIZED-REGULATOR",
+                "AUTHORIZED-REGULATOR-ROLE-TBD",
+                ["JNR:US"],
+            )],
             access_purpose="AUTHORIZED_EXAMINATION",
-            access_log_ref="ACCESS-LOG-001",
+            access_log_receipt={},
             observed_at="2026-09-20T00:00:00Z",
         )
-    view = TRANCHE_MODULE.render_receipt_view(
-        TRANCHE_RECEIPT,
-        DECISION_CONTEXT,
-        grantee_ref="AUTHORIZED-REGULATOR-ROLE-TBD",
-        credential_refs={"CREDENTIAL-AUTHORIZED-REGULATOR"},
-        jurisdiction_refs={"JNR:US"},
-        access_purpose="AUTHORIZED_EXAMINATION",
-        access_log_ref="ACCESS-LOG-001",
-        observed_at="2026-09-20T00:00:00Z",
-    )
-    assert view["access_log_ref"] == "ACCESS-LOG-001"
-    assert set(view["view"]) == set(view["field_scope"])
-    assert "receipt_id" not in view["view"]
 
 
 def test_public_receipt_view_excludes_authority_details():
+    access_log = committed_access_log(
+        "ACCESS-PUBLIC-SUMMARY",
+        "PUBLIC",
+        "PUBLIC_SYNTHETIC_REVIEW",
+        "ACCESS-LOG-PUBLIC-001",
+    )
     view = TRANCHE_MODULE.render_receipt_view(
         TRANCHE_RECEIPT,
         DECISION_CONTEXT,
         grantee_ref="PUBLIC",
-        credential_refs=set(),
-        jurisdiction_refs=set(),
+        verified_credentials=[],
         access_purpose="PUBLIC_SYNTHETIC_REVIEW",
-        access_log_ref="ACCESS-LOG-PUBLIC-001",
+        access_log_receipt=access_log,
         observed_at="2026-09-20T00:00:00Z",
     )
     assert set(view["view"]) == {"decision", "safety", "public_exceptions"}
@@ -334,26 +452,51 @@ def test_public_receipt_view_excludes_authority_details():
 
 
 def test_receipt_access_enforces_jurisdiction_validity_and_revocation():
+    context = copy.deepcopy(DECISION_CONTEXT)
+    grant = context["receipt_access_policy"]["grants"][1]
+    grant.update({
+        "grantee_ref": "REGULATOR-US-001",
+        "access_state": "AUTHORIZED",
+        "legal_basis_refs": ["LAW-US-EXAMINATION-001"],
+        "access_log_receipt_ref": "ACCESS-LOG-REGULATOR-001",
+    })
+    access_log = committed_access_log(
+        grant["grant_id"],
+        grant["grantee_ref"],
+        grant["access_purpose"],
+        grant["access_log_receipt_ref"],
+    )
     arguments = {
         "receipt": TRANCHE_RECEIPT,
-        "decision_context": DECISION_CONTEXT,
-        "grantee_ref": "AUTHORIZED-REGULATOR-ROLE-TBD",
-        "credential_refs": {"CREDENTIAL-AUTHORIZED-REGULATOR"},
-        "jurisdiction_refs": set(),
+        "decision_context": context,
+        "grantee_ref": grant["grantee_ref"],
+        "verified_credentials": [verified_credential(
+            "CREDENTIAL-AUTHORIZED-REGULATOR",
+            grant["grantee_ref"],
+        )],
         "access_purpose": "AUTHORIZED_EXAMINATION",
-        "access_log_ref": "ACCESS-LOG-001",
+        "access_log_receipt": access_log,
         "observed_at": "2026-09-20T00:00:00Z",
     }
     with pytest.raises(PermissionError, match="jurisdiction"):
         TRANCHE_MODULE.render_receipt_view(**arguments)
-    arguments["jurisdiction_refs"] = {"JNR:US"}
+    arguments["verified_credentials"][0]["jurisdiction_refs"] = ["JNR:US"]
     arguments["observed_at"] = "2026-09-19T23:59:59Z"
-    with pytest.raises(PermissionError, match="not yet effective"):
+    with pytest.raises(PermissionError, match="credential verification failed"):
         TRANCHE_MODULE.render_receipt_view(**arguments)
-    revoked = copy.deepcopy(DECISION_CONTEXT)
+    arguments["observed_at"] = "2026-09-20T00:00:00Z"
+    tampered_log = copy.deepcopy(access_log)
+    tampered_log["status"] = "PENDING"
+    arguments["access_log_receipt"] = tampered_log
+    with pytest.raises(PermissionError, match="not committed or bound"):
+        TRANCHE_MODULE.render_receipt_view(**arguments)
+    arguments["access_log_receipt"] = access_log
+    view = TRANCHE_MODULE.render_receipt_view(**arguments)
+    assert view["access_log_ref"] == "ACCESS-LOG-REGULATOR-001"
+    assert set(view["view"]) == set(view["field_scope"])
+    revoked = copy.deepcopy(context)
     revoked["receipt_access_policy"]["grants"][1]["revocation_ref"] = "REVOCATION-001"
     arguments["decision_context"] = revoked
-    arguments["observed_at"] = "2026-09-20T00:00:00Z"
     with pytest.raises(PermissionError, match="revoked"):
         TRANCHE_MODULE.render_receipt_view(**arguments)
 
@@ -426,8 +569,90 @@ def test_current_authority_and_routes_require_resolved_authoritative_evidence():
     for requirement in context["institutional_route"]["requirements"]:
         requirement.update({"status": "CURRENT", "evidence_refs": ["FAKE-EVIDENCE"]})
     errors, _ = TRANCHE_MODULE._decision_context_errors(context, {})
-    assert any("resolved authoritative evidence" in error for error in errors)
-    assert any("evidence is unresolved or non-authoritative" in error for error in errors)
+    assert any("claim-bound authoritative evidence" in error for error in errors)
+    assert any("evidence is not claim-bound" in error for error in errors)
+
+
+def test_one_unrelated_evidence_claim_cannot_satisfy_distinct_authority_claims():
+    context = copy.deepcopy(DECISION_CONTEXT)
+    unrelated_claim = {
+        "evidence_ref": "EVIDENCE-OTHER",
+        "subject_ref": "UNRELATED-SUBJECT",
+        "claim_type": "ASSET_CLASSIFICATION",
+        "issuer_ref": "UNRELATED-ISSUER",
+        "source_system": "UNRELATED-SYSTEM",
+        "jurisdiction_ref": None,
+    }
+    evidence = {
+        "EVIDENCE-OTHER": {
+            "evidence_id": "EVIDENCE-OTHER",
+            "subject_ref": "UNRELATED-SUBJECT",
+            "claim_type": "ASSET_CLASSIFICATION",
+            "issuer_ref": "UNRELATED-ISSUER",
+            "source_system": "UNRELATED-SYSTEM",
+            "jurisdiction_ref": None,
+            "status": "CURRENT",
+            "authoritative": True,
+            "synthetic": False,
+            "valid_from": "2026-09-20T00:00:00Z",
+            "valid_until": None,
+            "revocation_state": "NOT_REVOKED",
+        }
+    }
+    authority = context["account_authority"]
+    authority.update({
+        "credential_state": "CURRENT",
+        "delegation_state": "CURRENT",
+        "mandate_state": "CURRENT",
+        "revocation_state": "NOT_REVOKED",
+        "evidence_refs": ["EVIDENCE-OTHER"],
+        "evidence_claims": [unrelated_claim],
+    })
+    errors, _ = TRANCHE_MODULE._decision_context_errors(context, evidence)
+    assert any("current account authority requires claim-bound" in error for error in errors)
+
+
+def test_current_jurisdiction_graph_cannot_mask_pending_children():
+    context = copy.deepcopy(DECISION_CONTEXT)
+    graph = context["jurisdiction_graph"]
+    graph.update({
+        "status": "CURRENT",
+        "evidence_refs": ["EVIDENCE-GRAPH"],
+        "evidence_claims": [{
+            "evidence_ref": "EVIDENCE-GRAPH",
+            "subject_ref": graph["graph_id"],
+            "claim_type": "JURISDICTION_GRAPH",
+            "issuer_ref": "AUTHORITY-GRAPH",
+            "source_system": "OFFICIAL-GRAPH",
+            "jurisdiction_ref": "JNR:US",
+        }],
+    })
+    evidence = {"EVIDENCE-GRAPH": {
+        "evidence_id": "EVIDENCE-GRAPH",
+        "subject_ref": graph["graph_id"],
+        "claim_type": "JURISDICTION_GRAPH",
+        "issuer_ref": "AUTHORITY-GRAPH",
+        "source_system": "OFFICIAL-GRAPH",
+        "jurisdiction_ref": "JNR:US",
+        "status": "CURRENT",
+        "authoritative": True,
+        "synthetic": False,
+        "valid_from": "2026-09-20T00:00:00Z",
+        "valid_until": None,
+        "revocation_state": "NOT_REVOKED",
+    }}
+    errors, _ = TRANCHE_MODULE._decision_context_errors(context, evidence)
+    assert any("current claim-bound nodes and relationships" in error for error in errors)
+
+
+def test_route_requirements_bind_asset_account_and_participant():
+    context = copy.deepcopy(DECISION_CONTEXT)
+    for requirement in context["institutional_route"]["requirements"]:
+        requirement["subject_asset_ref"] = "WRONG-ASSET"
+        requirement["account_or_entity_ref"] = "WRONG-ACCOUNT"
+    errors, _ = TRANCHE_MODULE._decision_context_errors(context)
+    assert sum("subject asset is unresolved" in error for error in errors) == 3
+    assert sum("institution or function semantics mismatch" in error for error in errors) == 3
 
 
 def test_missing_provider_and_revoked_authority_fail_closed(monkeypatch):
@@ -481,6 +706,68 @@ def test_m5_x402_exchange_holds_before_provider_calls():
     assert result["clock_source"] == "FIXTURE_SIMULATION_TIME_UNTRUSTED"
     with pytest.raises(ValueError, match="untrusted fixture time"):
         simulate_x402(clock_source="TRUSTED_SERVER_CLOCK")
+
+
+def test_m5_x402_uses_shared_asset_jurisdiction_and_route_gates(monkeypatch):
+    context = copy.deepcopy(DECISION_CONTEXT)
+    context["asset_classification"].update({
+        "m5_class": "M5",
+        "classification_state": "CURRENT",
+        "retail_access": True,
+    })
+    context["jurisdiction_graph"]["nodes"].append({
+        "jurisdiction_id": "JNR:TRIBAL",
+        "normalized_level": "TRIBAL_INDIGENOUS",
+    })
+    context["jurisdiction_graph"]["relationships"].append({
+        "from_ref": "JNR:TRIBAL",
+        "to_ref": "JNR:US-CA",
+        "relationship_type": "SUBDIVISION_OF",
+    })
+    dttc = next(
+        item for item in context["institutional_route"]["requirements"]
+        if item["requirement_id"] == "ROUTE-REQ-DTTC"
+    )
+    dttc["institution_identifier"] = "DTC"
+    monkeypatch.setattr(X402_MODULE, "_verify_artifact_bindings", lambda info: context)
+    monkeypatch.setattr(
+        X402_MODULE,
+        "_fingerprint",
+        lambda *args, **kwargs: m5_extension(PAYMENT_REQUIRED)["info"]["request_fingerprint"],
+    )
+    result = simulate_x402()
+    details = "\n".join(result["blockers"])
+    assert "M5_RETAIL_ACCESS_PROHIBITED" in details
+    assert "Tribal Nation cannot be reduced" in details
+    assert "ROUTE-REQ-DTTC institution or function semantics mismatch" in details
+
+
+def test_m5_x402_schema_failures_follow_value_error_contract():
+    required = copy.deepcopy(PAYMENT_REQUIRED)
+    del m5_extension(required)["info"]["authority"]
+    with pytest.raises(ValueError, match="schema validation failed"):
+        simulate_x402(required=required)
+
+
+@pytest.mark.parametrize(
+    ("required", "payload"),
+    [
+        ({}, PAYMENT_PAYLOAD),
+        ({**PAYMENT_REQUIRED, "accepts": []}, PAYMENT_PAYLOAD),
+        (PAYMENT_REQUIRED, []),
+    ],
+)
+def test_m5_x402_malformed_shapes_follow_value_error_contract(required, payload):
+    with pytest.raises(ValueError, match="malformed x402 input"):
+        X402_MODULE.simulate(
+            required,
+            payload,
+            SCHEMA,
+            request_method="POST",
+            request_resource=PAYMENT_REQUIRED["resource"]["url"],
+            observed_at=m5_extension(PAYMENT_REQUIRED)["info"]["request_fingerprint"]["issued_at"],
+            clock_source="FIXTURE_SIMULATION_TIME_UNTRUSTED",
+        )
 
 
 def test_m5_x402_rejects_tampered_client_echo():

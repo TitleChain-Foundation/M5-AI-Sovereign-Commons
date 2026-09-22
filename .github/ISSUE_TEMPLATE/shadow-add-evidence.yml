@@ -1,0 +1,66 @@
+name: SHADOW — Add evidence
+description: Add a public record or source to an existing SHADOW asset.
+title: "[SHADOW EVIDENCE] "
+labels: ["shadow", "submission", "evidence"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit only public-safe evidence. Do not include private identity data, account identifiers, credentials, keys, confidential evidence, or personal records. No public form writes directly to `CANONICAL`; evidence enters review.
+  - type: input
+    id: asset_id
+    attributes:
+      label: Asset ID
+      placeholder: SHD-029
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: Evidence type
+      options:
+        - Deed / title
+        - Parcel / assessor
+        - Mortgage / deed of trust
+        - Assignment
+        - Release / satisfaction
+        - Easement / right-of-way
+        - Water / mineral / pipeline right
+        - Environmental record
+        - Auction / disposition
+        - Ownership / entity
+        - Planning / zoning
+        - Debt / servicing
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: source_office
+    attributes:
+      label: Source agency, registry, court, or publisher
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Public source URL
+    validations:
+      required: true
+  - type: input
+    id: instrument
+    attributes:
+      label: Instrument / record number
+  - type: input
+    id: record_date
+    attributes:
+      label: Recorded / effective date
+  - type: textarea
+    id: claim
+    attributes:
+      label: What does this evidence establish?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / file reference

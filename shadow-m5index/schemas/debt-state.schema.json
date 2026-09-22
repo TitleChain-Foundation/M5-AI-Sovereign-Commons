@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TitleChain Debt State",
+  "type": "object",
+  "properties": {
+    "debt_id": {
+      "type": "string"
+    },
+    "asset_id": {
+      "type": "string"
+    },
+    "obligation_identity": {
+      "type": "object"
+    },
+    "original_creditor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_claim_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_servicer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authorized_collector": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assignment_chain": {
+      "type": "array"
+    },
+    "principal_state": {
+      "type": "object"
+    },
+    "interest_state": {
+      "type": "object"
+    },
+    "fee_state": {
+      "type": "object"
+    },
+    "payment_state": {
+      "type": "object"
+    },
+    "modification_state": {
+      "type": "object"
+    },
+    "settlement_state": {
+      "type": "object"
+    },
+    "release_state": {
+      "type": "object"
+    },
+    "cancellation_state": {
+      "type": "object"
+    },
+    "discharge_state": {
+      "type": "object"
+    },
+    "limitation_state": {
+      "type": "object"
+    },
+    "dispute_state": {
+      "type": "object"
+    },
+    "notice_state": {
+      "type": "object"
+    },
+    "collection_authority_state": {
+      "type": "object"
+    },
+    "litigation_state": {
+      "type": "object"
+    },
+    "reporting_state": {
+      "type": "object"
+    },
+    "verification_state": {
+      "type": "object"
+    },
+    "evidence_state": {
+      "type": "object"
+    }
+  }
+}

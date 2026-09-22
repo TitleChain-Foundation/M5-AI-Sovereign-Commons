@@ -41,13 +41,14 @@
     "decision_context": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "version", "digest", "uri", "schema_uri", "supersession_history"],
+      "required": ["id", "version", "digest", "uri", "schema_uri", "schema_digest", "supersession_history"],
       "properties": {
         "id": { "const": "SPRING-COMMONS-FIRST-TRANCHE-DECISION-CONTEXT" },
         "version": { "const": "1.0-draft" },
         "digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
         "uri": { "type": "string", "minLength": 1 },
         "schema_uri": { "type": "string", "minLength": 1 },
+        "schema_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
         "supersession_history": {
           "type": "object",
           "additionalProperties": false,
@@ -113,15 +114,22 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["evidence_id", "evidence_class", "status", "authoritative", "synthetic", "access_class", "source_system"],
+        "required": ["evidence_id", "evidence_class", "subject_ref", "claim_type", "issuer_ref", "jurisdiction_ref", "status", "authoritative", "synthetic", "access_class", "source_system", "valid_from", "valid_until", "revocation_state"],
         "properties": {
           "evidence_id": { "type": "string" },
           "evidence_class": { "type": "string" },
+          "subject_ref": { "type": "string", "minLength": 1 },
+          "claim_type": { "type": "string", "minLength": 1 },
+          "issuer_ref": { "type": "string", "minLength": 1 },
+          "jurisdiction_ref": { "type": ["string", "null"] },
           "status": { "enum": ["CURRENT", "PENDING", "STALE", "REVOKED", "DISPUTED"] },
           "authoritative": { "type": "boolean" },
           "synthetic": { "type": "boolean" },
           "access_class": { "enum": ["PUBLIC", "REGULATOR_OR_QUALIFIED_ASSURANCE", "PRIVATE_PROTECTED"] },
-          "source_system": { "type": "string" }
+          "source_system": { "type": "string", "minLength": 1 },
+          "valid_from": { "type": "string", "format": "date-time" },
+          "valid_until": { "type": ["string", "null"], "format": "date-time" },
+          "revocation_state": { "enum": ["NOT_REVOKED", "REVOKED", "UNRESOLVED"] }
         }
       }
     },

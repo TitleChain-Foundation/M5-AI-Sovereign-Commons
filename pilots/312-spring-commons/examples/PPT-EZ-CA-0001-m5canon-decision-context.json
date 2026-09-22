@@ -24,6 +24,8 @@
     "jurisdiction_graph_ref": "JGRAPH-SPRING-COMMONS-01",
     "receipt_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01",
     "classification_state": "UNRESOLVED",
+    "evidence_refs": [],
+    "evidence_claims": [],
     "investment_rights": true
   },
   "external_legal_classification": {
@@ -32,7 +34,8 @@
     "status": "PENDING",
     "qualified_reviewer_ref": "QUALIFIED-SECURITIES-COUNSEL-TBD",
     "legal_basis_refs": [],
-    "evidence_refs": []
+    "evidence_refs": [],
+    "evidence_claims": []
   },
   "jurisdiction_graph": {
     "graph_id": "JGRAPH-SPRING-COMMONS-01",
@@ -48,6 +51,7 @@
         "alias_status": "PROJECT_ALIAS",
         "verification_status": "PENDING",
         "evidence_refs": [],
+        "evidence_claims": [],
         "effective_from": null,
         "expires_at": null,
         "revocation_ref": null,
@@ -63,6 +67,7 @@
         "alias_status": "PROJECT_ALIAS",
         "verification_status": "PENDING",
         "evidence_refs": [],
+        "evidence_claims": [],
         "effective_from": null,
         "expires_at": null,
         "revocation_ref": null,
@@ -78,11 +83,13 @@
         "subject_matter": ["SECURITIES", "BANKING", "PROPERTY"],
         "authority_basis_refs": [],
         "evidence_refs": [],
+        "evidence_claims": [],
         "status": "UNRESOLVED"
       }
     ],
     "subject_matter": ["SECURITIES", "BANKING", "PROPERTY"],
     "evidence_refs": [],
+    "evidence_claims": [],
     "conflicts": [],
     "status": "UNRESOLVED"
   },
@@ -99,7 +106,8 @@
     "mandate_state": "PENDING",
     "jurisdiction_refs": ["JNR:US", "JNR:US-CA"],
     "revocation_state": "UNRESOLVED",
-    "evidence_refs": []
+    "evidence_refs": [],
+    "evidence_claims": []
   },
   "institutional_route": {
     "route_id": "ROUTE-M4-SPRING-COMMONS-US-01",
@@ -120,6 +128,7 @@
         "legal_basis_refs": [],
         "status": "PENDING",
         "evidence_refs": [],
+        "evidence_claims": [],
         "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
       },
       {
@@ -135,6 +144,7 @@
         "legal_basis_refs": [],
         "status": "PENDING",
         "evidence_refs": [],
+        "evidence_claims": [],
         "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
       },
       {
@@ -150,6 +160,7 @@
         "legal_basis_refs": [],
         "status": "PENDING",
         "evidence_refs": [],
+        "evidence_claims": [],
         "receipt_access_policy_ref": "RECEIPT-POLICY-SPRING-COMMONS-01"
       }
     ],
@@ -174,7 +185,7 @@
         "effective_from": "2026-09-20T00:00:00Z",
         "expires_at": null,
         "revocation_ref": null,
-        "access_log_receipt_ref": null
+        "access_log_receipt_ref": "ACCESS-LOG-PUBLIC-001"
       },
       {
         "grant_id": "ACCESS-REGULATOR-EXAMINATION",
@@ -185,7 +196,7 @@
         "field_scope": ["classification", "authority", "approvals", "transfers", "settlement", "reconciliation"],
         "legal_basis_refs": [],
         "credential_requirement_refs": ["CREDENTIAL-AUTHORIZED-REGULATOR"],
-        "access_state": "AUTHORIZED",
+        "access_state": "PENDING",
         "effective_from": "2026-09-20T00:00:00Z",
         "expires_at": null,
         "revocation_ref": null,

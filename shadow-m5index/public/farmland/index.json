@@ -1,0 +1,18 @@
+[
+  {
+    "asset_id": "SHD-024",
+    "name": "Agua Fria parcel",
+    "city": "Peoria",
+    "state": "AZ",
+    "primary_sector": "government",
+    "sector_tags": "farmland;government",
+    "disposition_state": "P6 CLOSED",
+    "transaction_proof_state": "S3 CLOSING_CONFIRMED",
+    "ownership_resolution_state": null,
+    "consideration_usd": 425000,
+    "research_priority": "HIGH",
+    "evidence_state": "SUBMITTED",
+    "completion_pct": 56,
+    "canonical_url": "https://titlechainfoundation.org/shadow/assets/SHD-024"
+  }
+]

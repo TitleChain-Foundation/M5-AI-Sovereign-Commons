@@ -10,9 +10,25 @@
 
 A proposed reference transaction centered on the historic Federal Building & U.S. Courthouse at **312 N. Spring Street, Los Angeles**. The pilot tests whether an existing federal Historic Surplus pathway can preserve public ownership while mobilizing philanthropic, public, tax-credit, mission-aligned private, and operating capital to rehabilitate and reactivate a major civic asset.
 
+[![312 Spring Commons concept plaza](documents/images/312-spring-commons-concept-plaza.jpg)](documents/images/README.md)
+
+*Supplied project concept image—not an architectural drawing, approved plan,
+permit submittal, or representation of completed construction.*
+
 The v0.6 project architecture also tests whether the building can operate as a **productive civic platform**: energy, water, food, communications, circular compute, education, workforce, small-business services, and compatible occupancy operating through one governed asset and transaction framework.
 
 > **Current status: Conditional go / diligence.** The federal Historic Surplus pathway remains to be confirmed as available. Public grantee, operator, final scope, financing, permitted uses, technology selection, and required approvals are not yet established.
+
+The [initiative fit-gap review and milestone plan](INITIATIVE-FIT-GAP-REVIEW.md)
+translates that status into evidence gates for accountable sponsorship,
+community co-design, public-pathway diligence, a controlled first phase, and
+any later expansion.
+
+The [simulated GSA/NPS Historic Monument PBC submission](simulations/gsa-historic-pbc/README.md)
+provides a mock expression of interest, application cover, Program of
+Preservation and Utilization, and all-party completion matrix. Its document
+coverage is simulation-only; every agency, applicant, professional, funding,
+title, and closing requirement remains pending authoritative evidence.
 
 ---
 
@@ -128,6 +144,17 @@ The broader architecture may use the future concept name **M5 Global Index and E
 ### Illustrative $25M private-project tranche
 
 The v0.6 Investor Executive Brief includes an **illustrative $25 million private-project capital tranche** solely to show how private capital could fit within the broader blended stack. It is not an offering and does not state agreed pricing, yield, maturity, collateral, priority, redemption, or exit terms.
+
+**This tranche is not presently secured and is not modeled as a purchase payment
+or bid deposit to GSA.** Under the working Historic Monument Public Benefit
+Conveyance pathway, a qualifying public entity would apply for a restricted
+public-benefit conveyance; financial capacity supports the preservation, use,
+repair, operation, and maintenance plan. See the
+[GSA pathway and application-readiness checklist](update-notes/GSA-PATHWAY-AND-APPLICATION-READINESS.md).
+
+The corresponding [submission simulation](simulations/gsa-historic-pbc/README.md)
+shows how the application materials could be assembled without representing
+that they have been authorized, submitted, approved, or funded.
 
 The intended capital path is:
 

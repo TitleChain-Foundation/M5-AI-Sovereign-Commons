@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Government Asset Extension",
+  "type": "object",
+  "properties": {
+    "Government_Level": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Originating_Agency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "GSA_Location_Code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "GSA_Control_Number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Case_Number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Sale_Number": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Public_Benefit_Eligibility": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Public_Benefit_Window_Open": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Disposition_Method": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Historic_Status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "Deferred_Maintenance": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "Vacancy": {
+      "type": [
+        "number",
+        "null"
+      ]
+    }
+  }
+}

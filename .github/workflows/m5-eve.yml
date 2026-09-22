@@ -1,0 +1,76 @@
+name: M5 Eve reference validation
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/m5-eve.yml"
+      - "m5-eve/**"
+      - "tests/test_m5_eve_adapter.py"
+      - "tests/test_spring_commons_docs.py"
+      - "MANIFEST.sha256"
+      - "LICENSE.md"
+      - "README.md"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/m5-eve.yml"
+      - "m5-eve/**"
+      - "tests/test_m5_eve_adapter.py"
+      - "tests/test_spring_commons_docs.py"
+      - "MANIFEST.sha256"
+      - "LICENSE.md"
+      - "README.md"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install test dependencies
+        run: python -m pip install pytest jsonschema
+
+      - name: Run authority adapter and local-link tests
+        run: |
+          python -m pytest -q \
+            tests/test_m5_eve_adapter.py \
+            tests/test_spring_commons_docs.py::test_local_markdown_links_resolve
+
+      - name: Verify manifest coverage and checksums
+        run: |
+          python - <<'PY'
+          import hashlib
+          import subprocess
+          from pathlib import Path
+
+          entries = {}
+          for line in Path("MANIFEST.sha256").read_text().splitlines():
+              digest, name = line.split("  ", 1)
+              if name in entries:
+                  raise SystemExit(f"duplicate manifest entry: {name}")
+              entries[name] = digest
+
+          tracked = set(
+              subprocess.check_output(["git", "ls-files"], text=True).splitlines()
+          ) - {"MANIFEST.sha256"}
+          if set(entries) != tracked:
+              raise SystemExit(
+                  f"manifest mismatch; missing={sorted(tracked - set(entries))}; "
+                  f"extra={sorted(set(entries) - tracked)}"
+              )
+
+          for name, expected in entries.items():
+              actual = hashlib.sha256(Path(name).read_bytes()).hexdigest()
+              if actual != expected:
+                  raise SystemExit(f"checksum mismatch: {name}")
+          PY

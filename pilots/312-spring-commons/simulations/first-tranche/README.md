@@ -4,6 +4,11 @@
 
 This simulation turns the 23-document Spring Commons draft package into a reproducible stage-gate walkthrough for the illustrative **$25 million private-project tranche** described in the project overview. It demonstrates coverage and readiness; it does not prove that any participant or checkpoint has been approved.
 
+The separate [simulated GSA/NPS submission package](../gsa-historic-pbc/README.md)
+models the public-benefit-conveyance application, preservation/use program,
+and all-party transaction checklist. It does not alter this evaluator's
+`HOLD` decision or satisfy an external checkpoint.
+
 ## What developers can inspect
 
 | Artifact | Purpose |

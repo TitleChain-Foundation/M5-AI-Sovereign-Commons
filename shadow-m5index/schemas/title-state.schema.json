@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TitleChain Asset State",
+  "type": "object",
+  "properties": {
+    "asset_identity": {
+      "type": "object"
+    },
+    "jurisdiction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "title_state": {
+      "type": "object"
+    },
+    "rights_state": {
+      "type": "object"
+    },
+    "encumbrance_state": {
+      "type": "object"
+    },
+    "claims_state": {
+      "type": "object"
+    },
+    "obligations_state": {
+      "type": "object"
+    },
+    "environmental_state": {
+      "type": "object"
+    },
+    "authority_state": {
+      "type": "object"
+    },
+    "transfer_state": {
+      "type": "object"
+    },
+    "dispute_state": {
+      "type": "object"
+    },
+    "verification_state": {
+      "type": "object"
+    },
+    "evidence_state": {
+      "type": "object"
+    }
+  }
+}
