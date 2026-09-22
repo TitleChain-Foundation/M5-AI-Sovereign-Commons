@@ -30,6 +30,7 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
 | How the 312 Spring Commons initiative fits its vision and what blocks launch | [Spring Commons fit-gap review](pilots/312-spring-commons/INITIATIVE-FIT-GAP-REVIEW.md) |
 | How the proposed People's Trust farmland pilot tests the standards | [People's Trust Farmland Project Simulation](pilots/peoples-trust/README.md) |
+| How the proposed UN Commons and 193-Member-State jurisdiction-profile demonstration progresses from V1 through V4 | [Global UN Commons](pilots/global-un-commons/README.md) |
 | I want to understand real-world assets, title state, debt, ownership, banking risk, deal flow, and People's Trust opportunities | [SHADOW M5Index](shadow-m5index/README.md) |
 | How a member-facing conversational workspace can navigate BOM/BOU/BOB/BOI/BOG contexts without creating authority | [M5 Eve Member Workspace](m5-eve/README.md) |
 | What public SEC input says and how it becomes actionable review | [SEC Public Input Summary](sec-public-input/README.md) |
@@ -38,9 +39,82 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 | Which visuals are approved for public orientation | [Visual assets](assets/README.md) |
 | What is safe to publish or how to report a vulnerability | [Public-review boundaries](#public-review-boundaries) and [Security](SECURITY.md) |
 
+## Project simulation sequence
+
+The Commons begins with three progressively broader, public, inspectable
+simulations. They demonstrate process and failure conditions; they are not live
+transactions, approved government programs, offerings, transfer-agent
+appointments, or grants of authority.
+
+### 1. 312 Spring Commons — government and CRE transition
+
+[![312 Spring Commons concept elevation](pilots/312-spring-commons/documents/images/312-spring-commons-concept-elevation.jpg)](pilots/312-spring-commons/README.md)
+
+The first simulation tests a government-to-public real-estate pathway, current
+title and disposition evidence, CRE rehabilitation, capital provenance,
+structured debt and economic-right records, and a separately bounded
+transfer-agent demonstration. Physical conveyance and regulated securities
+recordkeeping remain distinct. **[Explore 312 Spring Commons →](pilots/312-spring-commons/README.md)**
+
+### 2. America's People's Trust Farmland — repeatable stewardship
+
+[![America's People's Trust Farmland project vision](pilots/peoples-trust/visuals/00-project-wish-list.png)](pilots/peoples-trust/README.md)
+
+The second simulation applies the same authority, title, transfer, structured
+debt, stewardship, operator, correction, and evidence separation to farmland.
+The 275,000-acre figure is a research-pipeline target—not owned, controlled, or
+offered acreage. **[Explore the Farmland simulation →](pilots/peoples-trust/README.md)**
+
+### 3. Global UN Commons — international interoperability
+
+[![Global UN Commons V1 concept masterplan](pilots/global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](pilots/global-un-commons/README.md)
+
+*Global UN Commons — concept and design by TitleChain Foundation (2026).*
+
+The third simulation proposes an initial transfer-agent and public-record
+interoperability profile for each of the UN's 193 Member States. It activates
+no nation or government chain: every jurisdiction requires its own lawful
+mandate, accountable operator, authoritative endpoints, and participation.
+The four V1–V4 images are independent concept art, not UN-endorsed plans.
+**[Explore Global UN Commons →](pilots/global-un-commons/README.md)**
+
 **Public review path:** visual orientation -> maintained source text -> scoped
 Discussion or Issue -> evidence and review -> proposed change -> attributable
 decision.
+
+## Featured public research
+
+| Public research surface | Inspect | Status boundary |
+| --- | --- | --- |
+| SHADOW M5Index | [Q3 2026 report](shadow-m5index/reports/SHADOW-CAMEL-REPORT-Q3-2026.md) · [PDF](shadow-m5index/reports/M5Index_SHADOW_CAMEL_Report_Q3_2026.pdf) · [Editable Word](shadow-m5index/reports/M5Index_SHADOW_CAMEL_Report_Q3_2026.docx) · [Research seed and data](shadow-m5index/README.md) · [Public ingestion and QR architecture](docs/SHADOW-M5INDEX-PUBLIC-INGESTION-AND-QR.md) | First-edition public-research release with a preliminary, non-canonical score; not a title report, official rating, live ingestion service, or authority grant |
+| SEC public input | [Public input summary](sec-public-input/README.md) · [Observatory](sec-public-input/observatory/README.md) · [Pilot crosswalk](docs/PILOT-SEC-RFI-CROSSWALK.md) | Public-comment research; not SEC endorsement, rule status, or legal advice |
+
+Featured links point to maintained repository artifacts. Proposed SHADOW web
+routes and QR destinations are not advertised as live until deployment and
+redirect controls are verified.
+
+### SHADOW CAMEL Report — Q3 2026
+
+[![SHADOW CAMEL Report Q3 2026 cover](shadow-m5index/reports/shadow-camel-report-q3-2026-cover.png)](shadow-m5index/reports/M5Index_SHADOW_CAMEL_Report_Q3_2026.pdf)
+
+**TitleChain Foundation research concept and design (2026).** The 23-page first
+edition publishes a preliminary **1.8 / 5 — Band 2 (Stable / Watch)** public-data
+reading with confidence B and methodology v0.1. It is not an official CAMELS
+rating, regulator finding, canonical evidence state, or independently reproduced
+result. **[Read the release boundaries and download both editions →](shadow-m5index/reports/SHADOW-CAMEL-REPORT-Q3-2026.md)**
+
+### Join and improve the index
+
+- **[Set up the free IAM starting account](https://m5bank.app/)** or
+  **[join the public M5POD waitlist](https://m5podactivationdemo.netlify.app/)**.
+- **[Nominate a public asset](https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/issues/new?template=shadow-new-asset.yml)**.
+- **[Add registry or public-record evidence](https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/issues/new?template=shadow-add-evidence.yml)**.
+- **[Challenge or correct an index record](https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/issues/new?template=shadow-correction.yml)**.
+- **[Join the public discussion](https://github.com/orgs/TitleChain-Foundation/discussions/23)**.
+
+Public submissions enter review as `SUBMITTED`; they cannot overwrite canonical
+records. Joining or contributing creates no credential, membership, title,
+investment right, project role, or authority.
 
 ## Proposed standards
 
@@ -151,6 +225,7 @@ Supporting public-review materials:
 - [Pilot and SEC Request-for-Input Crosswalk](docs/PILOT-SEC-RFI-CROSSWALK.md)
 - [People's Trust Public Pilot Library](pilots/peoples-trust/README.md)
 - [SHADOW M5Index public research seed](shadow-m5index/README.md)
+- [SHADOW M5Index Public Ingestion and QR Architecture](docs/SHADOW-M5INDEX-PUBLIC-INGESTION-AND-QR.md)
 - [SHADOW M5Index Engineering Epic](docs/SHADOW-M5INDEX-ENGINEERING-EPIC.md)
 - [M5 Eve Member Workspace](m5-eve/README.md)
 - [SEC Public Input Summary](sec-public-input/README.md)

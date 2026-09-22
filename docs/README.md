@@ -16,6 +16,8 @@ Use this page to choose a path before opening the detailed source documents.
 | Communications | [Sovereign Communications Profile](SOVEREIGN-COMMUNICATIONS-PROFILE.md) | [Threat Model](../THREAT-MODEL.md) |
 | Money, rights, and jurisdiction | [Value Instrument and Jurisdiction Model](VALUE-INSTRUMENT-AND-JURISDICTION.md) | [Draft schemas](../schemas/README.md) and [synthetic examples](../examples/README.md) |
 | People's Trust pilot | [Visual Pilot Library](../pilots/peoples-trust/README.md) | [Pilot specification](PEOPLES-TRUST-PUBLIC-PILOT.md) |
+| Project simulations | [Public Pilot Library](../pilots/README.md) | [312 Spring Commons](../pilots/312-spring-commons/README.md), [America's People's Trust Farmland](../pilots/peoples-trust/README.md), and [Global UN Commons](../pilots/global-un-commons/README.md) |
+| SHADOW public research | [SHADOW M5Index](../shadow-m5index/README.md) | [Public ingestion and QR architecture](SHADOW-M5INDEX-PUBLIC-INGESTION-AND-QR.md) and [engineering epic](SHADOW-M5INDEX-ENGINEERING-EPIC.md) |
 | SEC public input | [SEC Public Input Summary](../sec-public-input/README.md) | [Pilot and SEC RFI Crosswalk](PILOT-SEC-RFI-CROSSWALK.md) |
 
 ## How to read this repository

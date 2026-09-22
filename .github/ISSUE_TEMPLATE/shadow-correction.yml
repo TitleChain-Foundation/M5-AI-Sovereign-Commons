@@ -1,0 +1,70 @@
+name: SHADOW — challenge or correct a record
+description: Challenge a public SHADOW field with a dated authoritative source while preserving correction history.
+title: "[SHADOW correction] "
+labels:
+  - shadow
+  - correction
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Corrections preserve prior evidence and history; they do not silently overwrite the record. A challenge is not automatically accepted as fact.
+
+        Do not include personal data, credentials, private M5POD evidence, confidential files, nonpublic transaction details, or security-sensitive information.
+  - type: input
+    id: asset_id
+    attributes:
+      label: SHADOW Asset ID
+      placeholder: SHD-029
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: Field or claim being challenged
+    validations:
+      required: true
+  - type: textarea
+    id: current_value
+    attributes:
+      label: Current published value or claim
+      description: Quote only the minimum public text needed to identify it.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_correction
+    attributes:
+      label: Proposed correction
+      description: Explain whether the record should be corrected, disputed, marked unresolved, or superseded.
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Authoritative public source URL
+    validations:
+      required: true
+  - type: input
+    id: source_date
+    attributes:
+      label: Source effective/recorded date and retrieval date
+    validations:
+      required: true
+  - type: textarea
+    id: reasoning
+    attributes:
+      label: Why the source changes the scoped claim
+      description: Distinguish a registry field, allegation, filing, award, closing, recorded transfer, title state, and ultimate ownership.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Submission boundaries
+      options:
+        - label: I have the right to submit this public information and source link.
+          required: true
+        - label: I did not include private, personal, confidential, credential, security-sensitive, or nonpublic transaction data.
+          required: true
+        - label: I understand this challenge remains `SUBMITTED` until reviewed and does not directly alter the canonical record.
+          required: true

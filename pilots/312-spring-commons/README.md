@@ -10,6 +10,11 @@
 
 A proposed reference transaction centered on the historic Federal Building & U.S. Courthouse at **312 N. Spring Street, Los Angeles**. The pilot tests whether an existing federal Historic Surplus pathway can preserve public ownership while mobilizing philanthropic, public, tax-credit, mission-aligned private, and operating capital to rehabilitate and reactivate a major civic asset.
 
+[![312 Spring Commons concept plaza](documents/images/312-spring-commons-concept-plaza.jpg)](documents/images/README.md)
+
+*Supplied project concept image—not an architectural drawing, approved plan,
+permit submittal, or representation of completed construction.*
+
 The v0.6 project architecture also tests whether the building can operate as a **productive civic platform**: energy, water, food, communications, circular compute, education, workforce, small-business services, and compatible occupancy operating through one governed asset and transaction framework.
 
 > **Current status: Conditional go / diligence.** The federal Historic Surplus pathway remains to be confirmed as available. Public grantee, operator, final scope, financing, permitted uses, technology selection, and required approvals are not yet established.

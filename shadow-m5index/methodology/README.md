@@ -61,7 +61,7 @@ The asterisks are mandatory. It is not an official regulatory CAMELS rating. The
 
 ## Orbitalys boundary
 
-Orbitalys represents threat vectors and propagation paths. It can identify risks such as stale credentials, title-document tampering, beneficial-owner opacity, debt-data poisoning, jurisdiction bypass, or evidence suppression. It cannot determine legal authority or approve an action. See the [adapter boundary](../reference/orbitalys-adapter/README.md).
+Orbitalys represents threat vectors and propagation paths and is accessed through a privately licensed M5 API integration. It can identify risks such as stale credentials, title-document tampering, beneficial-owner opacity, debt-data poisoning, jurisdiction bypass, or evidence suppression. It cannot determine legal authority or approve an action. The private service, endpoints, credentials, models, and proprietary outputs are not distributed or sublicensed by this repository. See the [adapter and license boundary](../reference/orbitalys-adapter/README.md).
 
 ## People’s Trust review
 

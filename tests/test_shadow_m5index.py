@@ -77,6 +77,17 @@ REQUIRED_DIRECTORIES = {
     "tests",
 }
 
+SHADOW_ISSUE_FORMS = [
+    ROOT / ".github" / "ISSUE_TEMPLATE" / "shadow-new-asset.yml",
+    ROOT / ".github" / "ISSUE_TEMPLATE" / "shadow-add-evidence.yml",
+    ROOT / ".github" / "ISSUE_TEMPLATE" / "shadow-correction.yml",
+]
+
+REPORT_PAGE = SHADOW / "reports" / "SHADOW-CAMEL-REPORT-Q3-2026.md"
+REPORT_PDF = SHADOW / "reports" / "M5Index_SHADOW_CAMEL_Report_Q3_2026.pdf"
+REPORT_DOCX = SHADOW / "reports" / "M5Index_SHADOW_CAMEL_Report_Q3_2026.docx"
+REPORT_COVER = SHADOW / "reports" / "shadow-camel-report-q3-2026-cover.png"
+
 
 def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -194,3 +205,33 @@ def test_research_queues_are_partitioned_without_invented_tasks():
 
     assert len(normalized_tasks) == len(source_tasks) == 13
     assert {row["Task_ID"] for row in normalized_tasks} == {row["Task_ID"] for row in source_tasks}
+
+
+def test_public_contribution_forms_fail_closed_before_canonicalization():
+    for path in SHADOW_ISSUE_FORMS:
+        text = path.read_text()
+        assert "required: true" in text
+        assert "private" in text.lower()
+        assert "canonical" in text.lower()
+
+    evidence_form = SHADOW_ISSUE_FORMS[1].read_text()
+    assert "Public source URL" in evidence_form
+    assert "Source agency, registry, court, or publisher" in evidence_form
+    assert "No public form writes directly to `CANONICAL`" in evidence_form
+
+
+def test_shadow_camel_q3_release_is_immutable_and_non_authoritative():
+    assert sha256(REPORT_COVER) == "a63b06e35ccb7733a464612f7d3a4e399192fc98b266467adbc3c21ab4a2230a"
+    assert sha256(REPORT_PDF) == "363c2527ff153b5f5b1d2ca993ef129c5ee3a4bca2b6ee207000c96c61061000"
+    assert sha256(REPORT_DOCX) == "1a5633c25fad9895eacdc29fe56cbae349c3462fc7e6e3f16d63b5d6c1ec2f0d"
+    assert REPORT_PDF.read_bytes().startswith(b"%PDF-")
+    assert REPORT_DOCX.read_bytes().startswith(b"PK")
+
+    text = REPORT_PAGE.read_text()
+    assert "first-edition public-research release; preliminary and non-canonical" in text
+    assert "1.8 / 5 — Band 2 (Stable / Watch)" in text
+    assert "not an official CAMELS rating" in text
+    assert "not a `CANONICAL` evidence state" in text
+    assert "not been independently reproduced" in text
+    assert "No public form writes directly to `CANONICAL`" not in text
+    assert "does not become `CANONICAL`" in text

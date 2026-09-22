@@ -19,6 +19,8 @@ Pilot-specific and review-specific visuals remain beside the material they
 explain:
 
 - [People's Trust visual library](../pilots/peoples-trust/README.md)
+- [312 Spring Commons project images](../pilots/312-spring-commons/documents/images/README.md)
+- [Global UN Commons concept visuals](../pilots/global-un-commons/visuals/README.md)
 - [SEC public input review](../sec-public-input/README.md)
 
 ## Publication boundary

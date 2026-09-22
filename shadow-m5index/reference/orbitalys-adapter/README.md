@@ -2,6 +2,13 @@
 
 This directory reserves the future public-safe adapter between SHADOW M5Index state/evidence events and Orbitalys threat analysis.
 
+Orbitalys is accessed through the M5 API under a separate private license. The
+private service, API endpoints, credentials, proprietary models, and proprietary
+outputs are not included in this repository and are not licensed under its
+`Apache-2.0` or `CC-BY-4.0` terms. Any repository-authored adapter code may be
+used under the repository license, but it does not grant access to or rights in
+the private integration.
+
 The adapter may:
 
 - accept versioned, public-safe asset-state and provenance events;

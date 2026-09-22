@@ -1,0 +1,90 @@
+name: SHADOW — add registry or public-record evidence
+description: Add a source-linked public registry, deed, lien, filing, disposition, rights, debt, or environmental record.
+title: "[SHADOW evidence] "
+labels:
+  - shadow
+  - evidence
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Public evidence enters SHADOW as `SUBMITTED`. No public form writes directly to `CANONICAL`.
+
+        Link to the authoritative public source whenever possible. Do not post credentials, personal data, private M5POD evidence, confidential title or bank files, private communications, production endpoints, or documents you are not authorized to publish.
+  - type: input
+    id: asset_id
+    attributes:
+      label: SHADOW Asset ID
+      placeholder: SHD-029
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: Evidence type
+      options:
+        - Deed or title instrument
+        - Recorder or assessor record
+        - Mortgage, deed of trust, lien, assignment, or release
+        - Government disposition, auction, award, or closing record
+        - SEC, FDIC, FFIEC, court, or regulator filing
+        - Entity or beneficial-ownership evidence
+        - Easement, water, mineral, pipeline, lease, or other right
+        - Environmental or remediation record
+        - Planning, zoning, permit, or public-benefit record
+        - Correction, supersession, or other public record
+    validations:
+      required: true
+  - type: input
+    id: source_agency
+    attributes:
+      label: Source agency, registry, court, or publisher
+    validations:
+      required: true
+  - type: input
+    id: source_url
+    attributes:
+      label: Public source URL
+    validations:
+      required: true
+  - type: input
+    id: instrument_id
+    attributes:
+      label: Public instrument, filing, parcel, case, or record ID
+      description: Enter `not provided by source` when the public source has no identifier.
+    validations:
+      required: true
+  - type: input
+    id: dates
+    attributes:
+      label: Effective, recorded, filed, and/or observed date
+      placeholder: Recorded YYYY-MM-DD; retrieved YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: scoped_claim
+    attributes:
+      label: Scoped claim supported by this evidence
+      description: Explain exactly what the record supports—and what it does not establish.
+    validations:
+      required: true
+  - type: textarea
+    id: conflict
+    attributes:
+      label: Conflicts, limitations, or superseded records
+      description: Identify any contradiction, missing page, stale field, uncertain entity match, or later record.
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Submission boundaries
+      options:
+        - label: I have the right to submit this public information and source link.
+          required: true
+        - label: I did not include private, personal, confidential, credential, security-sensitive, or nonpublic transaction data.
+          required: true
+        - label: I understand a registry field or submitted document does not by itself establish complete title, ultimate ownership, authority, or transfer readiness.
+          required: true
+        - label: I understand this evidence remains `SUBMITTED` until reviewed and may be disputed, corrected, rejected, or superseded.
+          required: true

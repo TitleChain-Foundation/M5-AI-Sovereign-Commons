@@ -1,6 +1,6 @@
 # Public Pilot Library
 
-![People's Trust public conformance pilot overview](peoples-trust/visuals/pilot-overview.svg)
+![312 Spring Commons concept elevation](312-spring-commons/documents/images/312-spring-commons-concept-elevation.jpg)
 
 This folder is the visual front door to public, inspectable simulations that
 test the Commons against concrete scenarios. A pilot turns standards,
@@ -16,8 +16,20 @@ regulatory status.
 
 | Pilot | What it tests | State |
 | --- | --- | --- |
-| [312 Spring Commons](312-spring-commons/README.md) | Public-title stewardship, community benefit, productive civic infrastructure, capital provenance, and fail-closed first-tranche controls | Conditional go / diligence — no transaction or operational launch |
-| [People's Trust Farmland Project Simulation](peoples-trust/README.md) | Title, stewardship, operations, authority, separately analyzed economic rights, correction, portability, and public-safe evidence | Pilot 001 — sample-data simulation |
+| 1. [312 Spring Commons](312-spring-commons/README.md) | Government/public and CRE disposition, title transition, structured debt, transfer-agent separation, productive civic infrastructure, capital provenance, and fail-closed first-tranche controls | Conditional go / diligence — no transaction or operational launch |
+| 2. [America's People's Trust Farmland](peoples-trust/README.md) | The same title, structured-debt, transfer-agent, stewardship, operations, authority, correction, portability, and public-safe evidence separation applied to farmland | Pilot 001 — sample-data simulation |
+| 3. [Global UN Commons](global-un-commons/README.md) | UN-NY-0001 concept, Open World Convention research, and Phase 1 jurisdiction-profile/transfer-agent interoperability across a proposed 193-Member-State inventory | Independent concept — no UN endorsement, nation-chain activation, or institutional authority |
+
+### Visual sequence
+
+[![312 Spring Commons](312-spring-commons/documents/images/312-spring-commons-concept-plaza.jpg)](312-spring-commons/README.md)
+
+[![America's People's Trust Farmland](peoples-trust/visuals/00-project-wish-list.png)](peoples-trust/README.md)
+
+[![Global UN Commons](global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](global-un-commons/README.md)
+
+*Global UN Commons — concept and design by TitleChain Foundation (2026). Reuse
+requires visible attribution; no UN or Member State endorsement is implied.*
 
 ## How pilots connect to the Commons
 
