@@ -1,0 +1,65 @@
+{
+  "policy_result": "ALLOW",
+  "policy_version": "SYN-POLICY-1",
+  "principal_ref": "SYN-M5HUM-001",
+  "agent_ref": "SYN-M5AGT-001",
+  "activation_ref": "SYN-EVE-001",
+  "capability_ref": "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1",
+  "purpose": "synthetic-review",
+  "resource_ref": "SYN-ASSET-001",
+  "namespace_binding_refs": [
+    "SYN-NS-NYC"
+  ],
+  "credential": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "delegation": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "jurisdiction": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "approval": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "provider_standing": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "provider_capability": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "endpoint": {
+    "status": "VALID",
+    "evidence_ref": "urn:m5:synthetic:evidence:1",
+    "effective_at": "2026-09-23T00:00:00Z",
+    "expires_at": "2026-10-23T00:00:00Z"
+  },
+  "authorized": true,
+  "executed": false,
+  "evaluated_at": "2026-09-23T12:00:00Z",
+  "model_result": {
+    "recommendation": "review",
+    "confidence": 0.9
+  },
+  "payment_success": false,
+  "decision_ref": "SYN-POLICY-DECISION-001",
+  "provider_ref": "SYN-PROVIDER-001"
+}

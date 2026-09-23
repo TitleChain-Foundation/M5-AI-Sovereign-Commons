@@ -31,3 +31,8 @@ certification, provider enrollment, production readiness, or external approval.
 
 The maintained standard text controls over diagrams, summaries, examples, and
 implementation notes.
+
+## Event plane and sovereign baseline
+
+- [M5-AIMARKET-001 — Sovereign Intelligence Baseline](M5-AIMARKET-001.md)
+- [M5-EVENT-001 — Event, Metering, Commerce and Threat Profile](M5-EVENT-001.md)

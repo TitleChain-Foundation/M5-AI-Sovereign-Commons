@@ -1,0 +1,461 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:action-authorization:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "policy_result": {
+      "enum": [
+        "ALLOW",
+        "DENY",
+        "HOLD"
+      ]
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "(?i)(latest|unversioned|unknown)"
+      }
+    },
+    "principal_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activation_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capability_ref": {
+      "type": "string",
+      "pattern": "^M5CAP\\.[A-Z_]+(?:\\.[A-Z_]+)+\\.v[1-9][0-9]*$"
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resource_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "namespace_binding_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "jurisdiction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "provider_standing": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "provider_capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "endpoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "authorized": {
+      "type": "boolean"
+    },
+    "executed": {
+      "type": "boolean"
+    },
+    "evaluated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "model_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "recommendation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "recommendation",
+        "confidence"
+      ]
+    },
+    "payment_success": {
+      "type": "boolean"
+    },
+    "decision_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider_ref": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "policy_result",
+    "policy_version",
+    "principal_ref",
+    "agent_ref",
+    "activation_ref",
+    "capability_ref",
+    "purpose",
+    "resource_ref",
+    "namespace_binding_refs",
+    "credential",
+    "delegation",
+    "jurisdiction",
+    "approval",
+    "provider_standing",
+    "provider_capability",
+    "endpoint",
+    "authorized",
+    "executed",
+    "evaluated_at",
+    "model_result",
+    "payment_success",
+    "decision_ref",
+    "provider_ref"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "authorized": {
+            "const": true
+          }
+        },
+        "required": [
+          "authorized"
+        ]
+      },
+      "then": {
+        "properties": {
+          "policy_result": {
+            "const": "ALLOW"
+          },
+          "credential": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "delegation": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "jurisdiction": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "approval": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "provider_standing": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "provider_capability": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "endpoint": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "executed": {
+            "const": true
+          }
+        },
+        "required": [
+          "executed"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorized": {
+            "const": true
+          }
+        }
+      }
+    }
+  ]
+}

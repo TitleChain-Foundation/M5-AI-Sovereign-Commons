@@ -1,0 +1,129 @@
+{
+  "schema_version": "2.0.0",
+  "transaction_id": "SYN-TXN-001",
+  "asset_refs": [
+    "SYN-M3-REALPROPERTY-001"
+  ],
+  "m5_asset_class": "M3",
+  "asset_type": "REAL_PROPERTY",
+  "asset_value": {
+    "amount": "200000000.00",
+    "currency": "USD",
+    "source_ref": "SYN-VALUATION-001",
+    "observed_at": "2026-09-22T18:00:00Z"
+  },
+  "instrument": {
+    "instrument_id": "SYN-M4-NOTE-001",
+    "m5_class": "M4",
+    "instrument_type": "PROJECT_NOTE",
+    "issuer_ref": "SYN-ENTITY-PROJECTCO",
+    "value": {
+      "amount": "25000000.00",
+      "currency": "USD",
+      "source_ref": "SYN-TERM-SHEET-001",
+      "observed_at": "2026-09-22T18:00:00Z"
+    },
+    "underlying_links": [
+      {
+        "asset_ref": "SYN-M3-REALPROPERTY-001",
+        "titleholder_ref": "SYN-ENTITY-PUBLIC-OWNER",
+        "relationship": "REVENUE_RIGHT",
+        "pledge_ref": "SYN-PLEDGE-001",
+        "allocated_value": {
+          "amount": "8000000.00",
+          "currency": "USD",
+          "source_ref": "SYN-TERM-SHEET-001",
+          "observed_at": "2026-09-22T18:00:00Z"
+        },
+        "priority": 1,
+        "authority_evidence_ref": "SYN-AUTH-LEASE-001",
+        "rehypothecation_state": "HUMAN_REVIEW_REQUIRED"
+      }
+    ]
+  },
+  "entity_relationships": [
+    {
+      "entity_ref": "SYN-ENTITY-PUBLIC-OWNER",
+      "asset_ref": "SYN-M3-REALPROPERTY-001",
+      "relationship": "OWNED",
+      "evidence_ref": "SYN-DEED-001"
+    },
+    {
+      "entity_ref": "SYN-ENTITY-PROJECTCO",
+      "asset_ref": "SYN-M3-REALPROPERTY-001",
+      "relationship": "REVENUE_RIGHT",
+      "evidence_ref": "SYN-AUTH-LEASE-001"
+    }
+  ],
+  "jurisdiction": "US-CA-LA",
+  "fee_events": [
+    {
+      "fee_event_id": "SYN-FEE-001",
+      "m5_class": "M1",
+      "fee_type": "DATA",
+      "product_id": "shadow.asset.evidence",
+      "amount": {
+        "amount": "0.05",
+        "currency": "USD",
+        "source_ref": "SYN-PRICE-V1",
+        "observed_at": "2026-09-22T18:01:00Z"
+      },
+      "provider_ref": "SYN-PROVIDER-SHADOW",
+      "payer_ref": "SYN-CUSTOMER-001",
+      "recipient_ref": "SYN-OPERATOR-001",
+      "usage_event_ref": "SYN-OM-001",
+      "payment_ref": "SYN-X402-001"
+    }
+  ],
+  "authority": {
+    "m5_class": "M5",
+    "decision_ref": "SYN-M5CANON-001",
+    "state": "HUMAN_REVIEW_REQUIRED"
+  },
+  "metering": {
+    "provider": "OpenMeter",
+    "usage_event_refs": [
+      "SYN-OM-001"
+    ]
+  },
+  "settlement": {
+    "method": "x402",
+    "asset": "USDC",
+    "network": "SYNTHETIC_TESTNET",
+    "payment_ref": "SYN-X402-001",
+    "state": "QUOTED"
+  },
+  "provenance": [
+    {
+      "ref_id": "SYN-DEED-001",
+      "kind": "authoritative_title_reference",
+      "uri": null
+    },
+    {
+      "ref_id": "SYN-AUTH-LEASE-001",
+      "kind": "synthetic_authority_reference",
+      "uri": null
+    }
+  ],
+  "occurred_at": "2026-09-22T18:01:00Z",
+  "supersedes": null,
+  "intelligence_usage": [
+    {
+      "runtime": "LAYA_LOCAL",
+      "task_type": "classify_asset_evidence",
+      "usage_event_ref": "SYN-LAYA-USAGE-001",
+      "provider_cost_usd": "0.00",
+      "billable": false
+    },
+    {
+      "runtime": "JEV_HOSTED",
+      "task_type": "batch_public_index_classification",
+      "usage_event_ref": "SYN-JEV-USAGE-001",
+      "provider_cost_usd": "0.01",
+      "billable": true
+    }
+  ],
+  "jurisdiction_binding_refs": [
+    "SYN-JUR-001"
+  ]
+}

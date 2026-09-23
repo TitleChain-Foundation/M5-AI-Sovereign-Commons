@@ -40,3 +40,27 @@ is deliberately separate from the synthetic conformance fixtures above. It
 contains no Ownership Key, recovery card, wallet secret, legal name, or private
 M5POD identifier, and it does not prove ownership, authority, consent, patent
 rights, legal effect, or device compliance.
+
+- [m5-jurisdiction-binding](m5-jurisdiction-binding.example.json) — [schema](../schemas/m5-jurisdiction-binding.schema.json).
+
+- [m5-credential-trust-record](m5-credential-trust-record.example.json) — [schema](../schemas/m5-credential-trust-record.schema.json).
+
+- [m5-event-envelope](m5-event-envelope.example.json) — [schema](../schemas/m5-event-envelope.schema.json).
+
+- [orbitalys-threat-vector](orbitalys-threat-vector.example.json) — [schema](../schemas/orbitalys-threat-vector.schema.json).
+
+- [m5-service-event-manifest](m5-service-event-manifest.example.json) — [schema](../schemas/m5-service-event-manifest.schema.json).
+
+- [m5-intelligence-request](m5-intelligence-request-laya-local.example.json) — [schema](../schemas/m5-intelligence-request.schema.json).
+
+- [m5-intelligence-routing-receipt](m5-intelligence-routing-receipt-laya.example.json) — [schema](../schemas/m5-intelligence-routing-receipt.schema.json).
+
+- [m5-transaction-footprint](m5-transaction-footprint-property.example.json) — [schema](../schemas/m5-transaction-footprint.schema.json).
+
+- [m5-commerce-receipt](m5-commerce-receipt-laya-local.example.json) — [schema](../schemas/m5-commerce-receipt.schema.json).
+
+- [m5-action-authorization](m5-action-authorization.example.json) — [schema](../schemas/m5-action-authorization.schema.json).
+
+- [m5-bom-sovereign-baseline](m5-bom-sovereign-baseline.example.json) — [schema](../schemas/m5-bom-sovereign-baseline.schema.json).
+
+- [m5-eve-activation](m5-eve-activation.example.json) — [schema](../schemas/m5-eve-activation.schema.json).

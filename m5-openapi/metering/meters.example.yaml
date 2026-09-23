@@ -1,0 +1,89 @@
+{
+  "status": "SYNTHETIC_REFERENCE_NOT_OPENMETER_CONFIG",
+  "meters": [
+    {
+      "slug": "evidence_submitted",
+      "version": "1.0.0",
+      "event_type": "m5.commons.evidence.submit",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "source_ingest",
+      "version": "1.0.0",
+      "event_type": "m5.source.ingest",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "evidence_verified",
+      "version": "1.0.0",
+      "event_type": "m5.evidence.verify",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "evidence_corrob",
+      "version": "1.0.0",
+      "event_type": "m5.evidence.corroborate",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "asset_query",
+      "version": "1.0.0",
+      "event_type": "m5.asset.state.basic",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "evidence_bundle",
+      "version": "1.0.0",
+      "event_type": "m5.asset.evidence.bundle",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "debt_query",
+      "version": "1.0.0",
+      "event_type": "m5.asset.debt.encumbrance",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "title_query",
+      "version": "1.0.0",
+      "event_type": "m5.asset.title.state",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "shadow_analysis",
+      "version": "1.0.0",
+      "event_type": "m5.shadow.analysis",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "change_event",
+      "version": "1.0.0",
+      "event_type": "m5.change.event.delivery",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "m5canon_eval",
+      "version": "1.0.0",
+      "event_type": "m5.m5canon.evaluate",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    },
+    {
+      "slug": "evidence_queries",
+      "version": "1.0.0",
+      "event_type": "title.record.located",
+      "aggregation": "SUM",
+      "value_property": "$.data.units"
+    }
+  ]
+}

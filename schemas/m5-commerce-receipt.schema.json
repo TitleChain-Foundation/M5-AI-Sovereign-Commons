@@ -1,0 +1,577 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:commerce-receipt:v2",
+  "title": "M5 Commerce Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "commerce_receipt_id",
+    "request_id",
+    "principal_ref",
+    "product_id",
+    "provider_ref",
+    "runtime",
+    "authority_decision_ref",
+    "entitlement_type",
+    "meter",
+    "quantity",
+    "price_quote",
+    "billable",
+    "execution_result",
+    "created_at",
+    "versions",
+    "billing_policy",
+    "reference_value_usd",
+    "billed_amount_usd",
+    "payment"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "commerce_receipt_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "principal_ref": {
+      "type": "string"
+    },
+    "agent_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "transaction_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "asset_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "m5_tags": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "M1",
+          "M2",
+          "M3",
+          "M4",
+          "M5"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "provider_ref": {
+      "type": "string"
+    },
+    "runtime": {
+      "enum": [
+        "DETERMINISTIC_CODE",
+        "LAYA_LOCAL",
+        "LOCAL_GENERATIVE",
+        "JEV_HOSTED",
+        "HOSTED_SYSTEM_ONE_OTHER",
+        "HOSTED_GENERATIVE",
+        "API_DATA",
+        "OTHER"
+      ]
+    },
+    "authority_decision_ref": {
+      "type": "string"
+    },
+    "entitlement_type": {
+      "enum": [
+        "LOCAL_SOVEREIGN",
+        "FREE",
+        "PLAN_INCLUDED",
+        "PREPAID_BALANCE",
+        "ENTERPRISE_CONTRACT",
+        "X402_PAY_PER_USE",
+        "INVOICE"
+      ]
+    },
+    "meter": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "quantity": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "price_quote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "price_version",
+        "currency",
+        "unit_price",
+        "quoted_total",
+        "quoted_at"
+      ],
+      "properties": {
+        "price_version": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "unit_price": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]+)?$"
+        },
+        "quoted_total": {
+          "type": "string",
+          "pattern": "^[0-9]+(\\.[0-9]+)?$"
+        },
+        "quoted_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "billable": {
+      "type": "boolean"
+    },
+    "payment": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "method",
+            "state"
+          ],
+          "properties": {
+            "method": {
+              "type": "string"
+            },
+            "payment_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "settlement_asset": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "network": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "amount": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "state": {
+              "enum": [
+                "QUOTED",
+                "AUTHORIZED",
+                "RECEIVED",
+                "FINAL",
+                "USD_SETTLED",
+                "REFUNDED",
+                "RECONCILED"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "usage_event_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provider_cost": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    },
+    "provider_payable": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    },
+    "platform_fee": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    },
+    "execution_result": {
+      "enum": [
+        "DELIVERED",
+        "DENIED",
+        "FAILED",
+        "HUMAN_REVIEW_REQUIRED"
+      ]
+    },
+    "evidence_digest": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "settled_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adapter_revision": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "m5canon_policy_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "event_contract_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "meter_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "reference_catalog_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "settlement_adapter_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "activation_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "runtime_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_family": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_revision": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_artifact_hash": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            {
+              "const": null
+            }
+          ]
+        }
+      },
+      "required": [
+        "adapter_revision",
+        "m5canon_policy_version",
+        "event_contract_version",
+        "meter_version",
+        "reference_catalog_version",
+        "settlement_adapter_version",
+        "activation_version",
+        "runtime_version",
+        "api_version",
+        "model_family",
+        "model_revision",
+        "model_artifact_hash"
+      ],
+      "description": "Use NOT_APPLICABLE for absent components, never floating latest. Hash is required for local model artifacts by semantic validation."
+    },
+    "billing_policy": {
+      "enum": [
+        "LOCAL_SOVEREIGN",
+        "FREE_PUBLIC",
+        "PLAN_INCLUDED",
+        "PREPAID",
+        "CONTRACT",
+        "INVOICE",
+        "X402"
+      ]
+    },
+    "reference_value_usd": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    },
+    "billed_amount_usd": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "billing_policy": {
+            "enum": [
+              "FREE_PUBLIC",
+              "LOCAL_SOVEREIGN"
+            ]
+          }
+        },
+        "required": [
+          "billing_policy"
+        ]
+      },
+      "then": {
+        "properties": {
+          "billable": {
+            "const": false
+          },
+          "billed_amount_usd": {
+            "type": "string",
+            "pattern": "^0+(\\.0+)?$"
+          },
+          "payment": {
+            "const": null
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "entitlement_type": {
+            "const": "LOCAL_SOVEREIGN"
+          }
+        },
+        "required": [
+          "entitlement_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "billing_policy": {
+            "const": "LOCAL_SOVEREIGN"
+          },
+          "billable": {
+            "const": false
+          },
+          "payment": {
+            "const": null
+          },
+          "meter": {
+            "const": null
+          },
+          "quantity": {
+            "const": null
+          },
+          "price_quote": {
+            "properties": {
+              "unit_price": {
+                "type": "string",
+                "pattern": "^0+(\\.0+)?$"
+              },
+              "quoted_total": {
+                "type": "string",
+                "pattern": "^0+(\\.0+)?$"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "execution_result": {
+            "enum": [
+              "DENIED",
+              "FAILED",
+              "HUMAN_REVIEW_REQUIRED"
+            ]
+          }
+        },
+        "required": [
+          "execution_result"
+        ]
+      },
+      "then": {
+        "properties": {
+          "billable": {
+            "const": false
+          },
+          "billed_amount_usd": {
+            "type": "string",
+            "pattern": "^0+(\\.0+)?$"
+          },
+          "payment": {
+            "const": null
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "billing_policy": {
+            "const": "LOCAL_SOVEREIGN"
+          }
+        },
+        "required": [
+          "billing_policy"
+        ]
+      },
+      "then": {
+        "properties": {
+          "entitlement_type": {
+            "const": "LOCAL_SOVEREIGN"
+          },
+          "reference_value_usd": {
+            "type": "string",
+            "pattern": "^0+(\\.0+)?$"
+          },
+          "meter": {
+            "const": null
+          },
+          "quantity": {
+            "const": null
+          },
+          "price_quote": {
+            "properties": {
+              "unit_price": {
+                "type": "string",
+                "pattern": "^0+(\\.0+)?$"
+              },
+              "quoted_total": {
+                "type": "string",
+                "pattern": "^0+(\\.0+)?$"
+              }
+            }
+          },
+          "provider_payable": {
+            "type": "string",
+            "pattern": "^0+(\\.0+)?$"
+          },
+          "platform_fee": {
+            "type": "string",
+            "pattern": "^0+(\\.0+)?$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "runtime": {
+            "enum": [
+              "LAYA_LOCAL",
+              "LOCAL_GENERATIVE"
+            ]
+          }
+        },
+        "required": [
+          "runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "versions": {
+            "properties": {
+              "model_artifact_hash": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

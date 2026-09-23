@@ -1,0 +1,543 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:transaction-footprint:v2",
+  "title": "M5 Transaction Footprint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "transaction_id",
+    "asset_refs",
+    "m5_asset_class",
+    "asset_type",
+    "asset_value",
+    "jurisdiction",
+    "fee_events",
+    "authority",
+    "provenance",
+    "occurred_at",
+    "jurisdiction_binding_refs"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "transaction_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "m5_asset_class": {
+      "enum": [
+        "M1",
+        "M2",
+        "M3",
+        "M4",
+        "M5"
+      ]
+    },
+    "asset_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "asset_value": {
+      "$ref": "#/$defs/value"
+    },
+    "instrument": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/instrument"
+        }
+      ]
+    },
+    "entity_relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entityRelationship"
+      }
+    },
+    "jurisdiction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fee_events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/feeEvent"
+      }
+    },
+    "authority": {
+      "$ref": "#/$defs/authority"
+    },
+    "metering": {
+      "$ref": "#/$defs/metering"
+    },
+    "settlement": {
+      "$ref": "#/$defs/settlement"
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "intelligence_usage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "runtime",
+          "task_type",
+          "billable"
+        ],
+        "properties": {
+          "runtime": {
+            "enum": [
+              "DETERMINISTIC_CODE",
+              "LAYA_LOCAL",
+              "LOCAL_GENERATIVE",
+              "JEV_HOSTED",
+              "HOSTED_SYSTEM_ONE_OTHER",
+              "HOSTED_GENERATIVE"
+            ]
+          },
+          "task_type": {
+            "type": "string"
+          },
+          "usage_event_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "provider_cost_usd": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9]+(\\.[0-9]+)?$"
+          },
+          "billable": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "jurisdiction_binding_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "currency",
+        "source_ref",
+        "observed_at"
+      ],
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[0-9]+(\\.[0-9]+)?$"
+        },
+        "currency": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      }
+    },
+    "instrument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instrument_id",
+        "m5_class",
+        "instrument_type",
+        "issuer_ref",
+        "value",
+        "underlying_links"
+      ],
+      "properties": {
+        "instrument_id": {
+          "type": "string"
+        },
+        "m5_class": {
+          "const": "M4"
+        },
+        "instrument_type": {
+          "type": "string"
+        },
+        "issuer_ref": {
+          "type": "string"
+        },
+        "value": {
+          "$ref": "#/$defs/value"
+        },
+        "underlying_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "asset_ref",
+              "titleholder_ref",
+              "relationship",
+              "authority_evidence_ref",
+              "rehypothecation_state"
+            ],
+            "properties": {
+              "asset_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "titleholder_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "relationship": {
+                "enum": [
+                  "OWNED",
+                  "LEASED",
+                  "LICENSED",
+                  "COLLATERAL",
+                  "SECURITY_INTEREST",
+                  "REVENUE_RIGHT",
+                  "BENEFICIAL_RIGHT",
+                  "OPERATING_RIGHT",
+                  "NONE",
+                  "UNRESOLVED"
+                ]
+              },
+              "pledge_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "allocated_value": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "$ref": "#/$defs/value"
+                  }
+                ]
+              },
+              "priority": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 1
+              },
+              "authority_evidence_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "rehypothecation_state": {
+                "enum": [
+                  "AVAILABLE_FOR_REVIEW",
+                  "PARTIALLY_ENCUMBERED",
+                  "FULLY_ENCUMBERED",
+                  "CONFLICTING_CLAIM",
+                  "TITLE_OR_AUTHORITY_UNRESOLVED",
+                  "DENY",
+                  "HUMAN_REVIEW_REQUIRED"
+                ]
+              }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "entityRelationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entity_ref",
+        "asset_ref",
+        "relationship"
+      ],
+      "properties": {
+        "entity_ref": {
+          "type": "string"
+        },
+        "asset_ref": {
+          "type": "string"
+        },
+        "relationship": {
+          "enum": [
+            "OWNED",
+            "LEASED",
+            "LICENSED",
+            "COLLATERAL",
+            "SECURITY_INTEREST",
+            "REVENUE_RIGHT",
+            "BENEFICIAL_RIGHT",
+            "OPERATING_RIGHT",
+            "NONE",
+            "UNRESOLVED"
+          ]
+        },
+        "evidence_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "feeEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fee_event_id",
+        "m5_class",
+        "fee_type",
+        "product_id",
+        "amount",
+        "provider_ref"
+      ],
+      "properties": {
+        "fee_event_id": {
+          "type": "string"
+        },
+        "m5_class": {
+          "const": "M1"
+        },
+        "fee_type": {
+          "enum": [
+            "UTILITY",
+            "COMPUTE",
+            "DATA",
+            "MODEL",
+            "PROFESSIONAL_SERVICE",
+            "REGULATED_SERVICE",
+            "NETWORK",
+            "SETTLEMENT",
+            "STATUTORY_FEE",
+            "TAX",
+            "INSURANCE",
+            "FINANCING",
+            "ADMINISTRATIVE",
+            "OTHER"
+          ]
+        },
+        "product_id": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/$defs/value"
+        },
+        "provider_ref": {
+          "type": "string"
+        },
+        "payer_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "recipient_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usage_event_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "payment_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "m5_class",
+        "decision_ref",
+        "state"
+      ],
+      "properties": {
+        "m5_class": {
+          "const": "M5"
+        },
+        "decision_ref": {
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "ALLOW",
+            "DENY",
+            "HUMAN_REVIEW_REQUIRED",
+            "UNRESOLVED"
+          ]
+        }
+      }
+    },
+    "metering": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "usage_event_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "settlement": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "asset": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "network": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "payment_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "enum": [
+            "NONE",
+            "QUOTED",
+            "AUTHORIZED",
+            "RECEIVED",
+            "FINAL",
+            "USD_SETTLED",
+            "REFUNDED",
+            "RECONCILED"
+          ]
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ref_id",
+        "kind"
+      ],
+      "properties": {
+        "ref_id": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "uri": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "m5_asset_class": {
+            "const": "M4"
+          }
+        },
+        "required": [
+          "m5_asset_class"
+        ]
+      },
+      "then": {
+        "required": [
+          "instrument"
+        ],
+        "properties": {
+          "instrument": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ]
+}

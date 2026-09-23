@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:intelligence-routing-receipt:v1",
+  "title": "M5 Intelligence Routing Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "routing_receipt_id",
+    "request_id",
+    "selected_runtime",
+    "routing_outcome",
+    "reasons",
+    "billable",
+    "created_at",
+    "versions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "routing_receipt_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_runtime": {
+      "enum": [
+        "DETERMINISTIC_CODE",
+        "LAYA_LOCAL",
+        "LOCAL_GENERATIVE",
+        "JEV_HOSTED",
+        "HOSTED_SYSTEM_ONE_OTHER",
+        "HOSTED_GENERATIVE",
+        "NONE"
+      ]
+    },
+    "provider_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "routing_outcome": {
+      "enum": [
+        "ROUTED",
+        "NO_ROUTE",
+        "DENIED",
+        "HUMAN_REVIEW_REQUIRED"
+      ]
+    },
+    "reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "estimated_external_cost_usd": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    },
+    "billable": {
+      "type": "boolean"
+    },
+    "authority_precheck_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adapter_revision": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "m5canon_policy_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "event_contract_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "meter_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "reference_catalog_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "settlement_adapter_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "activation_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "runtime_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_family": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_revision": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_artifact_hash": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            {
+              "const": null
+            }
+          ]
+        }
+      },
+      "required": [
+        "adapter_revision",
+        "m5canon_policy_version",
+        "event_contract_version",
+        "meter_version",
+        "reference_catalog_version",
+        "settlement_adapter_version",
+        "activation_version",
+        "runtime_version",
+        "api_version",
+        "model_family",
+        "model_revision",
+        "model_artifact_hash"
+      ],
+      "description": "Use NOT_APPLICABLE for absent components, never floating latest. Hash is required for local model artifacts by semantic validation."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "selected_runtime": {
+            "const": "LAYA_LOCAL"
+          }
+        },
+        "required": [
+          "selected_runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "billable": {
+            "const": false
+          },
+          "estimated_external_cost_usd": {
+            "type": "string",
+            "pattern": "^0+(\\.0+)?$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "selected_runtime": {
+            "enum": [
+              "LAYA_LOCAL",
+              "LOCAL_GENERATIVE"
+            ]
+          }
+        },
+        "required": [
+          "selected_runtime"
+        ]
+      },
+      "then": {
+        "properties": {
+          "versions": {
+            "properties": {
+              "model_artifact_hash": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,21 +1,344 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:m5:schema:sovereign-provider-endpoint:v1",
+  "$id": "urn:m5:schema:sovereign-provider-endpoint:v2",
   "title": "M5 Sovereign Provider Endpoint",
   "description": "Sovereign is descriptive terminology and conveys no governmental or legal status.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "endpoint_id", "provider", "origin", "protocol", "credential_method", "redirect_policy", "data_residency", "capability_function_ids", "lifecycle"],
+  "required": [
+    "schema_version",
+    "endpoint_id",
+    "provider",
+    "origin",
+    "protocol",
+    "credential_method",
+    "redirect_policy",
+    "data_residency",
+    "capability_function_ids",
+    "jurisdiction_binding_refs",
+    "lifecycle"
+  ],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
-    "endpoint_id": {"type": "string", "minLength": 1},
-    "provider": {"type": "object", "additionalProperties": false, "required": ["provider_id", "accountable_entity_ref", "enrollment_status", "verification_status", "endorsed", "evidence_refs"], "properties": {"provider_id": {"type": "string"}, "accountable_entity_ref": {"type": "string"}, "enrollment_status": {"enum": ["not_enrolled", "pending", "enrolled", "suspended", "revoked", "expired"]}, "verification_status": {"enum": ["unverified", "pending", "verified", "failed", "disputed", "expired"]}, "endorsed": {"const": false}, "evidence_refs": {"type": "array", "items": {"type": "string"}}}},
-    "origin": {"type": "string", "format": "uri", "pattern": "^https://[^/]+$"},
-    "protocol": {"enum": ["https", "wss"]},
-    "credential_method": {"type": "string", "minLength": 1},
-    "redirect_policy": {"type": "object", "additionalProperties": false, "required": ["allowed", "allowlist"], "properties": {"allowed": {"type": "boolean"}, "allowlist": {"type": "array", "uniqueItems": true, "items": {"type": "string", "format": "uri"}}}},
-    "data_residency": {"type": "array", "minItems": 1, "items": {"type": "string"}},
-    "capability_function_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^M5CAP\\."}},
-    "lifecycle": {"type": "object", "additionalProperties": false, "required": ["status", "verified_at", "expires_at", "revocation_ref"], "properties": {"status": {"enum": ["pending", "active", "suspended", "revoked", "expired"]}, "verified_at": {"type": ["string", "null"], "format": "date-time"}, "expires_at": {"type": ["string", "null"], "format": "date-time"}, "revocation_ref": {"type": ["string", "null"]}}}
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "endpoint_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "provider_id",
+        "m5_account_ref",
+        "account_type",
+        "accountable_entity_ref",
+        "enrollment_status",
+        "verification_status",
+        "account_lifecycle",
+        "standing",
+        "evidence_stack",
+        "endorsed",
+        "status_checked_at"
+      ],
+      "properties": {
+        "provider_id": {
+          "type": "string"
+        },
+        "m5_account_ref": {
+          "type": "string"
+        },
+        "account_type": {
+          "enum": [
+            "M5BOU",
+            "M5BOB",
+            "M5BOI",
+            "M5BOG"
+          ]
+        },
+        "accountable_entity_ref": {
+          "type": "string"
+        },
+        "parent_account_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "delegation_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "enrollment_status": {
+          "enum": [
+            "not_enrolled",
+            "pending",
+            "enrolled",
+            "suspended",
+            "revoked",
+            "expired"
+          ]
+        },
+        "verification_status": {
+          "enum": [
+            "unverified",
+            "pending",
+            "verified",
+            "failed",
+            "disputed",
+            "expired"
+          ]
+        },
+        "account_lifecycle": {
+          "enum": [
+            "pending",
+            "active",
+            "suspended",
+            "revoked",
+            "expired"
+          ]
+        },
+        "standing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "credential_refs",
+            "verified_at",
+            "expires_at",
+            "revocation_ref"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "GOOD_STANDING",
+                "PENDING",
+                "SUSPENDED",
+                "REVOKED",
+                "EXPIRED",
+                "DISPUTED",
+                "UNKNOWN"
+              ]
+            },
+            "credential_refs": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "verified_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "expires_at": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "date-time"
+            },
+            "revocation_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "evidence_stack": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "evidence_type",
+              "source_ref",
+              "observed_at"
+            ],
+            "properties": {
+              "evidence_type": {
+                "enum": [
+                  "OFFICIAL_REGISTRY",
+                  "OPENCORPORATES",
+                  "LEI",
+                  "VLEI",
+                  "W3C_VC",
+                  "IDENTITY_PROOFING",
+                  "PROFESSIONAL_REGISTRY",
+                  "REGULATORY_REGISTRY",
+                  "OTHER_PROFILED"
+                ]
+              },
+              "source_ref": {
+                "type": "string"
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "endorsed": {
+          "const": false
+        },
+        "status_checked_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "account_type": {
+                "const": "M5BOU"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "parent_account_ref",
+              "delegation_ref"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "account_type": {
+                "const": "M5BOU"
+              }
+            },
+            "required": [
+              "account_type"
+            ]
+          },
+          "then": {
+            "required": [
+              "parent_account_ref",
+              "delegation_ref"
+            ],
+            "properties": {
+              "parent_account_ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "delegation_ref": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "origin": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://[^/]+$"
+    },
+    "protocol": {
+      "enum": [
+        "https",
+        "wss"
+      ]
+    },
+    "credential_method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "redirect_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allowed",
+        "allowlist"
+      ],
+      "properties": {
+        "allowed": {
+          "type": "boolean"
+        },
+        "allowlist": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "data_residency": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "capability_function_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^M5CAP\\."
+      }
+    },
+    "jurisdiction_binding_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "verified_at",
+        "expires_at",
+        "revocation_ref"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "active",
+            "suspended",
+            "revoked",
+            "expired"
+          ]
+        },
+        "verified_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "revocation_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
   }
 }

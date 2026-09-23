@@ -1,33 +1,67 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "plugin_id": "urn:m5:plugin:synthetic-transcriber",
   "provider": {
     "provider_id": "provider:synthetic-lab",
+    "m5_account_ref": "SYN-M5BOB-001",
+    "account_type": "M5BOB",
     "accountable_entity_ref": "entity:example-operator",
+    "parent_account_ref": null,
+    "delegation_ref": null,
     "enrollment_status": "pending",
-    "verification_status": "unverified",
+    "verification_status": "pending",
+    "account_lifecycle": "pending",
+    "standing": {
+      "status": "PENDING",
+      "credential_refs": [
+        "SYN-VC-001"
+      ],
+      "verified_at": null,
+      "expires_at": null,
+      "revocation_ref": null
+    },
+    "evidence_stack": [
+      {
+        "evidence_type": "OFFICIAL_REGISTRY",
+        "source_ref": "SYN-REGISTRY-001",
+        "observed_at": "2026-09-22T20:00:00Z"
+      }
+    ],
     "endorsed": false,
-    "status_checked_at": "2026-09-01T12:00:00Z"
+    "status_checked_at": "2026-09-22T20:00:00Z"
   },
-  "capabilities": [{
-    "function_id": "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1",
-    "named_role": null,
-    "bounded": true,
-    "inputs": ["synthetic-audio"],
-    "outputs": ["synthetic-transcript"]
-  }],
-  "permissions": ["read:submitted-synthetic-audio"],
+  "capabilities": [
+    {
+      "function_id": "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1",
+      "named_role": null,
+      "bounded": true,
+      "inputs": [
+        "synthetic-audio"
+      ],
+      "outputs": [
+        "synthetic-transcript"
+      ]
+    }
+  ],
+  "permissions": [
+    "read:submitted-synthetic-audio"
+  ],
+  "jurisdiction_binding_refs": [
+    "SYN-JUR-001"
+  ],
   "lifecycle": {
     "status": "draft",
-    "effective_at": "2026-09-01T12:00:00Z",
+    "effective_at": "2026-09-22T20:00:00Z",
     "expires_at": null,
     "revocation_ref": null
   },
-  "provenance": [{
-    "sequence": 0,
-    "event_type": "created",
-    "timestamp": "2026-09-01T12:00:00Z",
-    "actor_ref": "human:example-author",
-    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-  }]
+  "provenance": [
+    {
+      "sequence": 0,
+      "event_type": "created",
+      "timestamp": "2026-09-22T20:00:00Z",
+      "actor_ref": "human:example-author",
+      "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ]
 }

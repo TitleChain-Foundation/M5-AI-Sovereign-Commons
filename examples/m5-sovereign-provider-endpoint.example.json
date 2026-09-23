@@ -1,20 +1,51 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "endpoint_id": "endpoint:synthetic-001",
   "provider": {
     "provider_id": "provider:synthetic-lab",
+    "m5_account_ref": "SYN-M5BOB-001",
+    "account_type": "M5BOB",
     "accountable_entity_ref": "entity:example-operator",
+    "parent_account_ref": null,
+    "delegation_ref": null,
     "enrollment_status": "pending",
     "verification_status": "pending",
+    "account_lifecycle": "pending",
+    "standing": {
+      "status": "PENDING",
+      "credential_refs": [
+        "SYN-VC-001"
+      ],
+      "verified_at": null,
+      "expires_at": null,
+      "revocation_ref": null
+    },
+    "evidence_stack": [
+      {
+        "evidence_type": "OFFICIAL_REGISTRY",
+        "source_ref": "SYN-REGISTRY-001",
+        "observed_at": "2026-09-22T20:00:00Z"
+      }
+    ],
     "endorsed": false,
-    "evidence_refs": ["evidence:synthetic-domain-control"]
+    "status_checked_at": "2026-09-22T20:00:00Z"
   },
   "origin": "https://api.example.invalid",
   "protocol": "https",
   "credential_method": "short-lived bearer token",
-  "redirect_policy": {"allowed": false, "allowlist": []},
-  "data_residency": ["synthetic-region-1"],
-  "capability_function_ids": ["M5CAP.RUNTIME.ORCHESTRATE.v1"],
+  "redirect_policy": {
+    "allowed": false,
+    "allowlist": []
+  },
+  "data_residency": [
+    "synthetic-region-1"
+  ],
+  "capability_function_ids": [
+    "M5CAP.RUNTIME.ORCHESTRATE.v1"
+  ],
+  "jurisdiction_binding_refs": [
+    "SYN-JUR-001"
+  ],
   "lifecycle": {
     "status": "pending",
     "verified_at": null,

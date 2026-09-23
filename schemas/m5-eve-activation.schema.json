@@ -1,0 +1,489 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:m5-eve-activation:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "activation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activation_version": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "(?i)(latest|unversioned|unknown)"
+      }
+    },
+    "principal_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principal_kind": {
+      "enum": [
+        "M5HUM",
+        "LAWFUL_ENTITY"
+      ]
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_class": {
+      "const": "M5AGT"
+    },
+    "role": {
+      "type": "string",
+      "minLength": 1
+    },
+    "account_context": {
+      "enum": [
+        "BOM",
+        "BOU",
+        "BOB",
+        "BOI",
+        "BOG"
+      ]
+    },
+    "account_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compartment_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "capability_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^M5CAP\\.[A-Z_]+(?:\\.[A-Z_]+)+\\.v[1-9][0-9]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "provider_classes": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "LAYA_LOCAL",
+          "LOCAL_GENERATIVE",
+          "JEV_HOSTED",
+          "HOSTED_GENERATIVE",
+          "HOSTED_SYSTEM_ONE_OTHER",
+          "DETERMINISTIC_CODE"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "privacy_mode": {
+      "enum": [
+        "LOCAL_ONLY",
+        "PRIVATE",
+        "RESTRICTED",
+        "PUBLIC"
+      ]
+    },
+    "local_required": {
+      "type": "boolean"
+    },
+    "external_allowed": {
+      "type": "boolean"
+    },
+    "data_domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "namespace_binding_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "(?i)(latest|unversioned|unknown)"
+      }
+    },
+    "effective_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lifecycle_state": {
+      "enum": [
+        "PENDING",
+        "ACTIVE",
+        "SUSPENDED",
+        "REVOKED",
+        "EXPIRED"
+      ]
+    },
+    "approval_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "VALID",
+            "PENDING",
+            "MISSING",
+            "REVOKED",
+            "EXPIRED",
+            "DISPUTED",
+            "UNRESOLVED",
+            "DENIED"
+          ]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "effective_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "status",
+        "evidence_ref",
+        "effective_at",
+        "expires_at"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "adapter_revision": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "m5canon_policy_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "event_contract_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "meter_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "reference_catalog_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "settlement_adapter_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "activation_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "runtime_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "api_version": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_family": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_revision": {
+          "type": "string",
+          "minLength": 1,
+          "not": {
+            "pattern": "(?i)(latest|unversioned|unknown)"
+          }
+        },
+        "model_artifact_hash": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            {
+              "const": null
+            }
+          ]
+        }
+      },
+      "required": [
+        "adapter_revision",
+        "m5canon_policy_version",
+        "event_contract_version",
+        "meter_version",
+        "reference_catalog_version",
+        "settlement_adapter_version",
+        "activation_version",
+        "runtime_version",
+        "api_version",
+        "model_family",
+        "model_revision",
+        "model_artifact_hash"
+      ],
+      "description": "Use NOT_APPLICABLE for absent components, never floating latest. Hash is required for local model artifacts by semantic validation."
+    },
+    "authority_effect": {
+      "const": "DERIVED_BOUNDED_CONTEXT"
+    }
+  },
+  "required": [
+    "schema_version",
+    "activation_id",
+    "activation_version",
+    "principal_ref",
+    "principal_kind",
+    "agent_id",
+    "agent_class",
+    "role",
+    "account_context",
+    "account_ref",
+    "compartment_ref",
+    "credential",
+    "delegation",
+    "capability_refs",
+    "provider_classes",
+    "privacy_mode",
+    "local_required",
+    "external_allowed",
+    "data_domains",
+    "namespace_binding_refs",
+    "policy_version",
+    "effective_at",
+    "expires_at",
+    "lifecycle_state",
+    "approval_requirements",
+    "approval",
+    "evidence_refs",
+    "compatibility",
+    "authority_effect"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "lifecycle_state": {
+            "const": "ACTIVE"
+          }
+        },
+        "required": [
+          "lifecycle_state"
+        ]
+      },
+      "then": {
+        "properties": {
+          "credential": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "delegation": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          },
+          "approval": {
+            "properties": {
+              "status": {
+                "const": "VALID"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "privacy_mode": {
+            "const": "LOCAL_ONLY"
+          }
+        },
+        "required": [
+          "privacy_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "local_required": {
+            "const": true
+          },
+          "external_allowed": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "local_required": {
+            "const": true
+          }
+        },
+        "required": [
+          "local_required"
+        ]
+      },
+      "then": {
+        "properties": {
+          "external_allowed": {
+            "const": false
+          }
+        }
+      }
+    }
+  ]
+}

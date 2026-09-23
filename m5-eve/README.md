@@ -70,3 +70,12 @@ Cloners may inspect, adapt, and test the architecture. They must:
 - publish capability and authority states accurately;
 - fail closed when context, delegation, evidence, approval, or provider state is missing; and
 - avoid implying TitleChain Foundation, Vercel, a provider, agency, or regulator authorizes or endorses their deployment.
+
+## Featured provider and sovereign baseline
+
+Eve is the Jev chat experience selected for the first featured integration.
+M5-Eve remains open to other providers; model/chat choice never changes the
+principal or grants authority. The Vercel template above retains its separate
+source attribution and does not prove vendor identity or API compatibility.
+See the [M5BOM baseline](../docs/M5BOM-ACTIVATION-AND-SOVEREIGN-BASELINE.md) and
+[activation schema](../schemas/m5-eve-activation.schema.json).

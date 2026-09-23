@@ -1,0 +1,80 @@
+{
+  "specversion": "1.0",
+  "id": "SYN-EVT-001",
+  "type": "title.record.located",
+  "source": "urn:m5:service:synthetic-title",
+  "subject": "SYN-M3-ASSET-001",
+  "time": "2026-09-22T20:00:00Z",
+  "datacontenttype": "application/json",
+  "data": {
+    "event_phase": "ATTEMPTED",
+    "principal_ref": "SYN-M5HUM-001",
+    "actor_ref": "SYN-M5HUM-001",
+    "agent_ref": null,
+    "account_context_ref": "SYN-BOM-001",
+    "provider": {
+      "provider_id": "SYN-PROVIDER-001",
+      "m5_account_ref": "SYN-M5BOB-001",
+      "account_type": "M5BOB",
+      "accountable_entity_ref": "SYN-ENTITY-001",
+      "parent_account_ref": null,
+      "delegation_ref": null,
+      "account_lifecycle": "PENDING",
+      "verification_status": "PENDING",
+      "standing_status": "PENDING",
+      "standing_credential_refs": [
+        "SYN-VC-001"
+      ]
+    },
+    "primary_m5_class": "M1",
+    "related_m5_classes": [
+      "M3",
+      "M5"
+    ],
+    "asset_refs": [
+      "SYN-M3-ASSET-001"
+    ],
+    "instrument_refs": [],
+    "entity_refs": [
+      "SYN-ENTITY-001"
+    ],
+    "jurisdiction_binding_ref": "SYN-JUR-001",
+    "jurisdiction_display": "California",
+    "capability_ref": "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1",
+    "observed_at": "2026-09-22T19:59:59Z",
+    "record_effective_at": null,
+    "recorded_at": null,
+    "processed_at": "2026-09-22T20:00:00Z",
+    "metering": {
+      "meter_id": "evidence_queries",
+      "quantity": 1,
+      "product_id": "title.record.lookup",
+      "billable": false,
+      "billing_policy": "FREE_PUBLIC",
+      "price_version": "M5-REFERENCE-PRICE-2026-09-v1",
+      "actual_cost_usd": "0.003",
+      "reference_unit_price_usd": "0.02",
+      "notional_service_value_usd": "0.02",
+      "billed_amount_usd": "0.00",
+      "waived_amount_usd": "0.02",
+      "commerce_receipt_ref": null,
+      "meter_version": "1.0.0"
+    },
+    "threat_vector_refs": [],
+    "evidence_refs": [
+      "SYN-EVIDENCE-001"
+    ],
+    "evidence_digest": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "privacy_class": "PUBLIC",
+    "redistribution_allowed": true,
+    "idempotency_key": "SYN-IDEMP-001",
+    "correlation_id": "SYN-CORR-001",
+    "causation_id": null,
+    "trace_id": "SYN-TRACE-001",
+    "corrects_event_id": null,
+    "supersedes_event_id": null,
+    "compute_class": "SERVICE",
+    "units": 1
+  },
+  "m5eventversion": "1.0.0"
+}

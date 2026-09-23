@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "request_id": "EXAMPLE-REQ-LOCAL-001",
+  "principal_ref": "EXAMPLE-M5HUM-001",
+  "agent_ref": "EXAMPLE-M5AGT-001",
+  "task_type": "classify_asset_evidence",
+  "output_type": "CHOICE",
+  "privacy_mode": "LOCAL_ONLY",
+  "local_required": true,
+  "external_allowed": false,
+  "provider_allowlist": [
+    "LAYA_LOCAL"
+  ],
+  "provider_denylist": [],
+  "max_external_cost_usd": "0.00",
+  "latency_target_ms": 100,
+  "confidence_floor": 0.9,
+  "human_review_below": 0.75,
+  "jurisdiction_constraints": [
+    "US-CA"
+  ],
+  "data_residency_constraints": [
+    "LOCAL_DEVICE"
+  ]
+}

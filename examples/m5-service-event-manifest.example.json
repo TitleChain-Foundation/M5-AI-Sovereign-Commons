@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "service_id": "SYN-SVC-TITLE-001",
+  "provider_account_ref": "SYN-M5BOB-001",
+  "provider_account_type": "M5BOB",
+  "event_types": [
+    "title.search.started",
+    "title.record.located"
+  ],
+  "capability_refs": [
+    "M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1"
+  ],
+  "jurisdiction_binding_refs": [
+    "SYN-JUR-001"
+  ],
+  "modules": {
+    "metering": true,
+    "orbitalys": true,
+    "titlechain_receipts": true,
+    "m5canon": true,
+    "commerce": false,
+    "x402": false,
+    "m5global_aggregate": false
+  },
+  "data_rights": {
+    "commercial_use": false,
+    "redistribution": false,
+    "derived_outputs": true,
+    "retention_policy_ref": "SYN-RETENTION-001"
+  },
+  "lifecycle": {
+    "status": "DRAFT",
+    "effective_at": null,
+    "expires_at": null,
+    "revocation_ref": null
+  }
+}
