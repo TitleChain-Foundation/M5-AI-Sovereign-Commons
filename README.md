@@ -22,6 +22,61 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 
 ## Start here
 
+## Featured project pathways
+
+These public simulations show the types of projects the Commons is designed to
+support: public-source evidence, jurisdiction-specific authority checks,
+risk-management gates, bounded AI/workflow execution, and accountable records.
+They are review pathways and design references, not offerings, approvals,
+property claims, or grants of authority.
+
+### **GSA / CRE Properties**
+
+[![312 Spring Commons concept plaza](pilots/312-spring-commons/documents/images/312-spring-commons-concept-plaza.jpg)](pilots/312-spring-commons/README.md)
+
+**Government-to-public civic real estate, historic surplus pathways, CRE
+rehabilitation, capital provenance, and public-benefit operations.** The process
+is designed to test jurisdiction, title, public-owner eligibility,
+preservation/use restrictions, source-of-funds provenance, escrow/draw controls,
+transfer-agent recordkeeping boundaries, and fail-closed approval gates.
+
+[Open 312 Spring Commons](pilots/312-spring-commons/README.md) ·
+[See project images](pilots/312-spring-commons/documents/images/README.md) ·
+[Review GSA pathway diligence](pilots/312-spring-commons/update-notes/GSA-PATHWAY-AND-APPLICATION-READINESS.md)
+
+### **U.S. Farmland / People's Trust**
+
+[![America's People's Trust Farmland project vision](pilots/peoples-trust/visuals/00-project-wish-list.png)](pilots/peoples-trust/README.md)
+
+**Stewardship, local operations, food/land productivity, title separation,
+cooperative participation, and repeatable national conformance tests.** The
+process is designed to test entity/signer authority, local operator scope,
+stewardship evidence, title/economic-right separation, eligibility, correction,
+successor transfer, and public review before any consequential action.
+
+[Open the Farmland simulation](pilots/peoples-trust/README.md) ·
+[See authority and evidence visuals](pilots/peoples-trust/visuals/authority-before-execution.svg) ·
+[See repeatable pipeline](pilots/peoples-trust/visuals/repeatable-pipeline.svg)
+
+### **Global UN Commons Proposal**
+
+[![Global UN Commons V1 concept masterplan](pilots/global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](pilots/global-un-commons/README.md)
+
+**International interoperability, 193 Member-State jurisdiction profiles,
+peaceful public-record coordination, and human-authorized cross-border
+evidence.** The process is designed to test jurisdiction profile slots,
+accountable operators, authoritative endpoints, lawful mandates, revocation,
+notice, adjudication routing, and cross-border fail-closed boundaries.
+
+[Open Global UN Commons](pilots/global-un-commons/README.md) ·
+[See all four concept visuals](pilots/global-un-commons/visuals/README.md)
+
+**How to read every pathway:** visual orientation -> maintained source text ->
+jurisdiction and authority evidence -> risk and restriction gates -> bounded
+execution -> attributable decision and portable evidence. AI can assist with
+research, drafting, routing, and reconciliation; it does not create legal
+authority.
+
 | I want to understand | Visual landing page |
 | --- | --- |
 | What the Commons contains and how the documents fit together | [Documentation map](docs/README.md) |
