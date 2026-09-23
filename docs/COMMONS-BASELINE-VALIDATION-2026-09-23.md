@@ -26,7 +26,7 @@ replaced by explicit full inventory and thirteen-dimension checks.
 
 ```text
 M5_REQUIRE_NUMSCRIPT=1 PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pytest -q -p no:cacheprovider tests reference-implementation/provider-neutral-governor/tests shadow-m5index/tests sec-public-input/observatory/tests
-387 passed in 2.15s
+388 passed in 2.50s
 
 .venv/bin/python shadow-m5index/scripts/validate_records.py
 Validated 36 SHADOW asset records.

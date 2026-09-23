@@ -251,3 +251,10 @@ def test_public_function_references_resolve_to_existing_namespace():
 def test_agent_cannot_request_a_canon_control_as_capability():
     e=example('m5-eve-activation');e['capability_refs']=['M5CANON.ACTION.AUTHORIZE.v1']
     with pytest.raises(ValidationError):c.validate('m5-eve-activation',e)
+
+
+def test_public_schema_patterns_avoid_python_only_inline_flags():
+    for path in (ROOT/'schemas').glob('*.json'):
+        assert '(?i)' not in path.read_text(), path.name
+    e=example('m5-intelligence-routing-receipt-laya');e['versions']['runtime_version']='LaTeSt'
+    with pytest.raises(ValidationError):c.validate('m5-intelligence-routing-receipt',e)

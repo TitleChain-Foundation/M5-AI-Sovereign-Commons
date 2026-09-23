@@ -84,77 +84,77 @@
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "m5canon_policy_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "event_contract_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "meter_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "reference_catalog_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "settlement_adapter_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "activation_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "runtime_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "api_version": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "model_family": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "model_revision": {
           "type": "string",
           "minLength": 1,
           "not": {
-            "pattern": "(?i)(latest|unversioned|unknown)"
+            "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
           }
         },
         "model_artifact_hash": {

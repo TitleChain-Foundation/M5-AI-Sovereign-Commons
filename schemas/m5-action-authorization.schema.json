@@ -15,7 +15,7 @@
       "type": "string",
       "minLength": 1,
       "not": {
-        "pattern": "(?i)(latest|unversioned|unknown)"
+        "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
       }
     },
     "principal_ref": {
