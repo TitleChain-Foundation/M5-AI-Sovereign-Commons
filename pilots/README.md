@@ -20,11 +20,23 @@ regulatory status.
 | 2. [America's People's Trust Farmland](peoples-trust/README.md) | The same title, structured-debt, transfer-agent, stewardship, operations, authority, correction, portability, and public-safe evidence separation applied to farmland | Pilot 001 — sample-data simulation. Route: [People's Trust Farmland — Capital & Operating Partner Brief](peoples-trust/CAPITAL-AND-OPERATING-PARTNER-BRIEF.md) |
 | 3. [Global UN Commons](global-un-commons/README.md) | UN-NY-0001 concept, Open World Convention research, and Phase 1 jurisdiction-profile/transfer-agent interoperability across a proposed 193-Member-State inventory | Independent concept — no UN endorsement, nation-chain activation, or institutional authority. Route: [Global UN Commons — Founding Institutional Underwriter Brief](global-un-commons/FOUNDING-INSTITUTIONAL-UNDERWRITER-BRIEF.md) |
 
-### Visual sequence
+## Visual sequence
+
+### **GSA / CRE**
+
+#### **312 Spring Commons — California**
 
 [![312 Spring Commons](312-spring-commons/documents/images/312-spring-commons-concept-plaza.jpg)](312-spring-commons/README.md)
 
+### **FARMLAND / REDEVELOPMENT**
+
+#### **America's People's Trust Farmland**
+
 [![America's People's Trust Farmland](peoples-trust/visuals/00-project-wish-list.png)](peoples-trust/README.md)
+
+### **GLOBAL DEVELOPMENT PROJECT**
+
+#### **Global UN Commons — UN-NY-0001**
 
 [![Global UN Commons](global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](global-un-commons/README.md)
 

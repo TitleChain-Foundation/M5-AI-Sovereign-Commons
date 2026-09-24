@@ -98,6 +98,46 @@ A wallet, M5 account, credential, API key, model, token, or blockchain event doe
 
 ---
 
+### Public Bank of California — concept-only capital layer
+
+The **Public Bank of California** is a public research concept being tested
+inside the Spring Commons simulation as one possible public-capital/wholesale
+participation layer for productive California assets.
+
+[Read **The Bear Comes Home**](briefs/PPT-EZ-CA-0001-THE-BEAR-COMES-HOME-PUBLIC-BANK-OF-CALIFORNIA-CONCEPT-v0.1.md).
+
+[View the future California concept image](assets/concepts/PPT-EZ-CA-0001-PUBLIC-BANK-OF-CALIFORNIA-FUTURE-CONCEPT-v0.1.png).
+
+The concept is not a chartered bank, state agency, depository institution,
+registered transfer agent, broker-dealer, exchange, ATS, custodian or clearing
+agency. It accepts no deposits and has no committed project financing.
+It is not an approved source of Spring Commons financing.
+
+The implementation test is whether a future lawful public-capital institution
+could participate **without collapsing the authoritative records** of the
+public owner/title system, regulated bank/escrow provider, issuer/instrument,
+transfer agent, or other responsible institution.
+
+Use this separation:
+
+```text
+public-property/title record
+→ project/operating rights
+→ regulated bank/escrow money record
+→ investment/economic-right record
+→ transfer-agent/securityholder record if applicable
+→ TitleChain/M5 authority + evidence + reconciliation
+```
+
+No layer silently becomes another layer's authoritative record.
+
+See:
+
+- [SEC implementation crosswalk](update-notes/SEC-S7-2026-30-IMPLEMENTATION-CROSSWALK.md)
+- [v0.7 Public Bank / SEC integration update](update-notes/V0.7-PUBLIC-BANK-SEC-INTEGRATION.md)
+- [Pilot and SEC Transfer-Agent Public-Input Crosswalk](../../docs/PILOT-SEC-RFI-CROSSWALK.md)
+- [September 24 Open Commons Review](../../sec-public-input/open-commons-review/2026-09-24.md)
+
 ## 4. Open capital provenance + jurisdictional flow graph
 
 Spring Commons also tests whether the **source, authority, material terms, jurisdiction path, and use of capital can be made reconstructable without publishing protected private data**. The v0.6 package materially expands **DOC-23 — Source of Funds, Entity Provenance, Jurisdiction Chain & Public Transaction Graph Standard** with open entity/spatial grounding, source-chain activation, and M5Global intelligence controls.

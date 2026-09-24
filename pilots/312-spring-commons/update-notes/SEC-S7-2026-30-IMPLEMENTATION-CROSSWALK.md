@@ -91,6 +91,37 @@ The project should select participants by function and instrument, not brand.
 | Counsel | Legal determinations remain with licensed counsel; engagement and matter scope recorded |
 | SEC / regulator | Regulator is not an operator of project stack; project produces regulator-ready evidence exports and preserves official filing/examination records as authoritative |
 
+### Public Bank of California concept boundary
+
+The Public Bank of California is a concept-only test of a possible public
+capital/wholesale participation layer. It does not create or claim a bank
+charter, California agency status, depository authority, transfer-agent status,
+securities-market status, or a funding commitment.
+
+The implementation must keep these authoritative domains separate:
+
+1. public-property deed/title and disposition records;
+2. public-owner/lease/operating authority;
+3. regulated bank/escrow/payment records;
+4. issuer/investment/economic-right records;
+5. registered transfer-agent/securityholder records where applicable; and
+6. TitleChain/M5 evidence, policy and reconciliation.
+
+TitleChain/M5 may link and reconcile these domains. It does not become the
+authoritative bank ledger, deed record, transfer-agent master file, government
+record or securities-market operator merely by doing so.
+
+Proposed conformance tests (not evidence of implemented bank authority):
+
+- missing bank charter/authority;
+- missing public-funds authority;
+- bank/escrow versus securities-record mismatch;
+- stale or revoked signatory authority;
+- source-of-funds lineage without protected-data publication;
+- community-bank/credit-union participation without replacement assumptions;
+- concept label mistaken for government backing; and
+- technical namespace mistaken for sovereign/public authority.
+
 ## 6. Demonstration transaction sequence
 
 ```text
