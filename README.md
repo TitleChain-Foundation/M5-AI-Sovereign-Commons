@@ -50,7 +50,8 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 - **SEC public comment.** The
   [September 16–24 Open Commons Review](sec-public-input/open-commons-review/2026-09-24.md)
   applies the Foundation's September 5 SEC comment to all three lanes. It is
-  Foundation research, not a new SEC submission. See the
+  Foundation research, not a new SEC submission. The Foundation's additional
+  comments, emailed to the SEC on September 23, are pending posting by the SEC. See the
   [SEC Public Input Summary](sec-public-input/README.md) and the
   [live comment observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/).
 

@@ -62,6 +62,13 @@ This description identifies the Foundation's submitted position. It is not an
 SEC endorsement, adopted standard, or representation that any TitleChain or M5
 component is registered, mandated, certified, or deployed for regulated use.
 
+### Additional Foundation comments — pending SEC posting
+
+TitleChain Foundation submitted additional comments to the SEC by email on
+September 23, 2026. They are **pending posting by the SEC** and do not yet
+appear on the official docket. They will be linked here, and picked up by the
+live observatory, once the SEC posts them.
+
 ## September 24 implementation expansion
 
 The public Commons now tests the Foundation's submitted transfer-agent
