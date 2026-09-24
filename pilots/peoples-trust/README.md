@@ -13,6 +13,9 @@ People who want to understand how the public waitlist and M5-CV capability
 pathway connect to this simulation should start with the
 [M5-CV Activation Bridge](ACTIVATION-BRIDGE.md).
 
+Capital and operating partners should start with the
+[People's Trust Farmland — Capital & Operating Partner Brief](CAPITAL-AND-OPERATING-PARTNER-BRIEF.md).
+
 The simulation is designed to be inspected in public before a dollar moves or a
 consequential action executes. It asks whether title, identity, entity,
 authority, operations, stewardship, economic rights, restrictions,

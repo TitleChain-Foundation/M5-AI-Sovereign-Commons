@@ -19,6 +19,11 @@ SHADOW M5Index is the TitleChain Foundation public intelligence layer for tracki
 - `reports/2026-Q3/` — Q3 2026 SHADOW CAMEL report release
 - `methodology/` — public methodology
 
+Outreach route: **SHADOW** — use this route for public asset evidence,
+government/CRE/farmland indexes, property QR records, nominations, and
+corrections. See
+[TitleChain Foundation outreach routing](../docs/OUTREACH-ROUTING.md).
+
 ## Public contribution rule
 
 **The public does not directly edit the canonical record. The public contributes evidence to the record.**
