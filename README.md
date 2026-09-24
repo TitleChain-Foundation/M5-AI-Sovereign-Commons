@@ -30,7 +30,9 @@ risk-management gates, bounded AI/workflow execution, and accountable records.
 They are review pathways and design references, not offerings, approvals,
 property claims, or grants of authority.
 
-### **GSA / CRE Properties**
+### **GSA / CRE**
+
+#### **312 Spring Commons — California**
 
 [![312 Spring Commons concept plaza](pilots/312-spring-commons/documents/images/312-spring-commons-concept-plaza.jpg)](pilots/312-spring-commons/README.md)
 
@@ -44,7 +46,11 @@ transfer-agent recordkeeping boundaries, and fail-closed approval gates.
 [See project images](pilots/312-spring-commons/documents/images/README.md) ·
 [Review GSA pathway diligence](pilots/312-spring-commons/update-notes/GSA-PATHWAY-AND-APPLICATION-READINESS.md)
 
-### **U.S. Farmland / People's Trust**
+[Read “The Bear Comes Home”](pilots/312-spring-commons/briefs/PPT-EZ-CA-0001-THE-BEAR-COMES-HOME-PUBLIC-BANK-OF-CALIFORNIA-CONCEPT-v0.1.md)
+
+### **FARMLAND / REDEVELOPMENT**
+
+#### **America's People's Trust Farmland**
 
 [![America's People's Trust Farmland project vision](pilots/peoples-trust/visuals/00-project-wish-list.png)](pilots/peoples-trust/README.md)
 
@@ -58,7 +64,9 @@ successor transfer, and public review before any consequential action.
 [See authority and evidence visuals](pilots/peoples-trust/visuals/authority-before-execution.svg) ·
 [See repeatable pipeline](pilots/peoples-trust/visuals/repeatable-pipeline.svg)
 
-### **Global UN Commons Proposal**
+### **GLOBAL DEVELOPMENT PROJECT**
+
+#### **Global UN Commons — UN-NY-0001**
 
 [![Global UN Commons V1 concept masterplan](pilots/global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](pilots/global-un-commons/README.md)
 
@@ -138,6 +146,10 @@ Discussion or Issue -> evidence and review -> proposed change -> attributable
 decision.
 
 ## Featured public research
+
+SEC public input is a cross-cutting public-review layer across all three
+development lanes. The latest implementation review is the
+[September 24 Open Commons Review](sec-public-input/open-commons-review/2026-09-24.md).
 
 | Public research surface | Inspect | Status boundary |
 | --- | --- | --- |

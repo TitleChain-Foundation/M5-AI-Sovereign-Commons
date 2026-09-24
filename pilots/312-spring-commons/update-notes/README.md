@@ -8,6 +8,7 @@ retain v0.4 materials as historical SEC-alignment and authority controls.
 
 | Note | Purpose |
 | --- | --- |
+| [v0.7 Public Bank / SEC integration](V0.7-PUBLIC-BANK-SEC-INTEGRATION.md) | Adds the Public Bank of California concept boundary, regulated-record separation, homepage taxonomy and September 24 SEC implementation updates |
 | [v0.6 release notes](V0.6-RELEASE-NOTES.md) | Human summary of the current release |
 | [v0.6 cross-document update map](V0.6-CROSS-DOCUMENT-UPDATE-MAP.md) | Coordinated changes across DOC-01 through DOC-23 |
 | [M5Global capital-flow intelligence methodology](M5GLOBAL-CAPITAL-FLOW-INTELLIGENCE-METHODOLOGY.md) | Research labels, lineage, privacy, and publication controls |

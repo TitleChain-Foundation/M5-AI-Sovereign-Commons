@@ -62,21 +62,38 @@ This description identifies the Foundation's submitted position. It is not an
 SEC endorsement, adopted standard, or representation that any TitleChain or M5
 component is registered, mandated, certified, or deployed for regulated use.
 
+## September 24 implementation expansion
+
+The public Commons now tests the Foundation's submitted transfer-agent
+architecture across three separate development lanes:
+
+1. **GSA / CRE** — 312 Spring Commons;
+2. **FARMLAND / REDEVELOPMENT** — America's People's Trust Farmland; and
+3. **GLOBAL DEVELOPMENT PROJECT** — Global UN Commons.
+
+The Spring Commons work now also includes a **Public Bank of California**
+concept as a test of public-capital, bank/escrow and securities-recordkeeping
+boundaries. The concept is not a chartered bank, state agency, depository
+institution, transfer agent or approved financing source.
+
+[Read the September 24 Open Commons Review](open-commons-review/2026-09-24.md)
+and the updated [Pilot and SEC Transfer-Agent Public-Input Crosswalk](../docs/PILOT-SEC-RFI-CROSSWALK.md).
+
 ## People's Public Trust — Open Commons Review
 
-The latest weekly review finds that modernization needs an accountable operator,
-explicit records of authority, continuous reconciliation, governed correction,
-and portable successor evidence. It also identifies a need to preserve what a
-security represents, which source supports each material fact, which record
-controls each legal object, and what changed under whose authority.
+The latest implementation review applies the Foundation's submitted architecture
+to the three development lanes and the concept-only public-capital layer. It
+preserves separate authoritative records and identifies further conformance work.
 
-[Read the September 9–15 Open Commons Review](open-commons-review/2026-09-15.md).
-The [September 1–8 inaugural review](open-commons-review/2026-09-08.md) remains
-available as its dated record.
+[Read the September 16–24 Open Commons Review](open-commons-review/2026-09-24.md).
 
-The weekly orientation is approved for public review. It does not change the
-source-level observatory counts. Use the live observatory for the current
-official filing count and pending human-review count.
+The [September 9–15 review](open-commons-review/2026-09-15.md) and
+[September 1–8 inaugural review](open-commons-review/2026-09-08.md) remain
+available as dated records.
+
+This repository review is not a new SEC submission and does not change
+source-level observatory review states. Use the live observatory for current
+official filing and pending human-review counts.
 
 ## What the currently reviewed third-party input says
 
@@ -163,7 +180,7 @@ regulator, transfer agent, or agency has agreed to participate.
 | [SEC Project #2](https://github.com/orgs/TitleChain-Foundation/projects/2/views/2) | Seven scoped review topics and their status |
 | [ICSN Issue #56](https://github.com/TitleChain-Foundation/icsn-standards/issues/56) | Transfer-agent interoperability |
 | [ICSN Issue #62](https://github.com/TitleChain-Foundation/icsn-standards/issues/62) | Reference state model for the underlying right |
-| [Pilot and SEC RFI Crosswalk](../docs/PILOT-SEC-RFI-CROSSWALK.md) | How the synthetic pilot can test public-review themes |
+| [Pilot and SEC RFI Crosswalk](../docs/PILOT-SEC-RFI-CROSSWALK.md) | How the three development lanes test public-review themes |
 
 GitHub comments support independent Foundation review. They are not submitted
 to the SEC. Use the SEC's official channel for a comment intended for the

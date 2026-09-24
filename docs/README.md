@@ -17,7 +17,7 @@ Use this page to choose a path before opening the detailed source documents.
 | Money, rights, and jurisdiction | [Value Instrument and Jurisdiction Model](VALUE-INSTRUMENT-AND-JURISDICTION.md) | [Draft schemas](../schemas/README.md) and [synthetic examples](../examples/README.md) |
 | Outreach routing | [TitleChain Foundation — Outreach Routing / SPRING · FARM · GLOBAL · SHADOW](OUTREACH-ROUTING.md) | [SPRING](../pilots/312-spring-commons/documents/summaries/SPRING-INITIAL-CAPITAL-TRANCHE-BRIEF.md), [FARM](../pilots/peoples-trust/CAPITAL-AND-OPERATING-PARTNER-BRIEF.md), [GLOBAL](../pilots/global-un-commons/FOUNDING-INSTITUTIONAL-UNDERWRITER-BRIEF.md), and [SHADOW](../shadow-m5index/README.md) |
 | People's Trust pilot | [Visual Pilot Library](../pilots/peoples-trust/README.md) | [Pilot specification](PEOPLES-TRUST-PUBLIC-PILOT.md) |
-| Project simulations | [Public Pilot Library](../pilots/README.md) | [312 Spring Commons](../pilots/312-spring-commons/README.md), [America's People's Trust Farmland](../pilots/peoples-trust/README.md), and [Global UN Commons](../pilots/global-un-commons/README.md) |
+| Project simulations | [Public Pilot Library](../pilots/README.md) · [Development category map](PUBLIC-DEVELOPMENT-CATEGORY-MAP.md) | [312 Spring Commons](../pilots/312-spring-commons/README.md), [America's People's Trust Farmland](../pilots/peoples-trust/README.md), and [Global UN Commons](../pilots/global-un-commons/README.md) |
 | SHADOW public research | [SHADOW M5Index](../shadow-m5index/README.md) | [Public ingestion and QR architecture](SHADOW-M5INDEX-PUBLIC-INGESTION-AND-QR.md) and [engineering epic](SHADOW-M5INDEX-ENGINEERING-EPIC.md) |
 | SEC public input | [SEC Public Input Summary](../sec-public-input/README.md) | [Pilot and SEC RFI Crosswalk](PILOT-SEC-RFI-CROSSWALK.md) |
 
@@ -71,3 +71,10 @@ Discussions or Issues. See [Security](../SECURITY.md) and the
 - [ORBITALYS-EVENT-THREAT-PLANE](ORBITALYS-EVENT-THREAT-PLANE.md)
 
 - [September 23 validation evidence](COMMONS-BASELINE-VALIDATION-2026-09-23.md).
+
+## September 24 implementation additions
+
+- [Public Development Category Map](PUBLIC-DEVELOPMENT-CATEGORY-MAP.md)
+- [September 24 Open Commons Review](../sec-public-input/open-commons-review/2026-09-24.md)
+- [Spring Commons v0.7 Public Bank / SEC Integration](../pilots/312-spring-commons/update-notes/V0.7-PUBLIC-BANK-SEC-INTEGRATION.md)
+- [The Bear Comes Home](../pilots/312-spring-commons/briefs/PPT-EZ-CA-0001-THE-BEAR-COMES-HOME-PUBLIC-BANK-OF-CALIFORNIA-CONCEPT-v0.1.md)
