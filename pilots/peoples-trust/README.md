@@ -117,6 +117,42 @@ vote. Public review of the standards and simulation remains free.
 
 ![Classification and authority before execution](visuals/authority-before-execution.svg)
 
+## Process simulation — North Dakota reference farm
+
+[Open **AG-PILOT-001 — North Dakota Farmland Repurchase & Stewardship Simulation**](simulations/nd-farmland-reference/README.md).
+
+The simulation is derived from earlier public-source research but intentionally
+does not publish the source trust, beneficial owner, trustee, operator, county,
+exact acreage, exact historical purchase price, address or map coordinates.
+Its purpose is to test the process, not identify or announce an acquisition
+target.
+
+Machine-readable sample:
+[`ND-FARM-SIM-001.sample.json`](simulations/nd-farmland-reference/ND-FARM-SIM-001.sample.json)
+
+The [Financial Instrument, Escrow & Fiduciary Matrix](simulations/nd-farmland-reference/FINANCIAL-INSTRUMENT-ESCROW-FIDUCIARY-MATRIX.md)
+routes each financing or economic arrangement by underlying asset, underlying
+right, instrument, intent, jurisdiction, state/federal securities status,
+CFTC/commodity-derivatives status, bank/escrow function,
+transfer-agent/fiduciary role and authoritative system of record. SEC, CFTC and
+state jurisdiction are not mutually exclusive; several lanes may apply to the
+same arrangement. See also the
+[Farmland financial classification and escrow update](FARMLAND-FINANCIAL-CLASSIFICATION-AND-ESCROW-UPDATE.md).
+
+## Project Control Pack
+
+America's People's Trust Farmland answers the same eight control questions as every Commons project, in
+the same order, using the
+[M5 Commons Project Control Pack](../../docs/project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md).
+
+- [Project Control Index and Participant Matrix](PROJECT-CONTROL-INDEX.md)
+- [Project Participation Passport and Eligibility Matrix](../../docs/project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md)
+- [M5-CV Work, Opportunity and Support Matching](../../docs/project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md)
+
+M5-CV is reusable evidence, not blanket project permission. WORK, SUPPORT and
+FINANCIAL PARTICIPATION remain separate pathways, and support never silently
+creates ownership, investment, voting or profit rights.
+
 ## Pilot Project Pipeline
 
 ![Pilot 001 to repeatable national conformance framework](visuals/repeatable-pipeline.svg)

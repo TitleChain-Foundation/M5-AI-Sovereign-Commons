@@ -19,6 +19,7 @@ Use this page to choose a path before opening the detailed source documents.
 | People's Trust pilot | [Visual Pilot Library](../pilots/peoples-trust/README.md) | [Pilot specification](PEOPLES-TRUST-PUBLIC-PILOT.md) |
 | Project simulations | [Public Pilot Library](../pilots/README.md) · [Development category map](PUBLIC-DEVELOPMENT-CATEGORY-MAP.md) | [312 Spring Commons](../pilots/312-spring-commons/README.md), [America's People's Trust Farmland](../pilots/peoples-trust/README.md), and [Global UN Commons](../pilots/global-un-commons/README.md) |
 | SHADOW public research | [SHADOW M5Index](../shadow-m5index/README.md) | [Public ingestion and QR architecture](SHADOW-M5INDEX-PUBLIC-INGESTION-AND-QR.md) and [engineering epic](SHADOW-M5INDEX-ENGINEERING-EPIC.md) |
+| Project control and participation | [Project Control Pack Standard](project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md) | [Participation Passport and Eligibility Matrix](project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md), [M5-CV Work, Opportunity and Support Matching](project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md), and project control indexes for [Spring](../pilots/312-spring-commons/PROJECT-CONTROL-INDEX.md), [Farmland](../pilots/peoples-trust/PROJECT-CONTROL-INDEX.md) and [Global](../pilots/global-un-commons/PROJECT-CONTROL-INDEX.md) |
 | SEC public input | [SEC Public Input Summary](../sec-public-input/README.md) | [Pilot and SEC RFI Crosswalk](PILOT-SEC-RFI-CROSSWALK.md) |
 
 ## How to read this repository

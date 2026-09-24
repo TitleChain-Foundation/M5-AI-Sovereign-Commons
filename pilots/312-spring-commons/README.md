@@ -412,6 +412,20 @@ The full placeholder-template set remains the legal/process reference package. v
 
 **[Browse the human-readable document library →](./documents/README.md)**
 
+### Project Control Pack
+
+312 Spring Commons answers the same eight control questions as every Commons project, in
+the same order, using the
+[M5 Commons Project Control Pack](../../docs/project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md).
+
+- [Project Control Index and Participant Matrix](PROJECT-CONTROL-INDEX.md) — maps the eight controls to DOC-01–DOC-23 without duplicating them
+- [Project Participation Passport and Eligibility Matrix](../../docs/project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md)
+- [M5-CV Work, Opportunity and Support Matching](../../docs/project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md)
+
+M5-CV is reusable evidence, not blanket project permission. WORK, SUPPORT and
+FINANCIAL PARTICIPATION remain separate pathways, and support never silently
+creates ownership, investment, voting or profit rights.
+
 ---
 
 ## 15. Key risks

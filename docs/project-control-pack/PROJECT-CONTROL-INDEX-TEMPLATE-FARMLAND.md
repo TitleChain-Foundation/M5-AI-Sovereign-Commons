@@ -1,0 +1,21 @@
+# People's Trust Farmland — Project Control Index
+
+**Status:** Project adapter to the M5 Commons Project Control Pack\
+**Date:** September 24, 2026
+
+Map the eight controls to ND-FARM-SIM-001, its financial matrix, activation bridge and Farmland public materials.
+
+| Control | Project-specific source | State |
+| --- | --- | --- |
+| Asset/right/source-of-truth | TBD / existing project document | REVIEW |
+| Authority/jurisdiction/capital provenance | TBD / existing project document | REVIEW |
+| Instrument/regulatory routing | TBD / project matrix | REVIEW |
+| Participant eligibility/credentials | Common Passport standard + project Participant Matrix | ADD |
+| Escrow/treasury/fiduciary | TBD / project-specific matrix | REVIEW |
+| Transfer/restriction/correction/succession | TBD | REVIEW |
+| Risk/disclosure/privacy | TBD | REVIEW |
+| State machine/tests | TBD | REVIEW |
+
+The adapter should be completed by engineering/counsel against the current
+project documents rather than by duplicating or replacing authoritative project
+material.

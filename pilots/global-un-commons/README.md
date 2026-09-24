@@ -89,6 +89,20 @@ V4 focuses on the Pax Commons living-tower concept: adaptive reuse, member-state
 
 Any real redevelopment would require the United Nations' governance and budgeting processes, applicable Headquarters Agreement analysis, host-country coordination, professional title and legal review, environmental and planning review, financing authority, procurement, and all other required approvals.
 
+## Project Control Pack
+
+Global UN Commons answers the same eight control questions as every Commons project, in
+the same order, using the
+[M5 Commons Project Control Pack](../../docs/project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md).
+
+- [Project Control Index and Participant Matrix](PROJECT-CONTROL-INDEX.md)
+- [Project Participation Passport and Eligibility Matrix](../../docs/project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md)
+- [M5-CV Work, Opportunity and Support Matching](../../docs/project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md)
+
+M5-CV is reusable evidence, not blanket project permission. WORK, SUPPORT and
+FINANCIAL PARTICIPATION remain separate pathways, and support never silently
+creates ownership, investment, voting or profit rights.
+
 ## Public review questions
 
 1. Can a jurisdiction profile expose authoritative endpoints without pretending to be the jurisdiction?
