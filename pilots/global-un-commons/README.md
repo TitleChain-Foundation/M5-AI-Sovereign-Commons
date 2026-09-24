@@ -12,6 +12,9 @@ the visible credit **“Global UN Commons — concept and design by TitleChain
 Foundation”** and link to this repository. No reuse may imply United Nations or
 Member State endorsement. See the [visual reuse notice](visuals/README.md).
 
+Institutional reviewers should start with the
+[Global UN Commons — Founding Institutional Underwriter Brief](FOUNDING-INSTITUTIONAL-UNDERWRITER-BRIEF.md).
+
 ## Transfer-agent and nation-chain demonstration
 
 The proposed Phase 1 demonstration asks whether the same separation tested by Spring Commons and America's People's Trust Farmland can scale across international records:

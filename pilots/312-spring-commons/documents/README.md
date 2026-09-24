@@ -7,6 +7,7 @@ supporting visual and summary material.
 
 | Section | Contents |
 | --- | --- |
+| [SPRING — Initial Capital Tranche Brief](summaries/SPRING-INITIAL-CAPITAL-TRANCHE-BRIEF.md) | Front-door capital partner brief for the illustrative $25M tranche, $200M+ blended-capital frame, gating diligence, and review questions |
 | [Public document library](public/README.md) | Master Index, DOC-01 through DOC-23, and the human-readable DOC-23 source |
 | [Document summaries](summaries/README.md) | Short orientation pages for selected workflow documents |
 | [Project images](images/README.md) | Concept images used by the project page |
