@@ -76,6 +76,22 @@ concept as a test of public-capital, bank/escrow and securities-recordkeeping
 boundaries. The concept is not a chartered bank, state agency, depository
 institution, transfer agent or approved financing source.
 
+The same September 24 work also:
+
+- applies one [Project Control Pack](../docs/project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md)
+  to all three lanes, so each project answers the same eight control questions
+  about authority, instruments, escrow, transfer and correction;
+- separates WORK, SUPPORT and FINANCIAL PARTICIPATION through
+  [M5-CV opportunity matching](../docs/project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md)
+  and a project-specific
+  [Participation Passport](../docs/project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md),
+  so a reusable credential never becomes blanket permission to invest, vote,
+  sign or transfer; and
+- adds the anonymized [North Dakota reference-farm simulation](../pilots/peoples-trust/simulations/nd-farmland-reference/README.md),
+  which routes each financing arrangement across state, SEC, CFTC,
+  bank/escrow, transfer-agent and fiduciary lanes. More than one lane may apply
+  at once.
+
 [Read the September 24 Open Commons Review](open-commons-review/2026-09-24.md)
 and the updated [Pilot and SEC Transfer-Agent Public-Input Crosswalk](../docs/PILOT-SEC-RFI-CROSSWALK.md).
 

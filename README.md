@@ -22,6 +22,41 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 
 ## Start here
 
+### Latest public update — September 24, 2026
+
+- **Three development lanes.** Public projects are now grouped as
+  **GSA / CRE** (312 Spring Commons),
+  **FARMLAND / REDEVELOPMENT** (America's People's Trust Farmland) and
+  **GLOBAL DEVELOPMENT PROJECT** (Global UN Commons). SEC public input is a
+  cross-cutting review layer, not a fourth lane.
+- **Public Bank of California concept.** Spring Commons adds a concept-only
+  public-capital layer, introduced in
+  [“The Bear Comes Home”](pilots/312-spring-commons/briefs/PPT-EZ-CA-0001-THE-BEAR-COMES-HOME-PUBLIC-BANK-OF-CALIFORNIA-CONCEPT-v0.1.md).
+  It is not a chartered bank, state agency or approved financing source.
+- **One control pack for every project.** Each project now answers the same
+  eight control questions in a
+  [Project Control Index](docs/project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md)
+  with a participant matrix.
+- **Find work, offer support, or participate.** M5-CV can match people to
+  [work, support and financial-participation opportunities](docs/project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md).
+  These stay separate pathways, and a project-specific
+  [Participation Passport](docs/project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md)
+  is required before any project permission. Donations and other support never
+  create ownership, investment, voting or profit rights.
+- **Farmland process simulation.** An anonymized North Dakota reference farm,
+  [`AG-PILOT-001 / ND-FARM-SIM-001`](pilots/peoples-trust/simulations/nd-farmland-reference/README.md),
+  tests the full process end to end without identifying any real property or
+  party.
+- **SEC public comment.** The
+  [September 16–24 Open Commons Review](sec-public-input/open-commons-review/2026-09-24.md)
+  applies the Foundation's September 5 SEC comment to all three lanes. It is
+  Foundation research, not a new SEC submission. See the
+  [SEC Public Input Summary](sec-public-input/README.md) and the
+  [live comment observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/).
+
+Nothing in this update is an offering, a live bank, a government approval, or
+an SEC or United Nations endorsement.
+
 ## Featured project pathways
 
 These public simulations show the types of projects the Commons is designed to
@@ -44,7 +79,8 @@ transfer-agent recordkeeping boundaries, and fail-closed approval gates.
 
 [Open 312 Spring Commons](pilots/312-spring-commons/README.md) ·
 [See project images](pilots/312-spring-commons/documents/images/README.md) ·
-[Review GSA pathway diligence](pilots/312-spring-commons/update-notes/GSA-PATHWAY-AND-APPLICATION-READINESS.md)
+[Review GSA pathway diligence](pilots/312-spring-commons/update-notes/GSA-PATHWAY-AND-APPLICATION-READINESS.md) ·
+[Project control index](pilots/312-spring-commons/PROJECT-CONTROL-INDEX.md)
 
 [Read “The Bear Comes Home”](pilots/312-spring-commons/briefs/PPT-EZ-CA-0001-THE-BEAR-COMES-HOME-PUBLIC-BANK-OF-CALIFORNIA-CONCEPT-v0.1.md)
 
@@ -62,7 +98,9 @@ successor transfer, and public review before any consequential action.
 
 [Open the Farmland simulation](pilots/peoples-trust/README.md) ·
 [See authority and evidence visuals](pilots/peoples-trust/visuals/authority-before-execution.svg) ·
-[See repeatable pipeline](pilots/peoples-trust/visuals/repeatable-pipeline.svg)
+[See repeatable pipeline](pilots/peoples-trust/visuals/repeatable-pipeline.svg) ·
+[North Dakota reference-farm simulation](pilots/peoples-trust/simulations/nd-farmland-reference/README.md) ·
+[Project control index](pilots/peoples-trust/PROJECT-CONTROL-INDEX.md)
 
 ### **GLOBAL DEVELOPMENT PROJECT**
 
@@ -77,7 +115,8 @@ accountable operators, authoritative endpoints, lawful mandates, revocation,
 notice, adjudication routing, and cross-border fail-closed boundaries.
 
 [Open Global UN Commons](pilots/global-un-commons/README.md) ·
-[See all four concept visuals](pilots/global-un-commons/visuals/README.md)
+[See all four concept visuals](pilots/global-un-commons/visuals/README.md) ·
+[Project control index](pilots/global-un-commons/PROJECT-CONTROL-INDEX.md)
 
 **How to read every pathway:** visual orientation -> maintained source text ->
 jurisdiction and authority evidence -> risk and restriction gates -> bounded
