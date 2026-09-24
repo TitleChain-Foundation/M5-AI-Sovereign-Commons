@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "context_id": "context:synthetic-001",
+  "economic_class": {"status": "known", "value": "non_currency_unit", "source_refs": ["record:1"]},
+  "account_context": {"status": "known", "value": "test", "source_refs": ["record:2"]},
+  "title_container": {"status": "not_applicable", "value": null, "source_refs": []},
+  "representation": {"status": "known", "value": "synthetic_record", "source_refs": ["record:3"]},
+  "wrapper": {"status": "unknown", "value": null, "source_refs": []},
+  "jurisdictional_security_state": {"status": "unknown", "value": null, "source_refs": []},
+  "usc": {"status": "unknown", "value": null, "source_refs": []},
+  "s_state": {"status": "unknown", "value": null, "source_refs": []},
+  "sr_state": {"status": "unknown", "value": null, "source_refs": []},
+  "external_classifications": {"status": "unknown", "value": [], "source_refs": []},
+  "credentials_standing": {"status": "known", "value": "test-only", "source_refs": ["credential:synthetic"]},
+  "provenance": {"status": "known", "value": ["event:synthetic-0"], "source_refs": ["log:synthetic"]}
+}

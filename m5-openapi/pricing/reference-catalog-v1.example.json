@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_id": "M5-REFERENCE-PRICE-2026-09-v1",
+  "visibility": "INTERNAL_CALIBRATION",
+  "currency": "USD",
+  "products": [
+    {
+      "product_id": "commons.evidence.submit",
+      "meter": "evidence_submitted",
+      "reference_unit_price_usd": "0.01",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "source.ingest",
+      "meter": "source_ingest",
+      "reference_unit_price_usd": "0.02",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "evidence.verify",
+      "meter": "evidence_verified",
+      "reference_unit_price_usd": "0.05",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "evidence.corroborate",
+      "meter": "evidence_corrob",
+      "reference_unit_price_usd": "0.10",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "asset.state.basic",
+      "meter": "asset_query",
+      "reference_unit_price_usd": "0.02",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "asset.evidence.bundle",
+      "meter": "evidence_bundle",
+      "reference_unit_price_usd": "0.10",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "asset.debt.encumbrance",
+      "meter": "debt_query",
+      "reference_unit_price_usd": "0.10",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "asset.title.state",
+      "meter": "title_query",
+      "reference_unit_price_usd": "0.10",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "shadow.analysis",
+      "meter": "shadow_analysis",
+      "reference_unit_price_usd": "0.25",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "change.event.delivery",
+      "meter": "change_event",
+      "reference_unit_price_usd": "0.01",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "m5canon.evaluate",
+      "meter": "m5canon_eval",
+      "reference_unit_price_usd": "0.05",
+      "default_billing_policy": "FREE_PUBLIC"
+    },
+    {
+      "product_id": "runtime.laya.local",
+      "meter": null,
+      "reference_unit_price_usd": "0.00",
+      "default_billing_policy": "LOCAL_SOVEREIGN"
+    },
+    {
+      "product_id": "title.record.lookup",
+      "meter": "evidence_queries",
+      "reference_unit_price_usd": "0.02",
+      "default_billing_policy": "FREE_PUBLIC"
+    }
+  ],
+  "disclaimer": "Calibration seeds only; not a public price list, offer, invoice, receivable, or recognized revenue."
+}

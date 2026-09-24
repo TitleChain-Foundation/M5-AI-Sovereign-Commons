@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:jurisdiction-binding:v2",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "2.0.0"
+    },
+    "binding_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "titlechain_registry_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "vc_namespace_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chain_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "external_authority_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "credential_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "status": {
+      "enum": [
+        "PENDING",
+        "ACTIVE",
+        "REVOKED",
+        "DISPUTED",
+        "EXPIRED",
+        "UNKNOWN"
+      ]
+    },
+    "verified_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "effective_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "namespace_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "binding_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "namespace": {
+            "type": "string",
+            "minLength": 1
+          },
+          "namespace_class": {
+            "enum": [
+              "NATION",
+              "STATE",
+              "PROVINCE",
+              "TERRITORY",
+              "TRIBAL_NATION",
+              "MUNICIPALITY",
+              "COUNTY",
+              "AGENCY",
+              "REGULATOR",
+              "COURT",
+              "INTERNATIONAL_ORGANIZATION",
+              "TREATY_BODY",
+              "SPECIAL_AUTHORITY"
+            ]
+          },
+          "binding_role": {
+            "enum": [
+              "PRINCIPAL_ORGANIZATION",
+              "SERVICE_JURISDICTION",
+              "RELATED_STATE_JURISDICTION",
+              "REGULATOR_CONTEXT",
+              "COURT_VENUE"
+            ]
+          },
+          "scope": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "canonical_entity_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "controller_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority_evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "registration_provenance_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "evidence_hashes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "validation_record_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "validated_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "effective_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "standing": {
+            "enum": [
+              "GOOD_STANDING",
+              "UNKNOWN",
+              "SUSPENDED"
+            ]
+          },
+          "status": {
+            "enum": [
+              "UNRESOLVED",
+              "ESTABLISHED",
+              "REVOKED",
+              "DISPUTED",
+              "SUPERSEDED",
+              "EXPIRED"
+            ]
+          },
+          "authority_basis": {
+            "enum": [
+              "INDEPENDENT_AUTHORITY_EVIDENCE",
+              "TECHNICAL_CONTROL_ONLY",
+              "IDENTIFIER_ONLY",
+              "UNRESOLVED"
+            ]
+          },
+          "revoked": {
+            "type": "boolean"
+          },
+          "disputed": {
+            "type": "boolean"
+          },
+          "superseded_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "binding_id",
+          "namespace",
+          "namespace_class",
+          "binding_role",
+          "scope",
+          "canonical_entity_ref",
+          "controller_ref",
+          "authority_evidence_refs",
+          "registration_provenance_refs",
+          "evidence_hashes",
+          "validation_record_ref",
+          "validated_at",
+          "effective_at",
+          "expires_at",
+          "standing",
+          "status",
+          "authority_basis",
+          "revoked",
+          "disputed",
+          "superseded_by"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "ESTABLISHED"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "authority_evidence_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "registration_provenance_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "evidence_hashes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^sha256:[a-f0-9]{64}$"
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true
+                },
+                "validation_record_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "validated_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "standing": {
+                  "const": "GOOD_STANDING"
+                },
+                "authority_basis": {
+                  "const": "INDEPENDENT_AUTHORITY_EVIDENCE"
+                },
+                "revoked": {
+                  "const": false
+                },
+                "disputed": {
+                  "const": false
+                },
+                "superseded_by": {
+                  "const": null
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "external_identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheme": {
+            "enum": [
+              "SWIFT_BIC",
+              "ISO20022",
+              "LEI",
+              "VLEI",
+              "ISIN",
+              "CUSIP",
+              "MIC",
+              "REGULATOR_ID",
+              "REGISTRY_ID",
+              "TAX_ID",
+              "ROUTING_ID",
+              "OTHER"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          },
+          "issuer_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1,
+            "not": {
+              "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
+            }
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "identified_object_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "authority_effect": {
+            "const": "NONE"
+          }
+        },
+        "required": [
+          "scheme",
+          "value",
+          "issuer_ref",
+          "source_ref",
+          "version",
+          "observed_at",
+          "identified_object_ref",
+          "authority_effect"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "binding_id",
+    "titlechain_registry_ref",
+    "vc_namespace_ref",
+    "chain_ref",
+    "external_authority_refs",
+    "credential_refs",
+    "status",
+    "verified_at",
+    "effective_at",
+    "expires_at",
+    "namespace_bindings",
+    "external_identifiers"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "ACTIVE"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "namespace_bindings": {
+            "items": {
+              "properties": {
+                "status": {
+                  "const": "ESTABLISHED"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -11,7 +11,7 @@ The repository uses two licenses:
 - Reference code, tests, and JSON Schemas are licensed under the Apache License
   2.0 (`Apache-2.0`). This includes `reference-implementation/`, `tests/`,
   `schemas/`, and executable code under `shadow-m5index/tools/` and
-  `shadow-m5index/reference/`, and `m5-eve/reference/`. See
+  `shadow-m5index/reference/`, `m5-eve/reference/`, and `tools/`. See
   [LICENSES/Apache-2.0.txt](LICENSES/Apache-2.0.txt).
 
 JSON examples are documentation and are licensed under `CC-BY-4.0` unless an

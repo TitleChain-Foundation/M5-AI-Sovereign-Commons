@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "vector_id": "SYN-ORB-001",
+  "source_event_ref": "SYN-EVT-001",
+  "domain": "JURISDICTION",
+  "vector_type": "JURISDICTION_SCOPE_MISMATCH",
+  "severity": "HIGH",
+  "confidence": 0.97,
+  "affected_refs": [
+    "SYN-M5BOB-001",
+    "SYN-JUR-001"
+  ],
+  "evidence_refs": [
+    "SYN-VC-001"
+  ],
+  "recommended_control": "REQUIRE_HUMAN_REVIEW",
+  "authority_effect": "NONE",
+  "created_at": "2026-09-22T20:00:01Z"
+}

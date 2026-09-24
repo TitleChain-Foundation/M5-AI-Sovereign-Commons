@@ -1,96 +1,129 @@
 # M5-AIGOV-001 — AI Governance and Deterministic Authorization
 
-**Status:** Draft for Public Comment
+**Status: Draft for Public Comment**
 
 ## 1. Scope and normative language
 
 This standard defines governance records for models, agents, providers, plugins,
-tools, and value-related actions. “MUST”, “MUST NOT”, “SHOULD”, and “MAY” are
-normative.
+tools, value-related actions, and event-driven execution. “MUST”, “MUST NOT”,
+“SHOULD”, and “MAY” are normative.
 
 ## 2. Authority boundary
 
-M5Canon **MUST** be implemented as a deterministic policy and authority-control
-system; it is not AI. Models, agents, providers, plugins, and named roles are
-bounded capabilities and **MUST NOT** be treated as principals. All authority
-comes from accountable humans or lawful entities and authoritative external
-sources. Public labels, registration, schema validity, and conformance claims do
-not confer legal status.
+M5Canon **MUST** be deterministic and is not AI. Models, agents, providers,
+plugins, named roles, event buses, meters, threat scores, wallets, payment
+protocols, and endpoints are bounded capabilities or evidence surfaces and
+**MUST NOT** be treated as independent principals.
 
-“Level 5” and “Sovereign Nation” are descriptive M5 terminology only. They
-**MUST NOT** be represented as conferring governmental, diplomatic, legal,
-treaty, sovereign-recognition, or other official status.
+All authority derives from accountable humans or lawful entities plus the
+applicable authoritative external sources.
 
 ## 3. Six-Gate control
 
-Every consequential action **MUST** pass, in order:
+Every consequential action **MUST** pass:
 
-1. **Principal:** resolve an accountable human or lawful entity.
-2. **Role and credential:** verify current identity, credentials, role,
-   standing, scope, and explicit, bounded, revocable delegation.
-3. **Jurisdiction:** resolve the applicable-authority graph and authoritative
-   external sources.
-4. **Deterministic policy:** evaluate the current instrument, entity,
-   restrictions, limits, and versioned policy without model discretion.
-5. **Accountable approval:** verify every approval required by policy, law,
-   contract, governance, or risk classification.
-6. **Evidence and audit anchor:** commit an attributable, tamper-evident receipt
-   before bounded execution.
+1. **Principal** — resolve the accountable human or lawful entity.
+2. **Role/credential/standing** — verify current identity, entity, role,
+   credential, standing, scope, and delegation.
+3. **Jurisdiction** — resolve the canonical TitleChain Registry jurisdiction
+   binding and the external applicable-authority graph supporting it.
+4. **Deterministic policy** — evaluate current entity, asset, instrument,
+   restrictions, budgets, policy, threat inputs, and limits without model
+   discretion.
+5. **Accountable approval** — verify every required approval.
+6. **Evidence/receipt** — commit an attributable receipt before bounded
+   consequential execution.
 
-A missing, malformed, expired, revoked, altered, disputed, or out-of-scope input
-**MUST** yield `deny` or `unresolved`, never implicit approval. A change in
-principal, delegation, artifact, endpoint, jurisdiction, policy, credential, or
-risk state **MUST** trigger reevaluation.
+Missing, malformed, expired, revoked, suspended, disputed, mismatched, or
+out-of-scope inputs **MUST** fail closed as `deny` or `unresolved`.
 
-## 4. Function identifiers and roles
+## 4. Function and named-role boundary
 
-Machine policy **MUST** use versioned `M5CANON.*` control identifiers and
-`M5CAP.*` capability identifiers. Named roles such as Cyrus or Savant are
-human-readable implementation labels only. Their signed results are supporting
-evidence, not authorization. A display name **MUST NOT** substitute for a
-function identifier, and a capability **MUST NOT** implement or claim ownership
-of the final M5Canon decision.
+Machine policy uses `M5CANON.*` control identifiers and `M5CAP.*` capability
+identifiers. Named roles are human-readable implementation labels only.
 
-Savant is the reference named role for
-`M5CAP.PROVENANCE.CONTINUITY.VALIDATE.v1`: it validates origin, custody,
-transformation, attribution, continuity, and integrity across a provenance
-chain. Vionneta records and anchors the provenance evidence that makes that
-chain inspectable. Milner performs
-`M5CAP.ACCOUNT.COGNITIVE_BOUNDARY.PROTECT.v1`, protecting the identity,
-knowledge, cognitive, policy, and operational boundary of BOM, BOU, BOB, BOI,
-and BOG account contexts. These functions are distinct and none grants
-authority.
+Orbitalys threat-vector output, Laya/Jev/model output, OpenMeter usage, and x402
+payment evidence are inputs/evidence and cannot own the final M5Canon decision.
 
-## 5. Twelve independent dimensions
+## 5. Independent dimensions
 
-Records **MUST** preserve, without inference or collapse, these dimensions:
+Records **MUST** preserve these independent dimensions without inference or
+collapse:
 
 1. economic class;
 2. account context;
-3. Title Container;
+3. TitleChain asset/title state;
 4. representation;
-5. wrapper;
-6. jurisdictional security state;
-7. USC;
-8. S-state;
-9. SR-state;
-10. external classifications;
-11. credentials and standing; and
-12. provenance.
+5. M4 instrument state;
+6. jurisdiction-chain binding;
+7. authority/policy state;
+8. USC transaction/settlement context;
+9. S-state;
+10. SR-state;
+11. external classifications;
+12. credentials/standing; and
+13. provenance.
 
-An entry in one dimension **MUST NOT** establish another. Unknown or conflicting
-dimensions remain explicit and fail closed where material.
+The older canonical `wrapper` dimension is superseded by explicit M4 instrument
+state. An M4 instrument must preserve its links to underlying M2/M3 assets or
+rights where applicable.
 
-## 6. Instrument lifecycle and receipts
+## 6. Provider execution
 
-Value instrument identity, denomination, valuation, jurisdiction-authority
-graph, standard references, approvals, named-role results, deterministic
-M5Canon decision, and append-only provenance **MUST** be separately recorded.
-No currency, including USD, may be assumed. Issue, transfer, redemption,
-suspension, expiry, revocation, and destruction controls **MUST** verify current
-authority and lifecycle state. Unsupported legal classifications **MUST** remain
-`unknown` or `disputed`.
+A provider action may be authorized only when the applicable provider account
+resolves to a verified `M5BOU`, `M5BOB`, `M5BOI`, or `M5BOG` context in current
+required standing with current capability, jurisdiction-chain, and endpoint
+bindings.
 
-Receipts **MUST** be attributable, ordered, tamper-evident, append-only, and
-retain the exact function and policy versions. Schema validation demonstrates
-format only, not legality, approval, enrollment, endorsement, or authority.
+An M5BOU without independent legal identity must additionally have a verified
+parent account/entity and current explicit delegation. Parent association alone
+never grants authority.
+
+## 7. Jurisdiction binding
+
+Human-readable jurisdiction labels are display/search values only.
+Consequential authorization **MUST** resolve the canonical TitleChain Registry
+jurisdiction-chain binding and supporting external authority sources.
+
+The TitleChain namespace does not itself create governmental authority,
+recognition, title, license, or legal status.
+
+## 8. Threat inputs
+
+Orbitalys may identify threat vectors and recommend controls. Threat scores do
+not automatically create or revoke legal authority. M5Canon applies the
+versioned deterministic policy that determines whether a vector requires
+reverification, hold, denial, step-up authentication, or human review.
+
+## 9. Commerce inputs
+
+Metering, reference pricing, billing, settlement, and accounting are separate
+from authority. Successful payment does not satisfy an authority gate.
+
+Tier I sovereign local inference is unmetered and has a $0 AI-service price.
+Optional local diagnostics are human-controlled and cannot condition access.
+See [M5-AIMARKET-001](M5-AIMARKET-001.md).
+
+## 10. Receipts
+
+Receipts **MUST** be attributable, versioned, ordered where required,
+tamper-evident, append-only, and retain exact function/policy versions and
+correction/supersession links. Schema validity proves only shape, not legal
+validity, endorsement, enrollment, title, authority, or regulatory status.
+
+## Preserved governance controls
+
+“Level 5” and “Sovereign Nation” confer no governmental, diplomatic, treaty,
+recognition or legal status. A change in principal, delegation, artifact,
+endpoint, jurisdiction, policy, credential or risk MUST trigger reevaluation.
+Machine policies MUST use versioned M5CANON/M5CAP identifiers. Named roles and
+their signed results cannot replace authorization. Savant validates provenance
+continuity; Vionneta records evidence; Milner protects the cognitive/account
+boundary. These remain distinct functions.
+
+Value-instrument identity, denomination, valuation, authority graph, standards,
+approvals and lifecycle MUST remain distinct. No currency is assumed. Issue,
+transfer, redemption, suspension, expiry, revocation and destruction MUST verify
+current authority; unsupported legal classifications remain unknown/disputed.
+The generic reference metering fixture uses USD explicitly, not as a universal
+denomination. Protected action controls do not revoke ordinary Tier I inference.

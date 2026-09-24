@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:intelligence-request:v1",
+  "title": "M5 Intelligence Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "principal_ref",
+    "task_type",
+    "output_type",
+    "privacy_mode",
+    "local_required",
+    "external_allowed",
+    "max_external_cost_usd"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principal_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agent_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "task_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_type": {
+      "enum": [
+        "DETERMINISTIC",
+        "CHOICE",
+        "BOOLEAN_PROBABILITY",
+        "SCORE",
+        "TYPED_DECISION",
+        "GENERATIVE_SHORT",
+        "GENERATIVE_LONG_FORM",
+        "MULTIMODAL",
+        "TOOL_USING"
+      ]
+    },
+    "privacy_mode": {
+      "enum": [
+        "LOCAL_ONLY",
+        "PRIVATE",
+        "RESTRICTED",
+        "PUBLIC"
+      ]
+    },
+    "local_required": {
+      "type": "boolean"
+    },
+    "external_allowed": {
+      "type": "boolean"
+    },
+    "provider_allowlist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provider_denylist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "max_external_cost_usd": {
+      "type": "string",
+      "pattern": "^[0-9]+(\\.[0-9]+)?$"
+    },
+    "latency_target_ms": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "confidence_floor": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "human_review_below": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 1
+    },
+    "jurisdiction_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_residency_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "privacy_mode": {
+            "const": "LOCAL_ONLY"
+          }
+        },
+        "required": [
+          "privacy_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "local_required": {
+            "const": true
+          },
+          "external_allowed": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "local_required": {
+            "const": true
+          }
+        },
+        "required": [
+          "local_required"
+        ]
+      },
+      "then": {
+        "properties": {
+          "external_allowed": {
+            "const": false
+          }
+        }
+      }
+    }
+  ]
+}

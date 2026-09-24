@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:m5-bom-sovereign-baseline:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "principal_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "account_context": {
+      "const": "BOM"
+    },
+    "public_name": {
+      "const": "M5BOM"
+    },
+    "account_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activation_receipt_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tier": {
+      "const": "TIER_I"
+    },
+    "hardware_control": {
+      "const": "HUMAN"
+    },
+    "weights_location": {
+      "const": "LOCAL"
+    },
+    "model_artifact_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_license_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_artifact_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "ai_service_price_usd": {
+      "type": "string",
+      "pattern": "^0+(\\.0+)?$"
+    },
+    "billing_policy": {
+      "const": "LOCAL_SOVEREIGN"
+    },
+    "billable": {
+      "const": false
+    },
+    "service_metering": {
+      "const": "NONE"
+    },
+    "usage_cap": {
+      "const": null
+    },
+    "payment_required": {
+      "const": false
+    },
+    "subscription_required": {
+      "const": false
+    },
+    "telemetry_required": {
+      "const": false
+    },
+    "hosted_routing_required": {
+      "const": false
+    },
+    "network_required_for_inference": {
+      "const": false
+    },
+    "periodic_account_check_required": {
+      "const": false
+    },
+    "paid_fallback_default": {
+      "const": false
+    },
+    "diagnostics": {
+      "enum": [
+        "OFF",
+        "LOCAL_OPT_IN"
+      ]
+    },
+    "diagnostics_disable_preserves_inference": {
+      "const": true
+    },
+    "account_suspension_disables_local_inference": {
+      "const": false
+    },
+    "export_supported": {
+      "const": true
+    },
+    "delete_supported": {
+      "const": true
+    },
+    "infrastructure_costs_separate": {
+      "const": true
+    },
+    "infrastructure_estimate": {
+      "oneOf": [
+        {
+          "const": null
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "device_amortization_usd": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "purchased_energy_usd": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "storage_usd": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "network_usd": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            }
+          },
+          "required": [
+            "device_amortization_usd",
+            "purchased_energy_usd",
+            "storage_usd",
+            "network_usd"
+          ]
+        }
+      ]
+    },
+    "authority_effect": {
+      "const": "NONE"
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "principal_ref",
+    "account_context",
+    "public_name",
+    "account_ref",
+    "activation_receipt_ref",
+    "tier",
+    "hardware_control",
+    "weights_location",
+    "model_artifact_ref",
+    "model_license_ref",
+    "model_artifact_hash",
+    "ai_service_price_usd",
+    "billing_policy",
+    "billable",
+    "service_metering",
+    "usage_cap",
+    "payment_required",
+    "subscription_required",
+    "telemetry_required",
+    "hosted_routing_required",
+    "network_required_for_inference",
+    "periodic_account_check_required",
+    "paid_fallback_default",
+    "diagnostics",
+    "diagnostics_disable_preserves_inference",
+    "account_suspension_disables_local_inference",
+    "export_supported",
+    "delete_supported",
+    "infrastructure_costs_separate",
+    "infrastructure_estimate",
+    "authority_effect"
+  ]
+}

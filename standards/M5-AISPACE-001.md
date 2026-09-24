@@ -64,9 +64,9 @@ scope, necessity, proportionality, expiry, and an attributable receipt.
 
 ## 6. Separate dimensions and evidence
 
-Economic class, account context, Title Container, representation, wrapper,
-jurisdictional security state, USC, S-state, SR-state, external
-classifications, credentials/standing, and provenance **MUST** remain twelve
+Economic class, account context, title state, representation, instrument state,
+jurisdiction binding, authority state, USC, S-state, SR-state, external
+classifications, credentials/standing, and provenance **MUST** remain thirteen
 separate dimensions. Spatial proximity or representation **MUST NOT** establish
 title, identity, jurisdiction, standing, or permission. Evidence and changes
 **MUST** be attributable and append-only.

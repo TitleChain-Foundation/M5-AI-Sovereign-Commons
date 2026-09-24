@@ -1,0 +1,1143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:m5:schema:event-envelope:v1",
+  "title": "M5 Event Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "specversion",
+    "id",
+    "type",
+    "source",
+    "subject",
+    "time",
+    "datacontenttype",
+    "m5eventversion",
+    "data"
+  ],
+  "properties": {
+    "specversion": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "format": "uri-reference"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "datacontenttype": {
+      "const": "application/json"
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_phase",
+        "principal_ref",
+        "account_context_ref",
+        "primary_m5_class",
+        "related_m5_classes",
+        "jurisdiction_binding_ref",
+        "capability_ref",
+        "privacy_class",
+        "evidence_refs",
+        "idempotency_key",
+        "correlation_id"
+      ],
+      "properties": {
+        "event_phase": {
+          "enum": [
+            "ATTEMPTED",
+            "AUTHORIZED",
+            "EXECUTED",
+            "FAILED",
+            "SETTLED",
+            "RECONCILED",
+            "CORRECTED",
+            "SUPERSEDED",
+            "DENIED"
+          ]
+        },
+        "principal_ref": {
+          "type": "string"
+        },
+        "actor_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "agent_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "account_context_ref": {
+          "type": "string"
+        },
+        "provider": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "provider_id",
+                "m5_account_ref",
+                "account_type",
+                "accountable_entity_ref",
+                "account_lifecycle",
+                "verification_status",
+                "standing_status",
+                "standing_credential_refs"
+              ],
+              "properties": {
+                "provider_id": {
+                  "type": "string"
+                },
+                "m5_account_ref": {
+                  "type": "string"
+                },
+                "account_type": {
+                  "enum": [
+                    "M5BOU",
+                    "M5BOB",
+                    "M5BOI",
+                    "M5BOG"
+                  ]
+                },
+                "accountable_entity_ref": {
+                  "type": "string"
+                },
+                "parent_account_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "delegation_ref": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "account_lifecycle": {
+                  "enum": [
+                    "PENDING",
+                    "ACTIVE",
+                    "SUSPENDED",
+                    "REVOKED",
+                    "EXPIRED"
+                  ]
+                },
+                "verification_status": {
+                  "enum": [
+                    "UNVERIFIED",
+                    "PENDING",
+                    "VERIFIED",
+                    "FAILED",
+                    "DISPUTED",
+                    "EXPIRED"
+                  ]
+                },
+                "standing_status": {
+                  "enum": [
+                    "GOOD_STANDING",
+                    "PENDING",
+                    "SUSPENDED",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNKNOWN"
+                  ]
+                },
+                "standing_credential_refs": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "account_type": {
+                        "const": "M5BOU"
+                      }
+                    },
+                    "required": [
+                      "account_type"
+                    ]
+                  },
+                  "then": {
+                    "required": [
+                      "parent_account_ref",
+                      "delegation_ref"
+                    ],
+                    "properties": {
+                      "parent_account_ref": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "delegation_ref": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "primary_m5_class": {
+          "enum": [
+            "M1",
+            "M2",
+            "M3",
+            "M4",
+            "M5"
+          ]
+        },
+        "related_m5_classes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "M1",
+              "M2",
+              "M3",
+              "M4",
+              "M5"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "asset_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instrument_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "entity_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jurisdiction_binding_ref": {
+          "type": "string"
+        },
+        "jurisdiction_display": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "capability_ref": {
+          "type": "string",
+          "pattern": "^M5CAP\\.[A-Z_]+(?:\\.[A-Z_]+)+\\.v[1-9][0-9]*$"
+        },
+        "observed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "record_effective_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "recorded_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "processed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "metering": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "meter_id",
+            "quantity",
+            "product_id",
+            "billable",
+            "billing_policy",
+            "price_version",
+            "actual_cost_usd",
+            "reference_unit_price_usd",
+            "notional_service_value_usd",
+            "billed_amount_usd",
+            "waived_amount_usd",
+            "meter_version"
+          ],
+          "properties": {
+            "meter_id": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number",
+              "minimum": 0
+            },
+            "product_id": {
+              "type": "string"
+            },
+            "billable": {
+              "type": "boolean"
+            },
+            "billing_policy": {
+              "enum": [
+                "LOCAL_SOVEREIGN",
+                "FREE_PUBLIC",
+                "PLAN_INCLUDED",
+                "PREPAID",
+                "CONTRACT",
+                "INVOICE",
+                "X402"
+              ]
+            },
+            "price_version": {
+              "type": "string"
+            },
+            "actual_cost_usd": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "reference_unit_price_usd": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "notional_service_value_usd": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "billed_amount_usd": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "waived_amount_usd": {
+              "type": "string",
+              "pattern": "^[0-9]+(\\.[0-9]+)?$"
+            },
+            "commerce_receipt_ref": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "meter_version": {
+              "type": "string",
+              "minLength": 1,
+              "not": {
+                "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
+              }
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "billing_policy": {
+                    "enum": [
+                      "FREE_PUBLIC",
+                      "LOCAL_SOVEREIGN"
+                    ]
+                  }
+                },
+                "required": [
+                  "billing_policy"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "billable": {
+                    "const": false
+                  },
+                  "billed_amount_usd": {
+                    "type": "string",
+                    "pattern": "^0+(\\.0+)?$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "threat_vector_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_digest": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "privacy_class": {
+          "enum": [
+            "PUBLIC",
+            "AGGREGATE_ONLY",
+            "PRIVATE",
+            "RESTRICTED"
+          ]
+        },
+        "redistribution_allowed": {
+          "type": "boolean"
+        },
+        "idempotency_key": {
+          "type": "string"
+        },
+        "correlation_id": {
+          "type": "string"
+        },
+        "causation_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "trace_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "corrects_event_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supersedes_event_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "policy_result": {
+              "enum": [
+                "ALLOW",
+                "DENY",
+                "HOLD"
+              ]
+            },
+            "policy_version": {
+              "type": "string",
+              "minLength": 1,
+              "not": {
+                "pattern": "(?:[Ll][Aa][Tt][Ee][Ss][Tt]|[Uu][Nn][Vv][Ee][Rr][Ss][Ii][Oo][Nn][Ee][Dd]|[Uu][Nn][Kk][Nn][Oo][Ww][Nn])"
+              }
+            },
+            "principal_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "agent_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "activation_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "capability_ref": {
+              "type": "string",
+              "pattern": "^M5CAP\\.[A-Z_]+(?:\\.[A-Z_]+)+\\.v[1-9][0-9]*$"
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "resource_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "namespace_binding_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            },
+            "credential": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "delegation": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "jurisdiction": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "approval": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "provider_standing": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "provider_capability": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "endpoint": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "VALID",
+                    "PENDING",
+                    "MISSING",
+                    "REVOKED",
+                    "EXPIRED",
+                    "DISPUTED",
+                    "UNRESOLVED",
+                    "DENIED"
+                  ]
+                },
+                "evidence_ref": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "effective_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "expires_at": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "status",
+                "evidence_ref",
+                "effective_at",
+                "expires_at"
+              ]
+            },
+            "authorized": {
+              "type": "boolean"
+            },
+            "executed": {
+              "type": "boolean"
+            },
+            "evaluated_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "model_result": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "recommendation": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              },
+              "required": [
+                "recommendation",
+                "confidence"
+              ]
+            },
+            "payment_success": {
+              "type": "boolean"
+            },
+            "decision_ref": {
+              "type": "string",
+              "minLength": 1
+            },
+            "provider_ref": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "policy_result",
+            "policy_version",
+            "principal_ref",
+            "agent_ref",
+            "activation_ref",
+            "capability_ref",
+            "purpose",
+            "resource_ref",
+            "namespace_binding_refs",
+            "credential",
+            "delegation",
+            "jurisdiction",
+            "approval",
+            "provider_standing",
+            "provider_capability",
+            "endpoint",
+            "authorized",
+            "executed",
+            "evaluated_at",
+            "model_result",
+            "payment_success",
+            "decision_ref",
+            "provider_ref"
+          ],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "authorized": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "authorized"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "policy_result": {
+                    "const": "ALLOW"
+                  },
+                  "credential": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  },
+                  "delegation": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  },
+                  "jurisdiction": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  },
+                  "approval": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  },
+                  "provider_standing": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  },
+                  "provider_capability": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  },
+                  "endpoint": {
+                    "properties": {
+                      "status": {
+                        "const": "VALID"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "executed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "executed"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "authorized": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "compute_class": {
+          "enum": [
+            "SOVEREIGN_LOCAL",
+            "FEDERATED_COMPUTE",
+            "COMMERCIAL_POOLED",
+            "FRONTIER_HOSTED",
+            "SERVICE"
+          ]
+        },
+        "units": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "event_phase": {
+                "const": "CORRECTED"
+              }
+            },
+            "required": [
+              "event_phase"
+            ]
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": [
+                  "corrects_event_id"
+                ],
+                "properties": {
+                  "corrects_event_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              {
+                "required": [
+                  "supersedes_event_id"
+                ],
+                "properties": {
+                  "supersedes_event_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_phase": {
+                "const": "SUPERSEDED"
+              }
+            },
+            "required": [
+              "event_phase"
+            ]
+          },
+          "then": {
+            "required": [
+              "supersedes_event_id"
+            ],
+            "properties": {
+              "supersedes_event_id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_phase": {
+                "enum": [
+                  "DENIED",
+                  "FAILED"
+                ]
+              }
+            },
+            "required": [
+              "event_phase"
+            ]
+          },
+          "then": {
+            "properties": {
+              "metering": {
+                "properties": {
+                  "billable": {
+                    "const": false
+                  },
+                  "billed_amount_usd": {
+                    "type": "string",
+                    "pattern": "^0+(\\.0+)?$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_phase": {
+                "enum": [
+                  "AUTHORIZED",
+                  "EXECUTED",
+                  "SETTLED",
+                  "RECONCILED"
+                ]
+              }
+            },
+            "required": [
+              "event_phase"
+            ]
+          },
+          "then": {
+            "required": [
+              "authorization"
+            ],
+            "properties": {
+              "authorization": {
+                "properties": {
+                  "authorized": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_phase": {
+                "const": "EXECUTED"
+              }
+            },
+            "required": [
+              "event_phase"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authorization": {
+                "properties": {
+                  "executed": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "compute_class": {
+                "const": "SOVEREIGN_LOCAL"
+              }
+            },
+            "required": [
+              "compute_class"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "metering"
+              ]
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "event_phase": {
+                "enum": [
+                  "ATTEMPTED",
+                  "DENIED"
+                ]
+              }
+            },
+            "required": [
+              "event_phase"
+            ]
+          },
+          "then": {
+            "properties": {
+              "authorization": {
+                "properties": {
+                  "authorized": {
+                    "const": false
+                  },
+                  "executed": {
+                    "const": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "m5eventversion": {
+      "const": "1.0.0"
+    }
+  }
+}

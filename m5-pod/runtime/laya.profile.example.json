@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "profile_id": "EXAMPLE-LAYA-LOCAL",
+  "runtime_class": "SYSTEM_ONE_LOCAL",
+  "provider_or_project": "Laya",
+  "deployment": "LOCAL_M5POD",
+  "task_shapes": [
+    "CHOICE",
+    "BOOLEAN_PROBABILITY",
+    "SCORE",
+    "CLASSIFICATION",
+    "ROUTING"
+  ],
+  "authority_source": false,
+  "external_allowed_required": false,
+  "model_access_price_usd": "0.00",
+  "billable": false,
+  "telemetry_default": "OFF",
+  "notes": "Synthetic public profile. Verify exact official license, weights, model IDs and supported runtimes before production publication.",
+  "service_metering": "NONE",
+  "usage_cap": null,
+  "telemetry_required": false
+}

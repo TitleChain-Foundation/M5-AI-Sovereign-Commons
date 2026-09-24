@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1.0",
+  "status": "SYNTHETIC_EXAMPLE",
+  "providers": [
+    {
+      "provider_id": "LAYA_LOCAL",
+      "runtime_class": "SYSTEM_ONE_LOCAL",
+      "provider_cost_model": "SELF_HOSTED",
+      "model_access_unit_price_usd": "0.00",
+      "billable_by_default": false,
+      "cost_components": [
+        "compute",
+        "energy",
+        "storage",
+        "network"
+      ]
+    },
+    {
+      "provider_id": "JEV_HOSTED",
+      "runtime_class": "SYSTEM_ONE_HOSTED",
+      "provider_cost_model": "VERSIONED_EXTERNAL_CATALOG",
+      "billable_by_default": false,
+      "note": "Populate from current official provider pricing at deployment time."
+    },
+    {
+      "provider_id": "FRONTIER_GENERIC",
+      "runtime_class": "GENERATIVE_HOSTED",
+      "provider_cost_model": "VERSIONED_EXTERNAL_CATALOG",
+      "billable_by_default": false,
+      "note": "Provider-neutral placeholder."
+    }
+  ]
+}

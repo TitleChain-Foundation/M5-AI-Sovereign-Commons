@@ -1,0 +1,36 @@
+name: Complete Commons conformance
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      M5_REQUIRE_NUMSCRIPT: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      NUMSCRIPT_ASSET: numscript_0.0.25_Linux_x86_64.tar.gz
+      NUMSCRIPT_SHA256: 134e9cc3c42af0d642c4a3b4cb3c644b1028f09cde100013073c7efa36dfb0f5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install repository dependencies
+        run: python -m pip install -r requirements-dev.txt -r sec-public-input/observatory/requirements.txt
+      - name: Install pinned Numscript
+        run: |
+          curl --fail --silent --show-error --location --output "$RUNNER_TEMP/$NUMSCRIPT_ASSET" "https://github.com/formancehq/numscript/releases/download/v0.0.25/$NUMSCRIPT_ASSET"
+          echo "$NUMSCRIPT_SHA256  $RUNNER_TEMP/$NUMSCRIPT_ASSET" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/$NUMSCRIPT_ASSET" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
+      - name: Complete regression and conformance suite
+        run: python -m pytest -q -p no:cacheprovider tests reference-implementation/provider-neutral-governor/tests shadow-m5index/tests sec-public-input/observatory/tests
+      - name: Current SHADOW validator
+        run: python shadow-m5index/scripts/validate_records.py
+      - name: Manifest, JSON, duplicate schema IDs, secret, PII and junk checks
+        run: python tools/check_public_release.py
+      - name: Whitespace check
+        run: git diff --check

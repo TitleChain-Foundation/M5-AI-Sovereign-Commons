@@ -21,12 +21,31 @@ NAMES = [
     "m5-aispace-capability-manifest",
     "m5-human-experience-boundary",
     "m5-human-refusal-profile",
+    'm5-jurisdiction-binding',
+    'm5-credential-trust-record',
+    'm5-event-envelope',
+    'orbitalys-threat-vector',
+    'm5-service-event-manifest',
+    'm5-intelligence-request',
+    'm5-intelligence-routing-receipt',
+    'm5-transaction-footprint',
+    'm5-commerce-receipt',
+    'm5-action-authorization',
+    'm5-bom-sovereign-baseline',
+    'm5-eve-activation',
 ]
 
 
+EXAMPLE_NAMES = {
+    "m5-intelligence-request": "m5-intelligence-request-laya-local",
+    "m5-intelligence-routing-receipt": "m5-intelligence-routing-receipt-laya",
+    "m5-transaction-footprint": "m5-transaction-footprint-property",
+    "m5-commerce-receipt": "m5-commerce-receipt-laya-local",
+}
+
 def load_pair(name):
     schema = json.loads((SCHEMA_DIR / f"{name}.schema.json").read_text())
-    example = json.loads((EXAMPLE_DIR / f"{name}.example.json").read_text())
+    example = json.loads((EXAMPLE_DIR / f"{EXAMPLE_NAMES.get(name, name)}.example.json").read_text())
     return schema, example
 
 
@@ -34,9 +53,9 @@ def validator(schema):
     return Draft202012Validator(schema, format_checker=FormatChecker())
 
 
-def test_exactly_nine_named_schemas_and_examples():
+def test_exact_named_schema_and_example_inventory():
     assert sorted(path.stem.removesuffix(".schema") for path in SCHEMA_DIR.glob("*.schema.json")) == sorted(NAMES)
-    assert sorted(path.stem.removesuffix(".example") for path in EXAMPLE_DIR.glob("*.example.json")) == sorted(NAMES)
+    assert sorted(path.stem.removesuffix(".example") for path in EXAMPLE_DIR.glob("*.example.json")) == sorted(EXAMPLE_NAMES.get(n,n) for n in NAMES)
 
 
 @pytest.mark.parametrize("name", NAMES)
@@ -152,11 +171,11 @@ def test_refusal_is_evaluated_before_capture(name, field):
     assert not validator(schema).is_valid(invalid)
 
 
-def test_context_envelope_requires_all_twelve_dimensions():
+def test_context_envelope_requires_all_thirteen_dimensions():
     schema, example = load_pair("m5-canonical-context-envelope")
     dimensions = {
-        "economic_class", "account_context", "title_container", "representation",
-        "wrapper", "jurisdictional_security_state", "usc", "s_state", "sr_state",
+        "economic_class", "account_context", "title_state", "representation",
+        "instrument_state", "jurisdiction_binding", "authority_state", "usc", "s_state", "sr_state",
         "external_classifications", "credentials_standing", "provenance",
     }
     assert dimensions <= set(schema["required"])

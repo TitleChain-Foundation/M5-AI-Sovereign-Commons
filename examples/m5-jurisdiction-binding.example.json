@@ -1,0 +1,103 @@
+{
+  "schema_version": "2.0.0",
+  "binding_id": "SYN-JUR-001",
+  "titlechain_registry_ref": "SYN-REGISTRY",
+  "vc_namespace_ref": "SYN-VC-NS",
+  "chain_ref": "SYN-CHAIN",
+  "external_authority_refs": [
+    "SYN-PENDING-EVIDENCE"
+  ],
+  "credential_refs": [
+    "SYN-PENDING-CREDENTIAL"
+  ],
+  "status": "PENDING",
+  "verified_at": null,
+  "effective_at": "2026-09-23T00:00:00Z",
+  "expires_at": "2026-10-23T00:00:00Z",
+  "namespace_bindings": [
+    {
+      "binding_id": "SYN-NS-UN",
+      "namespace": "unitednationschain.eth",
+      "namespace_class": "INTERNATIONAL_ORGANIZATION",
+      "binding_role": "PRINCIPAL_ORGANIZATION",
+      "scope": [
+        "synthetic-review"
+      ],
+      "canonical_entity_ref": "SYN-ENTITY-UN",
+      "controller_ref": "SYN-UNVERIFIED-CONTROLLER-UN",
+      "authority_evidence_refs": [],
+      "registration_provenance_refs": [],
+      "evidence_hashes": [],
+      "validation_record_ref": null,
+      "validated_at": null,
+      "effective_at": "2026-09-23T00:00:00Z",
+      "expires_at": "2026-10-23T00:00:00Z",
+      "standing": "UNKNOWN",
+      "status": "UNRESOLVED",
+      "authority_basis": "UNRESOLVED",
+      "revoked": false,
+      "disputed": false,
+      "superseded_by": null
+    },
+    {
+      "binding_id": "SYN-NS-NYC",
+      "namespace": "newyorkcitychain.eth",
+      "namespace_class": "MUNICIPALITY",
+      "binding_role": "SERVICE_JURISDICTION",
+      "scope": [
+        "synthetic-review"
+      ],
+      "canonical_entity_ref": "SYN-ENTITY-NYC",
+      "controller_ref": "SYN-UNVERIFIED-CONTROLLER-NYC",
+      "authority_evidence_refs": [],
+      "registration_provenance_refs": [],
+      "evidence_hashes": [],
+      "validation_record_ref": null,
+      "validated_at": null,
+      "effective_at": "2026-09-23T00:00:00Z",
+      "expires_at": "2026-10-23T00:00:00Z",
+      "standing": "UNKNOWN",
+      "status": "UNRESOLVED",
+      "authority_basis": "UNRESOLVED",
+      "revoked": false,
+      "disputed": false,
+      "superseded_by": null
+    },
+    {
+      "binding_id": "SYN-NS-NYS",
+      "namespace": "newyorkchain.eth",
+      "namespace_class": "STATE",
+      "binding_role": "RELATED_STATE_JURISDICTION",
+      "scope": [
+        "synthetic-review"
+      ],
+      "canonical_entity_ref": "SYN-ENTITY-NYS",
+      "controller_ref": "SYN-UNVERIFIED-CONTROLLER-NYS",
+      "authority_evidence_refs": [],
+      "registration_provenance_refs": [],
+      "evidence_hashes": [],
+      "validation_record_ref": null,
+      "validated_at": null,
+      "effective_at": "2026-09-23T00:00:00Z",
+      "expires_at": "2026-10-23T00:00:00Z",
+      "standing": "UNKNOWN",
+      "status": "UNRESOLVED",
+      "authority_basis": "UNRESOLVED",
+      "revoked": false,
+      "disputed": false,
+      "superseded_by": null
+    }
+  ],
+  "external_identifiers": [
+    {
+      "scheme": "LEI",
+      "value": "SYNTHETIC-NOT-A-VALID-LEI",
+      "issuer_ref": "SYN-EXTERNAL-ISSUER",
+      "source_ref": "SYN-SOURCE",
+      "version": "SYN-1",
+      "observed_at": "2026-09-23T00:00:00Z",
+      "identified_object_ref": "SYN-ENTITY-UN",
+      "authority_effect": "NONE"
+    }
+  ]
+}

@@ -302,3 +302,17 @@ in [LICENSE.md](LICENSE.md) and [LEGAL-NOTICES.md](LEGAL-NOTICES.md).
 Passing the included tests demonstrates only the cases those tests exercise.
 It does not establish production security, legal compliance, provider
 enrollment, hardware certification, or full standards conformance.
+
+## Proposed M5BOM sovereign intelligence baseline
+
+[M5-AIMARKET-001](standards/M5-AIMARKET-001.md) proposes a $0, unmetered Tier I
+baseline on human-controlled hardware, with optional external compute. The
+[activation framework](docs/M5BOM-ACTIVATION-AND-SOVEREIGN-BASELINE.md) separates
+ordinary local inference from protected M5-Eve actions. Jev/Eve and Laya are
+first featured integrations, with other providers welcome under the same
+controls. This is public contract work, not a deployed service.
+
+The [conformance profile](docs/M5-CONFORMANCE-AND-NAMESPACE-BOUNDARIES.md) covers
+namespace evidence, Event Plane, metered-service pricing, provider trust and
+receipts. See [migration](docs/M5-CANONICAL-CONTEXT-V1-V2-MIGRATION.md) before
+consuming v2 context or jurisdiction records.

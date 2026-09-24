@@ -191,3 +191,28 @@ support, legal effect, a patent right, or a relationship with M5.
 - HomomorphicEncryption.org: <https://homomorphicencryption.org/>
 - Refuse Consent Protocol: <https://github.com/Silkproof/refuse-consent-protocol>
 
+
+## September 23 contract profile additions
+
+| Reference | Type | State / pin | Limited role |
+| --- | --- | --- | --- |
+| CloudEvents | Published specification | PROFILED: 1.0.2, reviewed 2026-09-23 | Event envelope; wire specversion 1.0 |
+| W3C VC Data Model | Formal W3C Recommendation | PROFILED: 2.0 | Credential shape; not issuer trust |
+| W3C VC 2.1 | Draft reference in Sept. 22 handoff | REFERENCE_ONLY; not adopted by this profile | No production baseline claim |
+| OpenMeter | Metering implementation/service | REFERENCE_ONLY; integration version pending | Replaceable usage adapter for metered services |
+| x402 V2 | Published payment protocol reference | REFERENCE_ONLY; adapter version pending | Optional settlement, not authorization |
+| GLEIF LEI/vLEI | Organizational identity ecosystem | REFERENCE_ONLY; deployment profile pending | Preserve native credential/source framework |
+| OpenCorporates | Corporate-data service | REFERENCE_ONLY | Entity discovery/provenance; not universal standing |
+| Laya | External local-model candidate | REFERENCE_ONLY; exact artifact/license/runtime pin required | First featured local typed-decision candidate |
+| Jev/Eve | External hosted/chat candidate | REFERENCE_ONLY; exact API/license pin required | First featured hosted/chat integration; replaceable |
+| Sumsub / ID.me | Identity-verification service candidates | REFERENCE_ONLY; exact evidence profile pending | Native evidence only; no blanket W3C VC claim |
+
+The maintainer-supplied Sept. 22 source review is historical source material,
+not independent implementation verification. This patch profiles CloudEvents
+1.0.2 and W3C VC 2.0; provider-specific behavior, prices, licenses and API versions
+must be verified before deployment. Public synthetic pins do not fulfill that
+requirement. No partnership, enrollment, or endorsement is asserted.
+
+Sources: [CloudEvents 1.0.2](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md),
+[W3C VC 2.0](https://www.w3.org/TR/vc-data-model-2.0/),
+[historical source list](EXTERNAL-REFERENCE-REVIEW-2026-09-22.md).

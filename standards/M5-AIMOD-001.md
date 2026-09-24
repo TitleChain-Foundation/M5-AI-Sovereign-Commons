@@ -49,9 +49,15 @@ reevaluation. Missing or invalid evidence fails closed.
 
 ## 6. Context separation
 
-Implementations **MUST** keep economic class, account context, Title Container,
-representation, wrapper, jurisdictional security state, USC, S-state, SR-state,
-external classifications, credentials/standing, and provenance as twelve
+Implementations **MUST** keep economic class, account context, title state,
+representation, instrument state, jurisdiction binding, authority state, USC, S-state, SR-state,
+external classifications, credentials/standing, and provenance as thirteen
 independent dimensions. Model output **MUST NOT** collapse or infer one from
 another. Artifact and profile history **MUST** be append-only and attributable.
 
+
+## Tier I boundary
+
+Artifact/agent activation controls for protected M5 functions do not impose a
+remote approval requirement on ordinary local inference. See
+[M5-AIMARKET-001](M5-AIMARKET-001.md) for the unmetered $0 baseline.
