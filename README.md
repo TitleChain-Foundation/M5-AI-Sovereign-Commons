@@ -63,11 +63,13 @@ an SEC or United Nations endorsement.
 
 ## Featured project pathways
 
-These public simulations show the types of projects the Commons is designed to
-support: public-source evidence, jurisdiction-specific authority checks,
-risk-management gates, bounded AI/workflow execution, and accountable records.
-They are review pathways and design references, not offerings, approvals,
-property claims, or grants of authority.
+The Commons begins with three progressively broader public simulations, from
+local to national to global. Each shows the kind of project the Commons is
+designed to support: public-source evidence, jurisdiction-specific authority
+checks, risk-management gates, bounded AI/workflow execution, and accountable
+records. They demonstrate process and failure conditions. They are not live
+transactions, approved government programs, offerings, transfer-agent
+appointments, property claims, or grants of authority.
 
 ### **GSA / CRE**
 
@@ -80,6 +82,7 @@ rehabilitation, capital provenance, and public-benefit operations.** The process
 is designed to test jurisdiction, title, public-owner eligibility,
 preservation/use restrictions, source-of-funds provenance, escrow/draw controls,
 transfer-agent recordkeeping boundaries, and fail-closed approval gates.
+Physical conveyance and regulated securities recordkeeping remain distinct.
 
 [Open 312 Spring Commons](pilots/312-spring-commons/README.md) ·
 [See project images](pilots/312-spring-commons/documents/images/README.md) ·
@@ -99,6 +102,8 @@ cooperative participation, and repeatable national conformance tests.** The
 process is designed to test entity/signer authority, local operator scope,
 stewardship evidence, title/economic-right separation, eligibility, correction,
 successor transfer, and public review before any consequential action.
+The 275,000-acre figure is a research-pipeline target—not owned, controlled, or
+offered acreage.
 
 [Open the Farmland simulation](pilots/peoples-trust/README.md) ·
 [See authority and evidence visuals](pilots/peoples-trust/visuals/authority-before-execution.svg) ·
@@ -112,11 +117,17 @@ successor transfer, and public review before any consequential action.
 
 [![Global UN Commons V1 concept masterplan](pilots/global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](pilots/global-un-commons/README.md)
 
+*Global UN Commons — concept and design by TitleChain Foundation (2026).*
+
 **International interoperability, 193 Member-State jurisdiction profiles,
 peaceful public-record coordination, and human-authorized cross-border
 evidence.** The process is designed to test jurisdiction profile slots,
 accountable operators, authoritative endpoints, lawful mandates, revocation,
-notice, adjudication routing, and cross-border fail-closed boundaries.
+notice, adjudication routing, and cross-border fail-closed boundaries. It
+activates no nation or government chain: every jurisdiction requires its own
+lawful mandate, accountable operator, authoritative endpoints, and
+participation. The V1–V4 images are independent concept art, not UN-endorsed
+plans.
 
 [Open Global UN Commons](pilots/global-un-commons/README.md) ·
 [See all four concept visuals](pilots/global-un-commons/visuals/README.md) ·
@@ -128,10 +139,14 @@ execution -> attributable decision and portable evidence. AI can assist with
 research, drafting, routing, and reconciliation; it does not create legal
 authority.
 
+**Public review path:** visual orientation -> maintained source text -> scoped
+Discussion or Issue -> evidence and review -> proposed change -> attributable
+decision.
+
 | I want to understand | Visual landing page |
 | --- | --- |
 | What the Commons contains and how the documents fit together | [Documentation map](docs/README.md) |
-| What the four normative proposals cover | [Proposed standards](standards/README.md) |
+| What the proposed standards cover | [Proposed standards](standards/README.md) |
 | How the public waitlist, demo, M5-CV, Commons, and project pathways connect | [Activation pathway](docs/activation/README.md) |
 | How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
 | How the 312 Spring Commons initiative fits its vision and what blocks launch | [Spring Commons fit-gap review](pilots/312-spring-commons/INITIATIVE-FIT-GAP-REVIEW.md) |
@@ -144,49 +159,6 @@ authority.
 | What the current tests do and do not prove | [Tests and validation](tests/README.md) |
 | Which visuals are approved for public orientation | [Visual assets](assets/README.md) |
 | What is safe to publish or how to report a vulnerability | [Public-review boundaries](#public-review-boundaries) and [Security](SECURITY.md) |
-
-## Project simulation sequence
-
-The Commons begins with three progressively broader, public, inspectable
-simulations. They demonstrate process and failure conditions; they are not live
-transactions, approved government programs, offerings, transfer-agent
-appointments, or grants of authority.
-
-### 1. 312 Spring Commons — government and CRE transition
-
-[![312 Spring Commons concept elevation](pilots/312-spring-commons/documents/images/312-spring-commons-concept-elevation.jpg)](pilots/312-spring-commons/README.md)
-
-The first simulation tests a government-to-public real-estate pathway, current
-title and disposition evidence, CRE rehabilitation, capital provenance,
-structured debt and economic-right records, and a separately bounded
-transfer-agent demonstration. Physical conveyance and regulated securities
-recordkeeping remain distinct. **[Explore 312 Spring Commons →](pilots/312-spring-commons/README.md)**
-
-### 2. America's People's Trust Farmland — repeatable stewardship
-
-[![America's People's Trust Farmland project vision](pilots/peoples-trust/visuals/00-project-wish-list.png)](pilots/peoples-trust/README.md)
-
-The second simulation applies the same authority, title, transfer, structured
-debt, stewardship, operator, correction, and evidence separation to farmland.
-The 275,000-acre figure is a research-pipeline target—not owned, controlled, or
-offered acreage. **[Explore the Farmland simulation →](pilots/peoples-trust/README.md)**
-
-### 3. Global UN Commons — international interoperability
-
-[![Global UN Commons V1 concept masterplan](pilots/global-un-commons/visuals/v1-un-commons-18-acre-masterplan.png)](pilots/global-un-commons/README.md)
-
-*Global UN Commons — concept and design by TitleChain Foundation (2026).*
-
-The third simulation proposes an initial transfer-agent and public-record
-interoperability profile for each of the UN's 193 Member States. It activates
-no nation or government chain: every jurisdiction requires its own lawful
-mandate, accountable operator, authoritative endpoints, and participation.
-The four V1–V4 images are independent concept art, not UN-endorsed plans.
-**[Explore Global UN Commons →](pilots/global-un-commons/README.md)**
-
-**Public review path:** visual orientation -> maintained source text -> scoped
-Discussion or Issue -> evidence and review -> proposed change -> attributable
-decision.
 
 ## Featured public research
 
