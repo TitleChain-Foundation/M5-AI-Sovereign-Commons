@@ -64,10 +64,25 @@ component is registered, mandated, certified, or deployed for regulated use.
 
 ### Additional Foundation comments — pending SEC posting
 
-TitleChain Foundation submitted additional comments to the SEC by email on
-September 23, 2026. They are **pending posting by the SEC** and do not yet
-appear on the official docket. They will be linked here, and picked up by the
-live observatory, once the SEC posts them.
+TitleChain Foundation submitted a **Supplemental Comment and Technical
+Exhibits A–J** to the SEC by email on September 23, 2026. They are **pending
+posting by the SEC** and do not yet appear on the official docket.
+
+The supplement answers the Commission's Questions 80–89 on electronic and
+distributed-ledger records. It proposes that technical control be kept
+separate from title state, authority, notice and evidence; that authority be
+reconstructable from the accountable entity to the resulting record; that the
+authoritative record survive the technology used to represent it; and that
+machine-readable regulatory routing identify potentially applicable
+authorities without an internal label creating a legal conclusion. The
+exhibits cover the Spring Commons reference transaction, regulatory routing,
+government approvals, capital and settlement, public evidence, SHADOW
+M5Index, an industry crosswalk, failure and recovery tests, and a status table
+of what is and is not yet demonstrated.
+
+The filing will be linked here, and picked up by the live observatory, once
+the SEC posts it. The Foundation participates in this rulemaking through
+written submissions only and has held no meetings with SEC staff.
 
 ## September 24 implementation expansion
 
@@ -118,7 +133,15 @@ This repository review is not a new SEC submission and does not change
 source-level observatory review states. Use the live observatory for current
 official filing and pending human-review counts.
 
-## What the currently reviewed third-party input says
+## What the comments say
+
+All 21 docket filings posted through September 22 now have human-reviewed
+summaries in the [live observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/).
+**[Read the themes, gaps and Commons matrices →](COMMENT-THEMES-AND-COMMONS-MATRICES.md)**
+It groups the comments into nine themes, identifies what they leave open, and
+shows where each point is tested in the Commons.
+
+### Earliest reviewed input
 
 The reviewed comment asks the Commission to distinguish the legal and
 operational roles a distributed ledger may perform in a securities-record
@@ -130,9 +153,9 @@ accountable transfer agent changes.
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
 
-The other third-party comments indexed in the live observatory remain pending
-human review until an approved review record is published. Their presence and
-frequency do not represent a vote, consensus, or SEC position.
+Newly posted filings remain pending human review until an approved review
+record is published. The presence and frequency of comments do not represent a
+vote, consensus, or SEC position.
 
 ## Emerging ideas
 
