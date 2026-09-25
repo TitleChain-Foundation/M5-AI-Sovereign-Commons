@@ -1,0 +1,109 @@
+{
+  "simulation_id": "ND-FARM-SIM-001",
+  "public_label": "AG-PILOT-001",
+  "development_lane": "FARMLAND / REDEVELOPMENT",
+  "status": "SAMPLE-DATA SIMULATION",
+  "jurisdiction": {
+    "country": "US",
+    "state": "ND",
+    "county": null,
+    "public_precision": "state_only"
+  },
+  "asset": {
+    "asset_type": "agricultural_land_operating_farm",
+    "acreage_public": "approximately_2000",
+    "farm_type": "row_crop_specialty_crop",
+    "illustrative_acquisition_range_usd": [
+      12000000,
+      15000000
+    ],
+    "exact_source_property_published": false
+  },
+  "parties": {
+    "seller": "REFERENCE-SELLER-TRUST-A",
+    "beneficial_owner": "NOT_PUBLIC",
+    "operator": "LOCAL-FARM-OPERATOR-A",
+    "steward": "PROPOSED_PROJECT_STEWARD_TBD"
+  },
+  "rights": {
+    "membership_or_steward_status": "SEPARATE",
+    "title_right": "ND-FARM-TITLE-001",
+    "operator_right": "ND-FARM-OPERATOR-001",
+    "economic_right_if_any": "ND-FARM-M4-001"
+  },
+  "accounts": [
+    "ACQUISITION_TREASURY",
+    "FARM_OPERATING_ACCOUNT",
+    "STEWARDSHIP_RESERVE",
+    "ECONOMIC_INSTRUMENT_TREASURY_IF_APPLICABLE"
+  ],
+  "current_state": "RESEARCH_REFERENCE_ONLY",
+  "privacy": {
+    "public_synthetic": true,
+    "source_trust_name_published": false,
+    "beneficial_owner_published": false,
+    "exact_county_published": false,
+    "exact_acreage_published": false,
+    "exact_purchase_price_published": false,
+    "source_operator_name_published": false
+  },
+  "classification_matrix": {
+    "required_before_activation": true,
+    "dimensions": [
+      "underlying_asset",
+      "underlying_right",
+      "instrument",
+      "intent",
+      "issuer_or_obligor",
+      "holder_or_participant",
+      "state_jurisdiction",
+      "federal_securities_lane",
+      "cftc_commodity_derivatives_lane",
+      "banking_escrow_lane",
+      "transfer_agent_or_fiduciary_role",
+      "authoritative_record"
+    ],
+    "overlapping_regulatory_lanes_allowed": true
+  },
+  "bounded_accounts": [
+    {
+      "type": "ACQUISITION_CLOSING_ESCROW",
+      "is_escrow": true
+    },
+    {
+      "type": "SECURITIES_SUBSCRIPTION_ESCROW_IF_APPLICABLE",
+      "is_escrow": true
+    },
+    {
+      "type": "CAPITAL_IMPROVEMENT_DRAW_ACCOUNT_IF_APPLICABLE",
+      "is_escrow_or_controlled_account": true
+    },
+    {
+      "type": "FARM_OPERATING_ACCOUNT",
+      "is_escrow": false
+    },
+    {
+      "type": "STEWARDSHIP_RESERVE",
+      "is_escrow": false
+    },
+    {
+      "type": "DISTRIBUTION_WATERFALL_ACCOUNT_IF_APPLICABLE",
+      "is_escrow": false
+    },
+    {
+      "type": "TAX_INSURANCE_DEBT_SERVICE_RESERVE_IF_APPLICABLE",
+      "is_escrow": false
+    }
+  ],
+  "regulated_or_fiduciary_roles": [
+    "TITLE_CLOSING_PROVIDER",
+    "REGULATED_BANK_OR_ESCROW_PROVIDER",
+    "ISSUER",
+    "TRANSFER_AGENT_IF_APPLICABLE",
+    "TRUSTEE_OR_FIDUCIARY_IF_APPLICABLE",
+    "BROKER_DEALER_OR_PLACEMENT_AGENT_IF_APPLICABLE",
+    "CUSTODIAN_IF_APPLICABLE",
+    "FCM_DCM_CPO_CTA_OR_SWAP_INTERMEDIARY_IF_APPLICABLE",
+    "LOCAL_FARM_OPERATOR"
+  ]
+}

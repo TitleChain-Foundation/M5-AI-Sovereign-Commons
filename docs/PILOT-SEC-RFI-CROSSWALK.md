@@ -36,7 +36,7 @@ The public simulations now provide three differently bounded test environments:
 | Development lane | Public simulation | SEC/public-input relevance |
 | --- | --- | --- |
 | **GSA / CRE** | **312 Spring Commons — California** | Tests separation among public-property title, public authority, project capitalization, bank/escrow records, investment instruments, transfer-agent records, restrictions, and TitleChain evidence. The Public Bank of California is a concept-only financing/public-capital layer within this simulation and is not represented as a chartered bank or regulated intermediary. |
-| **FARMLAND / REDEVELOPMENT** | **America's People's Trust Farmland** | Tests title/economic-right separation, local operator authority, stewardship, repeatable project evidence, portability, correction, regulated recordkeeping boundaries, and anti-consolidation questions. |
+| **FARMLAND / REDEVELOPMENT** | **America's People's Trust Farmland** | Tests title/economic-right separation, local operator authority, stewardship, repeatable project evidence, portability, correction, regulated recordkeeping boundaries, and anti-consolidation questions. The public process case is [`AG-PILOT-001 / ND-FARM-SIM-001`](../pilots/peoples-trust/simulations/nd-farmland-reference/README.md), an anonymized North Dakota reference-farm simulation. |
 | **GLOBAL DEVELOPMENT PROJECT** | **Global UN Commons — UN-NY-0001** | Tests jurisdiction-profile and evidence interoperability across borders. It is not a claim that SEC rules govern the UN campus or foreign jurisdictions. U.S. securities/transfer-agent requirements apply only where the actual U.S. legal or regulated function triggers them. |
 
 These are simulations and review environments. They do not evidence a live

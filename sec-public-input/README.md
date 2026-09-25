@@ -62,6 +62,31 @@ This description identifies the Foundation's submitted position. It is not an
 SEC endorsement, adopted standard, or representation that any TitleChain or M5
 component is registered, mandated, certified, or deployed for regulated use.
 
+### Additional Foundation comments — pending SEC posting
+
+TitleChain Foundation submitted a **Supplemental Comment and Technical
+Exhibits A–J** to the SEC by email on September 23, 2026. They are **pending
+posting by the SEC** and do not yet appear on the official docket.
+
+The supplement answers the Commission's Questions 80–89 on electronic and
+distributed-ledger records. It proposes that technical control be kept
+separate from title state, authority, notice and evidence; that authority be
+reconstructable from the accountable entity to the resulting record; that the
+authoritative record survive the technology used to represent it; and that
+machine-readable regulatory routing identify potentially applicable
+authorities without an internal label creating a legal conclusion. The
+exhibits cover the Spring Commons reference transaction, regulatory routing,
+government approvals, capital and settlement, public evidence, SHADOW
+M5Index, an industry crosswalk, failure and recovery tests, and a status table
+of what is and is not yet demonstrated.
+
+**[Read the Supplemental Comment and Exhibits A–J →](foundation-submissions/2026-09-23-supplemental-comment/README.md)**
+(© 2026 TitleChain Foundation; open license with required attribution; see its
+[IP notice](foundation-submissions/2026-09-23-supplemental-comment/NOTICE.md).)
+The SEC docket link will be added, and the live observatory will record the
+SEC's copy, once the SEC posts it. The Foundation participates in this rulemaking through
+written submissions only and has held no meetings with SEC staff.
+
 ## September 24 implementation expansion
 
 The public Commons now tests the Foundation's submitted transfer-agent
@@ -75,6 +100,22 @@ The Spring Commons work now also includes a **Public Bank of California**
 concept as a test of public-capital, bank/escrow and securities-recordkeeping
 boundaries. The concept is not a chartered bank, state agency, depository
 institution, transfer agent or approved financing source.
+
+The same September 24 work also:
+
+- applies one [Project Control Pack](../docs/project-control-pack/M5-COMMONS-PROJECT-CONTROL-PACK-STANDARD.md)
+  to all three lanes, so each project answers the same eight control questions
+  about authority, instruments, escrow, transfer and correction;
+- separates WORK, SUPPORT and FINANCIAL PARTICIPATION through
+  [M5-CV opportunity matching](../docs/project-control-pack/M5-CV-WORK-OPPORTUNITY-AND-SUPPORT-MATCHING.md)
+  and a project-specific
+  [Participation Passport](../docs/project-control-pack/M5-PROJECT-PARTICIPATION-PASSPORT-AND-ELIGIBILITY-MATRIX.md),
+  so a reusable credential never becomes blanket permission to invest, vote,
+  sign or transfer; and
+- adds the anonymized [North Dakota reference-farm simulation](../pilots/peoples-trust/simulations/nd-farmland-reference/README.md),
+  which routes each financing arrangement across state, SEC, CFTC,
+  bank/escrow, transfer-agent and fiduciary lanes. More than one lane may apply
+  at once.
 
 [Read the September 24 Open Commons Review](open-commons-review/2026-09-24.md)
 and the updated [Pilot and SEC Transfer-Agent Public-Input Crosswalk](../docs/PILOT-SEC-RFI-CROSSWALK.md).
@@ -95,7 +136,15 @@ This repository review is not a new SEC submission and does not change
 source-level observatory review states. Use the live observatory for current
 official filing and pending human-review counts.
 
-## What the currently reviewed third-party input says
+## What the comments say
+
+All 21 docket filings posted through September 22 now have human-reviewed
+summaries in the [live observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/).
+**[Read the themes, gaps and Commons matrices →](COMMENT-THEMES-AND-COMMONS-MATRICES.md)**
+It groups the comments into nine themes, identifies what they leave open, and
+shows where each point is tested in the Commons.
+
+### Earliest reviewed input
 
 The reviewed comment asks the Commission to distinguish the legal and
 operational roles a distributed ledger may perform in a securities-record
@@ -107,9 +156,9 @@ accountable transfer agent changes.
 This summary is an interpretation prepared for public review, not the
 commenter's full submission.
 
-The other third-party comments indexed in the live observatory remain pending
-human review until an approved review record is published. Their presence and
-frequency do not represent a vote, consensus, or SEC position.
+Newly posted filings remain pending human review until an approved review
+record is published. The presence and frequency of comments do not represent a
+vote, consensus, or SEC position.
 
 ## Emerging ideas
 
