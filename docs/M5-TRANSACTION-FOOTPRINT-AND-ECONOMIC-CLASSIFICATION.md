@@ -16,6 +16,13 @@ M5 — Jurisdiction / Sovereign Authority State
 
 These are M5 internal classes. External legal/regulatory classifications remain separate, versioned records supported by authoritative sources.
 
+The account ladder uses the same numbers for a different purpose: **M0** is a
+sovereign human with a self-asserted `000-IAM` identifier who is not yet
+credentialed; credentialing activates **M1-BOM** (Bank of Me), then M2-BOU,
+M3-BOB, M4-BOI and M5-BOG as separately authorized contexts. Account tiers are
+written with their suffix (`M3-BOB`) so they are never confused with these
+asset classes (`M3`). See the [Glossary](../GLOSSARY.md).
+
 ## M3 — actual titled/ownership asset
 
 Each M3 record preserves the independently identifiable asset:

@@ -4,7 +4,18 @@
 **Status:** Draft for Public Comment  
 **Validation date:** September 10, 2026
 
-## Completed checks
+## Current validation — September 25, 2026
+
+| Check | Result |
+| --- | --- |
+| Full suite: `tests`, provider-neutral governor, SHADOW M5Index and SEC observatory tests | 394 tests passed |
+| SHADOW asset records (`shadow-m5index/scripts/validate_records.py`) | 36 records validated |
+| Publication gate and manifest (`tools/check_public_release.py`) | PASS |
+
+The table below records the original September 10 validation of this release
+candidate and is kept as dated evidence.
+
+## Completed checks (September 10, 2026)
 
 | Check | Result |
 | --- | --- |

@@ -2,6 +2,12 @@
 
 **Status: Release Candidate v0.7 — Draft for Public Comment**
 
+> **TitleChain Foundation front doors:**
+> [titlechainfoundation.org](https://titlechainfoundation.org) — the Foundation ·
+> [ICSN Standards](https://github.com/TitleChain-Foundation/icsn-standards) — the specifications ·
+> **M5 AI Sovereign Commons — the standards applied to real projects, SEC review and public research (you are here)** ·
+> [m5bank.app](https://m5bank.app) — the M5 member entry point, whitepapers and FAQ
+
 <details>
 <summary>View the M5 AI Sovereign Commons overview diagram</summary>
 
@@ -21,6 +27,34 @@ that any external provider has joined, endorsed, or been credentialed by M5.
 > systems act only within explicit, verifiable, and revocable limits.**
 
 ## Start here
+
+### What is this?
+
+AI agents and automated systems can now act at machine speed across money,
+property, contracts and records. This repository is a public blueprint for an
+economy where they may do so only on behalf of an accountable person or lawful
+institution, and only within limits that can be checked.
+
+It holds the **rules** (proposed standards and machine-readable schemas), the
+**guardrails in code** (reference controls that fail closed), and three
+**real-world project simulations** that test those rules from a single building
+to a global commons. Together they are a working model of what the Foundation
+calls *Pax Economica*: peaceful economic coordination in which people,
+communities, businesses and sovereign nations can take part, each on its own
+authority. The full *Pax Economica* whitepaper series is on
+[m5bank.app](https://m5bank.app/pax-economica-part-01-moral-case.html).
+
+New to the vocabulary? Read the **[Glossary](GLOSSARY.md)**.
+
+### Choose your path
+
+| I am… | Start with |
+| --- | --- |
+| **New and curious** | [Glossary](GLOSSARY.md) → [Featured project pathways](#featured-project-pathways) → [Authority boundary](#authority-boundary) |
+| **An institution, investor, funder or government** | The three [project pathways](#featured-project-pathways) and their project control indexes → [SEC public input](sec-public-input/README.md) → [What the SEC comments say](sec-public-input/COMMENT-THEMES-AND-COMMONS-MATRICES.md) |
+| **A policy, legal or regulatory reviewer** | [SEC public input](sec-public-input/README.md) → [Foundation's September 23 filing](sec-public-input/foundation-submissions/2026-09-23-supplemental-comment/README.md) → [Proposed standards](standards/README.md) |
+| **A builder or engineer** | [Proposed standards](standards/README.md) → [Schemas](schemas/README.md) → [Reference code](reference-implementation/README.md) → [Tests](tests/README.md) → [ICSN Standards](https://github.com/TitleChain-Foundation/icsn-standards) |
+| **Someone who wants to join** | [Free IAM starting account](https://m5bank.app/) · [M5POD waitlist](https://m5podactivationdemo.netlify.app/) · [Nominate or correct a public asset](#join-and-improve-the-index) |
 
 ### Latest public update — September 24, 2026
 
@@ -206,10 +240,27 @@ investment right, project role, or authority.
 | [M5-AIMOD-001](standards/M5-AIMOD-001.md) | Resident and open-weight model artifacts, hardware profiles, and portability |
 | [M5-AISPACE-001](standards/M5-AISPACE-001.md) | Spatial, embodied, experiential, sensor, simulation, and actuator governance |
 | [M5-AIPROV-001](standards/M5-AIPROV-001.md) | Provider identity, credential status, and verified endpoint binding |
+| [M5-RICARDIAN-TRIPLE-LAYER-001](standards/M5-RICARDIAN-TRIPLE-LAYER-001.md) | Ricardian contracts: human terms, machine policy and bounded executable settlement |
+| [M5-AIMARKET-001](standards/M5-AIMARKET-001.md) | Sovereign intelligence baseline: a $0, unmetered local tier for M1-BOM, with optional external compute |
+| [M5-EVENT-001](standards/M5-EVENT-001.md) | Event, metering, commerce and threat telemetry envelope |
 
 The standards are proposed for public criticism and independent implementation.
 They do not replace law, regulation, contracts, official records, qualified
 professional judgment, or the accountability of a regulated entity.
+
+### M5BOM sovereign intelligence baseline
+
+[M5-AIMARKET-001](standards/M5-AIMARKET-001.md) proposes a $0, unmetered Tier I
+baseline on human-controlled hardware, with optional external compute. The
+[activation framework](docs/M5BOM-ACTIVATION-AND-SOVEREIGN-BASELINE.md) separates
+ordinary local inference from protected M5-Eve actions. Jev/Eve and Laya are
+first featured integrations, with other providers welcome under the same
+controls. This is public contract work, not a deployed service.
+
+The [conformance profile](docs/M5-CONFORMANCE-AND-NAMESPACE-BOUNDARIES.md) covers
+namespace evidence, Event Plane, metered-service pricing, provider trust and
+receipts. See [migration](docs/M5-CANONICAL-CONTEXT-V1-V2-MIGRATION.md) before
+consuming v2 context or jurisdiction records.
 
 ## SHADOW M5Index
 
@@ -329,17 +380,3 @@ in [LICENSE.md](LICENSE.md) and [LEGAL-NOTICES.md](LEGAL-NOTICES.md).
 Passing the included tests demonstrates only the cases those tests exercise.
 It does not establish production security, legal compliance, provider
 enrollment, hardware certification, or full standards conformance.
-
-## Proposed M5BOM sovereign intelligence baseline
-
-[M5-AIMARKET-001](standards/M5-AIMARKET-001.md) proposes a $0, unmetered Tier I
-baseline on human-controlled hardware, with optional external compute. The
-[activation framework](docs/M5BOM-ACTIVATION-AND-SOVEREIGN-BASELINE.md) separates
-ordinary local inference from protected M5-Eve actions. Jev/Eve and Laya are
-first featured integrations, with other providers welcome under the same
-controls. This is public contract work, not a deployed service.
-
-The [conformance profile](docs/M5-CONFORMANCE-AND-NAMESPACE-BOUNDARIES.md) covers
-namespace evidence, Event Plane, metered-service pricing, provider trust and
-receipts. See [migration](docs/M5-CANONICAL-CONTEXT-V1-V2-MIGRATION.md) before
-consuming v2 context or jurisdiction records.

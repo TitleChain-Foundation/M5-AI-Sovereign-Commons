@@ -10,7 +10,9 @@ the implementation is Stable, production-hardened, certified, or complete.
 
 ## What may be reviewed
 
-- four proposed M5 AI governance standards;
+- seven proposed M5 standards (AI governance, models, spatial capabilities,
+  providers, Ricardian contracts, the sovereign intelligence baseline, and the
+  event plane);
 - machine-readable schemas and non-authoritative examples;
 - a provider-neutral reference governor;
 - provider adapters with dated, replaceable configuration facts;
