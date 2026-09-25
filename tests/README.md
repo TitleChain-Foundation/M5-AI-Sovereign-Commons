@@ -18,6 +18,11 @@ secure, a system complies with law, or the release is production-ready.
 | SHADOW M5Index seed | Imported-source fingerprints, normalized workbook surfaces, IDs, evidence posture, scores, queues, and Spring Commons boundaries | [SHADOW tests](test_shadow_m5index.py) |
 | M5 Eve authority adapter | Authentication/context separation, delegation scope, lifecycle, approvals, disabled capabilities, and Spring Commons default-deny behavior | [M5 Eve tests](test_m5_eve_adapter.py) |
 | Provider-neutral governor | Budget projection, ledger integrity, provider adapters, and shared control behavior | [Governor tests](../reference-implementation/provider-neutral-governor/tests/) |
+| Ricardian settlement | Three-layer Ricardian binding, authority, settlement and receipts | [Ricardian tests](test_m5_ricardian_settlement.py) |
+| Commons handoff and M5BOM baseline | Handoff contracts, sovereign baseline and M5-Eve activation | [Handoff](test_commons_handoff.py) · [M5BOM](test_m5_bom_baseline.py) · [Eve activation](test_m5_eve_activation.py) |
+| Event plane and commerce | Event envelope, metering and commerce schemas | [Event plane](test_m5_event_plane_v3.py) · [Commerce](test_m5_commerce_schemas.py) |
+| Projects | Spring Commons links and schemas, Farmland simulation privacy, homepage project order | [Spring](test_spring_commons_docs.py) · [Farmland](test_farmland_reference_simulation.py) · [Homepage](test_homepage_project_pathways.py) |
+| Publication scans | Public-release safety scans | [Release scans](test_public_release_scans.py) |
 | Recorded release evidence | Dated results, scope, and explicit non-claims | [Validation report](../VALIDATION-REPORT.md) |
 
 ## Run the focused public suite
