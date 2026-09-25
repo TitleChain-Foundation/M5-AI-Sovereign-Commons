@@ -42,7 +42,7 @@ def test_featured_pathways_have_exact_category_hierarchy():
     import re
 
     text = README.read_text(encoding="utf-8").split("## Featured project pathways\n", 1)[1]
-    text = text.split("## Project simulation sequence\n", 1)[0]
+    text = text.split("## Featured public research\n", 1)[0]
     headings = re.findall(r"^(#{3,4}) \*\*(.+?)\*\*$", text, re.MULTILINE)
     assert headings == [
         ("###", "GSA / CRE"),
