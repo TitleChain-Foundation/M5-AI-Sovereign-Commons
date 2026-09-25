@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Copyright 2026 TitleChain Foundation. SPDX-License-Identifier: Apache-2.0. Part of the Foundation's September 23, 2026 written submission to the SEC on File No. S7-2026-30. Trademarks and patent rights beyond Apache-2.0 Section 3 are not licensed. See ../NOTICE.md.",
+  "title": "Authority and Approval Receipt",
+  "type": "object",
+  "required": [
+    "receipt_id",
+    "principal",
+    "acting_for",
+    "capacity",
+    "jurisdiction",
+    "authority_source",
+    "scope",
+    "decision",
+    "timestamp",
+    "evidence_refs"
+  ],
+  "properties": {
+    "receipt_id": {
+      "type": "string"
+    },
+    "principal": {
+      "type": "string"
+    },
+    "acting_for": {
+      "type": "string"
+    },
+    "capacity": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "authority_source": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decision": {
+      "enum": [
+        "HOLD",
+        "APPROVE",
+        "REJECT",
+        "REVOKE",
+        "SUPERSEDE"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "credential_state": {
+      "enum": [
+        "current",
+        "expired",
+        "revoked",
+        "disputed",
+        "unknown"
+      ]
+    },
+    "human_approval_required": {
+      "type": "boolean"
+    },
+    "human_approval_present": {
+      "type": "boolean"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "resulting_state": {
+      "type": "string"
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

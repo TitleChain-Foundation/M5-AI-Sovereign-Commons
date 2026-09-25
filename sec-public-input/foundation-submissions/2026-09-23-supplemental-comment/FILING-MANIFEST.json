@@ -1,0 +1,72 @@
+{
+  "package": "TitleChain Foundation Supplemental Comment - SEC File No. S7-2026-30",
+  "prepared_date": "2026-09-24",
+  "filing_status": "prepared_for_submission",
+  "repository_status": "prepared_for_push_not_yet_merged",
+  "baselines": {
+    "M5-AI-Sovereign-Commons": "3a7b4b79b23399e9c362a124ca87f433a36321a3",
+    "icsn-standards": "a0a7341213dbf4abad5fa0aeb46b43e7b95c6660"
+  },
+  "files": [
+    {
+      "path": "SEC-S7-2026-30-SUPPLEMENTAL-COMMENT.md",
+      "sha256": "aa6c313d1ad2e5e863f8a343df499b263b5af533263e1eb1b195e3eef2af6202"
+    },
+    {
+      "path": "data/SEC-SOURCE-MATRIX.csv",
+      "sha256": "28a75da8b0b9c2418a968e54bc99aa77547c01b82fd7cee5738d5f818150a036"
+    },
+    {
+      "path": "exhibits/EXHIBIT-A-END-TO-END-SPRING-COMMONS.md",
+      "sha256": "4f9ec832e738a54bf80d760d90e0bb8d9f2dbd16f39b7c5eff82d6202dd292d1"
+    },
+    {
+      "path": "exhibits/EXHIBIT-B-REPOSITORY-CONTRACT-CROSSWALK.md",
+      "sha256": "504a4539cfbc593ebf3970e3875a0d3359b12944b13d016474b6efe581b601c9"
+    },
+    {
+      "path": "exhibits/EXHIBIT-C-M5-REGULATORY-ROUTING.md",
+      "sha256": "61024395f6f9244e0847e0a081a712b8c96b84d22f1b51f9f771222f32a27107"
+    },
+    {
+      "path": "exhibits/EXHIBIT-D-GOVERNMENT-AUTHORITY-APPROVAL.md",
+      "sha256": "a73acc389dc54c2206a69928da7429e4a509be1690b6bcb0c94c64a1bac710ad"
+    },
+    {
+      "path": "exhibits/EXHIBIT-E-CAPITAL-DEBT-SETTLEMENT.md",
+      "sha256": "4709e6b17a0633a66b3e9118fdea70e77e8b17adbccdac84de5af572c125f76d"
+    },
+    {
+      "path": "exhibits/EXHIBIT-F-EDGE-EVIDENCE-NETWORK.md",
+      "sha256": "2c724cadab3761ce60a689b3c093439c0515417dff0ccd54fc48acac69d769f6"
+    },
+    {
+      "path": "exhibits/EXHIBIT-G-SHADOW-M5INDEX-CAMEL.md",
+      "sha256": "e7755eafdf7e315044072123b620772f49ece244c0657021e2b68ce7c7b5999d"
+    },
+    {
+      "path": "exhibits/EXHIBIT-H-INDUSTRY-CROSSWALK.md",
+      "sha256": "075883deb6223f1460473282653fd93ea0f870f15a32cb07487ef241d298f87b"
+    },
+    {
+      "path": "exhibits/EXHIBIT-I-FAILURE-RECOVERY-TESTS.md",
+      "sha256": "9d24106b0008bbeec7b3a5f70a904b99302407193e1825de2b7d933dd3bb8ea1"
+    },
+    {
+      "path": "exhibits/EXHIBIT-J-STATUS-TRUTH-TABLE.md",
+      "sha256": "bb9f3c5ea17b27466c446a4ee5a38461c51fde13f866a134abed4148df04beb8"
+    },
+    {
+      "path": "schemas/authority-approval-receipt.schema.json",
+      "sha256": "834b05d0bcff286a173d0ae24eb7788643be7adabbc2edde032cd9ca89edba35"
+    },
+    {
+      "path": "schemas/m5-regulatory-routing-receipt.schema.json",
+      "sha256": "6e9becf819fdcf9f7ec9679fe375c2000ed2b77753af336d7c76fea429d47609"
+    },
+    {
+      "path": "schemas/m5-regulatory-routing-receipt.synthetic.json",
+      "sha256": "dbe2c2efd4b509d3efcb726bb5c4913047dd60d239f5dc72b46d7511b24b59be"
+    }
+  ]
+}

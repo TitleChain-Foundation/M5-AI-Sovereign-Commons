@@ -94,7 +94,7 @@ It has held no meetings with SEC staff.
 - **September 5, 2026 — [comment posted on the docket](https://www.sec.gov/comments/S7-2026-30/s7202630-1029659-3393926.pdf).**
   It proposes voluntary open standards for credential-bound authority,
   machine-readable restrictions, bounded automation and portable evidence.
-- **September 23, 2026 — supplemental comment and Technical Exhibits A–J,
+- **September 23, 2026 — [supplemental comment and Technical Exhibits A–J](foundation-submissions/2026-09-23-supplemental-comment/README.md),
   submitted by email and pending SEC posting.** It answers the Commission's
   Questions 80–89 on electronic and ledger records and responds to several
   themes above:
@@ -111,7 +111,8 @@ It has held no meetings with SEC staff.
   - an industry crosswalk of Crypto Task Force written input from Plume
     Network, Ceres Coin TA, NeuFin and Gene Deyev.
 
-  The supplement will be linked here once the SEC posts it.
+  [Read the supplement and exhibits](foundation-submissions/2026-09-23-supplemental-comment/README.md).
+  The SEC docket link will be added once the SEC posts it.
 
 ## How to use this page
 

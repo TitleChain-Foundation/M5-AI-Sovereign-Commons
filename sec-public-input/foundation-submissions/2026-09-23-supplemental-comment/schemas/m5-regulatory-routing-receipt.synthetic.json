@@ -1,0 +1,45 @@
+{
+  "routing_id": "M5-ROUTE-SPRING-DEMO-001",
+  "asset_or_right_ref": "PPT-EZ-CA-0001",
+  "event_type": "illustrative_project_financing_instrument_review",
+  "actor_capacity_refs": [
+    "issuer:TBD",
+    "authorized_human:PENDING_EXTERNAL"
+  ],
+  "jurisdiction_refs": [
+    "US",
+    "CA"
+  ],
+  "classification_refs": [
+    "M5:internal-routing-reference"
+  ],
+  "external_legal_classification": null,
+  "route_state": "LEGAL_REVIEW_REQUIRED",
+  "potential_authorities": [
+    {
+      "authority": "SEC",
+      "function": "securities-law pathway if instrument is a security",
+      "basis_ref": "external legal analysis required",
+      "status": "potential"
+    },
+    {
+      "authority": "applicable state securities authority",
+      "function": "state securities pathway as applicable",
+      "basis_ref": "external legal analysis required",
+      "status": "potential"
+    }
+  ],
+  "required_evidence": [
+    "final instrument terms",
+    "issuer authority",
+    "external legal classification",
+    "regulated participant status if required"
+  ],
+  "evidence_refs": [
+    "repo:pilots/312-spring-commons"
+  ],
+  "resulting_action": "HOLD",
+  "limitations": [
+    "Synthetic routing example; not a jurisdictional determination."
+  ]
+}

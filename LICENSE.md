@@ -52,6 +52,13 @@ TitleChain Foundation-owned cover-design elements are licensed under
 names, marks, source records, or data, and attribution does not imply that the
 preview is verified, independently replicated, official, or released.
 
+TitleChain Foundation's written submissions to the SEC under
+`sec-public-input/foundation-submissions/` are licensed under `CC-BY-4.0`,
+except JSON Schemas there, which are licensed under `Apache-2.0`. Reuse requires
+the attribution stated in each submission's `NOTICE.md`. The official SEC docket
+copy of a submission controls once posted, and an adapted version must not be
+presented as the Foundation's unaltered submission.
+
 The licenses do not grant rights to TitleChain Foundation or M5 trademarks and
 do not imply endorsement, certification, enrollment, governmental recognition,
 or legal authority. See [TRADEMARKS.md](TRADEMARKS.md) and

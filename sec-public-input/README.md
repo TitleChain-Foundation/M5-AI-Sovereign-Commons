@@ -80,8 +80,11 @@ government approvals, capital and settlement, public evidence, SHADOW
 M5Index, an industry crosswalk, failure and recovery tests, and a status table
 of what is and is not yet demonstrated.
 
-The filing will be linked here, and picked up by the live observatory, once
-the SEC posts it. The Foundation participates in this rulemaking through
+**[Read the Supplemental Comment and Exhibits A–J →](foundation-submissions/2026-09-23-supplemental-comment/README.md)**
+(© 2026 TitleChain Foundation; open license with required attribution; see its
+[IP notice](foundation-submissions/2026-09-23-supplemental-comment/NOTICE.md).)
+The SEC docket link will be added, and the live observatory will record the
+SEC's copy, once the SEC posts it. The Foundation participates in this rulemaking through
 written submissions only and has held no meetings with SEC staff.
 
 ## September 24 implementation expansion

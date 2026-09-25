@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Copyright 2026 TitleChain Foundation. SPDX-License-Identifier: Apache-2.0. Part of the Foundation's September 23, 2026 written submission to the SEC on File No. S7-2026-30. Trademarks and patent rights beyond Apache-2.0 Section 3 are not licensed. See ../NOTICE.md.",
+  "title": "M5 Regulatory Routing Receipt",
+  "type": "object",
+  "required": [
+    "routing_id",
+    "asset_or_right_ref",
+    "event_type",
+    "jurisdiction_refs",
+    "classification_refs",
+    "route_state",
+    "potential_authorities",
+    "evidence_refs"
+  ],
+  "properties": {
+    "routing_id": {
+      "type": "string"
+    },
+    "asset_or_right_ref": {
+      "type": "string"
+    },
+    "event_type": {
+      "type": "string"
+    },
+    "actor_capacity_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "jurisdiction_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "classification_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "external_legal_classification": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "route_state": {
+      "enum": [
+        "ROUTE_IDENTIFIED",
+        "ROUTE_MULTI_AUTHORITY",
+        "EXTERNAL_CLASSIFICATION_REQUIRED",
+        "REGULATORY_HOLD",
+        "LEGAL_REVIEW_REQUIRED",
+        "AUTHORITY_EVIDENCE_VERIFIED",
+        "ROUTE_SUPERSEDED"
+      ]
+    },
+    "potential_authorities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "authority",
+          "function"
+        ],
+        "properties": {
+          "authority": {
+            "type": "string"
+          },
+          "function": {
+            "type": "string"
+          },
+          "basis_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "potential",
+              "confirmed_external",
+              "not_applicable",
+              "unresolved"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resulting_action": {
+      "enum": [
+        "HOLD",
+        "ALLOW",
+        "REJECT",
+        "REVIEW"
+      ]
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
