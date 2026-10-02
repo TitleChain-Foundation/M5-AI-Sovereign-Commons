@@ -66,7 +66,8 @@ component is registered, mandated, certified, or deployed for regulated use.
 
 TitleChain Foundation submitted a **Supplemental Comment and Technical
 Exhibits A–J** to the SEC by email on September 23, 2026. They are **pending
-posting by the SEC** and do not yet appear on the official docket.
+posting by the SEC** and, as of October 2, 2026, do not yet appear on the
+official docket.
 
 The supplement answers the Commission's Questions 80–89 on electronic and
 distributed-ledger records. It proposes that technical control be kept
@@ -138,7 +139,7 @@ official filing and pending human-review counts.
 
 ## What the comments say
 
-All 21 docket filings posted through September 22 now have human-reviewed
+All 23 docket filings posted through September 30 now have human-reviewed
 summaries in the [live observatory](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/).
 **[Read the themes, gaps and Commons matrices →](COMMENT-THEMES-AND-COMMONS-MATRICES.md)**
 It groups the comments into nine themes, identifies what they leave open, and
