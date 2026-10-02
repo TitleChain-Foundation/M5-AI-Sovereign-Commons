@@ -1,0 +1,8 @@
+{
+  "analysis_text_sha256": "764ab1855133855b9e7cc54c6064d52a35be4c4da43fba25547c75e53b128dc2",
+  "approved_at": "2026-10-02T09:35:00-07:00",
+  "comment_id": "s7202630-1079139-3747186",
+  "review_status": "APPROVED",
+  "reviewer": "TitleChain Foundation repository-owner review",
+  "summary": "An individual retail investor supports modernization and the use of blockchain by transfer agents, and asks for protections so that tokenized ownership is at least as safe and clear as traditional registered ownership. Recommendations include a stated right and timeframe to convert between tokenized and DRS or book-entry positions; plain-English disclosure before DRS or broker positions move into wallets; a rule that the master securityholder file, not control of a private key, determines the registered owner, with a recovery process for lost or stolen keys; clarity on lending, hypothecation and Regulation SHO treatment of tokens, with no lending of wallet-held registered shares without specific written consent; at least daily reconciliation of wallet records, Cede & Co. positions and the control book, with per-issue public share counts; record-date, dividend, proxy and escheatment procedures for wallet holders; a definition of \"on behalf of the issuer\" and clear labeling of third-party tokens; and room for issuer-native tokenized shares held in the holder's own name outside Cede & Co. This is the commenter's position, not an SEC or TitleChain Foundation conclusion."
+}

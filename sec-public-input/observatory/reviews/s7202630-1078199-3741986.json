@@ -1,0 +1,8 @@
+{
+  "analysis_text_sha256": "3ca11bb4a879b94380fb4ea083e8dff16273fa35ee7827f0265fd74e5a6a3b5d",
+  "approved_at": "2026-10-02T09:35:00-07:00",
+  "comment_id": "s7202630-1078199-3741986",
+  "review_status": "APPROVED",
+  "reviewer": "TitleChain Foundation repository-owner review",
+  "summary": "Empty Set LLC, an AI infrastructure company, says the proposal treats AI only as a tool used by transfer agents and not as a participant that may hold, transfer or manage securities under delegated authority. It recommends that Rule 17ad-30 compliance programs cover an inventory and risk classification of AI systems, verification and revocation of credentials for non-human participants, and continuity across AI model lifecycle events; that Rule 17ad-31's \"reasonable basis\" standard address automated exemption analysis, credential-scoped transactional authority and auditable records of algorithmic Section 5 determinations; that \"exclusive control\" under Rule 17ad-9 be read as control over the content of a DLT-based master securityholder file, including credential issuance and revocation, rather than over network infrastructure; that Form TA-2 collect data on AI agent authorization and credential standards; and that the Commission consider guidance on beneficial owners or authorized participants that are autonomous AI systems. The commenter discloses pending patent applications in this area. This is the commenter's position, not an SEC or TitleChain Foundation conclusion."
+}
