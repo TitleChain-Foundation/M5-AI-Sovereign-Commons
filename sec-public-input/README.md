@@ -1,4 +1,18 @@
-# SEC Public Input Summary
+# SEC Modernization: Ownership, Transfer, Custody and Digital Authority
+
+[Open the two-proceeding regulatory record, filing inventory and Foundation assessment](https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/#foundation-record).
+
+The current record covers **S7-2026-30** (Transfer Agent Rules) and **S7-2026-35**
+(Adviser and Regulated Fund Custody Rules; Crypto Custody Rules). Filing dates,
+statuses, deadlines and links are controlled in
+[`observatory/foundation-record.json`](observatory/foundation-record.json), which
+renders the public page. The Oct. 3 submissions extend the Sept. 5 foundational
+filing; the Sept. 23 submission remains available as well.
+
+[Maintenance and source verification](REGULATORY-RECORD.md) ·
+[Oct. 3 content/source handoff](SEC_UPDATE_2026-10-03.md)
+
+## Preserved transfer-agent public-input material
 
 ![SEC public input review cycle](visuals/public-input-cycle.svg)
 
