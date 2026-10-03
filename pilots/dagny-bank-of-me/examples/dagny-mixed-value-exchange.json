@@ -1,0 +1,170 @@
+{
+  "schema_version": "0.1-draft",
+  "simulation_id": "DAGNY-M5VX-DEMO-0001",
+  "exchange_id": "M5VX-DAGNY-ASSET-PURCHASE-0001",
+  "created_at": "2026-10-02T20:00:00Z",
+  "execution_safety": {
+    "synthetic": true,
+    "authority_effect": "NONE",
+    "network_write": false,
+    "financial_movement": false,
+    "real_world_resource_movement": false
+  },
+  "provider_tcid": "tcid:synthetic:dagny-seller",
+  "receiver_tcid": "tcid:synthetic:demo-buyer",
+  "resource": {
+    "resource_type": "ASSET",
+    "resource_reference": "dagny.m5bank.app/assets/synthetic-jacket-001",
+    "description": "Synthetic previously owned jacket",
+    "quantity": "1"
+  },
+  "agreed_total": {
+    "amount": "100.00",
+    "currency": "USD"
+  },
+  "legs": [
+    {
+      "leg_id": "LEG-DIGITAL-001",
+      "settlement_type": "DIGITAL",
+      "from_tcid": "tcid:synthetic:demo-buyer",
+      "to_tcid": "tcid:synthetic:dagny-seller",
+      "resource_reference": "m5pay:synthetic:payment-001",
+      "quantity": "40",
+      "agreed_value": {
+        "amount": "40.00",
+        "currency": "USD"
+      },
+      "acknowledgement": {
+        "provider": "SYNTHETIC_ACKNOWLEDGED",
+        "receiver": "SYNTHETIC_ACKNOWLEDGED"
+      },
+      "evidence": {
+        "capture_method": "NONE",
+        "scanner_tool": null,
+        "serial_capture": false,
+        "image_capture": "NONE",
+        "private_refs": [
+          "m5pod:synthetic:x402-request-001"
+        ]
+      },
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-RICARDIAN-TRIPLE-LAYER-001",
+      "digital_terms": {
+        "payment_wrapper": "x402-v2",
+        "m5_extension": "M5-x402-draft",
+        "adapter": "M5Pay",
+        "provider_candidate": "BRALE_PRIVATE_LABEL_STABLECOIN",
+        "provider_status": "CANDIDATE_NOT_CALLED",
+        "settlement_asset": "M5USD_SIM",
+        "fx_quote": {
+          "source_currency": "USD",
+          "destination_currency": "M5USD_SIM",
+          "rate": "1.000000",
+          "spread_bps": 0,
+          "source": "SYNTHETIC_FIXTURE",
+          "quoted_at": "2026-10-02T20:00:00Z"
+        },
+        "fee_allocations_bps": [
+          {
+            "allocation": "local_jurisdiction_pool",
+            "bps": 600
+          },
+          {
+            "allocation": "adjudication_due_process_pool",
+            "bps": 200
+          },
+          {
+            "allocation": "community_pool",
+            "bps": 400
+          }
+        ],
+        "x402_result": "402_HOLD_BEFORE_PROVIDER"
+      }
+    },
+    {
+      "leg_id": "LEG-CASH-001",
+      "settlement_type": "CASH",
+      "from_tcid": "tcid:synthetic:demo-buyer",
+      "to_tcid": "tcid:synthetic:dagny-seller",
+      "resource_reference": "cash:synthetic:usd-20",
+      "quantity": "20",
+      "agreed_value": {
+        "amount": "20.00",
+        "currency": "USD"
+      },
+      "acknowledgement": {
+        "provider": "SYNTHETIC_ACKNOWLEDGED",
+        "receiver": "SYNTHETIC_ACKNOWLEDGED"
+      },
+      "evidence": {
+        "capture_method": "CAMERA_OCR",
+        "scanner_tool": null,
+        "serial_capture": false,
+        "image_capture": "OPTIONAL_PRIVATE",
+        "private_refs": [
+          "m5pod:synthetic:cash-receipt-001"
+        ]
+      },
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-VX-CASH-PRIVACY-DRAFT"
+    },
+    {
+      "leg_id": "LEG-ASSET-001",
+      "settlement_type": "ASSET",
+      "from_tcid": "tcid:synthetic:demo-buyer",
+      "to_tcid": "tcid:synthetic:dagny-seller",
+      "resource_reference": "titlechain:synthetic:trade-in-bag-001",
+      "quantity": "1",
+      "agreed_value": {
+        "amount": "25.00",
+        "currency": "USD"
+      },
+      "acknowledgement": {
+        "provider": "SYNTHETIC_ACKNOWLEDGED",
+        "receiver": "SYNTHETIC_ACKNOWLEDGED"
+      },
+      "evidence": {
+        "capture_method": "MANUAL_RECEIPT",
+        "scanner_tool": null,
+        "serial_capture": false,
+        "image_capture": "OPTIONAL_PRIVATE",
+        "private_refs": [
+          "m5pod:synthetic:trade-in-condition-001"
+        ]
+      },
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-VX-PARTY-AGREED-VALUE-DRAFT"
+    },
+    {
+      "leg_id": "LEG-SERVICE-001",
+      "settlement_type": "SERVICE",
+      "from_tcid": "tcid:synthetic:demo-buyer",
+      "to_tcid": "tcid:synthetic:dagny-seller",
+      "resource_reference": "invoice:synthetic:wardrobe-curation-001",
+      "quantity": "1",
+      "agreed_value": {
+        "amount": "15.00",
+        "currency": "USD"
+      },
+      "acknowledgement": {
+        "provider": "SYNTHETIC_ACKNOWLEDGED",
+        "receiver": "SYNTHETIC_ACKNOWLEDGED"
+      },
+      "evidence": {
+        "capture_method": "MANUAL_RECEIPT",
+        "scanner_tool": null,
+        "serial_capture": false,
+        "image_capture": "NONE",
+        "private_refs": [
+          "m5pod:synthetic:service-invoice-001"
+        ]
+      },
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-VX-PARTY-AGREED-VALUE-DRAFT"
+    }
+  ]
+}

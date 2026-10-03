@@ -1,0 +1,193 @@
+{
+  "schema_version": "0.1-draft",
+  "receipt_class": "PUBLIC_SYNTHETIC_NON_AUTHORITATIVE",
+  "simulation_id": "DAGNY-M5VX-DEMO-0001",
+  "exchange_id": "M5VX-DAGNY-ASSET-PURCHASE-0001",
+  "provider_tcid": "tcid:synthetic:dagny-seller",
+  "receiver_tcid": "tcid:synthetic:demo-buyer",
+  "execution_safety": {
+    "synthetic": true,
+    "authority_effect": "NONE",
+    "network_write": false,
+    "financial_movement": false,
+    "real_world_resource_movement": false
+  },
+  "exchange_resource": {
+    "resource_type": "ASSET",
+    "resource_reference": "dagny.m5bank.app/assets/synthetic-jacket-001",
+    "description": "Synthetic previously owned jacket",
+    "quantity": "1"
+  },
+  "agreed_total": {
+    "amount": "100.00",
+    "currency": "USD"
+  },
+  "leg_total": {
+    "amount": "100.00",
+    "currency": "USD"
+  },
+  "consideration_reconciled": true,
+  "receipts": [
+    {
+      "receipt_id": "M5VR-DAGNY-M5VX-DEMO-0001-LEG-DIGITAL-001",
+      "event_id": "M5VX-EVENT-LEG-DIGITAL-001",
+      "exchange_id": "M5VX-DAGNY-ASSET-PURCHASE-0001",
+      "provider_tcid": "tcid:synthetic:demo-buyer",
+      "receiver_tcid": "tcid:synthetic:dagny-seller",
+      "resource_type": "ASSET",
+      "settlement_type": "DIGITAL",
+      "exchange_resource_reference": "dagny.m5bank.app/assets/synthetic-jacket-001",
+      "resource_reference": "m5pay:synthetic:payment-001",
+      "quantity": "40",
+      "agreed_value": "40.00",
+      "valuation_currency": "USD",
+      "evidence_refs": [
+        "sha256:f13b09b7485170d24ecea5fce3569cf5fd73ab1af366c95ad247de324947090f"
+      ],
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-RICARDIAN-TRIPLE-LAYER-001",
+      "provider_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "receiver_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "created_at": "2026-10-02T20:00:00Z",
+      "accepted_at": "2026-10-02T20:00:00Z",
+      "m5pod_record_ref": "m5pod:target:LEG-DIGITAL-001",
+      "titlechain_reference": null,
+      "state": "PROPOSED",
+      "simulation_outcome": "402_HOLD_BEFORE_PROVIDER",
+      "digital_settlement_terms": {
+        "settlement_asset": "M5USD_SIM",
+        "fx_quote": {
+          "source_currency": "USD",
+          "destination_currency": "M5USD_SIM",
+          "rate": "1.000000",
+          "spread_bps": 0,
+          "source": "SYNTHETIC_FIXTURE",
+          "quoted_at": "2026-10-02T20:00:00Z"
+        },
+        "fee_allocations_bps": [
+          {
+            "allocation": "local_jurisdiction_pool",
+            "bps": 600
+          },
+          {
+            "allocation": "adjudication_due_process_pool",
+            "bps": 200
+          },
+          {
+            "allocation": "community_pool",
+            "bps": 400
+          }
+        ],
+        "total_fee_bps": 1200,
+        "gross_amount": {
+          "amount": "40.00",
+          "currency": "USD"
+        },
+        "fee_amount": {
+          "amount": "4.80",
+          "currency": "USD"
+        },
+        "net_amount": {
+          "amount": "35.20",
+          "currency": "USD"
+        }
+      },
+      "receipt_hash": "sha256:14e1afa0179987803578c3b612099cd8102af8f4a56bd34ccb3587fbeb0e3011"
+    },
+    {
+      "receipt_id": "M5VR-DAGNY-M5VX-DEMO-0001-LEG-CASH-001",
+      "event_id": "M5VX-EVENT-LEG-CASH-001",
+      "exchange_id": "M5VX-DAGNY-ASSET-PURCHASE-0001",
+      "provider_tcid": "tcid:synthetic:demo-buyer",
+      "receiver_tcid": "tcid:synthetic:dagny-seller",
+      "resource_type": "ASSET",
+      "settlement_type": "CASH",
+      "exchange_resource_reference": "dagny.m5bank.app/assets/synthetic-jacket-001",
+      "resource_reference": "cash:synthetic:usd-20",
+      "quantity": "20",
+      "agreed_value": "20.00",
+      "valuation_currency": "USD",
+      "evidence_refs": [
+        "sha256:ccd6f196ef45821140e3f68cac48884e6b5a07935123dd0a796344aa62ba5b36"
+      ],
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-VX-CASH-PRIVACY-DRAFT",
+      "provider_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "receiver_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "created_at": "2026-10-02T20:00:00Z",
+      "accepted_at": "2026-10-02T20:00:00Z",
+      "m5pod_record_ref": "m5pod:target:LEG-CASH-001",
+      "titlechain_reference": null,
+      "state": "PROPOSED",
+      "simulation_outcome": "SIMULATED_ACKNOWLEDGEMENT_ONLY",
+      "receipt_hash": "sha256:f84b1e6c9a2020021bc7a4abd841a9f37ec37c85c1348bf8ebd7f204bb315e46"
+    },
+    {
+      "receipt_id": "M5VR-DAGNY-M5VX-DEMO-0001-LEG-ASSET-001",
+      "event_id": "M5VX-EVENT-LEG-ASSET-001",
+      "exchange_id": "M5VX-DAGNY-ASSET-PURCHASE-0001",
+      "provider_tcid": "tcid:synthetic:demo-buyer",
+      "receiver_tcid": "tcid:synthetic:dagny-seller",
+      "resource_type": "ASSET",
+      "settlement_type": "ASSET",
+      "exchange_resource_reference": "dagny.m5bank.app/assets/synthetic-jacket-001",
+      "resource_reference": "titlechain:synthetic:trade-in-bag-001",
+      "quantity": "1",
+      "agreed_value": "25.00",
+      "valuation_currency": "USD",
+      "evidence_refs": [
+        "sha256:8794c1a1677a92e5c964e8de781a7970370677bc76155b1e007eaf2db7c1883a"
+      ],
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-VX-PARTY-AGREED-VALUE-DRAFT",
+      "provider_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "receiver_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "created_at": "2026-10-02T20:00:00Z",
+      "accepted_at": "2026-10-02T20:00:00Z",
+      "m5pod_record_ref": "m5pod:target:LEG-ASSET-001",
+      "titlechain_reference": "titlechain:target:LEG-ASSET-001",
+      "state": "PROPOSED",
+      "simulation_outcome": "SIMULATED_ACKNOWLEDGEMENT_ONLY",
+      "receipt_hash": "sha256:3de1634e9ca1e8c2735006376721a5f3d3ea82bd26ce532da51d89cbda8516ac"
+    },
+    {
+      "receipt_id": "M5VR-DAGNY-M5VX-DEMO-0001-LEG-SERVICE-001",
+      "event_id": "M5VX-EVENT-LEG-SERVICE-001",
+      "exchange_id": "M5VX-DAGNY-ASSET-PURCHASE-0001",
+      "provider_tcid": "tcid:synthetic:demo-buyer",
+      "receiver_tcid": "tcid:synthetic:dagny-seller",
+      "resource_type": "ASSET",
+      "settlement_type": "SERVICE",
+      "exchange_resource_reference": "dagny.m5bank.app/assets/synthetic-jacket-001",
+      "resource_reference": "invoice:synthetic:wardrobe-curation-001",
+      "quantity": "1",
+      "agreed_value": "15.00",
+      "valuation_currency": "USD",
+      "evidence_refs": [
+        "sha256:85a78807537a86ec8357cc394ab1798c67994f480e171c82ebb0267658b333a6"
+      ],
+      "credential_context": "credential:synthetic:buyer-current",
+      "jurisdiction_context": "jurisdiction:synthetic:us-ca",
+      "policy_context": "policy:M5-VX-PARTY-AGREED-VALUE-DRAFT",
+      "provider_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "receiver_attestation": "SYNTHETIC_ACKNOWLEDGED",
+      "created_at": "2026-10-02T20:00:00Z",
+      "accepted_at": "2026-10-02T20:00:00Z",
+      "m5pod_record_ref": "m5pod:target:LEG-SERVICE-001",
+      "titlechain_reference": null,
+      "state": "PROPOSED",
+      "simulation_outcome": "SIMULATED_ACKNOWLEDGEMENT_ONLY",
+      "receipt_hash": "sha256:348bfb6ccba21c5f22826e54de5160e13b41e7872ffd2bda04eec988d6ebfa31"
+    }
+  ],
+  "notices": [
+    "SIMULATION \u2014 NO VALUE OR AUTHORITY MOVED.",
+    "CASH evidence does not tokenize physical currency.",
+    "ASSET and SERVICE values are party-agreed, not M5 appraisals.",
+    "The DIGITAL leg stops at 402 HOLD before any provider call."
+  ],
+  "bundle_hash": "sha256:ab538fca5dd084b456f3fb2db73b042c431f5c9870b8bfe167eee17e2a60a2d1"
+}
