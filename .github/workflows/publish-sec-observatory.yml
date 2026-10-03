@@ -10,6 +10,7 @@ on:
     paths:
       - ".github/workflows/publish-sec-observatory.yml"
       - "sec-public-input/observatory/**"
+      - "sec-public-input/foundation-submissions/**/*.pdf"
 
 permissions:
   contents: read

@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from pypdf import PdfReader
+from foundation_record import TITLE, DESCRIPTION, render_record, copy_public_pdfs
 
 
 DOCKET = "S7-2026-30"
@@ -474,7 +475,8 @@ def render_dashboard(feed: dict[str, Any]) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SEC Public Comment Observatory — S7-2026-30</title>
+  <title>{html.escape(TITLE)}</title>
+  <meta name="description" content="{html.escape(DESCRIPTION, quote=True)}">
   <style>
     :root {{ color-scheme: light; font-family: ui-sans-serif, system-ui, sans-serif; }}
     body {{ margin: 0; background: #f6f2ea; color: #1d1428; }}
@@ -483,6 +485,19 @@ def render_dashboard(feed: dict[str, Any]) -> str:
       border-radius: 16px; padding: 1.5rem; margin-bottom: 1.25rem; }}
     h1, h2, h3 {{ line-height: 1.12; }}
     a {{ color: #7b245f; }}
+    .proceeding-grid {{ display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.25rem; }}
+    .proceeding-grid section {{ min-width: 0; }}
+    a {{ overflow-wrap: anywhere; }}
+    h1 {{ font-size: clamp(1.8rem,4vw,3rem); }}
+    p, li, dd {{ line-height: 1.6; }}
+    dt {{ font-weight: 700; margin-top: .65rem; }}
+    dd {{ margin-left: 0; }}
+    .eyebrow {{ color: #7b245f; font-weight: 800; }}
+    .filing-status, blockquote {{ background: #f6f2ea; padding: 1rem; border-left: 4px solid #7b245f; }}
+    blockquote {{ margin: 1rem 0; }}
+    .timeline {{ padding-left: 1.5rem; }}
+    .timeline li {{ padding-bottom: 1.5rem; }}
+    @media(max-width: 760px) {{ .proceeding-grid {{ grid-template-columns: 1fr; }} main {{ padding: 1rem .75rem; }} header, section, article {{ padding: 1rem; }} }}
     .notice {{ border-left: 6px solid #8b2f70; }}
     .metrics {{ display: grid; grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
       gap: 1rem; }}
@@ -502,9 +517,10 @@ def render_dashboard(feed: dict[str, Any]) -> str:
 </head>
 <body>
 <main>
-  <header>
+  {render_record()}
+  <header id="official-observatory">
     <p>M5 AI Sovereign Commons · Public Research Feed</p>
-    <h1>SEC Public Comment Observatory</h1>
+    <h2>SEC Public Comment Observatory</h2>
     <p>Transfer Agent Rules · File No. S7-2026-30</p>
   </header>
   <section class="notice">
@@ -576,6 +592,7 @@ def render_dashboard(feed: dict[str, Any]) -> str:
 
 def write_site(feed: dict[str, Any], output: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
+    copy_public_pdfs(output)
     (output / "feed.json").write_text(
         json.dumps(feed, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",

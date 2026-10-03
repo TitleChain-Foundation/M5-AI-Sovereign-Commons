@@ -1,0 +1,77 @@
+{
+  "lastVerified": "2026-10-03",
+  "proceedings": [
+    {
+      "id": "S7-2026-30",
+      "title": "Transfer Agent Rules",
+      "releases": [
+        "34-106246"
+      ],
+      "date": "2026-09-01",
+      "deadline": "Nov. 3, 2026",
+      "status": "Proposed rule",
+      "ruleUrl": "https://www.sec.gov/rules-regulations/2026/09/s7-2026-30",
+      "commentsUrl": "https://www.sec.gov/rules-regulations/public-comments/s7-2026-30",
+      "pressUrl": "https://www.sec.gov/newsroom/press-releases/2026-81-sec-proposes-modernize-rules-registered-transfer-agents",
+      "summary": "The SEC proposes modernization of transfer-agent records, communications and securities infrastructure."
+    },
+    {
+      "id": "S7-2026-35",
+      "title": "Adviser and Regulated Fund Custody Rules; Crypto Custody Rules",
+      "releases": [
+        "IA-7023",
+        "IC-36353"
+      ],
+      "date": "2026-10-01",
+      "deadline": "60 days after Federal Register publication",
+      "status": "Proposed rule",
+      "ruleUrl": "https://www.sec.gov/rules-regulations/2026/10/s7-2026-35",
+      "commentsUrl": "https://www.sec.gov/rules-regulations/public-comments/s7-2026-35",
+      "pressUrl": "https://www.sec.gov/newsroom/press-releases/2026-100-sec-proposal-would-address-how-investment-advisers-funds-can-custody-crypto-assets-under-federal",
+      "summary": "The SEC proposes a tailored custody framework for covered crypto assets held by advisers and regulated funds, including state trust companies and limited adviser self-custody subject to conditions."
+    }
+  ],
+  "filings": [
+    {
+      "id": "original",
+      "docket": "S7-2026-30",
+      "title": "Original transfer-agent public comment",
+      "submitted": "2026-09-05",
+      "secPosted": true,
+      "secUrl": "https://www.sec.gov/comments/S7-2026-30/s7202630-1029659-3393926.pdf",
+      "localPdf": null,
+      "focus": "Master Securityholder File, electronic and distributed-ledger records, transfer authority, signer eligibility, credential-bound participants, open standards and human accountability."
+    },
+    {
+      "id": "september-supplement",
+      "docket": "S7-2026-30",
+      "title": "September supplemental comment and Technical Exhibits A\u2013J",
+      "submitted": "2026-09-23",
+      "secPosted": false,
+      "secUrl": null,
+      "localPdf": "foundation-submissions/2026-09-23-supplemental-comment/as-submitted/TitleChain_Foundation_SEC_S7-2026-30_Supplemental_Comment.pdf",
+      "focus": "Questions 80\u201389, authoritative records, reconstructable authority and failure/recovery evidence.",
+      "additionalPdf": "foundation-submissions/2026-09-23-supplemental-comment/as-submitted/TitleChain_Foundation_SEC_S7-2026-30_Technical_Exhibits_A-J.pdf"
+    },
+    {
+      "id": "s7-2026-30-october",
+      "docket": "S7-2026-30",
+      "title": "Supplemental Comment Regarding Custody, Control, Transfer Authority and the Authoritative Securityholder Record",
+      "submitted": "2026-10-03",
+      "secPosted": false,
+      "secUrl": null,
+      "localPdf": "foundation-submissions/2026-10-03-s7-2026-30/TitleChain_Foundation_S7-2026-30_Supplemental_Comment_2026-10-03.pdf",
+      "focus": "Custody versus ownership, cryptographic control, legal authority, authoritative securityholder records, transfer-agent custody and automation."
+    },
+    {
+      "id": "s7-2026-35-october",
+      "docket": "S7-2026-35",
+      "title": "Comment Regarding Custody, Authority, Digital Securities and Transfer-Agent Reconciliation",
+      "submitted": "2026-10-03",
+      "secPosted": false,
+      "secUrl": null,
+      "localPdf": "foundation-submissions/2026-10-03-s7-2026-35/TitleChain_Foundation_S7-2026-35_Comment_2026-10-03.pdf",
+      "focus": "State trust companies, limited adviser self-custody, key control, transfer agents, uncertificated digital securities and software/AI transaction authority."
+    }
+  ]
+}
