@@ -85,8 +85,10 @@ The live Base44 storefront can consume the fixture and receipt shapes as a
 write-disabled demonstration:
 
 1. show `DIGITAL`, `CASH`, `ASSET`, and `SERVICE` as payment choices;
-2. show the DIGITAL asset, FX quote, spread, and BPS allocations before
-   acknowledgement;
+2. show the DIGITAL asset, FX quote, spread, provider/rail cost, 10 BPS M5
+   protocol fee, 5 BPS TC-USD settlement fee, and conditional overlays before
+   acknowledgement; any public provider rate is informational and not a
+   private-label quote;
 3. collect only optional CASH evidence and require both acknowledgements;
 4. label ASSET and SERVICE values as party-agreed, not M5 appraisals;
 5. display `SIMULATION — NO VALUE MOVED` on every screen and receipt; and

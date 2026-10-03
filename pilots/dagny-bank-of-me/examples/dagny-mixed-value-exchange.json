@@ -65,19 +65,62 @@
           "source": "SYNTHETIC_FIXTURE",
           "quoted_at": "2026-10-02T20:00:00Z"
         },
-        "fee_allocations_bps": [
+        "transaction_fee_components": [
           {
-            "allocation": "local_jurisdiction_pool",
-            "bps": 600
+            "code": "PROVIDER-BRALE-STANDARD",
+            "category": "PROVIDER_RAIL",
+            "bps": 0,
+            "applied": false,
+            "source_reference": "PUBLIC_PRICING_VIEWED_2026-10-03_NOT_A_PRIVATE_LABEL_QUOTE"
           },
           {
-            "allocation": "adjudication_due_process_pool",
-            "bps": 200
+            "code": "FEE-PROTOCOL-001",
+            "category": "M5_PROTOCOL",
+            "bps": 10,
+            "applied": true,
+            "source_reference": "M5_FEE_SCHEDULE"
           },
           {
-            "allocation": "community_pool",
-            "bps": 400
+            "code": "FEE-SETTLE-USD",
+            "category": "SETTLEMENT",
+            "bps": 5,
+            "applied": true,
+            "source_reference": "M5_FEE_SCHEDULE"
+          },
+          {
+            "code": "M5-CLASS-M1",
+            "category": "ASSET_CLASS",
+            "bps": 0,
+            "applied": false,
+            "source_reference": "M1_NO_CLASS_OVERLAY"
+          },
+          {
+            "code": "BP11",
+            "category": "BRIDGE",
+            "bps": 3,
+            "applied": false,
+            "source_reference": "NOT_REQUIRED_FOR_SYNTHETIC_ROUTE"
+          },
+          {
+            "code": "TRANSFER-AGENT",
+            "category": "TRANSFER_AGENT",
+            "bps": null,
+            "applied": false,
+            "source_reference": "CONTRACT_REQUIRED_NOT_LOADED"
+          },
+          {
+            "code": "JURISDICTION",
+            "category": "JURISDICTION",
+            "bps": null,
+            "applied": false,
+            "source_reference": "RULE_REQUIRED_NOT_LOADED"
           }
+        ],
+        "allocation_basis": "COLLECTED_M5_ECONOMICS_NOT_TRANSACTION_PRINCIPAL",
+        "allocation_route": [
+          "COMMUNITY_BY_PERSON_CHAIN_AND_POSTAL_JURISDICTION",
+          "M5_PROTOCOL",
+          "LOCAL_STATE_NATION_RULE"
         ],
         "x402_result": "402_HOLD_BEFORE_PROVIDER"
       }

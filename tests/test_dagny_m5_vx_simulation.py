@@ -67,16 +67,32 @@ def test_simulation_is_write_disabled_and_digital_stops_before_provider():
     )
     assert digital["simulation_outcome"] == "402_HOLD_BEFORE_PROVIDER"
     assert digital["digital_settlement_terms"] == {
+        "payment_wrapper": "x402-v2",
+        "m5_extension": "M5-x402-draft",
+        "adapter": "M5Pay",
+        "provider_candidate": "BRALE_PRIVATE_LABEL_STABLECOIN",
+        "provider_status": "CANDIDATE_NOT_CALLED",
         "settlement_asset": "M5USD_SIM",
         "fx_quote": FIXTURE["legs"][0]["digital_terms"]["fx_quote"],
-        "fee_allocations_bps": FIXTURE["legs"][0]["digital_terms"][
-            "fee_allocations_bps"
+        "transaction_fee_components": FIXTURE["legs"][0]["digital_terms"][
+            "transaction_fee_components"
         ],
-        "total_fee_bps": 1200,
+        "allocation_basis": "COLLECTED_M5_ECONOMICS_NOT_TRANSACTION_PRINCIPAL",
+        "allocation_route": [
+            "COMMUNITY_BY_PERSON_CHAIN_AND_POSTAL_JURISDICTION",
+            "M5_PROTOCOL",
+            "LOCAL_STATE_NATION_RULE",
+        ],
+        "total_fee_bps": 15,
         "gross_amount": {"amount": "40.00", "currency": "USD"},
-        "fee_amount": {"amount": "4.80", "currency": "USD"},
-        "net_amount": {"amount": "35.20", "currency": "USD"},
+        "fee_amount": {"amount": "0.06", "currency": "USD"},
+        "net_amount": {"amount": "39.94", "currency": "USD"},
     }
+    provider_reference = digital["digital_settlement_terms"][
+        "transaction_fee_components"
+    ][0]
+    assert provider_reference["code"] == "PROVIDER-BRALE-STANDARD"
+    assert provider_reference["applied"] is False
     assert all(receipt["state"] == "PROPOSED" for receipt in bundle["receipts"])
 
 
@@ -145,8 +161,14 @@ def test_fee_rounding_preserves_gross_value():
         leg for leg in fixture["legs"] if leg["settlement_type"] == "DIGITAL"
     )
     digital["agreed_value"]["amount"] = "40.05"
-    digital["digital_terms"]["fee_allocations_bps"] = [
-        {"allocation": "synthetic_half", "bps": 5000}
+    digital["digital_terms"]["transaction_fee_components"] = [
+        {
+            "code": "SYNTHETIC-HALF",
+            "category": "M5_PROTOCOL",
+            "bps": 5000,
+            "applied": True,
+            "source_reference": "TEST_FIXTURE",
+        }
     ]
     fixture["agreed_total"]["amount"] = "100.05"
     receipt = next(
@@ -171,8 +193,14 @@ def test_unbalanced_or_duplicate_legs_fail_closed():
         MODULE.simulate(duplicate)
 
     excessive_fees = copy.deepcopy(FIXTURE)
-    excessive_fees["legs"][0]["digital_terms"]["fee_allocations_bps"].append(
-        {"allocation": "invalid_extra_fee", "bps": 9000}
+    excessive_fees["legs"][0]["digital_terms"]["transaction_fee_components"].append(
+        {
+            "code": "INVALID-EXTRA",
+            "category": "M5_PROTOCOL",
+            "bps": 9990,
+            "applied": True,
+            "source_reference": "TEST_FIXTURE",
+        }
     )
     with pytest.raises(ValueError, match="exceed 10000 bps"):
         MODULE.simulate(excessive_fees)

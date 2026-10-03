@@ -93,6 +93,28 @@
         "receiver": { "const": "SYNTHETIC_ACKNOWLEDGED" }
       }
     },
+    "feeComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "category", "bps", "applied", "source_reference"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1 },
+        "category": {
+          "enum": [
+            "PROVIDER_RAIL",
+            "M5_PROTOCOL",
+            "SETTLEMENT",
+            "BRIDGE",
+            "TRANSFER_AGENT",
+            "JURISDICTION",
+            "ASSET_CLASS"
+          ]
+        },
+        "bps": { "type": ["integer", "null"], "minimum": 0, "maximum": 10000 },
+        "applied": { "type": "boolean" },
+        "source_reference": { "type": "string", "minLength": 1 }
+      }
+    },
     "receipt": {
       "type": "object",
       "additionalProperties": false,
@@ -157,18 +179,46 @@
           "type": "object",
           "additionalProperties": false,
           "required": [
+            "payment_wrapper",
+            "m5_extension",
+            "adapter",
+            "provider_candidate",
+            "provider_status",
             "settlement_asset",
             "fx_quote",
-            "fee_allocations_bps",
+            "transaction_fee_components",
+            "allocation_basis",
+            "allocation_route",
             "total_fee_bps",
             "gross_amount",
             "fee_amount",
             "net_amount"
           ],
           "properties": {
+            "payment_wrapper": { "const": "x402-v2" },
+            "m5_extension": { "const": "M5-x402-draft" },
+            "adapter": { "const": "M5Pay" },
+            "provider_candidate": { "const": "BRALE_PRIVATE_LABEL_STABLECOIN" },
+            "provider_status": { "const": "CANDIDATE_NOT_CALLED" },
             "settlement_asset": { "type": "string", "minLength": 1 },
             "fx_quote": { "type": "object" },
-            "fee_allocations_bps": { "type": "array" },
+            "transaction_fee_components": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/feeComponent" }
+            },
+            "allocation_basis": {
+              "const": "COLLECTED_M5_ECONOMICS_NOT_TRANSACTION_PRINCIPAL"
+            },
+            "allocation_route": {
+              "type": "array",
+              "prefixItems": [
+                { "const": "COMMUNITY_BY_PERSON_CHAIN_AND_POSTAL_JURISDICTION" },
+                { "const": "M5_PROTOCOL" },
+                { "const": "LOCAL_STATE_NATION_RULE" }
+              ],
+              "items": false
+            },
             "total_fee_bps": { "type": "integer", "minimum": 0, "maximum": 10000 },
             "gross_amount": { "$ref": "#/$defs/money" },
             "fee_amount": { "$ref": "#/$defs/money" },

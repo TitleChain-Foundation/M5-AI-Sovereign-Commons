@@ -83,12 +83,18 @@ def simulate(record: dict[str, Any]) -> dict[str, Any]:
     receipts = []
     for leg in record["legs"]:
         settlement_type = leg["settlement_type"]
+        fee_components = leg.get("digital_terms", {}).get(
+            "transaction_fee_components", []
+        )
+        if any(item["applied"] and item["bps"] is None for item in fee_components):
+            raise ValueError(
+                f"{leg['leg_id']} applied fee components require a numeric bps rate"
+            )
         total_fee_bps = sum(
-            item["bps"]
-            for item in leg.get("digital_terms", {}).get("fee_allocations_bps", [])
+            item["bps"] for item in fee_components if item["applied"]
         )
         if total_fee_bps > 10000:
-            raise ValueError(f"{leg['leg_id']} fee allocations exceed 10000 bps")
+            raise ValueError(f"{leg['leg_id']} applied fees exceed 10000 bps")
         outcome = (
             leg["digital_terms"]["x402_result"]
             if settlement_type == "DIGITAL"
@@ -136,9 +142,16 @@ def simulate(record: dict[str, Any]) -> dict[str, Any]:
             if fee + net != gross:
                 raise ValueError(f"{leg['leg_id']} fee reconciliation failed")
             payload["digital_settlement_terms"] = {
+                "payment_wrapper": leg["digital_terms"]["payment_wrapper"],
+                "m5_extension": leg["digital_terms"]["m5_extension"],
+                "adapter": leg["digital_terms"]["adapter"],
+                "provider_candidate": leg["digital_terms"]["provider_candidate"],
+                "provider_status": leg["digital_terms"]["provider_status"],
                 "settlement_asset": leg["digital_terms"]["settlement_asset"],
                 "fx_quote": leg["digital_terms"]["fx_quote"],
-                "fee_allocations_bps": leg["digital_terms"]["fee_allocations_bps"],
+                "transaction_fee_components": fee_components,
+                "allocation_basis": leg["digital_terms"]["allocation_basis"],
+                "allocation_route": leg["digital_terms"]["allocation_route"],
                 "total_fee_bps": total_fee_bps,
                 "gross_amount": money(gross, currency),
                 "fee_amount": money(fee, currency),
@@ -165,6 +178,7 @@ def simulate(record: dict[str, Any]) -> dict[str, Any]:
             "CASH evidence does not tokenize physical currency.",
             "ASSET and SERVICE values are party-agreed, not M5 appraisals.",
             "The DIGITAL leg stops at 402 HOLD before any provider call.",
+            "Community and jurisdiction destinations are not hidden swap fees or automatic deductions from principal.",
         ],
     }
     bundle["bundle_hash"] = canonical_digest(bundle)

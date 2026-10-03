@@ -56,6 +56,11 @@
       "state": "PROPOSED",
       "simulation_outcome": "402_HOLD_BEFORE_PROVIDER",
       "digital_settlement_terms": {
+        "payment_wrapper": "x402-v2",
+        "m5_extension": "M5-x402-draft",
+        "adapter": "M5Pay",
+        "provider_candidate": "BRALE_PRIVATE_LABEL_STABLECOIN",
+        "provider_status": "CANDIDATE_NOT_CALLED",
         "settlement_asset": "M5USD_SIM",
         "fx_quote": {
           "source_currency": "USD",
@@ -65,35 +70,78 @@
           "source": "SYNTHETIC_FIXTURE",
           "quoted_at": "2026-10-02T20:00:00Z"
         },
-        "fee_allocations_bps": [
+        "transaction_fee_components": [
           {
-            "allocation": "local_jurisdiction_pool",
-            "bps": 600
+            "code": "PROVIDER-BRALE-STANDARD",
+            "category": "PROVIDER_RAIL",
+            "bps": 0,
+            "applied": false,
+            "source_reference": "PUBLIC_PRICING_VIEWED_2026-10-03_NOT_A_PRIVATE_LABEL_QUOTE"
           },
           {
-            "allocation": "adjudication_due_process_pool",
-            "bps": 200
+            "code": "FEE-PROTOCOL-001",
+            "category": "M5_PROTOCOL",
+            "bps": 10,
+            "applied": true,
+            "source_reference": "M5_FEE_SCHEDULE"
           },
           {
-            "allocation": "community_pool",
-            "bps": 400
+            "code": "FEE-SETTLE-USD",
+            "category": "SETTLEMENT",
+            "bps": 5,
+            "applied": true,
+            "source_reference": "M5_FEE_SCHEDULE"
+          },
+          {
+            "code": "M5-CLASS-M1",
+            "category": "ASSET_CLASS",
+            "bps": 0,
+            "applied": false,
+            "source_reference": "M1_NO_CLASS_OVERLAY"
+          },
+          {
+            "code": "BP11",
+            "category": "BRIDGE",
+            "bps": 3,
+            "applied": false,
+            "source_reference": "NOT_REQUIRED_FOR_SYNTHETIC_ROUTE"
+          },
+          {
+            "code": "TRANSFER-AGENT",
+            "category": "TRANSFER_AGENT",
+            "bps": null,
+            "applied": false,
+            "source_reference": "CONTRACT_REQUIRED_NOT_LOADED"
+          },
+          {
+            "code": "JURISDICTION",
+            "category": "JURISDICTION",
+            "bps": null,
+            "applied": false,
+            "source_reference": "RULE_REQUIRED_NOT_LOADED"
           }
         ],
-        "total_fee_bps": 1200,
+        "allocation_basis": "COLLECTED_M5_ECONOMICS_NOT_TRANSACTION_PRINCIPAL",
+        "allocation_route": [
+          "COMMUNITY_BY_PERSON_CHAIN_AND_POSTAL_JURISDICTION",
+          "M5_PROTOCOL",
+          "LOCAL_STATE_NATION_RULE"
+        ],
+        "total_fee_bps": 15,
         "gross_amount": {
           "amount": "40.00",
           "currency": "USD"
         },
         "fee_amount": {
-          "amount": "4.80",
+          "amount": "0.06",
           "currency": "USD"
         },
         "net_amount": {
-          "amount": "35.20",
+          "amount": "39.94",
           "currency": "USD"
         }
       },
-      "receipt_hash": "sha256:14e1afa0179987803578c3b612099cd8102af8f4a56bd34ccb3587fbeb0e3011"
+      "receipt_hash": "sha256:a7067aa012a4cb1526b0ed7f2d7ccc196182109a174fe22cb699630dfdb26d52"
     },
     {
       "receipt_id": "M5VR-DAGNY-M5VX-DEMO-0001-LEG-CASH-001",
@@ -187,7 +235,8 @@
     "SIMULATION \u2014 NO VALUE OR AUTHORITY MOVED.",
     "CASH evidence does not tokenize physical currency.",
     "ASSET and SERVICE values are party-agreed, not M5 appraisals.",
-    "The DIGITAL leg stops at 402 HOLD before any provider call."
+    "The DIGITAL leg stops at 402 HOLD before any provider call.",
+    "Community and jurisdiction destinations are not hidden swap fees or automatic deductions from principal."
   ],
-  "bundle_hash": "sha256:ab538fca5dd084b456f3fb2db73b042c431f5c9870b8bfe167eee17e2a60a2d1"
+  "bundle_hash": "sha256:29f6ff0498540490e42d3b5334a3649be9a098be7e4a6995142a2b5b5cf64e87"
 }
