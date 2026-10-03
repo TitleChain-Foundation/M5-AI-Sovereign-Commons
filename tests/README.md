@@ -21,6 +21,7 @@ secure, a system complies with law, or the release is production-ready.
 | Ricardian settlement | Three-layer Ricardian binding, authority, settlement and receipts | [Ricardian tests](test_m5_ricardian_settlement.py) |
 | Commons handoff and M5BOM baseline | Handoff contracts, sovereign baseline and M5-Eve activation | [Handoff](test_commons_handoff.py) · [M5BOM](test_m5_bom_baseline.py) · [Eve activation](test_m5_eve_activation.py) |
 | Event plane and commerce | Event envelope, metering and commerce schemas | [Event plane](test_m5_event_plane_v3.py) · [Commerce](test_m5_commerce_schemas.py) |
+| Dagny M5-VX simulation | Four-modal DIGITAL, CASH, ASSET and SERVICE fixture, balanced receipts, and write-disabled boundaries | [Dagny M5-VX tests](test_dagny_m5_vx_simulation.py) |
 | Projects | Spring Commons links and schemas, Farmland simulation privacy, homepage project order | [Spring](test_spring_commons_docs.py) · [Farmland](test_farmland_reference_simulation.py) · [Homepage](test_homepage_project_pathways.py) |
 | Publication scans | Public-release safety scans | [Release scans](test_public_release_scans.py) |
 | Recorded release evidence | Dated results, scope, and explicit non-claims | [Validation report](../VALIDATION-REPORT.md) |

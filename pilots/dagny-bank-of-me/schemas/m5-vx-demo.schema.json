@@ -1,0 +1,240 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/main/pilots/dagny-bank-of-me/schemas/m5-vx-demo.schema.json",
+  "title": "Dagny Bank of Me M5-VX Synthetic Demo",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "simulation_id",
+    "exchange_id",
+    "created_at",
+    "execution_safety",
+    "provider_tcid",
+    "receiver_tcid",
+    "resource",
+    "agreed_total",
+    "legs"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1-draft" },
+    "simulation_id": { "type": "string", "minLength": 1 },
+    "exchange_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "execution_safety": { "$ref": "#/$defs/executionSafety" },
+    "provider_tcid": { "type": "string", "minLength": 1 },
+    "receiver_tcid": { "type": "string", "minLength": 1 },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_type", "resource_reference", "description", "quantity"],
+      "properties": {
+        "resource_type": { "const": "ASSET" },
+        "resource_reference": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "quantity": { "type": "string", "pattern": "^[1-9][0-9]*(\\.[0-9]+)?$" }
+      }
+    },
+    "agreed_total": { "$ref": "#/$defs/money" },
+    "legs": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/leg" },
+      "allOf": [
+        { "contains": { "properties": { "settlement_type": { "const": "DIGITAL" } }, "required": ["settlement_type"] } },
+        { "contains": { "properties": { "settlement_type": { "const": "CASH" } }, "required": ["settlement_type"] } },
+        { "contains": { "properties": { "settlement_type": { "const": "ASSET" } }, "required": ["settlement_type"] } },
+        { "contains": { "properties": { "settlement_type": { "const": "SERVICE" } }, "required": ["settlement_type"] } }
+      ]
+    }
+  },
+  "$defs": {
+    "money": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount", "currency"],
+      "properties": {
+        "amount": { "type": "string", "pattern": "^(0|[1-9][0-9]*)(\\.[0-9]{1,2})?$" },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3,12}$" }
+      }
+    },
+    "executionSafety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "synthetic",
+        "authority_effect",
+        "network_write",
+        "financial_movement",
+        "real_world_resource_movement"
+      ],
+      "properties": {
+        "synthetic": { "const": true },
+        "authority_effect": { "const": "NONE" },
+        "network_write": { "const": false },
+        "financial_movement": { "const": false },
+        "real_world_resource_movement": { "const": false }
+      }
+    },
+    "acknowledgement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "receiver"],
+      "properties": {
+        "provider": { "const": "SYNTHETIC_ACKNOWLEDGED" },
+        "receiver": { "const": "SYNTHETIC_ACKNOWLEDGED" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capture_method", "scanner_tool", "serial_capture", "image_capture", "private_refs"],
+      "properties": {
+        "capture_method": { "enum": ["NONE", "CAMERA_OCR", "MANUAL_RECEIPT"] },
+        "scanner_tool": { "type": ["string", "null"] },
+        "serial_capture": { "type": "boolean" },
+        "image_capture": { "enum": ["NONE", "OPTIONAL_PRIVATE"] },
+        "private_refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "digitalTerms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payment_wrapper",
+        "m5_extension",
+        "adapter",
+        "provider_candidate",
+        "provider_status",
+        "settlement_asset",
+        "fx_quote",
+        "transaction_fee_components",
+        "allocation_basis",
+        "allocation_route",
+        "x402_result"
+      ],
+      "properties": {
+        "payment_wrapper": { "const": "x402-v2" },
+        "m5_extension": { "const": "M5-x402-draft" },
+        "adapter": { "const": "M5Pay" },
+        "provider_candidate": { "const": "BRALE_PRIVATE_LABEL_STABLECOIN" },
+        "provider_status": { "const": "CANDIDATE_NOT_CALLED" },
+        "settlement_asset": { "type": "string", "minLength": 1 },
+        "fx_quote": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source_currency", "destination_currency", "rate", "spread_bps", "source", "quoted_at"],
+          "properties": {
+            "source_currency": { "type": "string" },
+            "destination_currency": { "type": "string" },
+            "rate": { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
+            "spread_bps": { "type": "integer", "minimum": 0 },
+            "source": { "const": "SYNTHETIC_FIXTURE" },
+            "quoted_at": { "type": "string", "format": "date-time" }
+          }
+        },
+        "transaction_fee_components": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code", "category", "bps", "applied", "source_reference"],
+            "properties": {
+              "code": { "type": "string", "minLength": 1 },
+              "category": {
+                "enum": [
+                  "PROVIDER_RAIL",
+                  "M5_PROTOCOL",
+                  "SETTLEMENT",
+                  "BRIDGE",
+                  "TRANSFER_AGENT",
+                  "JURISDICTION",
+                  "ASSET_CLASS"
+                ]
+              },
+              "bps": {
+                "type": ["integer", "null"],
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "applied": { "type": "boolean" },
+              "source_reference": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+        "allocation_basis": {
+          "const": "COLLECTED_M5_ECONOMICS_NOT_TRANSACTION_PRINCIPAL"
+        },
+        "allocation_route": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "COMMUNITY_BY_PERSON_CHAIN_AND_POSTAL_JURISDICTION" },
+            { "const": "M5_PROTOCOL" },
+            { "const": "LOCAL_STATE_NATION_RULE" }
+          ],
+          "items": false
+        },
+        "x402_result": { "const": "402_HOLD_BEFORE_PROVIDER" }
+      }
+    },
+    "leg": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "leg_id",
+        "settlement_type",
+        "from_tcid",
+        "to_tcid",
+        "resource_reference",
+        "quantity",
+        "agreed_value",
+        "acknowledgement",
+        "evidence",
+        "credential_context",
+        "jurisdiction_context",
+        "policy_context"
+      ],
+      "properties": {
+        "leg_id": { "type": "string", "minLength": 1 },
+        "settlement_type": { "enum": ["DIGITAL", "CASH", "ASSET", "SERVICE"] },
+        "from_tcid": { "type": "string", "minLength": 1 },
+        "to_tcid": { "type": "string", "minLength": 1 },
+        "resource_reference": { "type": "string", "minLength": 1 },
+        "quantity": { "type": "string", "pattern": "^[1-9][0-9]*(\\.[0-9]+)?$" },
+        "agreed_value": { "$ref": "#/$defs/money" },
+        "acknowledgement": { "$ref": "#/$defs/acknowledgement" },
+        "evidence": { "$ref": "#/$defs/evidence" },
+        "credential_context": { "type": "string", "minLength": 1 },
+        "jurisdiction_context": { "type": "string", "minLength": 1 },
+        "policy_context": { "type": "string", "minLength": 1 },
+        "digital_terms": { "$ref": "#/$defs/digitalTerms" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "settlement_type": { "const": "DIGITAL" } }, "required": ["settlement_type"] },
+          "then": { "required": ["digital_terms"] },
+          "else": { "not": { "required": ["digital_terms"] } }
+        },
+        {
+          "if": { "properties": { "settlement_type": { "const": "CASH" } }, "required": ["settlement_type"] },
+          "then": {
+            "properties": {
+              "evidence": {
+                "properties": {
+                  "capture_method": { "enum": ["CAMERA_OCR", "MANUAL_RECEIPT"] },
+                  "scanner_tool": { "type": ["string", "null"] }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
