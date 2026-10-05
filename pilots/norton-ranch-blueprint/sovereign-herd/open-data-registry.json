@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1",
+  "reviewed_at": "2026-10-03",
+  "entries": [
+    {
+      "id": "precision-beef-4064802",
+      "name": "Precision Beef - Animal Behaviour Classification",
+      "source": "https://zenodo.org/records/4064802",
+      "doi": "10.5281/zenodo.4064802",
+      "material": [
+        "accelerometer",
+        "behavior labels"
+      ],
+      "evidence_state": "LICENSE_UNCLEAR",
+      "redistribute": false,
+      "notes": "Open-access record; verify exact dataset license before redistribution or commercial packaging."
+    },
+    {
+      "id": "strath-bolus-classified",
+      "name": "Bolus Sensor Acceleration Data With Timestamp and Behavioural Classification",
+      "source": "https://pureportal.strath.ac.uk/en/datasets/bolus-sensor-acceleration-data-with-timestamp-and-behavioural-cla/",
+      "doi": "10.15129/5e1dfedc-87c7-4af0-bb20-3f3e1388d9d9",
+      "material": [
+        "3-axis acceleration",
+        "behavior labels"
+      ],
+      "evidence_state": "VERIFIED_ATTRIBUTION_REQUIRED",
+      "license": "CC-BY-4.0",
+      "redistribute": true,
+      "notes": "Retain source attribution and comply with the source record."
+    },
+    {
+      "id": "strath-bolus-3x",
+      "name": "Bolus acceleration data 3x",
+      "source": "https://pureportal.strath.ac.uk/en/datasets/bolus-acceleration-data-3x/",
+      "doi": "10.15129/fc809102-7288-4b4e-aa48-55ba6608dc2c",
+      "material": [
+        "raw bovine bolus acceleration"
+      ],
+      "evidence_state": "VERIFIED_ATTRIBUTION_REQUIRED",
+      "license": "CC-BY-4.0",
+      "redistribute": true
+    },
+    {
+      "id": "bovheat",
+      "name": "BovHEAT",
+      "source": "https://github.com/bovheat/bovheat",
+      "material": [
+        "software",
+        "estrus/activity analysis"
+      ],
+      "evidence_state": "VERIFIED_PERMISSIVE",
+      "license": "MIT",
+      "redistribute": true,
+      "notes": "Software license does not grant rights in third-party input data."
+    },
+    {
+      "id": "mmcows",
+      "name": "MmCows",
+      "source": "https://github.com/neis-lab/mmcows",
+      "material": [
+        "wearable sensors",
+        "UWB/location",
+        "vision",
+        "model weights"
+      ],
+      "evidence_state": "REFERENCE_ONLY",
+      "redistribute": false,
+      "notes": "Audit source-level terms for code, data, imagery, annotations and weights before redistribution or commercial training."
+    }
+  ]
+}

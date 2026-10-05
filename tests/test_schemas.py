@@ -33,6 +33,7 @@ NAMES = [
     'm5-action-authorization',
     'm5-bom-sovereign-baseline',
     'm5-eve-activation',
+    'm5-biological-stewardship-record',
 ]
 
 
@@ -183,4 +184,3 @@ def test_context_envelope_requires_all_thirteen_dimensions():
         invalid = copy.deepcopy(example)
         del invalid[dimension]
         assert not validator(schema).is_valid(invalid)
-

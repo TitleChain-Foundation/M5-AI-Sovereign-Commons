@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sovereign Herd Device Assignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assignment_ref",
+    "entity_ref",
+    "animal_ref",
+    "device_ref",
+    "assigned_at",
+    "authority_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "assignment_ref": {
+      "type": "string"
+    },
+    "entity_ref": {
+      "type": "string"
+    },
+    "animal_ref": {
+      "type": "string"
+    },
+    "device_ref": {
+      "type": "string"
+    },
+    "assigned_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "authority_ref": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "evidence_digest": {
+      "type": "string"
+    }
+  }
+}

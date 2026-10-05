@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titlechainfoundation.org/schemas/m5-sovereign-herd-animal.schema.json",
+  "title": "M5 Sovereign Herd Animal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "animal_ref",
+    "entity_ref",
+    "species",
+    "record_state"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "animal_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "herd_ref": {
+      "type": "string"
+    },
+    "species": {
+      "type": "string",
+      "minLength": 1
+    },
+    "local_id": {
+      "type": "string"
+    },
+    "external_ids": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "scheme",
+          "value"
+        ],
+        "properties": {
+          "scheme": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "birth_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "sex": {
+      "enum": [
+        "female",
+        "male",
+        "intersex",
+        "unknown"
+      ]
+    },
+    "record_state": {
+      "enum": [
+        "active",
+        "transferred",
+        "deceased",
+        "retired",
+        "unknown"
+      ]
+    },
+    "private_evidence_ref": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

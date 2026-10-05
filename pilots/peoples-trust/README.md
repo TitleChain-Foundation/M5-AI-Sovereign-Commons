@@ -139,6 +139,33 @@ state jurisdiction are not mutually exclusive; several lanes may apply to the
 same arrangement. See also the
 [Farmland financial classification and escrow update](FARMLAND-FINANCIAL-CLASSIFICATION-AND-ESCROW-UPDATE.md).
 
+## From Land Registry to Living Systems
+
+The farmland pilot now extends beyond the parcel and title record to the living
+systems being raised, grown, managed and cared for on that land.
+
+The land layer establishes authoritative property references, lawful
+stewardship and bounded operating authority. The
+[Biological Stewardship Registry](BIOLOGICAL-STEWARDSHIP-REGISTRY.md) adds a
+separate evidence layer for livestock, herds, crop cycles, seed and harvest
+lots, orchard blocks, hives or colonies, and other managed biological systems
+at the granularity appropriate to the use case.
+
+This does **not** mean that every organism is legally titled property or that an
+M5 record replaces an authoritative government, livestock, veterinary,
+agricultural or food-safety record. It means that the lawful farm operator can
+maintain persistent, portable provenance and stewardship records while keeping
+the underlying operating data private.
+
+### Reference Implementation 001 — Sovereign Herd
+
+[Sovereign Herd](../norton-ranch-blueprint/sovereign-herd/README.md) is the
+first bounded example in the
+[Norton Ranch Blueprint](../norton-ranch-blueprint/README.md). It demonstrates
+how an animal record can persist independently of an assigned collar or sensor,
+and how raw telemetry and derived intelligence can remain under the farm
+entity's control.
+
 ## Project Control Pack
 
 America's People's Trust Farmland answers the same eight control questions as every Commons project, in

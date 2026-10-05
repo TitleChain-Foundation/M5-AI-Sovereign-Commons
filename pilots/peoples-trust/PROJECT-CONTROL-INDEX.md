@@ -25,6 +25,29 @@ owner, trustee, operator, county, parcel or transaction.
 No control is `VERIFIED`. The exact underlying research stays outside the
 public simulation.
 
+## Living Systems layer
+
+The Farmland project includes a draft
+[Biological Stewardship Registry](BIOLOGICAL-STEWARDSHIP-REGISTRY.md) beneath
+the land/property and operator-authority layers.
+
+This addition does not change the eight common controls. It gives the existing
+asset/right, authority, operations, privacy, evidence and state-machine
+controls another bounded subject: the living systems managed on the land.
+
+| Question | Required separation |
+| --- | --- |
+| What land is involved? | Authoritative land/property record vs. M5 evidence reference |
+| Who may act? | Owner/steward/operator authority vs. possession of data or a device |
+| What living system is recorded? | Individual animal vs. herd/flock vs. crop cycle/lot/block/colony |
+| What was directly observed? | Sensor/human observation vs. model inference |
+| What is private? | Raw telemetry, precise location, care/production and business data vs. public-safe digest/provenance |
+| What is persistent? | Animal/crop/lot record vs. replaceable device/vendor account |
+| What economic right exists? | Biological/production evidence vs. a separately classified sale, commodity, security or other instrument |
+
+Reference Implementation 001 is
+[Sovereign Herd](../norton-ranch-blueprint/sovereign-herd/README.md).
+
 ## Participant matrix
 
 Not every participant is an owner. Title ownership, member/steward

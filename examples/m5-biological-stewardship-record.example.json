@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "record_ref": "m5bio:synthetic:nd-farm:herd-001",
+  "entity_ref": "m5ent:synthetic:nd-farm-operator",
+  "land_ref": "m5land:synthetic:nd-farm-sim-001",
+  "subject_type": "livestock",
+  "granularity": "herd",
+  "species_or_variety": "Bos taurus",
+  "local_identifier": "SYNTHETIC-HERD-001",
+  "lifecycle_state": "active",
+  "authority_ref": "m5authority:synthetic:bounded-farm-operator",
+  "private_evidence_ref": "m5pod:synthetic:private-herd-evidence",
+  "device_refs": [
+    "m5device:synthetic:gateway-001"
+  ],
+  "created_at": "2026-10-03T00:00:00Z",
+  "updated_at": "2026-10-03T00:00:00Z"
+}

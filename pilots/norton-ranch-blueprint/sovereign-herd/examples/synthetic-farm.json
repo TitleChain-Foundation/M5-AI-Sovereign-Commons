@@ -1,0 +1,10 @@
+{
+  "schema_version": "0.1",
+  "entity_ref": "m5ent:synthetic:red-river-ranch",
+  "farm_ref": "m5farm:synthetic:red-river:001",
+  "display_name": "Red River Ranch \u2014 SYNTHETIC",
+  "jurisdiction": "US-TX",
+  "privacy_profile": "LOCAL-FIRST",
+  "location_evidence_ref": "private:m5pod:synthetic-location-evidence",
+  "created_at": "2026-10-03T00:00:00Z"
+}
