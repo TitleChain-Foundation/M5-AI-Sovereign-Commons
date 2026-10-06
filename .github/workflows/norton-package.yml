@@ -1,0 +1,34 @@
+name: Norton Ranch Blueprint package
+on:
+  push:
+    tags: ['norton-ranch-blueprint-v*']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build package
+        run: python tools/build_norton_package.py --output-dir dist
+      - name: Check tag matches manifest version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: test -f "dist/${GITHUB_REF_NAME}.zip"
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: norton-ranch-blueprint-package
+          path: dist/
+      - name: Publish release assets
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" \
+            --title "Norton Ranch Blueprint ${GITHUB_REF_NAME#norton-ranch-blueprint-}" \
+            --notes "Downloadable Norton Ranch Blueprint starter package. Unregistered commons starter: not a licensed M5POD until the principal registers, registers the business entity, and activates the M5 tools. See pilots/norton-ranch-blueprint/M5POD-PACKAGE.md."
+          gh release upload "$GITHUB_REF_NAME" dist/*.zip dist/*.zip.sha256 --clobber
