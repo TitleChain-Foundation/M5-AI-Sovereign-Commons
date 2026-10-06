@@ -18,6 +18,7 @@ regulatory status.
 | --- | --- | --- |
 | 1. [312 Spring Commons](312-spring-commons/README.md) | Government/public and CRE disposition, title transition, structured debt, transfer-agent separation, productive civic infrastructure, capital provenance, and fail-closed first-tranche controls | Conditional go / diligence — no transaction or operational launch. Route: [SPRING — Initial Capital Tranche Brief](312-spring-commons/documents/summaries/SPRING-INITIAL-CAPITAL-TRANCHE-BRIEF.md) |
 | 2. [America's People's Trust Farmland](peoples-trust/README.md) | The same title, structured-debt, transfer-agent, stewardship, operations, authority, correction, portability, and public-safe evidence separation applied to farmland | Pilot 001 — sample-data simulation. Route: [People's Trust Farmland — Capital & Operating Partner Brief](peoples-trust/CAPITAL-AND-OPERATING-PARTNER-BRIEF.md) |
+| 2A. [Norton Ranch Blueprint](norton-ranch-blueprint/README.md) | Farmer-controlled agricultural data, a free/public data starting toolkit, biological stewardship records, portable device assignments, and the local-first Sovereign Herd reference implementation | Draft public-review blueprint within the Farmland lane — synthetic examples only; no live farm, veterinary diagnosis or provider certification |
 | 3. [Global UN Commons](global-un-commons/README.md) | UN-NY-0001 concept, Open World Convention research, and Phase 1 jurisdiction-profile/transfer-agent interoperability across a proposed 193-Member-State inventory | Independent concept — no UN endorsement, nation-chain activation, or institutional authority. Route: [Global UN Commons — Founding Institutional Underwriter Brief](global-un-commons/FOUNDING-INSTITUTIONAL-UNDERWRITER-BRIEF.md) |
 
 ## Visual sequence
@@ -33,6 +34,10 @@ regulatory status.
 #### **America's People's Trust Farmland**
 
 [![America's People's Trust Farmland](peoples-trust/visuals/00-project-wish-list.png)](peoples-trust/README.md)
+
+[Open the Norton Ranch Blueprint](norton-ranch-blueprint/README.md) ·
+[Use the Farmer Toolkit](norton-ranch-blueprint/FARMER-TOOLKIT.md) ·
+[Inspect Sovereign Herd](norton-ranch-blueprint/sovereign-herd/README.md)
 
 ### **GLOBAL DEVELOPMENT PROJECT**
 

@@ -54,6 +54,7 @@ New to the vocabulary? Read the **[Glossary](GLOSSARY.md)**.
 | **An institution, investor, funder or government** | The three [project pathways](#featured-project-pathways) and their project control indexes → [SEC public input](sec-public-input/README.md) → [What the SEC comments say](sec-public-input/COMMENT-THEMES-AND-COMMONS-MATRICES.md) |
 | **A policy, legal or regulatory reviewer** | [SEC public input](sec-public-input/README.md) → [Foundation's September 23 filing](sec-public-input/foundation-submissions/2026-09-23-supplemental-comment/README.md) → [Proposed standards](standards/README.md) |
 | **A builder or engineer** | [Proposed standards](standards/README.md) → [Schemas](schemas/README.md) → [Reference code](reference-implementation/README.md) → [Tests](tests/README.md) → [ICSN Standards](https://github.com/TitleChain-Foundation/icsn-standards) |
+| **A farmer, rancher, grower or agricultural builder** | [Norton Ranch Blueprint](pilots/norton-ranch-blueprint/README.md) → [Farmer Toolkit](pilots/norton-ranch-blueprint/FARMER-TOOLKIT.md) → [Sovereign Herd](pilots/norton-ranch-blueprint/sovereign-herd/README.md) |
 | **Someone who wants to join** | [Free IAM starting account](https://m5bank.app/) · [M5POD waitlist](https://m5podactivationdemo.netlify.app/) · [Nominate or correct a public asset](#join-and-improve-the-index) |
 
 ### Latest public update — September 24, 2026
@@ -143,7 +144,9 @@ offered acreage.
 [See authority and evidence visuals](pilots/peoples-trust/visuals/authority-before-execution.svg) ·
 [See repeatable pipeline](pilots/peoples-trust/visuals/repeatable-pipeline.svg) ·
 [North Dakota reference-farm simulation](pilots/peoples-trust/simulations/nd-farmland-reference/README.md) ·
-[Project control index](pilots/peoples-trust/PROJECT-CONTROL-INDEX.md)
+[Project control index](pilots/peoples-trust/PROJECT-CONTROL-INDEX.md) ·
+[Norton Ranch Blueprint](pilots/norton-ranch-blueprint/README.md) ·
+[Farmer Toolkit](pilots/norton-ranch-blueprint/FARMER-TOOLKIT.md)
 
 ### **GLOBAL DEVELOPMENT PROJECT**
 
@@ -185,6 +188,7 @@ decision.
 | How the machine-readable records and samples fit together | [Schemas](schemas/README.md) and [synthetic examples](examples/README.md) |
 | How the 312 Spring Commons initiative fits its vision and what blocks launch | [Spring Commons fit-gap review](pilots/312-spring-commons/INITIATIVE-FIT-GAP-REVIEW.md) |
 | How the proposed People's Trust farmland pilot tests the standards | [People's Trust Farmland Project Simulation](pilots/peoples-trust/README.md) |
+| Where farmers and agricultural builders can find reusable schemas, local-first reference code and public/free data starting points | [Norton Ranch Blueprint and Farmer Toolkit](pilots/norton-ranch-blueprint/README.md) |
 | How the proposed UN Commons and 193-Member-State jurisdiction-profile demonstration progresses from V1 through V4 | [Global UN Commons](pilots/global-un-commons/README.md) |
 | I want to understand real-world assets, title state, debt, ownership, banking risk, deal flow, and People's Trust opportunities | [SHADOW M5Index](shadow-m5index/README.md) |
 | How a member-facing conversational workspace can navigate BOM/BOU/BOB/BOI/BOG contexts without creating authority | [M5 Eve Member Workspace](m5-eve/README.md) |

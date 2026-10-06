@@ -37,6 +37,13 @@ are excluded from the repository-wide license grants. Their provenance and use
 notes are recorded in that folder. Inclusion does not relicense the media or
 verify ownership, authenticity, or displayed claims.
 
+Family archive photographs under
+`pilots/norton-ranch-blueprint/assets/founder/` are excluded from the
+repository-wide license grants. Their source-level rights and reuse notice
+controls. Inclusion documents the founder's family history and does not grant
+permission to reuse, relicense, train on, redistribute, commercially exploit,
+or modify those photographs.
+
 For the concept images under `pilots/global-un-commons/visuals/`, TitleChain
 Foundation-owned concept, design, layout, and original-composition elements are
 licensed under `CC-BY-4.0` subject to the exact visible attribution and link-back

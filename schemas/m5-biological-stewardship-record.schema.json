@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://titlechainfoundation.org/schemas/m5-biological-stewardship-record.schema.json",
+  "title": "M5 Biological Stewardship Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_ref",
+    "entity_ref",
+    "land_ref",
+    "subject_type",
+    "granularity",
+    "lifecycle_state",
+    "authority_ref"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "record_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "entity_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "land_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject_type": {
+      "enum": [
+        "livestock",
+        "crop",
+        "orchard",
+        "vineyard",
+        "apiary",
+        "nursery",
+        "biological_sample",
+        "other_managed_biological_system"
+      ]
+    },
+    "granularity": {
+      "enum": [
+        "individual",
+        "herd",
+        "flock",
+        "group",
+        "field_cycle",
+        "seed_lot",
+        "harvest_lot",
+        "block",
+        "row",
+        "hive",
+        "colony",
+        "batch",
+        "sample",
+        "other"
+      ]
+    },
+    "species_or_variety": {
+      "type": "string"
+    },
+    "local_identifier": {
+      "type": "string"
+    },
+    "parent_record_ref": {
+      "type": "string"
+    },
+    "lifecycle_state": {
+      "enum": [
+        "planned",
+        "active",
+        "growing",
+        "producing",
+        "harvested",
+        "transferred",
+        "retired",
+        "deceased",
+        "closed",
+        "unknown"
+      ]
+    },
+    "authority_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "private_evidence_ref": {
+      "type": "string"
+    },
+    "device_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

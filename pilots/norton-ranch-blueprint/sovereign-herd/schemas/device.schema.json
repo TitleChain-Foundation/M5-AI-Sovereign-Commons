@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sovereign Herd Device",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "device_ref",
+    "manufacturer",
+    "model",
+    "serial",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "device_ref": {
+      "type": "string"
+    },
+    "manufacturer": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    },
+    "serial": {
+      "type": "string"
+    },
+    "hardware_revision": {
+      "type": "string"
+    },
+    "firmware_version": {
+      "type": "string"
+    },
+    "firmware_digest": {
+      "type": "string"
+    },
+    "radio": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "batch_ref": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "inventory",
+        "assigned",
+        "repair",
+        "retired"
+      ]
+    }
+  }
+}

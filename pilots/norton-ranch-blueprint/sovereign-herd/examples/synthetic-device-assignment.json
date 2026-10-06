@@ -1,0 +1,12 @@
+{
+  "schema_version": "0.1",
+  "assignment_ref": "m5assign:synthetic:000001",
+  "entity_ref": "m5ent:synthetic:red-river-ranch",
+  "animal_ref": "m5animal:synthetic:000001",
+  "device_ref": "m5device:synthetic:COLLAR-1001",
+  "assigned_at": "2026-10-03T12:00:00Z",
+  "ended_at": null,
+  "authority_ref": "m5cv:synthetic:farm-operator",
+  "reason": "Initial passive monitoring assignment",
+  "evidence_digest": "sha256:synthetic-not-a-real-digest"
+}

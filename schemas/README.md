@@ -21,6 +21,7 @@ authority is current, a provider is approved, or an action is lawful.
 | [Capability manifest](m5-aispace-capability-manifest.schema.json) | Bounded spatial or embodied capabilities | [Example](../examples/m5-aispace-capability-manifest.example.json) |
 | [Human-experience boundary](m5-human-experience-boundary.schema.json) | Consent, safety, accessibility, sensor, and actuator limits | [Example](../examples/m5-human-experience-boundary.example.json) |
 | [Human refusal profile](m5-human-refusal-profile.schema.json) | Portable M5HUM/M5POD refusal scope, verification, enforcement, and lifecycle | [Example](../examples/m5-human-refusal-profile.example.json) |
+| [Biological stewardship record](m5-biological-stewardship-record.schema.json) | Farm/entity authority, land relationship, biological subject granularity, lifecycle state and private-evidence boundary | [Example](../examples/m5-biological-stewardship-record.example.json) |
 
 ## Validation path
 

@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "animal_ref": "m5animal:synthetic:000001",
+  "entity_ref": "m5ent:synthetic:red-river-ranch",
+  "herd_ref": "m5herd:synthetic:breeding-a",
+  "species": "Bos taurus",
+  "local_id": "COW-000001",
+  "external_ids": [
+    {
+      "scheme": "synthetic-demo",
+      "value": "DEMO-000001"
+    }
+  ],
+  "birth_date": "2023-04-10",
+  "sex": "female",
+  "record_state": "active",
+  "private_evidence_ref": "private:m5pod:synthetic-animal-evidence",
+  "created_at": "2026-10-03T00:00:00Z"
+}

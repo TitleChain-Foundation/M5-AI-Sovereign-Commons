@@ -1,0 +1,84 @@
+{
+  "schema_version": "0.1",
+  "generated_at": "2026-10-04T00:55:23Z",
+  "entity_ref": "m5ent:synthetic:red-river-ranch",
+  "farm_ref": "m5farm:synthetic:red-river:001",
+  "animals": [
+    {
+      "schema_version": "0.1",
+      "animal_ref": "m5animal:e77419fe-2598-5e0c-bf85-249658d8a16e",
+      "entity_ref": "m5ent:synthetic:red-river-ranch",
+      "farm_ref": "m5farm:synthetic:red-river:001",
+      "species": "Bos taurus",
+      "local_id": "COW-000001",
+      "sex": "female",
+      "birth_date": "2023-04-10",
+      "record_state": "active"
+    },
+    {
+      "schema_version": "0.1",
+      "animal_ref": "m5animal:5ed3e7cd-1736-519c-8adf-776709d0e5fa",
+      "entity_ref": "m5ent:synthetic:red-river-ranch",
+      "farm_ref": "m5farm:synthetic:red-river:001",
+      "species": "Bos taurus",
+      "local_id": "COW-000002",
+      "sex": "female",
+      "birth_date": "2023-05-02",
+      "record_state": "active"
+    },
+    {
+      "schema_version": "0.1",
+      "animal_ref": "m5animal:4d6e8c84-9f5a-5cbd-a68e-6143eb18daa9",
+      "entity_ref": "m5ent:synthetic:red-river-ranch",
+      "farm_ref": "m5farm:synthetic:red-river:001",
+      "species": "Bos taurus",
+      "local_id": "COW-000003",
+      "sex": "female",
+      "birth_date": "2024-02-17",
+      "record_state": "active"
+    }
+  ],
+  "devices": [
+    {
+      "schema_version": "0.1",
+      "device_ref": "m5device:790d4d22-e4ac-54e2-97a5-02beeed6b38e",
+      "serial": "COLLAR-1001",
+      "status": "assigned",
+      "capabilities": [
+        "passive-monitoring"
+      ]
+    },
+    {
+      "schema_version": "0.1",
+      "device_ref": "m5device:b83d47aa-306f-5592-a6c2-588c7c8f8639",
+      "serial": "COLLAR-1002",
+      "status": "assigned",
+      "capabilities": [
+        "passive-monitoring"
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "schema_version": "0.1",
+      "assignment_ref": "m5assign:cb527914-be01-578f-a280-b8b84f4208f2",
+      "entity_ref": "m5ent:synthetic:red-river-ranch",
+      "animal_ref": "m5animal:e77419fe-2598-5e0c-bf85-249658d8a16e",
+      "device_ref": "m5device:790d4d22-e4ac-54e2-97a5-02beeed6b38e",
+      "assigned_at": "2026-10-04T00:55:23Z",
+      "authority_ref": "LOCAL-OPERATOR-AUTHORITY-REQUIRED",
+      "reason": "Initial manifest provisioning"
+    },
+    {
+      "schema_version": "0.1",
+      "assignment_ref": "m5assign:d30ab3ab-6298-5efa-85b8-4d5546c28b40",
+      "entity_ref": "m5ent:synthetic:red-river-ranch",
+      "animal_ref": "m5animal:5ed3e7cd-1736-519c-8adf-776709d0e5fa",
+      "device_ref": "m5device:b83d47aa-306f-5592-a6c2-588c7c8f8639",
+      "assigned_at": "2026-10-04T00:55:23Z",
+      "authority_ref": "LOCAL-OPERATOR-AUTHORITY-REQUIRED",
+      "reason": "Initial manifest provisioning"
+    }
+  ],
+  "privacy_notice": "Reference manifest only. Keep real farm data in an authorized private environment."
+}

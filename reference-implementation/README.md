@@ -13,6 +13,7 @@ for an accountable implementation review.
 | Implementation | Purpose | Start here |
 | --- | --- | --- |
 | Provider-neutral governor | Demonstrates cost, context, budget, policy preflight, evidence-ledger handling, and replaceable provider adapters | [Implementation README](provider-neutral-governor/README.md) |
+| Sovereign Herd | Creates stable synthetic animal, device and assignment records locally without a provider or network call | [Implementation README](sovereign-herd/README.md) |
 
 ## Review path
 

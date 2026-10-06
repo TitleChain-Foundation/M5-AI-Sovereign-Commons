@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sovereign Herd Farm",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "entity_ref",
+    "farm_ref",
+    "jurisdiction",
+    "privacy_profile"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.1"
+    },
+    "entity_ref": {
+      "type": "string"
+    },
+    "farm_ref": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "jurisdiction": {
+      "type": "string"
+    },
+    "privacy_profile": {
+      "enum": [
+        "LOCAL-FIRST",
+        "HYBRID",
+        "EXTERNAL-SERVICE"
+      ]
+    },
+    "location_evidence_ref": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
