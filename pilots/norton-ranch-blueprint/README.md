@@ -8,10 +8,20 @@
 The **Norton Ranch Blueprint** is the complete package. **Sovereign Herd v1**
 is its first bounded reference implementation.
 
+> [!TIP]
+> **Get the whole Blueprint in one download.**
+> [Download the M5POD starter package](M5POD-PACKAGE.md): documents, schemas,
+> examples, data registries and local-only reference code in one verified ZIP
+> that runs on your own computer with no network connection.
+>
+> **Unregistered commons starter:** it is not a licensed M5POD until you
+> register, register your farm or ranch entity, and activate the M5 tools.
+
 ## Start here
 
 | Need | Open |
 | --- | --- |
+| **The complete package for your own M5POD** | **[Download and activation guide](M5POD-PACKAGE.md)** · [package manifest](m5pod-package.manifest.json) |
 | Free/public data, software and mapping starting points | [Farmer Toolkit](FARMER-TOOLKIT.md) · [machine-readable registry](farmer-data-registry.json) |
 | Farmer-controlled livestock monitoring example | [Sovereign Herd](sovereign-herd/README.md) |
 | Local-only synthetic provisioning utility | [Reference implementation](../../reference-implementation/sovereign-herd/README.md) |
@@ -21,12 +31,24 @@ is its first bounded reference implementation.
 
 ## Download and runtime boundary
 
-Farmers, ranchers, growers and agricultural builders can download the current
-public package with the repository's
-[Download ZIP](https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/archive/refs/heads/main.zip)
-option or clone the repository. The package includes documentation, JSON
-schemas, synthetic examples, the machine-readable source registry and the
-local-only Sovereign Herd provisioning utility.
+Farmers, ranchers, growers and agricultural builders can download the
+[Norton Ranch Blueprint M5POD starter package](M5POD-PACKAGE.md), a single
+verified ZIP built from this folder. It includes documentation, JSON schemas,
+synthetic examples, the machine-readable source registries, the portability
+profile, licenses and the local-only Sovereign Herd provisioning utility.
+
+The download is an **unregistered commons starter**. Downloading or running it
+does not create an M5 account, a licensed M5POD, a registered entity, a
+credential or any authority. It becomes part of a licensed M5POD only after
+the principal registers, the farm or ranch entity is registered, and the M5
+tools are activated. See the
+[activation steps](M5POD-PACKAGE.md#activate-from-starter-package-to-licensed-m5pod).
+
+Every Foundation project is run as a full public simulation with synthetic data
+first. The Blueprint shows at ranch scale what the proposed
+[Sovereign Compute Access Act](M5POD-PACKAGE.md#why-this-matters-the-sovereign-compute-access-act)
+would make possible for everyone: running your own entity with sovereign AI,
+local compute and privacy. The Act is model legislation, not enacted law.
 
 This pilot does **not** claim that a packaged M5 Desktop installer is already
 available. It is designed to remain compatible with a future local-first M5

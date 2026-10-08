@@ -145,8 +145,18 @@ offered acreage.
 [See repeatable pipeline](pilots/peoples-trust/visuals/repeatable-pipeline.svg) ·
 [North Dakota reference-farm simulation](pilots/peoples-trust/simulations/nd-farmland-reference/README.md) ·
 [Project control index](pilots/peoples-trust/PROJECT-CONTROL-INDEX.md) ·
-[Norton Ranch Blueprint](pilots/norton-ranch-blueprint/README.md) ·
 [Farmer Toolkit](pilots/norton-ranch-blueprint/FARMER-TOOLKIT.md)
+
+**Put it on your own farm: the Norton Ranch Blueprint.** The farmland work
+in one downloadable package that farmers and ranchers can run on their own
+computer, with no network connection: documents, schemas, examples, data
+registries and the local-only Sovereign Herd utility. *The animal is not the
+subscription.* It is an unregistered commons starter, not a licensed M5POD,
+until the principal registers, registers the entity, and activates the M5 tools.
+
+[Download the M5POD starter package](pilots/norton-ranch-blueprint/M5POD-PACKAGE.md) ·
+[Explore the Norton Ranch Blueprint](pilots/norton-ranch-blueprint/README.md) ·
+[Why it matters: the Sovereign Compute Access Act](pilots/norton-ranch-blueprint/M5POD-PACKAGE.md#why-this-matters-the-sovereign-compute-access-act)
 
 ### **GLOBAL DEVELOPMENT PROJECT**
 

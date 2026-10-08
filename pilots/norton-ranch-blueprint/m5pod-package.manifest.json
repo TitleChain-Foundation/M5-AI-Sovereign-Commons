@@ -1,0 +1,105 @@
+{
+  "package_id": "norton-ranch-blueprint",
+  "package_name": "Norton Ranch Blueprint — M5 Sovereign Agriculture Starter Package",
+  "version": "1.4.0",
+  "package_date": "2026-10-03",
+  "publisher": "TitleChain Foundation",
+  "status": "DRAFT_FOR_PUBLIC_REVIEW",
+  "license_state": "UNREGISTERED_COMMONS_STARTER",
+  "license_state_notice": "This package is a public-commons starter kit. Downloading or unpacking it does not create a licensed M5POD, an M5 account, a registered business entity, a credential, or any authority. It becomes part of a licensed M5POD only after the principal registers, the business entity is registered, and the M5 implementation tools are activated under applicable terms.",
+  "activation_required": [
+    {
+      "step": 1,
+      "name": "Register the human principal",
+      "detail": "Create an M5IAM account and establish TCID / M5HUM identity.",
+      "url": "https://m5bank.app/"
+    },
+    {
+      "step": 2,
+      "name": "Reserve and activate a private M5POD",
+      "detail": "The M5POD holds private identity, evidence and operational data under the principal's authority.",
+      "url": "https://m5podactivationdemo.netlify.app/"
+    },
+    {
+      "step": 3,
+      "name": "Record authority",
+      "detail": "Establish the principal's role and authority (M5-CV) for the farm or ranch entity."
+    },
+    {
+      "step": 4,
+      "name": "Register the farm or ranch business entity",
+      "detail": "Record the existing lawful entity (LLC, cooperative, partnership, trust, sole proprietorship or other) and its namespace and jurisdiction context. M5 registration does not replace government formation or other legal obligations.",
+      "reference": "pilots/norton-ranch-blueprint/sovereign-herd/ENTITY-ACTIVATION-AND-PRICING.md"
+    },
+    {
+      "step": 5,
+      "name": "Activate the M5 farm tools",
+      "detail": "Activate the farm, herd, animal, device and assignment tools for the registered entity."
+    }
+  ],
+  "works_before_activation": [
+    "Read all documentation, schemas and synthetic examples.",
+    "Run the local-only Sovereign Herd provisioning utility on your own herd file, with no network calls.",
+    "Plan farm, herd, animal and device records and test them against the published schemas.",
+    "Use the Farmer Toolkit registry to find free and public data starting points."
+  ],
+  "requires_activation": [
+    "A licensed M5POD and business M5POD context.",
+    "Registered entity namespace and authority mapping.",
+    "Registry relationships, conformance manifests and public-safe provenance references.",
+    "Use of the M5 implementation tools for the registered entity."
+  ],
+  "runtime": {
+    "network_required": false,
+    "private_data_location": "LOCAL_PRINCIPAL_CONTROLLED",
+    "packaged_desktop_installer": false,
+    "python": ">=3.9, standard library only"
+  },
+  "layers": {
+    "content": [
+      "pilots/norton-ranch-blueprint/",
+      "pilots/norton-ranch-blueprint/sovereign-herd/"
+    ],
+    "structure": [
+      "pilots/norton-ranch-blueprint/sovereign-herd/schemas/",
+      "schemas/m5-biological-stewardship-record.schema.json"
+    ],
+    "examples": [
+      "pilots/norton-ranch-blueprint/sovereign-herd/examples/",
+      "examples/m5-biological-stewardship-record.example.json"
+    ],
+    "reference_code": [
+      "reference-implementation/sovereign-herd/"
+    ],
+    "data_registries": [
+      "pilots/norton-ranch-blueprint/farmer-data-registry.json",
+      "pilots/norton-ranch-blueprint/sovereign-herd/open-data-registry.json"
+    ],
+    "portability_and_restrictions": [
+      "docs/M5POD-DATA-PORTABILITY-PROFILE.md",
+      "docs/M5HUM-REFUSAL-CONSENT-PROFILE.md"
+    ],
+    "licenses": [
+      "LICENSE.md",
+      "LICENSES/",
+      "LEGAL-NOTICES.md",
+      "TRADEMARKS.md"
+    ]
+  },
+  "integrity": {
+    "checksums_file": "PACKAGE-CHECKSUMS.sha256",
+    "algorithm": "sha256"
+  },
+  "restricted_content": [
+    {
+      "path": "pilots/norton-ranch-blueprint/assets/founder/",
+      "notice": "Founder family archive photographs are not covered by the repository open-content or open-code license grants. See the README in that folder."
+    }
+  ],
+  "non_claims": [
+    "Not a licensed M5POD until registration and activation are complete.",
+    "Not production-ready and not a veterinary system.",
+    "No farmer, ranch, animal or device is claimed to be live on the system.",
+    "No collar vendor is claimed to be M5 certified."
+  ]
+}
