@@ -62,3 +62,14 @@ and comment URLs, and pauses between new-source requests.
   filing.
 - No API keys, private comments, personal case files, or unpublished review
   drafts belong in this directory.
+
+## October 8, 2026 incident recovery
+
+SEC-index membership can change. Historical reviews with missing docket IDs
+are withheld with audit warnings; the whole Pages deployment no longer fails.
+The primary public feed remains S7-2026-30; a separate reconciliation checks
+S7-2026-35 and publishes verified TitleChain filing statuses to
+`foundation-status.json` with a retrieval timestamp and nonfatal warnings.
+GitHub cron uses best-effort scheduling; last successful retrieval, not cron,
+is the measure of freshness. Main TitleChainFoundation.org integration must be
+deployed separately.

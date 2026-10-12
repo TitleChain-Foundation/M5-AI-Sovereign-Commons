@@ -17,11 +17,14 @@ from pathlib import Path
 from typing import Any
 
 from pypdf import PdfReader
-from foundation_record import TITLE, DESCRIPTION, render_record, copy_public_pdfs
+from foundation_record import TITLE, DESCRIPTION, render_record, copy_public_pdfs, load_record
+from foundation_reconcile import reconcile_foundation
 
 
 DOCKET = "S7-2026-30"
 DOCKET_URL = "https://www.sec.gov/rules-regulations/public-comments/s7-2026-30"
+CUSTODY_DOCKET = "S7-2026-35"
+CUSTODY_DOCKET_URL = "https://www.sec.gov/rules-regulations/public-comments/s7-2026-35"
 SEC_ORIGIN = "https://www.sec.gov"
 USER_AGENT = (
     "TitleChainFoundation-M5-SEC-Comment-Observatory/1.0 "
@@ -52,8 +55,12 @@ class IndexEntry:
 
 
 class DocketIndexParser(HTMLParser):
-    def __init__(self) -> None:
+    def __init__(self, docket: str = DOCKET) -> None:
         super().__init__(convert_charrefs=True)
+        self.comment_path = re.compile(
+            rf"^/comments/{re.escape(docket)}/[A-Za-z0-9._-]+\.(?:html?|pdf)$",
+            re.IGNORECASE,
+        )
         self.entries: list[IndexEntry] = []
         self._in_row = False
         self._in_cell = False
@@ -74,7 +81,7 @@ class DocketIndexParser(HTMLParser):
             self._cell_text = []
         elif self._in_row and tag == "a":
             href = attributes.get("href")
-            if href and COMMENT_PATH.fullmatch(href):
+            if href and self.comment_path.fullmatch(href):
                 self._comment_href = href
 
     def handle_data(self, data: str) -> None:
@@ -168,8 +175,8 @@ def request_bytes(url: str, timeout: float = 30.0) -> tuple[bytes, str]:
     raise last_error
 
 
-def parse_index(source: str) -> list[IndexEntry]:
-    parser = DocketIndexParser()
+def parse_index(source: str, docket: str = DOCKET) -> list[IndexEntry]:
+    parser = DocketIndexParser(docket=docket)
     parser.feed(source)
     unique: dict[str, IndexEntry] = {}
     for entry in parser.entries:
@@ -309,7 +316,11 @@ def load_reviews(
             raise ValueError(f"{path.name} is not APPROVED")
         entry = entries.get(review["comment_id"])
         if not entry:
-            raise ValueError(f"{path.name} has no matching SEC docket entry")
+            warnings.append(
+                f"{path.name} has no matching SEC docket entry; "
+                "retained in source control but excluded from this publication"
+            )
+            continue
         if review["analysis_text_sha256"] != entry["analysis_text_sha256"]:
             warnings.append(
                 f"{path.name} was withheld because the collected SEC analysis "
@@ -401,7 +412,7 @@ def build_feed(
     }
 
 
-def render_dashboard(feed: dict[str, Any]) -> str:
+def render_dashboard(feed: dict[str, Any], foundation_record: dict[str, Any] | None = None) -> str:
     rows = []
     review_cards = []
     entries_by_id = {
@@ -517,7 +528,7 @@ def render_dashboard(feed: dict[str, Any]) -> str:
 </head>
 <body>
 <main>
-  {render_record()}
+  {render_record(foundation_record)}
   <header id="official-observatory">
     <p>M5 AI Sovereign Commons · Public Research Feed</p>
     <h2>SEC Public Comment Observatory</h2>
@@ -583,6 +594,13 @@ def render_dashboard(feed: dict[str, Any]) -> str:
         if feed['review_warnings']
         else ''
     }
+    {
+        '<p><strong>Foundation reconciliation warning:</strong> '
+        + html.escape(' '.join(feed['foundation_reconciliation_warnings']))
+        + '</p>'
+        if feed.get('foundation_reconciliation_warnings')
+        else ''
+    }
   </section>
 </main>
 </body>
@@ -590,15 +608,25 @@ def render_dashboard(feed: dict[str, Any]) -> str:
 """
 
 
-def write_site(feed: dict[str, Any], output: Path) -> None:
+def write_site(feed: dict[str, Any], output: Path, foundation_record: dict[str, Any] | None = None) -> None:
     output.mkdir(parents=True, exist_ok=True)
     copy_public_pdfs(output)
+    if foundation_record is None:
+        foundation_record = load_record()
+    (output / "foundation-status.json").write_text(
+        json.dumps({"lastVerified": foundation_record["lastVerified"],
+                    "filings": foundation_record["filings"],
+                    "proceedings": foundation_record["proceedings"],
+                    "reconciliation_warnings": feed.get("foundation_reconciliation_warnings", []),
+                    "generated_at": feed["generated_at"]}, indent=2) + "\n",
+        encoding="utf-8",
+    )
     (output / "feed.json").write_text(
         json.dumps(feed, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
     (output / "index.html").write_text(
-        render_dashboard(feed),
+        render_dashboard(feed, foundation_record),
         encoding="utf-8",
     )
 
@@ -630,7 +658,32 @@ def main() -> int:
         timeout=args.timeout,
         delay=args.delay,
     )
-    write_site(feed, args.output)
+    # A second, independently checked SEC docket is essential for custody filings.
+    # If its retrieval fails, do not guess publication statuses: keep the
+    # verified repository baseline and expose a warning in the public feed.
+    foundation_overlay = load_record()
+    foundation_warnings = []
+    try:
+        custody_source, custody_media = request_bytes(CUSTODY_DOCKET_URL, timeout=args.timeout)
+        if custody_media not in {"text/html", "application/xhtml+xml"}:
+            raise ValueError(f"Unexpected custody docket media type: {custody_media}")
+        custody_entries = parse_index(custody_source.decode("utf-8", errors="replace"), docket=CUSTODY_DOCKET)
+        foundation_overlay, foundation_warnings = reconcile_foundation(
+            foundation_overlay,
+            {DOCKET: entries, CUSTODY_DOCKET: custody_entries},
+            public_root=base.parent,
+            request_bytes=request_bytes,
+            extract_text=extract_text,
+            retrieved_at=retrieved_at,
+            timeout=args.timeout,
+        )
+    except (TimeoutError, urllib.error.URLError, ValueError, RuntimeError) as error:
+        foundation_warnings.append(
+            f"Foundation custody-docket verification unavailable ({type(error).__name__}); "
+            "retaining last verified filing statuses"
+        )
+    feed["foundation_reconciliation_warnings"] = foundation_warnings
+    write_site(feed, args.output, foundation_overlay)
     print(
         f"Published {feed['official_index_count']} official entries: "
         f"{feed['human_reviewed_count']} human-reviewed, "
