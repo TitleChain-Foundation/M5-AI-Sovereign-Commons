@@ -388,8 +388,11 @@ function resultView() {
     const row = el('div', 'acct'), body = el('div'); body.style.flex = '1';
     const top = el('div'); top.append(el('b', null, a.name), document.createTextNode(' · '), el('span', null, a.for)); top.querySelector('span').style.color = 'var(--muted)';
     body.append(top, el('div', 'note', a.adds)); body.lastChild.style.marginTop = '2px';
+    if (a.detail) { body.append(el('div', 'note', a.detail)); body.lastChild.style.marginTop = '4px'; }
     const right = el('div', 'r'); right.style.cssText = 'flex:none;text-align:right;font-size:13px';
-    right.append(el('div', null, a.price), el('span', 'pill', 'Not activated')); right.lastChild.style.margin = '6px 0 0';
+    right.append(el('div', null, a.price));
+    if (a.name_fee) { const f = el('div', null, a.name_fee); f.style.cssText = 'font-size:12px;color:var(--label)'; right.append(f); }
+    right.append(el('span', 'pill', 'Not activated')); right.lastChild.style.margin = '6px 0 0';
     row.append(el('div', 'tier', a.tier), body, right); later.append(row);
   });
   later.append(el('p', 'note', state.catalog.account_note));

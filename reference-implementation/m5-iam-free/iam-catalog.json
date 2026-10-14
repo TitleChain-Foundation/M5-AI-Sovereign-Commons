@@ -209,38 +209,45 @@
       "name": "Bank of Me",
       "for": "You, as a person",
       "price": "$49 per year",
-      "adds": "A reusable ID for the year, your own member block for a private agent, a registered M5POD and product licences."
+      "adds": "A reusable ID for the year, your own member block for a private agent, a registered M5POD and product licences.",
+      "name_fee": "+ $5 a year for your name \u00b7 first year waived"
     },
     {
       "tier": "M2",
       "name": "Bank of Us",
       "for": "Family, co-op, nonprofit or trust",
       "price": "$79 per year \u00b7 pending launch",
-      "adds": "An account that belongs to the group, with roles for the people who run it."
+      "adds": "An account that belongs to the group, with roles for the people who run it.",
+      "name_fee": "+ $5 a year for your name \u00b7 first year waived"
     },
     {
       "tier": "M3",
       "name": "Bank of Business",
       "for": "Your business",
       "price": "$99 per year \u00b7 pending launch",
-      "adds": "An account that belongs to the business, with roles, signers and its own workflows."
+      "adds": "An account that belongs to the business, with roles, signers and its own workflows.",
+      "name_fee": "+ $5 a year for your name \u00b7 first year waived"
     },
     {
       "tier": "M4",
       "name": "Bank of Institutions",
       "for": "A verified institution",
       "price": "$250 per year \u00b7 pending launch",
-      "adds": "An account for an institution with verified standing."
+      "adds": "An account for an institution with verified standing.",
+      "name_fee": "+ $5 a year for your name \u00b7 first year waived",
+      "detail": "Organized by place: nation, tribal nation or territory, state, county and city. Classified by its standard NAICS industry code, for example 522110 Commercial Banking or 524 Insurance Carriers."
     },
     {
       "tier": "M5",
       "name": "Bank of Government",
       "for": "A public body",
       "price": "$500 per year \u00b7 pending launch",
-      "adds": "An account for a government entity. Every action needs human approval."
+      "adds": "An account for a government entity. Every action needs human approval.",
+      "name_fee": "+ $5 a year for your name \u00b7 first year waived",
+      "detail": "Each judicial, legislative and executive body is organized by its place and jurisdiction: nation, tribal nation or territory, state, county and city. Classified by NAICS sector 92, Public Administration: for example 922110 Courts, 921120 Legislative Bodies, 921110 Executive Offices, and 921150 American Indian and Alaska Native Tribal Governments. People register first as Bank of Me humans, then secure their credentials to activate the agency."
     }
   ],
-  "account_note": "Registered accounts are not open yet. Each person who operates an entity account needs their own Bank of Me account first. Government filing fees are not included.",
+  "account_note": "Registered accounts are not open yet. Every account pays $5 a year for its name; the first year is waived when the account is activated. Each person who operates an entity account needs their own Bank of Me account first. Sub-accounts are activated separately. Secretary of State and other government filing fees are separate.",
   "products": [
     {
       "group": "Talk and meet",
