@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M5 IAM</title>
+<style>
+:root{
+  --ink:#1C1917; --paper:#F5F5F4; --white:#fff; --line:#E7E5E4; --line2:#D6D3D1;
+  --muted:#78716C; --label:#A8A29E; --body:#57534E;
+  --rose:#E11D48; --emerald:#047857; --emerald-soft:#ECFDF5; --emerald-line:#A7F3D0;
+  --serif:'Playfair Display','Didot','Bodoni 72',Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif}
+button,input,select{font:inherit;color:inherit}
+.bar{background:var(--white);border-bottom:1px solid var(--line);padding:12px 20px;display:flex;align-items:baseline;gap:8px}
+.logo{font-family:var(--serif);font-size:22px}
+.sub{font-size:11px;letter-spacing:.2em;color:var(--label);text-transform:uppercase}
+.strip{background:var(--ink);color:var(--white);text-align:center;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:9px 16px}
+main{max-width:860px;margin:0 auto;padding:36px 16px 72px;display:flex;flex-direction:column;gap:26px}
+.eyebrow{font-size:11px;letter-spacing:.24em;color:var(--label);text-transform:uppercase}
+h1{font-family:var(--serif);font-weight:400;font-size:46px;line-height:1.06;margin:6px 0 10px;letter-spacing:-.01em}
+h1 em{color:var(--rose)}
+h2{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.15;margin:0 0 4px}
+.lede{font-size:17px;color:var(--body);max-width:60ch;margin:0}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px}
+label{display:block;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+label small{font-weight:400;letter-spacing:0;text-transform:none;color:var(--label)}
+input[type=text],select{width:100%;border:1px solid var(--line2);border-radius:9999px;padding:11px 16px;background:var(--white)}
+input[type=text]:focus,select:focus{outline:2px solid var(--ink);outline-offset:1px}
+.terms{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:16px 18px;font-size:15px;color:var(--body);white-space:pre-wrap}
+.terms b{display:block;font-family:var(--serif);font-weight:400;font-size:20px;color:var(--ink);margin-bottom:6px}
+.attest{display:flex;gap:12px;align-items:flex-start;margin-top:18px;font-size:17px;font-weight:600}
+.attest input{width:22px;height:22px;margin-top:2px;accent-color:var(--ink);flex:none}
+.btn{margin-top:18px;border:0;border-radius:9999px;background:var(--ink);color:var(--white);padding:13px 26px;font-weight:600;cursor:pointer}
+.btn:disabled{background:var(--line2);cursor:not-allowed}
+.error{color:var(--rose);font-size:14px;margin:10px 0 0}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);border-radius:9999px;padding:4px 12px;color:var(--muted);background:var(--white);margin:0 6px 6px 0}
+.pill.on{border-color:var(--emerald-line);background:var(--emerald-soft);color:var(--emerald)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.cell{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--white);min-width:0}
+.cell .k{font-size:10px;font-weight:600;letter-spacing:.18em;color:var(--label);text-transform:uppercase}
+.cell .v{font-weight:600;overflow-wrap:anywhere}
+.cell .n{font-size:12px;color:var(--label)}
+.row{display:flex;gap:12px;align-items:baseline;justify-content:space-between;padding:11px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0}
+.row b{font-weight:600}
+.row span{color:var(--muted);font-size:14px}
+.row .r{flex:none;text-align:right;font-size:13px;color:var(--label)}
+.row a{color:var(--ink);font-weight:600}
+.group{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);margin:18px 0 2px}
+.acct{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
+.acct:first-of-type{border-top:0}
+.tier{flex:none;width:44px;height:44px;border-radius:12px;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;font-weight:700;color:var(--muted)}
+.chaincard{background:var(--ink);color:var(--white);border-color:var(--ink)}
+.chaincard .note{color:#D6D3D1}
+.chaincard .cell{background:#292524;border-color:#44403C}
+.chaincard .cell .v{color:var(--white)}
+.chaincard .group{color:#FDA4AF}
+.chaintop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.pill.sample{background:#292524;border-color:#57534E;color:#FDE68A;margin:0}
+.hash{color:#A7F3D0;font-size:13px;padding:10px 12px;border:1px solid #44403C;border-radius:10px;margin-top:6px}
+.note{font-size:13px;color:var(--muted);margin:12px 0 0}
+ul{margin:8px 0 0;padding-left:20px;color:var(--body)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--label);overflow-wrap:anywhere}
+footer{font-size:12px;color:var(--label)}
+@media (max-width:560px){h1{font-size:34px}.row{flex-direction:column;gap:2px}.row .r{text-align:left}}
+</style>
+</head>
+<body>
+<div class="bar"><span class="logo">m5bank</span><span class="sub">/ IAM · free</span></div>
+<div class="strip">Free forever · runs on this computer only · nothing leaves it</div>
+<main id="main"><p class="lede">Opening your IAM…</p></main>
+<script>
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+const main = document.getElementById('main');
+let state = null;
+
+function cell(k, v, n) { const c = el('div', 'cell'); c.append(el('div', 'k', k), el('div', 'v', v)); if (n) c.append(el('div', 'n', n)); return c; }
+
+function formView() {
+  const head = el('div');
+  const h = el('h1'); h.append('Activate ', el('em', null, 'your'), ' IAM.');
+  head.append(el('div', 'eyebrow', 'Step 1 of 1 · free'), h,
+    el('p', 'lede', 'One short statement, in your own name: I am attesting to my humanity. That is all it takes to start. No account to open, nothing to pay, and nothing is sent anywhere.'));
+  const card = el('form', 'card');
+  const name = el('input'); name.type = 'text'; name.id = 'name'; name.maxLength = 80; name.autocomplete = 'name'; name.placeholder = 'The name you want on your IAM';
+  const chain = el('select'); chain.id = 'chain';
+  chain.append(new Option('Choose your state chain', ''));
+  state.catalog.chains.forEach(c => chain.append(new Option(c.name + ' · ' + c.chain, c.chain)));
+  const contact = el('input'); contact.type = 'text'; contact.id = 'contact'; contact.maxLength = 120; contact.placeholder = 'Email or mobile number';
+  const l1 = el('label', null, 'Your name'); l1.htmlFor = 'name';
+  const l2 = el('label', null, 'Your state chain '); l2.htmlFor = 'chain'; l2.append(el('small', null, 'your own choice, not verified'));
+  const l3 = el('label', null, 'How to reach you '); l3.htmlFor = 'contact'; l3.append(el('small', null, 'optional, stays on this computer'));
+  const terms = el('div', 'terms');
+  const fill = () => {
+    const text = state.terms_template.replace('{name}', name.value.trim() || '(your name)')
+      .replace('{chain}', chain.value || '(your state chain)').replace('{now}', 'the moment you activate');
+    const paras = text.trim().split(/\n\s*\n/).map(p => p.replace(/\n/g, ' ').trim());
+    terms.replaceChildren(el('b', null, paras[0].replace(/^# /, '')), document.createTextNode(paras.slice(1).join('\n\n')));
+  };
+  const box = el('input'); box.type = 'checkbox'; box.id = 'attest';
+  const attest = el('label', 'attest'); attest.htmlFor = 'attest'; attest.style.cssText = 'text-transform:none;letter-spacing:0;color:inherit';
+  attest.append(box, el('span', null, 'I am attesting to my humanity. I am a human being.'));
+  const button = el('button', 'btn', 'Activate my IAM'); button.type = 'submit'; button.disabled = true;
+  const error = el('p', 'error');
+  const ready = () => { button.disabled = !(box.checked && name.value.trim() && chain.value); };
+  [name, chain].forEach(i => i.addEventListener('input', () => { fill(); ready(); }));
+  box.addEventListener('change', ready);
+  card.addEventListener('submit', async event => {
+    event.preventDefault();
+    button.disabled = true; error.textContent = '';
+    try {
+      const response = await fetch('/api/attest', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name.value, chain: chain.value, contact: contact.value, attest: box.checked }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+      state = data; render();
+      window.scrollTo(0, 0);
+    } catch (problem) { error.textContent = problem.message; ready(); }
+  });
+  card.append(l1, name, l2, chain, l3, contact, terms, attest, button, error);
+  fill();
+  return [head, card];
+}
+
+function resultView() {
+  const r = state.record;
+  const head = el('div');
+  const h = el('h1'); h.append('Your IAM is ', el('em', null, 'active'), '.');
+  head.append(el('div', 'eyebrow', 'IAM · ' + r.account_sku + ' · free'), h);
+  const pills = el('div'); pills.append(el('span', 'pill on', 'IAM active'), el('span', 'pill', 'Human attested · not verified'), el('span', 'pill', 'On this computer only'));
+  head.append(pills, el('p', 'lede', 'You attested to your humanity. Here is what you have now, what you can use today, and what you can open later.'));
+
+  const have = el('div', 'card');
+  have.append(el('h2', null, 'What you have'));
+  const grid = el('div', 'grid'); grid.style.marginTop = '12px';
+  grid.append(cell('Name', r.display_name || 'Not given'), cell('Account', 'IAM', r.account_sku + ' · free for life'),
+    cell('State chain', r.chain || 'Not chosen', 'Your choice · not verified'), cell('TCID', 'Not issued', 'Issued when you register'),
+    cell('Created', new Date(r.created_at).toLocaleString()), cell('Record check', state.check.status === 'PASS' ? 'Unchanged' : 'Changed', state.check.files_checked + ' files checked'));
+  have.append(grid, el('div', 'group', 'Your attestation, in three matching parts'));
+  [['The words', 'What you stated, in plain language', 'human-terms.md'], ['The data', 'The same statement for software to read', 'human-attestation.json'],
+   ['The check', 'The rule that confirms nothing was altered', 'executable-check.json']].forEach(([a, b, f]) => {
+    const row = el('div', 'row'), left = el('div'); left.append(el('b', null, a), document.createTextNode(' '), el('span', null, b));
+    row.append(left, el('div', 'r mono', f)); have.append(row);
+  });
+  have.append(el('p', 'mono', state.pod_path));
+
+  const reg = state.registry;
+  const chainCard = el('div', 'card chaincard');
+  if (reg) {
+    const top = el('div', 'chaintop'); top.append(el('h2', null, 'TitleChain Registry'), el('span', 'pill sample', 'Sample · not anchored'));
+    chainCard.append(top, el('p', 'note', 'Your IAM origin entry, as it will appear on the TitleChain Registry at launch.'));
+    const g = el('div', 'grid'); g.style.marginTop = '12px';
+    g.append(cell('Registry ref', '#' + reg.ref_id), cell('Entry', 'IAM origin', 'Human attested'),
+      cell('Block', '#' + reg.sample_block.toLocaleString(), 'Sample block'), cell('Network', 'TitleChain', 'Simulated'));
+    chainCard.append(g, el('div', 'group', 'Commitment hash'), el('div', 'hash mono', reg.commitment_sha256),
+      el('p', 'note', 'This hash is computed from your three-part attestation. Only the hash would ever go on the registry, never your name, contact or statement. ' + (reg.anchored ? '' : 'Nothing has been sent yet: anchoring opens at launch.')));
+  }
+  const use = el('div', 'card');
+  use.append(el('h2', null, 'What you can use now'), el('p', 'note', 'Free and open tools you can run on your own computer with your IAM. Each link goes to the people who make it.'));
+  state.catalog.products.forEach(g => {
+    use.append(el('div', 'group', g.group));
+    g.items.forEach(i => {
+      const row = el('div', 'row'), left = el('div'), link = el('a', null, i.name);
+      link.href = i.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+      left.append(link, document.createTextNode(' '), el('span', null, i.does));
+      row.append(left, el('div', 'r', 'Free · ' + i.license)); use.append(row);
+    });
+  });
+  use.append(el('p', 'note', state.catalog.note));
+
+  const later = el('div', 'card');
+  later.append(el('h2', null, 'Accounts you can open later'), el('p', 'note', 'Not activated. Your IAM stays free whether or not you ever open one.'));
+  state.catalog.accounts.forEach(a => {
+    const row = el('div', 'acct'), body = el('div'); body.style.flex = '1';
+    const top = el('div'); top.append(el('b', null, a.name), document.createTextNode(' · '), el('span', null, a.for)); top.querySelector('span').style.color = 'var(--muted)';
+    body.append(top, el('div', 'note', a.adds)); body.lastChild.style.marginTop = '2px';
+    const right = el('div', 'r'); right.style.cssText = 'flex:none;text-align:right;font-size:13px';
+    right.append(el('div', null, a.price), el('span', 'pill', 'Not activated')); right.lastChild.style.margin = '6px 0 0';
+    row.append(el('div', 'tier', a.tier), body, right); later.append(row);
+  });
+  later.append(el('p', 'note', state.catalog.account_note));
+
+  const not = el('div', 'card');
+  not.append(el('h2', null, 'What this is not'));
+  const list = el('ul'); r.non_claims.forEach(x => list.append(el('li', null, x))); not.append(list);
+  return reg ? [head, have, chainCard, use, later, not] : [head, have, use, later, not];
+}
+
+function render() {
+  main.replaceChildren(...(state.record ? resultView() : formView()),
+    el('footer', null, 'This page runs on this computer only. It loads nothing from the network and sends nothing anywhere. Published by TitleChain Foundation as a draft for public review.'));
+}
+
+fetch('/api/state', { cache: 'no-store' }).then(r => r.json()).then(data => { state = data; render(); })
+  .catch(() => { main.replaceChildren(el('p', 'lede', 'M5 IAM has stopped. Open it again to continue.')); });
+</script>
+</body>
+</html>

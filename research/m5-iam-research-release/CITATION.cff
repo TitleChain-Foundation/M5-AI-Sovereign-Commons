@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this research release, please cite it as below."
+title: "M5 IAM Free: a local, human-rooted identity origin (research release)"
+version: "0.2.0"
+date-released: "2026-10-13"
+authors:
+  - name: "TitleChain Foundation"
+repository-code: "https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons"
+license:
+  - Apache-2.0
+  - CC-BY-4.0
+keywords:
+  - self-sovereign identity
+  - proof of personhood
+  - local-first
+  - Ricardian contract
+  - Solid pods

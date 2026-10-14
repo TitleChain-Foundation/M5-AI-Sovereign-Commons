@@ -1,0 +1,350 @@
+{
+  "schema": "m5.iam.catalog/0.1",
+  "note": "Discovery links only. The software and its brand remain with their owners, and each tool is used under its own license. No affiliation or endorsement is implied. Prices for registered accounts are pending launch.",
+  "chains": [
+    {
+      "name": "Alabama",
+      "chain": "alabamachain.eth"
+    },
+    {
+      "name": "Alaska",
+      "chain": "alaskachain.eth"
+    },
+    {
+      "name": "Arizona",
+      "chain": "arizonachain.eth"
+    },
+    {
+      "name": "Arkansas",
+      "chain": "arkansaschain.eth"
+    },
+    {
+      "name": "California",
+      "chain": "californiachain.eth"
+    },
+    {
+      "name": "Colorado",
+      "chain": "coloradochain.eth"
+    },
+    {
+      "name": "Connecticut",
+      "chain": "connecticutchain.eth"
+    },
+    {
+      "name": "Delaware",
+      "chain": "delawarechain.eth"
+    },
+    {
+      "name": "Florida",
+      "chain": "floridachain.eth"
+    },
+    {
+      "name": "Georgia",
+      "chain": "georgiastatechain.eth"
+    },
+    {
+      "name": "Hawaii",
+      "chain": "hawaiichain.eth"
+    },
+    {
+      "name": "Idaho",
+      "chain": "idahochain.eth"
+    },
+    {
+      "name": "Illinois",
+      "chain": "illinoischain.eth"
+    },
+    {
+      "name": "Indiana",
+      "chain": "indianachain.eth"
+    },
+    {
+      "name": "Iowa",
+      "chain": "iowachain.eth"
+    },
+    {
+      "name": "Kansas",
+      "chain": "kansaschain.eth"
+    },
+    {
+      "name": "Kentucky",
+      "chain": "kentuckychain.eth"
+    },
+    {
+      "name": "Louisiana",
+      "chain": "louisianachain.eth"
+    },
+    {
+      "name": "Maine",
+      "chain": "mainechain.eth"
+    },
+    {
+      "name": "Maryland",
+      "chain": "marylandchain.eth"
+    },
+    {
+      "name": "Massachusetts",
+      "chain": "massachusettschain.eth"
+    },
+    {
+      "name": "Michigan",
+      "chain": "michiganstatechain.eth"
+    },
+    {
+      "name": "Minnesota",
+      "chain": "minnesotachain.eth"
+    },
+    {
+      "name": "Mississippi",
+      "chain": "mississippichain.eth"
+    },
+    {
+      "name": "Missouri",
+      "chain": "missourichain.eth"
+    },
+    {
+      "name": "Montana",
+      "chain": "montanachain.eth"
+    },
+    {
+      "name": "Nebraska",
+      "chain": "nebraskachain.eth"
+    },
+    {
+      "name": "Nevada",
+      "chain": "nevadachain.eth"
+    },
+    {
+      "name": "New Hampshire",
+      "chain": "newhampshirechain.eth"
+    },
+    {
+      "name": "New Jersey",
+      "chain": "newjerseychain.eth"
+    },
+    {
+      "name": "New Mexico",
+      "chain": "newmexicochain.eth"
+    },
+    {
+      "name": "New York",
+      "chain": "newyorkchain.eth"
+    },
+    {
+      "name": "North Carolina",
+      "chain": "northcarolinachain.eth"
+    },
+    {
+      "name": "North Dakota",
+      "chain": "northdakotachain.eth"
+    },
+    {
+      "name": "Ohio",
+      "chain": "ohiochain.eth"
+    },
+    {
+      "name": "Oklahoma",
+      "chain": "oklahomachain.eth"
+    },
+    {
+      "name": "Oregon",
+      "chain": "oregonchain.eth"
+    },
+    {
+      "name": "Pennsylvania",
+      "chain": "pennsylvaniachain.eth"
+    },
+    {
+      "name": "Rhode Island",
+      "chain": "rhodeislandchain.eth"
+    },
+    {
+      "name": "South Carolina",
+      "chain": "southcarolinachain.eth"
+    },
+    {
+      "name": "South Dakota",
+      "chain": "southdakotachain.eth"
+    },
+    {
+      "name": "Tennessee",
+      "chain": "tennesseechain.eth"
+    },
+    {
+      "name": "Texas",
+      "chain": "texaschain.eth"
+    },
+    {
+      "name": "Utah",
+      "chain": "utahchain.eth"
+    },
+    {
+      "name": "Vermont",
+      "chain": "vermontchain.eth"
+    },
+    {
+      "name": "Virginia",
+      "chain": "virginiachain.eth"
+    },
+    {
+      "name": "Washington",
+      "chain": "washingtonchain.eth"
+    },
+    {
+      "name": "West Virginia",
+      "chain": "westvirginiachain.eth"
+    },
+    {
+      "name": "Wisconsin",
+      "chain": "wisconsinchain.eth"
+    },
+    {
+      "name": "Wyoming",
+      "chain": "wyomingchain.eth"
+    }
+  ],
+  "accounts": [
+    {
+      "tier": "M1",
+      "name": "Bank of Me",
+      "for": "You, as a person",
+      "price": "$49 per year",
+      "adds": "A reusable ID for the year, your own member block for a private agent, a registered M5POD and product licences."
+    },
+    {
+      "tier": "M2",
+      "name": "Bank of Us",
+      "for": "Family, co-op, nonprofit or trust",
+      "price": "$79 per year \u00b7 pending launch",
+      "adds": "An account that belongs to the group, with roles for the people who run it."
+    },
+    {
+      "tier": "M3",
+      "name": "Bank of Business",
+      "for": "Your business",
+      "price": "$99 per year \u00b7 pending launch",
+      "adds": "An account that belongs to the business, with roles, signers and its own workflows."
+    },
+    {
+      "tier": "M4",
+      "name": "Bank of Institutions",
+      "for": "A verified institution",
+      "price": "$250 per year \u00b7 pending launch",
+      "adds": "An account for an institution with verified standing."
+    },
+    {
+      "tier": "M5",
+      "name": "Bank of Government",
+      "for": "A public body",
+      "price": "$500 per year \u00b7 pending launch",
+      "adds": "An account for a government entity. Every action needs human approval."
+    }
+  ],
+  "account_note": "Registered accounts are not open yet. Each person who operates an entity account needs their own Bank of Me account first. Government filing fees are not included.",
+  "products": [
+    {
+      "group": "Talk and meet",
+      "items": [
+        {
+          "name": "Signal",
+          "does": "Private messages and calls",
+          "license": "AGPL-3.0",
+          "url": "https://signal.org/"
+        },
+        {
+          "name": "Element (Matrix)",
+          "does": "Chat, community rooms and video calls",
+          "license": "AGPL-3.0",
+          "url": "https://element.io/"
+        },
+        {
+          "name": "Jitsi Meet",
+          "does": "Video meetings",
+          "license": "Apache-2.0",
+          "url": "https://jitsi.org/"
+        },
+        {
+          "name": "Thunderbird",
+          "does": "Email",
+          "license": "MPL-2.0",
+          "url": "https://www.thunderbird.net/"
+        }
+      ]
+    },
+    {
+      "group": "Home office",
+      "items": [
+        {
+          "name": "LibreOffice",
+          "does": "Documents, spreadsheets and slides",
+          "license": "MPL-2.0",
+          "url": "https://www.libreoffice.org/"
+        },
+        {
+          "name": "Joplin",
+          "does": "Notes",
+          "license": "AGPL-3.0",
+          "url": "https://joplinapp.org/"
+        },
+        {
+          "name": "KeePassXC",
+          "does": "Password vault",
+          "license": "GPL-3.0",
+          "url": "https://keepassxc.org/"
+        },
+        {
+          "name": "GnuCash",
+          "does": "Bookkeeping",
+          "license": "GPL-2.0-or-later",
+          "url": "https://www.gnucash.org/"
+        }
+      ]
+    },
+    {
+      "group": "Create",
+      "items": [
+        {
+          "name": "GIMP",
+          "does": "Image editing",
+          "license": "GPL-3.0",
+          "url": "https://www.gimp.org/"
+        },
+        {
+          "name": "Inkscape",
+          "does": "Vector illustration",
+          "license": "GPL-2.0-or-later",
+          "url": "https://inkscape.org/"
+        },
+        {
+          "name": "Kdenlive",
+          "does": "Video editing",
+          "license": "GPL-3.0",
+          "url": "https://kdenlive.org/"
+        },
+        {
+          "name": "Blender",
+          "does": "3D and animation",
+          "license": "GPL-3.0",
+          "url": "https://www.blender.org/"
+        }
+      ]
+    },
+    {
+      "group": "Private AI on your own computer",
+      "items": [
+        {
+          "name": "Ollama",
+          "does": "Runs open models on your own computer",
+          "license": "MIT",
+          "url": "https://ollama.com/"
+        },
+        {
+          "name": "Continue",
+          "does": "An open coding assistant that uses your local models",
+          "license": "Apache-2.0",
+          "url": "https://www.continue.dev/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "display_name": "Demo Human",
+    "chain": "wyomingchain.eth",
+    "now": "2026-10-13T00:00:00Z",
+    "local_id": "local-iam:00000000-0000-4000-8000-000000000000"
+  },
+  "digests": {
+    "M0-M5IAM-000/attestation/executable-check.json": "79ef0e09b88adad9b64dea53059bf739a3c459f1d848a27b97453a9ebb90584e",
+    "M0-M5IAM-000/attestation/human-attestation.json": "3ccaf4c21b284011c8e0ad1e2cbaf33868c2bfe86a2d2e39d63e5ea8af4833e2",
+    "M0-M5IAM-000/attestation/human-terms.md": "52065a164018b987c8ce9008f4ed95701a87b88f3e498c91941a735f3cb32c61",
+    "M0-M5IAM-000/iam.json": "ec025eb6ed15c5e440697ddfebbc489913f6c3199900854a8789c420f320c5e2",
+    "M0-M5IAM-000/identifiers/identifiers.json": "864ad9a97b54defc9e1e0faa78457a6f5e748f85b419f2f4b4d4a2ff68516980",
+    "M0-M5IAM-000/ledger/events.jsonl": "a21ba0242fca7ab282db19ffbb1fc9eb2120480cdf9df0c50c386ec6fd8b51a1",
+    "M0-M5IAM-000/m5readme.md": "9b89bbf284f109eb9d5890a6280b23d7497b24d0772d0f6fcc21a24b521e6d50",
+    "M0-M5IAM-000/registry/registry-receipt.json": "bf28098ef288fc8ec90389c807105e695bba75642f17e6b60236f7df42424a4e",
+    "m5-iam.html": "ec1d80c670a28e20a29326aed86a9560037beb28781def1b6c2d289a0ae888de",
+    "m5agent/m5readme.md": "48a167577b1f77e187842ef45f80564cbdf98d3786f1aa26db1fbed979c70d2d",
+    "m5readme.md": "e79ba4c1069673d59343b50009f25647950392ef20760870394182ecc430ce4d"
+  }
+}
