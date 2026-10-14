@@ -99,6 +99,13 @@ footer{font-size:12px;color:var(--label)}
 .supportline{display:flex;gap:8px;align-items:center}
 .supportline input{width:120px;border:1px solid var(--line2);border-radius:9999px;padding:8px 12px}
 .supportline select{width:auto;padding:8px 14px}
+.protect{flex-direction:row;align-items:flex-start;gap:12px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:15px;color:inherit;margin:10px 0 0}
+.protect input{margin-top:4px;accent-color:var(--ink)}
+.rates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:6px}
+.rates i{display:block;font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--label)}
+.rates b{font-size:14px}
+.flag{margin-top:8px;font-size:13px;color:var(--rose);font-weight:600}
+.supportline{flex-wrap:wrap}
 .linkbtn{border:0;background:none;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px}
 @media print{.bar,.strip,main>*:not(.printing),footer{display:none!important}.printing{display:block!important}body{background:#fff}}
 @media (max-width:560px){.cert{padding:22px 18px}.certname{font-size:32px}}
@@ -193,6 +200,7 @@ function certView() {
   actions.append(print, close);
   box.append(actions);
   if (shownCert.kind === 'tool') box.append(supportPanel(shownCert.item));
+  if (shownCert.kind === 'service') box.append(protectionPanel());
   return box;
 }
 
@@ -202,26 +210,63 @@ const support = {};
 function supportRow(key, title, payee, note) {
   const row = el('div', 'support');
   const head = el('div'); head.append(el('b', null, title), el('div', 'note', payee));
+  const saved = support[key] || {};
   const amount = el('input'); amount.type = 'number'; amount.min = '0'; amount.step = '0.01'; amount.placeholder = '0.00';
-  amount.value = support[key]?.amount || ''; amount.setAttribute('aria-label', title + ' amount in US dollars');
-  const every = el('select'); every.setAttribute('aria-label', title + ' how often');
-  [['once', 'One time'], ['hour', 'Per hour'], ['day', 'Per day'], ['week', 'Per week'], ['month', 'Per month'], ['year', 'Per year']]
-    .forEach(([v, t]) => every.append(new Option(t, v)));
-  every.value = support[key]?.every || 'month';
-  const line = el('div', 'supportline'); const dollar = el('span', null, '$'); line.append(dollar, amount, every);
+  amount.value = saved.amount || ''; amount.setAttribute('aria-label', title + ' amount in US dollars');
+  const pick = (label, options, value) => {
+    const sel = el('select'); sel.setAttribute('aria-label', title + ' ' + label);
+    options.forEach(([v, t]) => sel.append(new Option(t, v))); sel.value = value; return sel;
+  };
+  const every = pick('how often', [['once', 'One time'], ['hour', 'Per hour'], ['day', 'Per day'], ['week', 'Per week'], ['month', 'Per month'], ['year', 'Per year']], saved.every || 'month');
+  const term = pick('for how long', [['1', 'for 1 month'], ['3', 'for 3 months'], ['6', 'for 6 months'], ['12', 'for 12 months']], saved.term || '12');
+  const rail = pick('pay with', [['stable', 'Stablecoin'], ['crypto', 'Other crypto you hold']], saved.rail || 'stable');
+  const line = el('div', 'supportline'); line.append(el('span', null, '$'), amount, every, term, rail);
   const out = el('div', 'note');
   const update = () => {
-    support[key] = { amount: amount.value, every: every.value };
-    const a = parseFloat(amount.value) || 0;
-    out.textContent = !a ? note : every.value === 'once'
-      ? '$' + a.toFixed(2) + ' once. ' + note
-      : '$' + a.toFixed(2) + ' ' + every.selectedOptions[0].text.toLowerCase() +
-        (every.value === 'month' ? '' : ', about $' + (a * PER_MONTH[every.value]).toFixed(2) + ' a month') + '. Stop or change it at any time.';
+    support[key] = { amount: amount.value, every: every.value, term: term.value, rail: rail.value };
+    term.style.display = every.value === 'once' ? 'none' : '';
+    const a = parseFloat(amount.value) || 0, months = parseInt(term.value, 10);
+    const total = every.value === 'once' ? a : a * PER_MONTH[every.value] * months;
+    out.textContent = !a ? note : (every.value === 'once'
+      ? '$' + a.toFixed(2) + ' once, paid on-chain.'
+      : '$' + a.toFixed(2) + ' ' + every.selectedOptions[0].text.toLowerCase() + ' ' + term.selectedOptions[0].text +
+        ': $' + total.toFixed(2) + ' committed in total. A binding commitment for the term you chose.');
   };
-  amount.addEventListener('input', update); every.addEventListener('change', update); update();
+  [amount, every, term, rail].forEach(i => i.addEventListener(i === amount ? 'input' : 'change', update)); update();
   row.append(head, line, out);
   return row;
 }
+// Optional purchase protection. Sample providers, sorted by price, no favourites.
+const PROTECTION = [
+  { name: 'No added protection', kind: '', rate: 0, zip: 0, median: 0 },
+  { name: 'Card purchase protection', kind: 'Provider A · card network', rate: 1.5, zip: 1.5, median: 1.6 },
+  { name: 'Purchase insurance', kind: 'Provider B · independent insurer', rate: 2.1, zip: 3.9, median: 2.2 },
+];
+function protectionPanel() {
+  const panel = el('div', 'supportpanel');
+  panel.append(el('div', 'group', 'Optional purchase protection · sample · no value moves'),
+    el('p', 'note', 'Some purchases, depending on the product, may need protection such as a card network\'s purchase protection or insurance. It is always an added option. Only providers holding an M5-VC credential are shown, sorted by price, with no favourites.'));
+  const zip = '90221';
+  PROTECTION.forEach((p, i) => {
+    const row = el('label', 'support protect');
+    const radio = el('input'); radio.type = 'radio'; radio.name = 'protection'; radio.checked = i === 0;
+    const body = el('div'); body.append(el('b', null, p.name));
+    if (p.kind) {
+      body.append(el('div', 'note', p.kind + ' · M5-VC credentialed'));
+      const grid = el('div', 'rates');
+      [['Fee', p.rate.toFixed(1) + '%'], ['Charged in ZIP ' + zip, p.zip.toFixed(1) + '%'], ['Commons median, ZIP ' + zip, p.median.toFixed(1) + '%']]
+        .forEach(([k, v]) => { const c = el('div'); c.append(el('i', null, k), el('b', null, v)); grid.append(c); });
+      body.append(grid);
+      if (p.zip > p.median * 1.25) body.append(el('div', 'flag', 'Charges this ZIP well above the commons median. Its rates by ZIP are published in the public commons, and its M5BKOI account is listed in the public registry.'));
+    } else {
+      body.append(el('div', 'note', 'You rely on the provider\'s own terms.'));
+    }
+    row.append(radio, body); panel.append(row);
+  });
+  panel.append(el('p', 'note', 'Rates are disclosed in full and compared by ZIP on the M5Index, using each member\'s known jurisdiction. Usurious rates are not offered. Providers, rates and the ZIP shown here are samples.'));
+  return panel;
+}
+
 function supportPanel(item) {
   const panel = el('div', 'supportpanel');
   panel.append(el('div', 'group', 'Optional support · sample · no value moves'),
@@ -232,7 +277,7 @@ function supportPanel(item) {
   panel.append(supportRow('tc', 'Pay it forward to TitleChain Foundation',
     'Directed to the TitleChain Sovereign Purpose Trust for its mission: funding new commons trusts and public projects such as the Farmers Trust, Spring Commons and the Norton Ranch Blueprint.',
     'Off unless you choose it.'));
-  panel.append(el('p', 'note', 'Recurring gifts are pledges you can stop at any time; nothing is owed. Giving opens at launch. Tax treatment is not stated here.'));
+  panel.append(el('p', 'note', 'Each gift is recorded as a three-part Ricardian agreement (the words, the data and the code) and a controllable electronic record, with a receipt for every payment. A recurring gift is a binding commitment for the term you choose. Gifts are paid on-chain in a stablecoin or another crypto asset you hold; the person receiving it decides whether to keep it on-chain or swap it to dollars in a bank account. Giving opens at launch. Tax treatment is not stated here.'));
   return panel;
 }
 
@@ -348,6 +393,26 @@ function resultView() {
     row.append(el('div', 'tier', a.tier), body, right); later.append(row);
   });
   later.append(el('p', 'note', state.catalog.account_note));
+  later.append(el('p', 'note', 'Where registration fees go: TitleChain Foundation runs the registry. Fees pay for its registrar services: archival storage for certificates, M5-CV checks, the Solid pod server, the Matrix server, and validation across the network.'));
+
+  const rep = el('div', 'card');
+  rep.append(el('h2', null, 'Build your reputation as a developer'),
+    el('p', 'note', 'Not at IAM. Your IAM is self-attested, so it carries no developer score or ranking. Reputation starts with a verified Bank of Me account and grows with the legal entities you work through.'));
+  [['IAM', 'Free, self-attested', 'No developer score. You can give and receive gifts as a sample only.'],
+   ['Bank of Me', 'You, verified', 'Your signed contributions, agreements and receipts build your own reputation.'],
+   ['Entity accounts', 'Bank of Us or Bank of Business', 'The entity you work through builds its own reputation, with you named in its roles.']]
+    .forEach(([t, s2, d]) => {
+      const row = el('div', 'acct'), body = el('div'); body.style.flex = '1';
+      const top = el('div'); top.append(el('b', null, t), document.createTextNode(' · '), el('span', null, s2)); top.lastChild.style.color = 'var(--muted)';
+      body.append(top, el('div', 'note', d)); body.lastChild.style.marginTop = '2px';
+      row.append(el('div', 'tier', t === 'IAM' ? 'M0' : t === 'Bank of Me' ? 'M1' : 'M2+'), body, el('span', 'pill', t === 'IAM' ? 'You are here' : 'Opens later'));
+      rep.append(row);
+    });
+  rep.append(el('div', 'group', 'Standard developer agreements'));
+  [['Tip', 'A one-time gift'], ['Subscription', 'Recurring support for a term you commit to'], ['Royalty', 'A share per sale or per use, by written agreement'],
+   ['Sponsorship', 'Funding for a project or a milestone'], ['Paid service', 'Support, hosting or custom work']]
+    .forEach(([t, d]) => { const row = el('div', 'row'), left = el('div'); left.append(el('b', null, t), document.createTextNode(' '), el('span', null, d)); row.append(left, el('div', 'r', 'Three-part Ricardian agreement · receipts')); rep.append(row); });
+  rep.append(el('p', 'note', 'Every agreement is a three-part Ricardian container (the words, the data and the code) and a controllable electronic record, with a receipt for each payment. Payment is on-chain in a stablecoin or another crypto asset; the person paid can keep it on-chain or swap it to dollars. Sample: agreements open with Bank of Me.'));
 
   const not = el('div', 'card');
   not.append(el('h2', null, 'What this is not'));
@@ -369,7 +434,7 @@ function resultView() {
   if (reg) parts.push(chainCard);
   if (c) parts.push(iamCert);
   if (shownCert) parts.push(certView());
-  return parts.concat([use, later, not]);
+  return parts.concat([use, later, rep, not]);
 }
 
 function render() {
