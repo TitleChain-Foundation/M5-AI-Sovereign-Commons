@@ -1,0 +1,88 @@
+{
+  "package_id": "m5-iam-free",
+  "package_name": "M5 IAM Free \u2014 Local Starting Pod",
+  "version": "0.2.0",
+  "package_date": "2026-10-13",
+  "publisher": "TitleChain Foundation",
+  "status": "DRAFT_FOR_PUBLIC_REVIEW",
+  "license_state": "UNREGISTERED_COMMONS_STARTER",
+  "license_state_notice": "This package is a public-commons starter kit. Downloading, unpacking or running it does not create a TCID, a verified identity, a credential, an M5 Bank account, a licensed M5POD, or any authority. It creates a free, self-attested IAM starting pod on a computer the person controls.",
+  "account": {
+    "account_sku": "M5IAM-000",
+    "legacy_alias": "000-IAM",
+    "status_after_init": "IAM ONLY",
+    "identity_status_after_init": "SELF_ATTESTED_NOT_VERIFIED",
+    "price": "FREE"
+  },
+  "activation_required": [
+    {
+      "step": 1,
+      "name": "Register the human principal",
+      "detail": "Register an M5IAM account and establish TCID / M5HUM identity.",
+      "url": "https://m5bank.app/"
+    },
+    {
+      "step": 2,
+      "name": "Reserve and activate a private M5POD",
+      "detail": "Optional. A registered Bank of Me account and M5POD are separate from, and not required by, the free IAM starting pod.",
+      "url": "https://m5podactivationdemo.netlify.app/"
+    }
+  ],
+  "works_before_activation": [
+    "Open the IAM app with a double-click and attest to your humanity in one short form.",
+    "See what you have: your IAM, your chosen state chain, and your attestation in three matching parts (words, data, check).",
+    "Browse free and open tools you can use today, and the registered accounts you can open later.",
+    "Verify the hash-chained ledger and export the pod as one ZIP file."
+  ],
+  "requires_activation": [
+    "A TCID, PayName, ENS name or WSW URI.",
+    "Any verified identity or credential.",
+    "An M5 Bank account or a licensed M5POD.",
+    "Authority to sign, pay, transfer title or delegate to an agent."
+  ],
+  "runtime": {
+    "network_required": false,
+    "private_data_location": "LOCAL_PRINCIPAL_CONTROLLED",
+    "packaged_desktop_installer": false,
+    "python": ">=3.9, standard library only",
+    "interface": "Local browser page served from 127.0.0.1 only; double-click launchers for macOS and Windows"
+  },
+  "layers": {
+    "guide": [
+      "m5-pod/iam-free/M5IAM-FREE-PACKAGE.md"
+    ],
+    "reference_code": [
+      "reference-implementation/m5-iam-free/"
+    ],
+    "context": [
+      "GLOSSARY.md",
+      "docs/M5POD-DATA-PORTABILITY-PROFILE.md"
+    ],
+    "licenses": [
+      "LICENSE.md",
+      "LICENSES/",
+      "LEGAL-NOTICES.md",
+      "PATENT-NOTICE.md",
+      "TRADEMARKS.md"
+    ],
+    "research": [
+      "research/m5-iam-research-release/"
+    ],
+    "tests": [
+      "tests/test_m5_iam_free.py",
+      "tools/build_iam_package.py",
+      "requirements-dev.txt"
+    ]
+  },
+  "integrity": {
+    "per_file_checksums": "PACKAGE-CHECKSUMS.sha256",
+    "zip_checksum": "published beside the ZIP as .zip.sha256"
+  },
+  "non_claims": [
+    "No TCID or other registry identifier is issued.",
+    "No identity is verified.",
+    "No account, credential, license or authority is created.",
+    "The ledger is an integrity check, not a signature."
+  ],
+  "release_type": "RESEARCH_RELEASE"
+}

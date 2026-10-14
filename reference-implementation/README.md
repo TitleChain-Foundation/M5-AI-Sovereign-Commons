@@ -14,6 +14,7 @@ for an accountable implementation review.
 | --- | --- | --- |
 | Provider-neutral governor | Demonstrates cost, context, budget, policy preflight, evidence-ledger handling, and replaceable provider adapters | [Implementation README](provider-neutral-governor/README.md) |
 | Sovereign Herd | Creates stable synthetic animal, device and assignment records locally without a provider or network call | [Implementation README](sovereign-herd/README.md) |
+| M5 IAM Free | Creates a free, self-attested IAM starting pod locally, with a hash-chained ledger and no network call | [Implementation README](m5-iam-free/README.md) |
 
 ## Review path
 
