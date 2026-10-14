@@ -82,29 +82,19 @@ day, week, month or year) for two separate gifts:
 - **Pay it forward to TitleChain Foundation,** directed to the TitleChain
   Sovereign Purpose Trust for its mission. Off unless chosen.
 
-Gifts are never part of a fee split and the software stays free either way. A
-recurring gift is a binding commitment for the term the person chooses (1 to 12
-months), recorded as a three-part Ricardian agreement and a controllable
-electronic record, with a receipt for every payment. Payment is on-chain in a
-stablecoin or another crypto asset; the recipient chooses whether to keep it
-on-chain or swap it to dollars in a bank account.
+Gifts are never part of a fee split and the software stays free either way.
+Terms, payment rails and protection rules are in the separately published fine
+print.
 
 ### Previews of what opens later (samples)
 
 - **Purchase protection** under the paid-service certificate: optional, from
-  M5-VC credentialed providers only, sorted by price with no favourites. Each
-  shows its fee, what it charges in the member's ZIP, and the commons median for
-  that ZIP from the M5Index. A provider charging a ZIP well above the median is
-  flagged, with its rates published in the public commons and its M5BKOI
-  account listed in the public registry. Providers, rates and ZIP are samples.
-- **Developer reputation:** none at IAM, because the IAM is self-attested.
-  Reputation starts with a verified Bank of Me account and grows with the
-  entity accounts the developer works through.
-- **Standard developer agreements:** tip, subscription, royalty, sponsorship
-  and paid service, each a three-part Ricardian container with receipts.
-- **Registration fees** fund TitleChain Foundation's registrar services:
-  certificate archival storage, M5-CV checks, the Solid pod server, the Matrix
-  server, and network validation.
+  credentialed providers only, sorted by price, with each provider's fee, its
+  rate in the member's ZIP and the commons median for that ZIP.
+- **Reputation:** none at IAM. A person's reputation is their M5Nash Score,
+  which starts with Bank of Me and grows with giving, paying it forward,
+  completed classes and time and talents given to the community; entity
+  accounts build their own scores.
 
 No certificate is issued by this release. A Certificate of Title is issued by
 the TitleChain Registry only after launch.

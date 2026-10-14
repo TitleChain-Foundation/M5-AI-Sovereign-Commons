@@ -51,6 +51,11 @@ python3 tools/build_iam_package.py --output-dir dist                # byte-ident
 Requirements: Python 3.9 or later, and `pytest` for the tests. The code itself
 uses only the Python standard library.
 
+## Launch gate
+
+Counsel approval is required before public launch. The fine print for giving,
+payments, purchase protection and the Trust reserve is published separately.
+
 ## What this release is not
 
 It does not issue a TCID, verify identity, create an account or a licensed
