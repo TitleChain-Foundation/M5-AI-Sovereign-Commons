@@ -74,6 +74,16 @@ class IndexTests(unittest.TestCase):
             ["htm", "html", "pdf"],
         )
 
+    def test_parse_index_for_custody_docket(self) -> None:
+        docket = "S7-2026-35"
+        html = ('<table><tr><td>Oct. 3, 2026</td><td>Public Comment</td>'
+                '<td><a href="/comments/S7-2026-35/test.pdf">TitleChain Foundation</a></td>'
+                '</tr></table>')
+        entries = parse_index(html, docket=docket)
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0].source_url,
+                         'https://www.sec.gov/comments/S7-2026-35/test.pdf')
+
     def test_parse_index_fails_closed_on_empty_docket(self) -> None:
         with self.assertRaisesRegex(RuntimeError, "refusing to publish"):
             parse_index("<html><body>No recognized table</body></html>")
@@ -104,6 +114,18 @@ class AnalysisTests(unittest.TestCase):
 
 
 class ReviewTests(unittest.TestCase):
+    def test_orphaned_review_is_withheld_not_fatal(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, "orphan.json").write_text(json.dumps({
+                "analysis_text_sha256": "abc", "approved_at": "2026-09-07T00:00:00Z",
+                "comment_id": "orphan", "review_status": "APPROVED",
+                "reviewer": "Reviewer", "summary": "Historic reviewed filing"
+            }))
+            published, warnings = load_reviews(Path(directory), {})
+        self.assertEqual(published, {})
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("excluded", warnings[0])
+
     def test_changed_source_withholds_stale_review(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             review_dir = Path(directory)

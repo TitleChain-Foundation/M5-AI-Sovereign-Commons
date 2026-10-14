@@ -1,11 +1,14 @@
 # SEC regulatory record maintenance
 
-Last verified: Oct. 3, 2026
+Last verified in committed filing inventory: Oct. 8, 2026.
+The deployed status overlay is refreshed from both SEC dockets on each successful build.
 
 The existing public route is `/M5-AI-Sovereign-Commons/sec-observatory/`.
 The Foundation record appears above the unchanged live S7-2026-30 observatory.
-The automated official feed remains scoped to the transfer-agent docket; the
-Foundation overview covers both proceedings. Foundation submissions and analysis
+The automated official comments feed remains scoped to the transfer-agent docket;
+the Foundation filing-status overlay checks both S7-2026-30 and S7-2026-35.
+The public `foundation-status.json` supports read-only syndication to the main
+Foundation website. Source records remain immutable in Git between reviewed changes. Foundation submissions and analysis
 are explicitly separated from SEC proposal facts and official feed metadata.
 
 ## Single source of truth
@@ -31,11 +34,18 @@ Both are proposed rules. No calendar deadline is inferred for S7-2026-35.
 - [S7-2026-35 SEC received comments](https://www.sec.gov/rules-regulations/public-comments/s7-2026-35)
 - [SEC custody announcement](https://www.sec.gov/newsroom/press-releases/2026-100-sec-proposal-would-address-how-investment-advisers-funds-can-custody-crypto-assets-under-federal)
 
-Verified against the SEC rulemaking and received-comments pages on Oct. 3.
-The Sept. 5 Pamela Norton / Foundation filing is listed; neither Oct. 3 filing
-is listed. SEC web pages were accessible through browser retrieval, but direct
-shell retrieval of the Sept. 5 PDF returned HTTP 403. Its existing official link
-is retained and was verified through browser retrieval.
+Verified against both official SEC received-comments pages on Oct. 8, 2026.
+The Sept. 5 Foundation filing and both Oct. 3 filings are SEC-posted.
+The Sept. 23 supplement and Exhibits A-J remain pending independent matching.
+Publication status is not endorsement or approval.
+
+The runtime reconciler only marks a previously pending filing posted if an
+SEC docket candidate matches date and commenter AND its extractable PDF text
+exactly matches the local archived submission after whitespace normalization.
+If PDF verification is blocked, status remains pending; never infer posting.
+The original submitted PDFs remain authoritative Foundation archive copies.
+A detached historical review no longer stops all publishing: it is retained
+in Git but excluded from current public summaries with a warning.
 
 ## Filing inventory and storage
 
@@ -85,3 +95,11 @@ Run observatory unit tests, the repository conformance suite, SHADOW validator,
 public-release manifest check and `git diff --check` as documented in
 `../tests/README.md`. No npm lint/typecheck/build commands exist in this Python
 and static-HTML repository. Regenerate `MANIFEST.sha256` after final changes.
+
+## Read-only Foundation site integration
+
+GitHub Pages publishes `/sec-observatory/foundation-status.json` alongside
+`feed.json`. The Foundation website (currently a separate website deployment)
+can fetch the status JSON and display official SEC links, lastVerified, warnings,
+and filing-status badges. Do not mark the main Foundation site integrated until
+its own deploy has been updated and visually verified. See the repair ZIP README.

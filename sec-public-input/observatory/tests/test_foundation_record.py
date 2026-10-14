@@ -14,9 +14,9 @@ class FoundationRecordTests(unittest.TestCase):
         october = [f for f in record['filings'] if f['submitted'] == '2026-10-03']
         self.assertEqual(len(october), 2)
         for filing in october:
-            self.assertFalse(filing['secPosted'])
-            self.assertIsNone(filing['secUrl'])
-            self.assertEqual(filing_status(filing), 'Submitted Oct. 3, 2026 — SEC posting pending')
+            self.assertTrue(filing['secPosted'])
+            self.assertIsNotNone(filing['secUrl'])
+            self.assertEqual(filing_status(filing), 'Posted on SEC.gov')
         self.assertEqual(filing_status(record['filings'][0]), 'Posted on SEC.gov')
         self.assertEqual(record['proceedings'][0]['deadline'], 'Nov. 3, 2026')
         self.assertEqual(record['proceedings'][1]['deadline'], '60 days after Federal Register publication')
@@ -31,7 +31,7 @@ class FoundationRecordTests(unittest.TestCase):
         self.assertIn(filing['secUrl'], rendered)
         self.assertIn('Read Foundation copy', rendered)
         self.assertEqual(filing_status(filing), 'Posted on SEC.gov')
-        self.assertIn('Submitted Oct. 3, 2026 — SEC posting pending', rendered)
+        self.assertIn('Submitted Sept. 23, 2026 — SEC posting pending', rendered)
 
     def test_public_build_copies_exact_pdfs_and_no_docx(self):
         from foundation_record import SEC
