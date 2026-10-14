@@ -72,6 +72,19 @@ ANCHORED**:
 | Software license | Any free tool in the catalog | Generated on screen from the catalog entry; records the tool's SPDX license and states that the license is granted by its makers, not by the certificate |
 | Licensed service | A paid service (sample: Element plan) | Generated on screen; shows both paths: an existing customer shows proof of the plan, a new customer pays the provider directly through M5-OpenAPI |
 
+Under each software certificate, an **optional support** panel (sample, no
+value moves) lets the person set an amount and a schedule (one time, per hour,
+day, week, month or year) for two separate gifts:
+
+- **The developers,** paid directly once their Sigstore release signature is
+  matched to a verified payee: their own wallet, or the M5 entity account they
+  contribute through.
+- **Pay it forward to TitleChain Foundation,** directed to the TitleChain
+  Sovereign Purpose Trust for its mission. Off unless chosen.
+
+Gifts are never part of a fee split, recurring gifts are pledges that can stop
+at any time, and the software stays free either way.
+
 No certificate is issued by this release. A Certificate of Title is issued by
 the TitleChain Registry only after launch.
 

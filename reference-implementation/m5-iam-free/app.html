@@ -94,6 +94,11 @@ footer{font-size:12px;color:var(--label)}
 .certhash{font-family:ui-monospace,Menlo,monospace;font-size:11px;overflow-wrap:anywhere}
 .certactions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .ghost{border:1px solid var(--line2);background:var(--white);border-radius:9999px;padding:8px 16px;font-weight:600;cursor:pointer}
+.supportpanel{margin-top:16px;border-top:1px solid var(--line);padding-top:6px}
+.support{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;display:flex;flex-direction:column;gap:6px}
+.supportline{display:flex;gap:8px;align-items:center}
+.supportline input{width:120px;border:1px solid var(--line2);border-radius:9999px;padding:8px 12px}
+.supportline select{width:auto;padding:8px 14px}
 .linkbtn{border:0;background:none;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px}
 @media print{.bar,.strip,main>*:not(.printing),footer{display:none!important}.printing{display:block!important}body{background:#fff}}
 @media (max-width:560px){.cert{padding:22px 18px}.certname{font-size:32px}}
@@ -171,6 +176,7 @@ async function showCertificate(kind, item) {
   const seed = JSON.stringify({ kind, item: item ? item.name : null, holder: r.display_name, local_id: r.local_id });
   const hash = await sha256(seed);
   shownCert = kind === 'service' ? serviceCertificate(r, hash) : toolCertificate(item, r, hash);
+  shownCert.kind = kind; shownCert.item = item;
   render();
   document.getElementById('certview').scrollIntoView({ behavior: 'smooth' });
 }
@@ -186,7 +192,48 @@ function certView() {
   close.addEventListener('click', () => { shownCert = null; render(); });
   actions.append(print, close);
   box.append(actions);
+  if (shownCert.kind === 'tool') box.append(supportPanel(shownCert.item));
   return box;
+}
+
+// Optional support: never required, never split, stopped at any time. Sample only.
+const PER_MONTH = { hour: 730, day: 30.4, week: 4.35, month: 1, year: 1 / 12, once: 0 };
+const support = {};
+function supportRow(key, title, payee, note) {
+  const row = el('div', 'support');
+  const head = el('div'); head.append(el('b', null, title), el('div', 'note', payee));
+  const amount = el('input'); amount.type = 'number'; amount.min = '0'; amount.step = '0.01'; amount.placeholder = '0.00';
+  amount.value = support[key]?.amount || ''; amount.setAttribute('aria-label', title + ' amount in US dollars');
+  const every = el('select'); every.setAttribute('aria-label', title + ' how often');
+  [['once', 'One time'], ['hour', 'Per hour'], ['day', 'Per day'], ['week', 'Per week'], ['month', 'Per month'], ['year', 'Per year']]
+    .forEach(([v, t]) => every.append(new Option(t, v)));
+  every.value = support[key]?.every || 'month';
+  const line = el('div', 'supportline'); const dollar = el('span', null, '$'); line.append(dollar, amount, every);
+  const out = el('div', 'note');
+  const update = () => {
+    support[key] = { amount: amount.value, every: every.value };
+    const a = parseFloat(amount.value) || 0;
+    out.textContent = !a ? note : every.value === 'once'
+      ? '$' + a.toFixed(2) + ' once. ' + note
+      : '$' + a.toFixed(2) + ' ' + every.selectedOptions[0].text.toLowerCase() +
+        (every.value === 'month' ? '' : ', about $' + (a * PER_MONTH[every.value]).toFixed(2) + ' a month') + '. Stop or change it at any time.';
+  };
+  amount.addEventListener('input', update); every.addEventListener('change', update); update();
+  row.append(head, line, out);
+  return row;
+}
+function supportPanel(item) {
+  const panel = el('div', 'supportpanel');
+  panel.append(el('div', 'group', 'Optional support · sample · no value moves'),
+    el('p', 'note', item.name + ' stays free whether or not you give. Gifts go in full to whom you choose and are never part of a fee split.'));
+  panel.append(supportRow('dev:' + item.name, 'Support the people who make ' + item.name,
+    'Paid directly to the developers, once their release signature (Sigstore) is matched to a verified payee: their own wallet, or the M5 entity account they contribute through.',
+    'Any amount, any schedule.'));
+  panel.append(supportRow('tc', 'Pay it forward to TitleChain Foundation',
+    'Directed to the TitleChain Sovereign Purpose Trust for its mission: funding new commons trusts and public projects such as the Farmers Trust, Spring Commons and the Norton Ranch Blueprint.',
+    'Off unless you choose it.'));
+  panel.append(el('p', 'note', 'Recurring gifts are pledges you can stop at any time; nothing is owed. Giving opens at launch. Tax treatment is not stated here.'));
+  return panel;
 }
 
 function cell(k, v, n) { const c = el('div', 'cell'); c.append(el('div', 'k', k), el('div', 'v', v)); if (n) c.append(el('div', 'n', n)); return c; }
