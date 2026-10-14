@@ -28,6 +28,7 @@ and agent delegation, none of which this release performs.
 | T6 | The downloaded package is altered in transit or on a mirror | Published SHA-256 for the ZIP and per-file checksums; deterministic build lets anyone rebuild and compare | No code signing yet; a person who skips the checksum step is not protected | SI-7, CM-14 |
 | T7 | Personal data leaks through the registry entry | Only a commitment hash is produced; it includes a random 122-bit identifier, so it cannot be matched by guessing; nothing is transmitted | If anchoring is added, the commitment design must be reviewed again | SC-28 |
 | T8 | The app or engine makes unexpected network calls | Standard library only; tests assert the engine imports no network modules and the app binds to loopback; the page's Content Security Policy allows connections to itself only | Links to tool publishers open in the browser when the person clicks them | SC-7 |
+| T10 | A sample certificate is mistaken for an issued one | Every certificate is stamped SAMPLE · NOT ISSUED · NOT ANCHORED; the IAM certificate file records `status: SAMPLE_NOT_ISSUED` and `issued_by: null` | A screenshot could be cropped to remove the stamp | SI-7 |
 | T9 | Optional contact (email or phone) is exposed | Stored only in the local pod; never transmitted | Stored unencrypted inside the pod; protection relies on T2 and disk encryption | SC-28 |
 
 ## Assumptions

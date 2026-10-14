@@ -13,8 +13,9 @@ related standards work.
 A person downloads one ZIP, opens a local app, and attests to their humanity in
 one short form. The app creates an IAM starting pod on their own computer: the
 attestation in three matching parts (human-readable terms, machine-readable
-record, executable check), a hash-chained ledger, and a simulated TitleChain
-Registry entry that holds only a commitment hash. It then shows what the person
+record, executable check), a hash-chained ledger, a simulated TitleChain
+Registry entry that holds only a commitment hash, and a sample Certificate of
+Title for the IAM origin. It then shows what the person
 has, free and open tools they can use, and the registered accounts they could
 open later. Nothing is sent over the network.
 

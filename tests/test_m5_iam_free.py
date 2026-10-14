@@ -142,10 +142,14 @@ def test_attestation_has_three_matching_parts(iam, tmp_path):
     assert machine["contract_id"] == check["contract_id"]
     assert machine["authority_effect"] == check["authority_effect"] == "NONE"
     assert machine["chain"]["status"] == "SELF_SELECTED_NOT_VERIFIED"
-    assert iam.verify_pod(pod)["files_checked"] == 6
+    assert iam.verify_pod(pod)["files_checked"] == 7
+    cert = json.loads((pod / "M0-M5IAM-000" / "registry" / "certificate-iam-origin.json").read_text())
+    assert cert["status"] == "SAMPLE_NOT_ISSUED" and cert["sample"] is True and cert["issued_by"] is None
     receipt = json.loads((pod / "M0-M5IAM-000" / "registry" / "registry-receipt.json").read_text())
     assert receipt["status"] == "SIMULATED_NOT_ANCHORED" and receipt["anchored"] is False and receipt["network_write"] is False
     assert receipt["ref_id"] == "TCR-IAM-" + receipt["commitment_sha256"][:12].upper()
+    assert cert["title_no"] == receipt["ref_id"]
+    assert cert["registry_commitment_sha256"] == receipt["commitment_sha256"]
 
 
 def test_catalog_lists_fifty_chains_free_products_and_unactivated_accounts():

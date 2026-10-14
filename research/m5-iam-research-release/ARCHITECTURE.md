@@ -60,6 +60,21 @@ identifier contains a random 122-bit local identifier, so the commitment cannot
 be confirmed by guessing a name and state chain. At launch, only this
 commitment would be anchored.
 
+## Sample certificates
+
+After activation the app shows three kinds of sample Certificate of Title, in
+the M5Ledger certificate design, each stamped **SAMPLE · NOT ISSUED · NOT
+ANCHORED**:
+
+| Certificate | Subject | Where it comes from |
+| --- | --- | --- |
+| IAM origin | The person's IAM account | `registry/certificate-iam-origin.json`, written to the pod and recorded in the ledger; carries the registry commitment |
+| Software license | Any free tool in the catalog | Generated on screen from the catalog entry; records the tool's SPDX license and states that the license is granted by its makers, not by the certificate |
+| Licensed service | A paid service (sample: Element plan) | Generated on screen; shows both paths: an existing customer shows proof of the plan, a new customer pays the provider directly through M5-OpenAPI |
+
+No certificate is issued by this release. A Certificate of Title is issued by
+the TitleChain Registry only after launch.
+
 ## Standards used
 
 | Standard | How it is used here |

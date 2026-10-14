@@ -66,6 +66,37 @@ ul{margin:8px 0 0;padding-left:20px;color:var(--body)}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--label);overflow-wrap:anywhere}
 footer{font-size:12px;color:var(--label)}
 @media (max-width:560px){h1{font-size:34px}.row{flex-direction:column;gap:2px}.row .r{text-align:left}}
+
+.certwrap{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:12px}
+.certframe{padding:9px;background:repeating-linear-gradient(45deg,var(--accent,#1C1917) 0 2px,transparent 2px 7px),repeating-linear-gradient(-45deg,#1C1917 0 1px,transparent 1px 7px);border-radius:8px}
+.cert{background:#FBF9F6;border:2px solid var(--ink);outline:1px solid var(--ink);outline-offset:-8px;padding:34px 36px;display:flex;flex-direction:column;gap:20px;color:var(--ink)}
+.certhead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:14px}
+.certorg{font-size:11px;font-weight:700;letter-spacing:.26em}
+.certorg span{display:block;color:var(--muted);letter-spacing:.14em;font-weight:600}
+.stamp{transform:rotate(-6deg);border:3px solid var(--rose);color:var(--rose);padding:5px 12px;text-align:center}
+.stamp b{display:block;font-size:15px;letter-spacing:.2em}
+.stamp span{font-size:9px;font-weight:700;letter-spacing:.14em;white-space:nowrap}
+.titleno{text-align:right}.titleno div{font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--muted)}.titleno b{font-family:ui-monospace,Menlo,monospace;font-size:14px}
+.certmid{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.certkind{font-size:13px;font-weight:700;letter-spacing:.4em}
+.certbar{width:64px;height:4px;background:var(--accent,#1C1917)}
+.certby{font-size:14px;color:var(--body)}
+.certholder{font-size:20px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.certname{font-family:var(--serif);font-size:46px;line-height:1.05}
+.certwhat{font-size:14px;color:var(--body)}
+.certfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));border-top:1px solid var(--ink);border-left:1px solid var(--ink)}
+.certfields div{padding:10px 12px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);min-width:0}
+.certfields i{display:block;font-style:normal;font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.certfields b{font-size:14px;overflow-wrap:anywhere}
+.certrights{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px 16px;font-size:13px}
+.certrights div::before{content:'✓ ';color:var(--emerald);font-weight:700}
+.certfoot{font-size:12px;color:var(--body);line-height:1.5}
+.certhash{font-family:ui-monospace,Menlo,monospace;font-size:11px;overflow-wrap:anywhere}
+.certactions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.ghost{border:1px solid var(--line2);background:var(--white);border-radius:9999px;padding:8px 16px;font-weight:600;cursor:pointer}
+.linkbtn{border:0;background:none;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px}
+@media print{.bar,.strip,main>*:not(.printing),footer{display:none!important}.printing{display:block!important}body{background:#fff}}
+@media (max-width:560px){.cert{padding:22px 18px}.certname{font-size:32px}}
 </style>
 </head>
 <body>
@@ -76,6 +107,87 @@ footer{font-size:12px;color:var(--label)}
 const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
 const main = document.getElementById('main');
 let state = null;
+let shownCert = null;
+
+async function sha256(text) {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function certificate(c) {
+  const wrap = el('div', 'certwrap'), frame = el('div', 'certframe'), cert = el('div', 'cert');
+  frame.style.setProperty('--accent', c.accent);
+  const head = el('div', 'certhead'), org = el('div', 'certorg', 'TITLECHAIN REGISTRY');
+  org.append(el('span', null, c.registry));
+  const stamp = el('div', 'stamp'); stamp.append(el('b', null, 'SAMPLE'), el('span', null, 'NOT ISSUED · NOT ANCHORED'));
+  const no = el('div', 'titleno'); no.append(el('div', null, 'TITLE NO.'), el('b', null, c.titleNo));
+  head.append(org, stamp, no);
+  const mid = el('div', 'certmid');
+  mid.append(el('div', 'certkind', 'CERTIFICATE OF TITLE'), el('div', 'certbar'), el('div', 'certby', c.by),
+    el('div', 'certholder', c.holder), el('div', 'certname', c.name), el('div', 'certwhat', c.what));
+  const fields = el('div', 'certfields');
+  c.fields.forEach(([k, v]) => { const d = el('div'); d.append(el('i', null, k), el('b', null, v)); fields.append(d); });
+  const rights = el('div', 'certrights'); c.rights.forEach(r => rights.append(el('div', null, r)));
+  cert.append(head, mid, fields, el('div', 'certkind', c.rightsTitle), rights, el('div', 'certfoot', c.foot));
+  if (c.hash) cert.append(el('div', 'certhash', c.hashLabel + ' ' + c.hash));
+  frame.append(cert); wrap.append(frame);
+  return wrap;
+}
+
+const COPYLEFT = /GPL|AGPL|MPL|LGPL/;
+function toolCertificate(item, r, hash) {
+  const copyleft = COPYLEFT.test(item.license);
+  return {
+    accent: '#047857', registry: 'M5 FREEDOM OFFICE · SOFTWARE LICENSE', titleNo: 'SAMPLE-SW-' + hash.slice(0, 8).toUpperCase(),
+    by: 'This certifies that the software below is held under its published license by',
+    holder: (r.display_name || 'IAM holder') + ' · ' + r.account_sku, name: item.name, what: item.does,
+    fields: [['License', item.license], ['Kind', 'Open source'], ['Cost to you', '$0'], ['Publisher', item.url.replace(/^https:\/\//, '').replace(/\/$/, '')],
+      ['Version', 'Recorded when you install'], ['Status', 'Sample · not issued']],
+    rightsTitle: 'RIGHTS YOU HOLD UNDER ' + item.license,
+    rights: ['Use it for any purpose', 'Study how it works', 'Change it', 'Share copies'],
+    foot: (copyleft ? 'If you share a changed version, share it under the same license. ' : '') +
+      'The license is granted by the people who make this software, under its public terms. This certificate records it; it does not grant it.',
+    hashLabel: 'SHA-256 of this certificate:', hash
+  };
+}
+
+function serviceCertificate(r, hash) {
+  return {
+    accent: '#E11D48', registry: 'M5-OPENAPI · LICENSED SERVICE', titleNo: 'SAMPLE-SVC-' + hash.slice(0, 8).toUpperCase(),
+    by: 'This certifies that the paid service below is licensed from its provider to',
+    holder: (r.display_name || 'IAM holder') + ' · ' + r.account_sku, name: 'Element plan', what: 'Private Matrix server and private rooms',
+    fields: [['Provider', 'Element'], ['Price', '$4 per user a month'], ['Paid to', 'The provider, directly'], ['Through', 'M5-OpenAPI'],
+      ['Term', '1 year from purchase'], ['Status', 'Sample · not purchased']],
+    rightsTitle: 'WHAT THE LICENSE GIVES YOU',
+    rights: ['Use the service under the provider\'s terms', 'Keep your rooms and history', 'Talk to the M5 network', 'Cancel under the provider\'s terms'],
+    foot: 'Already a customer? Show proof of the plan you hold and the certificate is issued for it. New customer? Pay the provider directly through M5-OpenAPI, then receive the certificate. The provider grants the license; this certificate records it.',
+    hashLabel: 'SHA-256 of this certificate:', hash
+  };
+}
+
+async function showCertificate(kind, item) {
+  const r = state.record;
+  const seed = JSON.stringify({ kind, item: item ? item.name : null, holder: r.display_name, local_id: r.local_id });
+  const hash = await sha256(seed);
+  shownCert = kind === 'service' ? serviceCertificate(r, hash) : toolCertificate(item, r, hash);
+  render();
+  document.getElementById('certview').scrollIntoView({ behavior: 'smooth' });
+}
+
+function certView() {
+  const box = el('div', 'card'); box.id = 'certview';
+  box.append(el('h2', null, 'Sample certificate'));
+  box.append(certificate(shownCert));
+  const actions = el('div', 'certactions');
+  const print = el('button', 'ghost', 'Print'); print.type = 'button';
+  print.addEventListener('click', () => { box.classList.add('printing'); window.print(); box.classList.remove('printing'); });
+  const close = el('button', 'ghost', 'Close'); close.type = 'button';
+  close.addEventListener('click', () => { shownCert = null; render(); });
+  actions.append(print, close);
+  box.append(actions);
+  return box;
+}
 
 function cell(k, v, n) { const c = el('div', 'cell'); c.append(el('div', 'k', k), el('div', 'v', v)); if (n) c.append(el('div', 'n', n)); return c; }
 
@@ -166,9 +278,16 @@ function resultView() {
       const row = el('div', 'row'), left = el('div'), link = el('a', null, i.name);
       link.href = i.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
       left.append(link, document.createTextNode(' '), el('span', null, i.does));
-      row.append(left, el('div', 'r', 'Free · ' + i.license)); use.append(row);
+      const right = el('div', 'r'); right.append(document.createTextNode('Free · ' + i.license + ' · '));
+      const b = el('button', 'linkbtn', 'Sample certificate'); b.type = 'button'; b.addEventListener('click', () => showCertificate('tool', i));
+      right.append(b); row.append(left, right); use.append(row);
     });
   });
+  use.append(el('div', 'group', 'Paid services (sample)'));
+  const svc = el('div', 'row'), svl = el('div'); svl.append(el('b', null, 'Element plan'), document.createTextNode(' '), el('span', null, 'Private group messaging, paid to the provider through M5-OpenAPI'));
+  const svr = el('div', 'r'); svr.append(document.createTextNode('$4 per user a month · '));
+  const sb = el('button', 'linkbtn', 'Sample certificate'); sb.type = 'button'; sb.addEventListener('click', () => showCertificate('service'));
+  svr.append(sb); svc.append(svl, svr); use.append(svc);
   use.append(el('p', 'note', state.catalog.note));
 
   const later = el('div', 'card');
@@ -186,7 +305,24 @@ function resultView() {
   const not = el('div', 'card');
   not.append(el('h2', null, 'What this is not'));
   const list = el('ul'); r.non_claims.forEach(x => list.append(el('li', null, x))); not.append(list);
-  return reg ? [head, have, chainCard, use, later, not] : [head, have, use, later, not];
+  const iamCert = el('div', 'card');
+  const c = state.certificate;
+  if (c) {
+    iamCert.append(el('h2', null, 'Your IAM certificate'), el('p', 'note', 'A sample of the Certificate of Title your IAM origin will receive from the TitleChain Registry at launch.'));
+    iamCert.append(certificate({
+      accent: '#1C1917', registry: 'M5 IAM · HUMAN ORIGIN', titleNo: c.title_no,
+      by: 'This certifies that the IAM origin below was attested, by a human being, on a device the holder controls, by',
+      holder: c.holder, name: 'IAM · ' + c.account, what: 'Free for life · ' + (c.state_chain || 'state chain not chosen'),
+      fields: [['Account', c.account], ['State chain', (c.state_chain || 'Not chosen') + ' · self-selected'], ['Attested', new Date(c.attested_at).toLocaleDateString()],
+        ['Identity', c.identity_status], ['Registry ref', '#' + c.title_no], ['Status', 'Sample · not issued']],
+      rightsTitle: 'WHAT YOUR IAM GIVES YOU', rights: c.rights, foot: c.limits,
+      hashLabel: 'Registry commitment:', hash: c.registry_commitment_sha256 }));
+  }
+  const parts = [head, have];
+  if (reg) parts.push(chainCard);
+  if (c) parts.push(iamCert);
+  if (shownCert) parts.push(certView());
+  return parts.concat([use, later, not]);
 }
 
 function render() {

@@ -63,8 +63,10 @@ class Handler(BaseHTTPRequestHandler):
         home = str(Path.home())
         shown = str(self.pod)
         shown = '~' + shown[len(home):] if shown.startswith(home) else shown
+        cert_file = self.pod / m5_iam.LAYER / 'registry' / 'certificate-iam-origin.json'
+        certificate = json.loads(cert_file.read_text(encoding='utf-8')) if record and cert_file.exists() else None
         return {'pod_path': shown, 'record': record, 'check': check, 'catalog': catalog,
-                'registry': receipt, 'terms_template': m5_iam.HUMAN_TERMS}
+                'registry': receipt, 'certificate': certificate, 'terms_template': m5_iam.HUMAN_TERMS}
 
     def do_GET(self):
         if not self.local_request():

@@ -156,6 +156,22 @@ def registry_receipt(layer, contract_id, now):
                     'Registry. Your name, contact and statement stay on your own device.'}
 
 
+def iam_certificate(record, receipt):
+    """A sample Certificate of Title for the IAM origin, issued against the simulated registry entry."""
+    body = {'schema': SCHEMA, 'certificate': 'Certificate of Title', 'subject': 'IAM origin',
+            'title_no': receipt['ref_id'], 'holder': record['display_name'] or 'Holder of this IAM',
+            'account': ACCOUNT_SKU, 'state_chain': record.get('chain'), 'attested_at': record['created_at'],
+            'identity_status': 'Human attested, not verified',
+            'rights': ['Use the free IAM for life', 'Use free and open tools on your own devices',
+                       'Export or delete your own records at any time', 'Apply for a registered account when they open'],
+            'limits': 'Not a TCID or a verified identity. Cannot authorize a payment, signature, title transfer or agent action.',
+            'registry_commitment_sha256': receipt['commitment_sha256'], 'status': 'SAMPLE_NOT_ISSUED',
+            'sample': True, 'issued_by': None,
+            'note': 'Sample certificate. A Certificate of Title is issued by the TitleChain Registry only after launch.'}
+    body['certificate_sha256'] = sha256_bytes(json.dumps(body, sort_keys=True).encode('utf-8'))
+    return body
+
+
 def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chain='', contact=''):
     pod = Path(pod).expanduser()
     if not attested:
@@ -223,8 +239,11 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
     append_event(layer, 'HUMAN_ATTESTED', now, 'attestation/human-attestation.json')
     append_event(layer, 'IDENTIFIERS_WRITTEN', now, 'identifiers/identifiers.json')
     append_event(layer, 'IAM_RECORD_WRITTEN', now, 'iam.json')
-    write_json(layer / 'registry' / 'registry-receipt.json', registry_receipt(layer, contract_id, now))
+    receipt = registry_receipt(layer, contract_id, now)
+    write_json(layer / 'registry' / 'registry-receipt.json', receipt)
     append_event(layer, 'REGISTRY_ENTRY_SIMULATED', now, 'registry/registry-receipt.json')
+    write_json(layer / 'registry' / 'certificate-iam-origin.json', iam_certificate(record, receipt))
+    append_event(layer, 'CERTIFICATE_SAMPLE_WRITTEN', now, 'registry/certificate-iam-origin.json')
     if os.name == 'posix':
         for path in [pod, *pod.rglob('*')]:
             path.chmod(0o700 if path.is_dir() else 0o600)
