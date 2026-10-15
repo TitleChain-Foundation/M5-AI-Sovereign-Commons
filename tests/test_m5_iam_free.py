@@ -142,6 +142,8 @@ def test_attestation_has_three_matching_parts(iam, tmp_path):
     assert machine["contract_id"] == check["contract_id"]
     assert machine["authority_effect"] == check["authority_effect"] == "NONE"
     assert machine["chain"]["status"] == "SELF_SELECTED_NOT_VERIFIED"
+    assert machine["signatures"] == [] and machine["signature_slots"]["holder"] == "RESERVED_NOT_SIGNED"
+    assert machine["signature_slots"]["approving_agency"] == "RESERVED_NOT_SIGNED"
     assert iam.verify_pod(pod)["files_checked"] == 7
     cert = json.loads((pod / "M0-M5IAM-000" / "registry" / "certificate-iam-origin.json").read_text())
     assert cert["status"] == "SAMPLE_NOT_ISSUED" and cert["sample"] is True and cert["issued_by"] is None
@@ -161,6 +163,7 @@ def test_catalog_lists_fifty_chains_free_products_and_unactivated_accounts():
         for item in group["items"]:
             assert item["url"].startswith("https://") and item["license"]
     assert [a["tier"] for a in catalog["accounts"]] == ["M1", "M2", "M3", "M4", "M5"]
+    assert [p["name"] for p in catalog["protocols"]["items"]] == ["M5-x401", "M5-x402", "M5-OpenAPI", "M5Scan", "M5Index", "M5Pay", "CYRUS Protocol", "TitleChain Registry"]
 
 
 def test_app_accepts_the_form_only_from_its_own_page(tmp_path):

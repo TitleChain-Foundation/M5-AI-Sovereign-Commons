@@ -353,5 +353,49 @@
         }
       ]
     }
-  ]
+  ],
+  "protocols": {
+    "applies_to": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5"
+    ],
+    "note": "Every registered account includes these protocols under the protection of its M5POD. The free IAM does not.",
+    "items": [
+      {
+        "name": "M5-x401",
+        "does": "Asks for and checks proof before access or delivery"
+      },
+      {
+        "name": "M5-x402",
+        "does": "States and validates any payment condition, with a time-stamped token"
+      },
+      {
+        "name": "M5-OpenAPI",
+        "does": "Credentialed access to M5 services and the marketplace"
+      },
+      {
+        "name": "M5Scan",
+        "does": "Checks a claim against several independent sources"
+      },
+      {
+        "name": "M5Index",
+        "does": "Public commons index, including rates by ZIP code"
+      },
+      {
+        "name": "M5Pay",
+        "does": "Routes payments with three-part Ricardian receipts"
+      },
+      {
+        "name": "CYRUS Protocol",
+        "does": "Guards the Trust and its IP against capture"
+      },
+      {
+        "name": "TitleChain Registry",
+        "does": "Registers titles, certificates and commitments"
+      }
+    ]
+  }
 }

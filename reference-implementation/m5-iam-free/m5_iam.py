@@ -46,6 +46,11 @@ ATTESTATION_TEXT = (
     'on a computer I control. I understand this statement is self-attested and '
     'has not been verified by any credential, issuer or registry.'
 )
+SIGNATURE_SLOTS = {
+    'holder': 'RESERVED_NOT_SIGNED',
+    'approving_agency': 'RESERVED_NOT_SIGNED',
+    'note': 'Signed when the holder has a signing key and when an approved agency verifies this IAM through M5-x401.',
+}
 NON_CLAIMS = [
     'Not a TCID. No TitleChain ID has been issued.',
     'Not a verified identity. No credential or issuer has checked this statement.',
@@ -202,7 +207,9 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
                    'chain': {'selected': chain or None, 'status': 'SELF_SELECTED_NOT_VERIFIED'},
                    'human_terms_sha256': sha256_bytes(terms.encode('utf-8')),
                    'executable_check_sha256': sha256_bytes((layer / 'attestation' / 'executable-check.json').read_bytes()),
-                   'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False}
+                   'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False,
+                   # Reserved: the holder's signature, and an approving agency's signature over its own claim (via M5-x401).
+                   'signatures': [], 'signature_slots': SIGNATURE_SLOTS}
     identifiers = {'schema': SCHEMA, 'local_id': local_id, 'tcid': None, 'payname': None,
                    'ens': None, 'wsw_uri': None,
                    'chain': {'selected': chain or None, 'status': 'SELF_SELECTED_NOT_VERIFIED'},
@@ -212,7 +219,8 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
               'display_name': display_name, 'local_id': local_id, 'tcid': None, 'created_at': now,
               'chain': chain or None, 'chain_status': 'SELF_SELECTED_NOT_VERIFIED',
               'contact': contact or None, 'contract_id': contract_id,
-              'price': 'FREE', 'network_required': False, 'can_authorize': [], 'non_claims': NON_CLAIMS}
+              'price': 'FREE', 'network_required': False, 'can_authorize': [], 'non_claims': NON_CLAIMS,
+              'signature_status': 'RESERVED_NOT_SIGNED'}
     write_json(layer / 'attestation' / 'human-attestation.json', attestation)
     write_json(layer / 'identifiers' / 'identifiers.json', identifiers)
     write_json(layer / 'iam.json', record)

@@ -48,7 +48,10 @@ so the pod is not tied to a single agent or vendor.
 The attestation follows M5-RICARDIAN-TRIPLE-LAYER-001 (in `standards/`): the
 human terms control; the machine record binds the digest of the terms and of
 the executable check; the executable check declares `authority_effect: NONE`,
-`network_write: false` and `financial_movement: false`. `verify` recomputes the
+`network_write: false` and `financial_movement: false`. The machine record
+reserves signature slots for the holder and for an approved agency that later
+verifies the IAM through M5-x401 (`RESERVED_NOT_SIGNED`; nothing is signed in
+this release). `verify` recomputes the
 ledger chain and every recorded digest and fails closed on any difference.
 
 ## Registry entry (simulated)

@@ -396,6 +396,10 @@ function resultView() {
     row.append(el('div', 'tier', a.tier), body, right); later.append(row);
   });
   later.append(el('p', 'note', state.catalog.account_note));
+  if (state.catalog.protocols) {
+    later.append(el('div', 'group', 'Protocols included with every registered account'));
+    state.catalog.protocols.items.forEach(x => { const row = el('div', 'row'), left = el('div'); left.append(el('b', null, x.name), document.createTextNode(' '), el('span', null, x.does)); row.append(left, el('div', 'r', 'Not with IAM')); later.append(row); });
+  }
 
   const rep = el('div', 'card');
   rep.append(el('h2', null, 'Build your reputation'),
