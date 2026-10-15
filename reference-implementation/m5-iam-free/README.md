@@ -26,6 +26,7 @@ The same steps from the command line:
 python3 m5_iam.py init --name "Your name" --chain wyomingchain.eth --i-am-human
 python3 m5_iam.py status
 python3 m5_iam.py verify
+python3 m5_iam.py consent --share-record refuse --agent-access approve
 python3 m5_iam.py export --output my-iam-pod.zip
 ```
 
@@ -43,6 +44,7 @@ M5POD-IAM/
   M0-M5IAM-000/
     iam.json               the IAM record: IAM ONLY, self-attested, not verified
     attestation/           your statement in three parts: words, data, check
+    consent/consent.json   your two consent choices, both refused unless you approve
     identifiers/           a local identifier; TCID and the others stay empty
     receive/               reserved, empty
     ledger/events.jsonl    hash-chained record of what the tool wrote
@@ -50,6 +52,18 @@ M5POD-IAM/
 
 The first file in every folder is `m5readme.md` and tooling lives in
 `m5agent/`, so the pod is not tied to any one agent or vendor.
+
+## Your consent
+
+Activation asks two separate questions, and both start as **Refuse**:
+
+- **Share my IAM record** beyond this device.
+- **Agent access under the CYRUS Protocol:** let agents you choose read this
+  pod and assist you. Even when approved, no agent can act, pay, sign or
+  authorize anything for you through an IAM.
+
+Change either at any time in the app or with `m5_iam.py consent`. Every change
+is recorded in the ledger.
 
 ## What it does not do
 

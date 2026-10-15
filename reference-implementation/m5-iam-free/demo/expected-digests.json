@@ -6,17 +6,18 @@
     "local_id": "local-iam:00000000-0000-4000-8000-000000000000"
   },
   "digests": {
-    "M0-M5IAM-000/attestation/executable-check.json": "21b542245a4311d6ac680164fcddd1d7ff407312c628da22271018052c4d6e89",
-    "M0-M5IAM-000/attestation/human-attestation.json": "51539c63abb0275288f5332a9870725729f1b49b5939d9540377eb4ef86fa67f",
-    "M0-M5IAM-000/attestation/human-terms.md": "52065a164018b987c8ce9008f4ed95701a87b88f3e498c91941a735f3cb32c61",
-    "M0-M5IAM-000/iam.json": "edf1d3a187e95437e82f6c4119abb89087fa9f96e48328e9aa668df9f37580dd",
+    "M0-M5IAM-000/attestation/executable-check.json": "5d290d2801ebba0c7d52c2be7af1ded672c2d31a595b985e201950d506701db4",
+    "M0-M5IAM-000/attestation/human-attestation.json": "1da269e12b0ac13a9cdaa2efdbf9c13c2a8db50bb9d5b6b5e3a823c05ff1613a",
+    "M0-M5IAM-000/attestation/human-terms.md": "4be1ebc8d12a2048940219da00c2a63bdc49cf812f26bc5144d77388782cd99e",
+    "M0-M5IAM-000/consent/consent.json": "7d28ede4f8b59daf94c151a12ebab7f992fefe3497b13a606427ee349681823f",
+    "M0-M5IAM-000/iam.json": "e63dceba6a2ccb74ece5e19635ea39d0d7c12560b014b50173675427f49eb7b3",
     "M0-M5IAM-000/identifiers/identifiers.json": "864ad9a97b54defc9e1e0faa78457a6f5e748f85b419f2f4b4d4a2ff68516980",
-    "M0-M5IAM-000/ledger/events.jsonl": "76ca898652b3a8b4b90e4e988473da544f78d61dffa3dd027a8b4687aa84c815",
-    "M0-M5IAM-000/m5readme.md": "9b89bbf284f109eb9d5890a6280b23d7497b24d0772d0f6fcc21a24b521e6d50",
-    "M0-M5IAM-000/registry/certificate-iam-origin.json": "153a1463e4986c0be857e7117a020be33757b627fdfe7a53adaa360dcbaa509f",
-    "M0-M5IAM-000/registry/registry-receipt.json": "eae1c79c4dd3ca98ded51eb03169d08065d6b54e6ad4b6728248b20215450c23",
+    "M0-M5IAM-000/ledger/events.jsonl": "103cb90e53bd5b7c503167a88a65935a07ed7f4b20e1773d15e3c6afef4ea57f",
+    "M0-M5IAM-000/m5readme.md": "38907f8b1791bd450ce8caf0a101149bc36ba0c16817fe15c84e3a503ba0b42f",
+    "M0-M5IAM-000/registry/certificate-iam-origin.json": "7da4b3bbcdca2afdf7a0c386de129911117a526ae11cf9fbed88985a42681059",
+    "M0-M5IAM-000/registry/registry-receipt.json": "a500e96b0c4588fb40157eb5cc6e460b11cb8533a950cb29da10c4df8ab68f4a",
     "m5-iam.html": "ec1d80c670a28e20a29326aed86a9560037beb28781def1b6c2d289a0ae888de",
-    "m5agent/m5readme.md": "48a167577b1f77e187842ef45f80564cbdf98d3786f1aa26db1fbed979c70d2d",
+    "m5agent/m5readme.md": "63c85c7d3a379af2d06bfaf7c63de4cb6fe5e846a794faa4067cde98ba0cac44",
     "m5readme.md": "e79ba4c1069673d59343b50009f25647950392ef20760870394182ecc430ce4d"
   }
 }

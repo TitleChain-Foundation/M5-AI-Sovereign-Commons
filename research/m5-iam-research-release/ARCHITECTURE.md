@@ -34,6 +34,7 @@ M5POD-IAM/
   M0-M5IAM-000/
     iam.json                 IAM ONLY · self-attested, not verified · free
     attestation/             human terms, machine record, executable check
+    consent/consent.json     two separate choices, both REFUSED unless approved
     identifiers/             local identifier; TCID and others empty until registration
     registry/                simulated TitleChain Registry entry
     receive/                 reserved
@@ -53,6 +54,21 @@ reserves signature slots for the holder and for an approved agency that later
 verifies the IAM through M5-x401 (`RESERVED_NOT_SIGNED`; nothing is signed in
 this release). `verify` recomputes the
 ledger chain and every recorded digest and fails closed on any difference.
+
+## Consent
+
+Activation records two separate choices in `consent/consent.json`, each
+`APPROVED` or `REFUSED`, and both default to `REFUSED`:
+
+- **Record sharing:** whether the IAM record may be shared beyond the device.
+- **Agent access (CYRUS Protocol):** whether agents the holder chooses may read
+  the pod and assist. Approval never lets an agent act, pay, sign or
+  authorize: an IAM-only pod has `can_authorize: []`.
+
+The human terms state that refusal is the default. The holder can change
+either choice at any time, in the app or with `m5_iam.py consent`. Each change
+is appended to the file's history and to the ledger (`CONSENT_RECORDED`,
+`CONSENT_CHANGED`), so `verify` detects any edit made outside the tool.
 
 ## Registry entry (simulated)
 

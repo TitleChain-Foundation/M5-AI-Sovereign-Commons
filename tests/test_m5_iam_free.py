@@ -144,7 +144,7 @@ def test_attestation_has_three_matching_parts(iam, tmp_path):
     assert machine["chain"]["status"] == "SELF_SELECTED_NOT_VERIFIED"
     assert machine["signatures"] == [] and machine["signature_slots"]["holder"] == "RESERVED_NOT_SIGNED"
     assert machine["signature_slots"]["approving_agency"] == "RESERVED_NOT_SIGNED"
-    assert iam.verify_pod(pod)["files_checked"] == 7
+    assert iam.verify_pod(pod)["files_checked"] == 8  # includes consent/consent.json
     cert = json.loads((pod / "M0-M5IAM-000" / "registry" / "certificate-iam-origin.json").read_text())
     assert cert["status"] == "SAMPLE_NOT_ISSUED" and cert["sample"] is True and cert["issued_by"] is None
     receipt = json.loads((pod / "M0-M5IAM-000" / "registry" / "registry-receipt.json").read_text())
@@ -197,7 +197,25 @@ def test_app_accepts_the_form_only_from_its_own_page(tmp_path):
         assert not (tmp_path / "pod").exists()
         status, state = post(good)
         assert status == 200 and state["record"]["status"] == "IAM ONLY" and state["check"]["status"] == "PASS"
+        assert {k: v["choice"] for k, v in state["consent"]["choices"].items()} == {
+            "record_sharing": "REFUSED", "agent_access": "REFUSED"}
         assert post(good)[0] == 409
+
+        def consent(body, origin=base):
+            request = urllib.request.Request(base + "/api/consent", data=json.dumps(body).encode(),
+                                             headers={"Content-Type": "application/json", "Origin": origin}, method="POST")
+            try:
+                with urllib.request.urlopen(request) as response:
+                    return response.status, json.loads(response.read())
+            except urllib.error.HTTPError as error:
+                return error.code, None
+
+        assert consent({"agent_access": "APPROVED"}, origin="https://example.com")[0] == 403
+        assert consent({"agent_access": "MAYBE"})[0] == 409
+        status, state = consent({"agent_access": "APPROVED"})
+        assert status == 200 and state["consent"]["choices"]["agent_access"]["choice"] == "APPROVED"
+        assert state["consent"]["choices"]["record_sharing"]["choice"] == "REFUSED"
+        assert state["check"]["status"] == "PASS"
     finally:
         server.shutdown()
 
@@ -216,3 +234,37 @@ def test_package_ships_the_app_and_an_executable_launcher(tmp_path):
 def test_demonstration_reproduces_the_published_digests():
     demo = load("reproduce", IMPL / "demo" / "reproduce.py")
     assert demo.main([]) == 0
+
+
+def test_consent_is_two_separate_choices_refused_by_default(iam, tmp_path):
+    pod = tmp_path / "pod"
+    iam.init_pod(pod, "Ada", attested=True)
+    consent = iam.load_consent(pod)
+    assert consent["default"] == "REFUSED"
+    assert {k: v["choice"] for k, v in consent["choices"].items()} == {"record_sharing": "REFUSED", "agent_access": "REFUSED"}
+    assert "CYRUS Protocol" in consent["choices"]["agent_access"]["means"]
+    record = iam.load_record(pod)
+    assert record["consent_default"] == "REFUSED" and record["can_authorize"] == []
+    assert "Refusal is the default" in (pod / iam.LAYER / "attestation" / "human-terms.md").read_text()
+
+    changed = iam.set_consent(pod, agent_access="approve")
+    assert changed["choices"]["agent_access"]["choice"] == "APPROVED"
+    assert changed["choices"]["record_sharing"]["choice"] == "REFUSED"
+    assert len(changed["history"]) == 2
+    events = iam.read_events(pod / iam.LAYER)
+    assert [e["type"] for e in events if e["path"] == "consent/consent.json"] == ["CONSENT_RECORDED", "CONSENT_CHANGED"]
+    assert iam.verify_pod(pod)["status"] == "PASS"
+
+    with pytest.raises(iam.PodError):
+        iam.set_consent(pod, record_sharing="maybe")
+    (pod / iam.LAYER / "consent" / "consent.json").write_text("{}")
+    assert iam.verify_pod(pod)["status"] == "FAIL"
+
+
+def test_consent_can_be_chosen_at_activation_and_from_the_command_line(iam, tmp_path, capsys):
+    pod = tmp_path / "pod"
+    iam.init_pod(pod, attested=True, record_sharing="APPROVED")
+    assert iam.load_consent(pod)["choices"]["record_sharing"]["choice"] == "APPROVED"
+    assert iam.main(["consent", "--pod", str(pod), "--share-record", "refuse"]) == 0
+    assert json.loads(capsys.readouterr().out) == {"record_sharing": "REFUSED", "agent_access": "REFUSED"}
+    assert iam.verify_pod(pod)["status"] == "PASS"
