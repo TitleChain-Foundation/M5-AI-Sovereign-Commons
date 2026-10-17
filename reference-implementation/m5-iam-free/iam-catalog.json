@@ -209,7 +209,7 @@
       "name": "Bank of Me",
       "for": "You, as a person",
       "price": "$49 per year",
-      "adds": "A reusable ID for the year, your own member block for a private agent, a registered M5POD and product licences.",
+      "adds": "Your reusable ID: verify once and reuse it everywhere, re-checked and monitored all year so its status stays current. Also your own member block for a private agent, a registered M5POD and product licences.",
       "name_fee": "+ $5 a year for your name \u00b7 first year waived"
     },
     {
@@ -232,7 +232,7 @@
       "tier": "M4",
       "name": "Bank of Institutions",
       "for": "A verified institution",
-      "price": "$250 per year \u00b7 pending launch",
+      "price": "From $250 per year \u00b7 setup by custom quote \u00b7 pending launch",
       "adds": "An account for an institution with verified standing.",
       "name_fee": "+ $5 a year for your name \u00b7 first year waived",
       "detail": "Organized by place: nation, tribal nation or territory, state, county and city. Classified by its standard NAICS industry code, for example 522110 Commercial Banking or 524 Insurance Carriers."
@@ -241,13 +241,13 @@
       "tier": "M5",
       "name": "Bank of Government",
       "for": "A public body",
-      "price": "$500 per year \u00b7 pending launch",
+      "price": "From $500 per year \u00b7 setup by custom quote \u00b7 pending launch",
       "adds": "An account for a government entity. Every action needs human approval.",
       "name_fee": "+ $5 a year for your name \u00b7 first year waived",
       "detail": "Each judicial, legislative and executive body is organized by its place and jurisdiction: nation, tribal nation or territory, state, county and city. Classified by NAICS sector 92, Public Administration: for example 922110 Courts, 921120 Legislative Bodies, 921110 Executive Offices, and 921150 American Indian and Alaska Native Tribal Governments. People register first as Bank of Me humans, then secure their credentials to activate the agency."
     }
   ],
-  "account_note": "Registered accounts are not open yet. Every account pays $5 a year for its name; the first year is waived when the account is activated. Each person who operates an entity account needs their own Bank of Me account first. Sub-accounts are activated separately. Secretary of State and other government filing fees are separate.",
+  "account_note": "Registered accounts are not open yet. Every person who acts for an entity holds their own active Bank of Me; the entity's fee covers the entity, not its people. One account per legal entity; sub-accounts are activated separately. Every account pays $5 a year for its name; the first year is waived when the account is activated. Government filing fees and outside verification are separate.",
   "products": [
     {
       "group": "Talk and meet",
@@ -353,5 +353,50 @@
         }
       ]
     }
-  ]
+  ],
+  "protocols": {
+    "applies_to": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5"
+    ],
+    "note": "Every registered account includes these protocols under the protection of its M5POD. The free IAM does not.",
+    "items": [
+      {
+        "name": "M5-x401",
+        "does": "Asks for and checks proof before access or delivery"
+      },
+      {
+        "name": "M5-x402",
+        "does": "States and validates any payment condition, with a time-stamped token"
+      },
+      {
+        "name": "M5-OpenAPI",
+        "does": "Credentialed access to M5 services and the marketplace"
+      },
+      {
+        "name": "M5Scan",
+        "does": "Checks a claim against several independent sources"
+      },
+      {
+        "name": "M5Index",
+        "does": "Public commons index, including rates by ZIP code"
+      },
+      {
+        "name": "M5Pay",
+        "does": "Routes payments with three-part Ricardian receipts"
+      },
+      {
+        "name": "CYRUS Protocol",
+        "does": "Protects every holder's basic and sovereign rights, and guards the Trust and its IP against capture",
+        "with_iam": "Accepted when you activate your IAM"
+      },
+      {
+        "name": "TitleChain Registry",
+        "does": "Registers titles, certificates and commitments"
+      }
+    ]
+  }
 }

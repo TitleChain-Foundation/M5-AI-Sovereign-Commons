@@ -23,9 +23,10 @@ and the accounts you can open later.
 The same steps from the command line:
 
 ```bash
-python3 m5_iam.py init --name "Your name" --chain wyomingchain.eth --i-am-human
+python3 m5_iam.py init --name "Your name" --chain wyomingchain.eth --i-am-human --accept-cyrus
 python3 m5_iam.py status
 python3 m5_iam.py verify
+python3 m5_iam.py consent --right-to-refuse select
 python3 m5_iam.py export --output my-iam-pod.zip
 ```
 
@@ -43,6 +44,7 @@ M5POD-IAM/
   M0-M5IAM-000/
     iam.json               the IAM record: IAM ONLY, self-attested, not verified
     attestation/           your statement in three parts: words, data, check
+    consent/consent.json   CYRUS Protocol accepted; right to refuse selected or not
     identifiers/           a local identifier; TCID and the others stay empty
     receive/               reserved, empty
     ledger/events.jsonl    hash-chained record of what the tool wrote
@@ -50,6 +52,21 @@ M5POD-IAM/
 
 The first file in every folder is `m5readme.md` and tooling lives in
 `m5agent/`, so the pod is not tied to any one agent or vendor.
+
+## The CYRUS Protocol and your right to refuse
+
+Activation requires you to **accept the CYRUS Protocol**, because it is what
+protects you: no slavery, servitude or forced labour; freedom of thought,
+conscience and faith, any faith or none; and your rights to identity, data,
+privacy, self-determination and portability. It is held by the TitleChain
+Sovereign Purpose Trust.
+
+Under it you hold the **right to refuse consent**. You can select it when you
+activate, or later with `m5_iam.py consent --right-to-refuse select`. On an IAM
+it is recorded as **selected, not activated**: an IAM is self-attested, so it
+activates only when your credentials are verified, by registering Bank of Me
+or by an approved agency verifying your IAM through M5-x401. Every change is
+recorded in the ledger.
 
 ## What it does not do
 
