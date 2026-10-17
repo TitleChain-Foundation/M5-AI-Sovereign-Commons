@@ -327,7 +327,9 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
 
 def load_consent(pod):
     path = Path(pod).expanduser() / LAYER / 'consent' / 'consent.json'
-    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+    consent = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+    # Pods made before the CYRUS Protocol step have no acceptance on record.
+    return consent if consent and 'cyrus_protocol' in consent else None
 
 
 def set_refusal(pod, selected, now=None):
