@@ -2,8 +2,9 @@
 
 Runs on your own computer only. Standard library only. It listens on the
 loopback address, shows one page, and can do one thing to your files: create
-your IAM starting pod when you make the human attestation, and record your
-two consent choices. It makes no
+your IAM starting pod when you make the human attestation, with your
+acceptance of the CYRUS Protocol, and record whether you select your right to
+refuse consent. It makes no
 outbound network calls.
 """
 import argparse
@@ -69,7 +70,8 @@ class Handler(BaseHTTPRequestHandler):
         consent = m5_iam.load_consent(self.pod) if record else None
         return {'pod_path': shown, 'record': record, 'check': check, 'catalog': catalog,
                 'registry': receipt, 'certificate': certificate, 'consent': consent,
-                'consent_choices': m5_iam.CONSENT_CHOICES, 'terms_template': m5_iam.HUMAN_TERMS}
+                'cyrus': m5_iam.CYRUS_PROTOCOL,
+                'refusal_activates': m5_iam.REFUSAL_ACTIVATES, 'terms_template': m5_iam.HUMAN_TERMS}
 
     def do_GET(self):
         if not self.local_request():
@@ -95,7 +97,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             data = json.loads(self.rfile.read(length))
             if self.path == '/api/consent':
-                m5_iam.set_consent(self.pod, data.get('record_sharing'), data.get('agent_access'))
+                m5_iam.set_refusal(self.pod, data.get('right_to_refuse') is True)
                 self.send_json(200, self.state())
                 return
             chains = {c['chain'] for c in json.loads((HERE / 'iam-catalog.json').read_text(encoding='utf-8'))['chains']}
@@ -104,8 +106,8 @@ class Handler(BaseHTTPRequestHandler):
                 raise m5_iam.PodError('Choose a state chain from the list.')
             m5_iam.init_pod(self.pod, clean(data.get('name'), 80), data.get('attest') is True,
                             chain=chain, contact=clean(data.get('contact'), 120),
-                            record_sharing=data.get('record_sharing', 'REFUSED'),
-                            agent_access=data.get('agent_access', 'REFUSED'))
+                            accept_cyrus=data.get('accept_cyrus') is True,
+                            select_refusal=data.get('right_to_refuse') is True)
         except (ValueError, AttributeError):
             self.send_json(400, {'error': 'The form could not be read.'})
         except m5_iam.PodError as error:

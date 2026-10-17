@@ -37,9 +37,12 @@ I understand that this is my own attestation. No one has verified it. It does
 not issue a TCID or a credential, open a Bank of Me account, or authorize any
 payment, signature, transfer or agent action.
 
-Nothing in this account is shared, and no agent may read it, unless I
-approve that in my consent record. Refusal is the default. I may change either
-choice at any time.
+I accept the CYRUS Protocol, which protects me: no slavery, servitude or
+forced labour; freedom of thought, conscience and faith, any faith or none;
+and my rights to identity, data, privacy, self-determination and portability.
+
+Under it I hold the right to refuse consent. I may select it now. It
+activates only when my credentials are verified.
 
 I may delete this account and its records from my device at any time.
 
@@ -55,13 +58,18 @@ SIGNATURE_SLOTS = {
     'approving_agency': 'RESERVED_NOT_SIGNED',
     'note': 'Signed when the holder has a signing key and when an approved agency verifies this IAM through M5-x401.',
 }
-# Two separate choices, both refused unless the holder approves them.
-CONSENT_CHOICES = {
-    'record_sharing': 'Share my IAM record (name, state chain and attestation) beyond this device.',
-    'agent_access': 'Let agents I choose read this pod and assist me under the CYRUS Protocol. '
-                    'They still cannot act, pay, sign or authorize anything for me.',
+# Accepting the CYRUS Protocol is required: it is what protects the holder.
+# Wording is a draft for counsel review.
+CYRUS_PROTOCOL = {
+    'name': 'CYRUS Protocol',
+    'held_by': 'TitleChain Sovereign Purpose Trust',
+    'basic_rights': ['No slavery, servitude or forced labour',
+                     'Freedom of thought, conscience and faith: any faith or none'],
+    'sovereign_rights': ['Identity', 'Data', 'Privacy', 'Self-determination', 'Portability'],
+    'grants': 'The right to refuse consent',
 }
-CONSENT_VALUES = ('APPROVED', 'REFUSED')
+REFUSAL_ACTIVATES = ('When your credentials are verified, by registering Bank of Me or by an approved agency '
+                     'verifying this IAM through M5-x401.')
 NON_CLAIMS = [
     'Not a TCID. No TitleChain ID has been issued.',
     'Not a verified identity. No credential or issuer has checked this statement.',
@@ -69,7 +77,7 @@ NON_CLAIMS = [
     'Cannot authorize a transaction, title transfer, payment, signature or delegated agent action.',
 ]
 VAULT_NOTE = {
-    'consent': 'Your two consent choices: sharing your IAM record, and agent access under the CYRUS Protocol. Both refused unless you approve.',
+    'consent': 'Your acceptance of the CYRUS Protocol, and your right to refuse consent: selected by you, activated when your credentials are verified.',
     'attestation': 'The human attestation in three matching parts: the words, the data and the check.',
     'identifiers': 'The local identifier. TCID, PayName, ENS and WSW URI stay empty until issued by registration.',
     'receive': 'Reserved for a receiving address. Empty until one is issued by registration.',
@@ -173,7 +181,22 @@ def registry_receipt(layer, contract_id, now):
                     'Registry. Your name, contact and statement stay on your own device.'}
 
 
-def iam_certificate(record, receipt):
+COMMONS = {
+    'publisher': 'TitleChain Foundation',
+    'repository': 'https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons',
+    'software_license': 'Apache-2.0',
+    'standard_license': 'CC-BY-4.0',
+    'your_records': 'Yours. The licences cover the software and the standard, never your records.',
+}
+USAGE = {
+    'price': 'Free for life',
+    'scope': 'Personal. One human, acting for themselves.',
+    'transfer': 'Not transferable. A new holder makes their own attestation.',
+    'can_authorize': [],
+}
+
+
+def iam_certificate(record, receipt, consent):
     """A sample Certificate of Title for the IAM origin, issued against the simulated registry entry."""
     body = {'schema': SCHEMA, 'certificate': 'Certificate of Title', 'subject': 'IAM origin',
             'title_no': receipt['ref_id'], 'holder': record['display_name'] or 'Holder of this IAM',
@@ -181,7 +204,13 @@ def iam_certificate(record, receipt):
             'identity_status': 'Human attested, not verified',
             'rights': ['Use the free IAM for life', 'Use free and open tools on your own devices',
                        'Export or delete your own records at any time', 'Apply for a registered account when they open'],
-            'consent': 'Record sharing and agent access are refused unless the holder approves them in consent/consent.json.',
+            'cyrus_protocol': {'status': consent['cyrus_protocol']['status'],
+                               'accepted_at': consent['cyrus_protocol']['accepted_at']},
+            'right_to_refuse': {'selected': consent['right_to_refuse']['selected'],
+                                'status': consent['right_to_refuse']['status'],
+                                'current_choice': 'consent/consent.json'},
+            'commons': COMMONS, 'usage': USAGE,
+            'shape': 'ISO/IEC 19770-3 entitlement (sample); licences as SPDX identifiers',
             'limits': 'Not a TCID or a verified identity. Cannot authorize a payment, signature, title transfer or agent action.',
             'registry_commitment_sha256': receipt['commitment_sha256'], 'status': 'SAMPLE_NOT_ISSUED',
             'sample': True, 'issued_by': None,
@@ -190,28 +219,28 @@ def iam_certificate(record, receipt):
     return body
 
 
-def consent_value(value):
-    value = str(value or 'REFUSED').upper()
-    value = {'APPROVE': 'APPROVED', 'REFUSE': 'REFUSED'}.get(value, value)
-    if value not in CONSENT_VALUES:
-        raise PodError('Consent must be APPROVED or REFUSED.')
-    return value
+def refusal_status(selected):
+    return 'SELECTED_NOT_ACTIVATED' if selected else 'NOT_SELECTED'
 
 
-def consent_record(contract_id, choices, now, history):
-    return {'schema': SCHEMA, 'type': 'iam-consent', 'contract_id': contract_id, 'default': 'REFUSED',
-            'choices': {key: {'choice': choices[key], 'means': CONSENT_CHOICES[key]} for key in CONSENT_CHOICES},
+def consent_record(contract_id, accepted_at, selected, now, history):
+    return {'schema': SCHEMA, 'type': 'iam-consent', 'contract_id': contract_id,
+            'cyrus_protocol': {**CYRUS_PROTOCOL, 'status': 'ACCEPTED', 'accepted_at': accepted_at,
+                               'required': True},
+            'right_to_refuse': {'selected': selected, 'status': refusal_status(selected), 'activated': False,
+                                'activates': REFUSAL_ACTIVATES,
+                                'why_not_active': 'An IAM is self-attested. Its credentials are not verified yet.'},
             'decided_at': now, 'history': history,
-            'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False,
-            'note': 'Two separate choices. Each stays refused unless you approve it, and you can change either at any time.'}
+            'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False}
 
 
 def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chain='', contact='',
-             record_sharing='REFUSED', agent_access='REFUSED'):
+             accept_cyrus=False, select_refusal=False):
     pod = Path(pod).expanduser()
-    choices = {'record_sharing': consent_value(record_sharing), 'agent_access': consent_value(agent_access)}
     if not attested:
         raise PodError('The human attestation is required to create an IAM pod. On the command line, add --i-am-human.')
+    if accept_cyrus is not True:
+        raise PodError('Accepting the CYRUS Protocol is required: it is what protects you. On the command line, add --accept-cyrus.')
     if pod.exists() and any(pod.iterdir()):
         raise PodError(f'{pod} already exists and is not empty. Nothing was changed.')
     now = now or utc_now()
@@ -252,7 +281,7 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
               'contact': contact or None, 'contract_id': contract_id,
               'price': 'FREE', 'network_required': False, 'can_authorize': [], 'non_claims': NON_CLAIMS,
               'signature_status': 'RESERVED_NOT_SIGNED', 'consent_file': 'consent/consent.json',
-              'consent_default': 'REFUSED'}
+              'cyrus_protocol': 'ACCEPTED'}
     write_json(layer / 'attestation' / 'human-attestation.json', attestation)
     write_json(layer / 'identifiers' / 'identifiers.json', identifiers)
     write_json(layer / 'iam.json', record)
@@ -266,8 +295,8 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
         'This folder stays on your computer. Nothing in it is sent anywhere.\n', encoding='utf-8')
     (pod / 'm5agent' / 'm5readme.md').write_text(
         '# m5agent\n\nRules, prompts and configuration for any agent, local or hosted, that you allow '
-        'to read this pod.\nNo agent may read this pod unless you approve agent access in '
-        f'{LAYER}/consent/consent.json, and no agent may act for you on the strength of an IAM-only pod.\n', encoding='utf-8')
+        'to read this pod.\nEvery agent works under the CYRUS Protocol the holder accepted '
+        f'({LAYER}/consent/consent.json). No agent may act for you on the strength of an IAM-only pod.\n', encoding='utf-8')
     (layer / 'm5readme.md').write_text(
         f'# {ACCOUNT_SKU} · IAM · free\n\nStatus: **{STATUS}** · {IDENTITY_STATUS}\n\n'
         + ''.join(f'- `{name}/` — {note}\n' for name, note in VAULT_NOTE.items())
@@ -280,13 +309,15 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
     append_event(layer, 'HUMAN_ATTESTED', now, 'attestation/human-attestation.json')
     append_event(layer, 'IDENTIFIERS_WRITTEN', now, 'identifiers/identifiers.json')
     append_event(layer, 'IAM_RECORD_WRITTEN', now, 'iam.json')
-    write_json(layer / 'consent' / 'consent.json',
-               consent_record(contract_id, choices, now, [{'at': now, **choices}]))
+    selected = bool(select_refusal)
+    consent = consent_record(contract_id, now, selected, now,
+                             [{'at': now, 'cyrus_protocol': 'ACCEPTED', 'right_to_refuse': refusal_status(selected)}])
+    write_json(layer / 'consent' / 'consent.json', consent)
     append_event(layer, 'CONSENT_RECORDED', now, 'consent/consent.json')
     receipt = registry_receipt(layer, contract_id, now)
     write_json(layer / 'registry' / 'registry-receipt.json', receipt)
     append_event(layer, 'REGISTRY_ENTRY_SIMULATED', now, 'registry/registry-receipt.json')
-    write_json(layer / 'registry' / 'certificate-iam-origin.json', iam_certificate(record, receipt))
+    write_json(layer / 'registry' / 'certificate-iam-origin.json', iam_certificate(record, receipt, consent))
     append_event(layer, 'CERTIFICATE_SAMPLE_WRITTEN', now, 'registry/certificate-iam-origin.json')
     if os.name == 'posix':
         for path in [pod, *pod.rglob('*')]:
@@ -299,21 +330,19 @@ def load_consent(pod):
     return json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
 
 
-def set_consent(pod, record_sharing=None, agent_access=None, now=None):
-    """Change either consent choice. The change is added to the history and to the ledger."""
+def set_refusal(pod, selected, now=None):
+    """Select or unselect the right to refuse consent. It stays not activated until credentials are verified."""
     record = load_record(pod)
     current = load_consent(pod)
     if current is None:
-        raise PodError('This pod has no consent record. It was created before consent choices existed.')
+        raise PodError('This pod has no consent record. It was created before the CYRUS Protocol step existed.')
     now = now or utc_now()
-    choices = {key: value['choice'] for key, value in current['choices'].items()}
-    for key, value in (('record_sharing', record_sharing), ('agent_access', agent_access)):
-        if value is not None:
-            choices[key] = consent_value(value)
+    selected = bool(selected)
     layer = Path(pod).expanduser() / LAYER
     path = layer / 'consent' / 'consent.json'
-    write_json(path, consent_record(record['contract_id'], choices, now, current['history'] + [{'at': now, **choices}]))
-    append_event(layer, 'CONSENT_CHANGED', now, 'consent/consent.json')
+    history = current['history'] + [{'at': now, 'cyrus_protocol': 'ACCEPTED', 'right_to_refuse': refusal_status(selected)}]
+    write_json(path, consent_record(record['contract_id'], current['cyrus_protocol']['accepted_at'], selected, now, history))
+    append_event(layer, 'REFUSAL_SELECTED' if selected else 'REFUSAL_UNSELECTED', now, 'consent/consent.json')
     if os.name == 'posix':
         path.chmod(0o600)
     return load_consent(pod)
@@ -370,34 +399,36 @@ def main(argv=None):
     commands = parser.add_subparsers(dest='command', required=True)
     for name, text in [('init', 'create a new local IAM pod'), ('status', 'show the IAM record'),
                        ('verify', 'check the ledger and recorded files'), ('export', 'copy the pod into one ZIP you keep'),
-                       ('consent', 'approve or refuse record sharing and agent access')]:
+                       ('consent', 'select or unselect your right to refuse consent')]:
         command = commands.add_parser(name, help=text)
         command.add_argument('--pod', default='~/M5POD-IAM', help='pod folder (default: ~/M5POD-IAM)')
         if name == 'init':
             command.add_argument('--name', default='', help='a display name of your choosing (optional)')
             command.add_argument('--i-am-human', action='store_true', help='make the human attestation')
             command.add_argument('--chain', default='', help='your state chain, your own choice (optional)')
-        if name in ('init', 'consent'):
-            default = 'refuse' if name == 'init' else None
-            command.add_argument('--share-record', choices=['approve', 'refuse'], default=default,
-                                 help='share your IAM record beyond this device (default: refuse)')
-            command.add_argument('--agent-access', choices=['approve', 'refuse'], default=default,
-                                 help='let agents you choose read this pod under the CYRUS Protocol (default: refuse)')
+        if name == 'init':
+            command.add_argument('--accept-cyrus', action='store_true',
+                                 help='accept the CYRUS Protocol, which protects you (required)')
+            command.add_argument('--select-refusal', action='store_true',
+                                 help='select your right to refuse consent (activates when your credentials are verified)')
+        if name == 'consent':
+            command.add_argument('--right-to-refuse', choices=['select', 'unselect'], required=True)
         if name == 'export':
             command.add_argument('--output', required=True, help='ZIP file to write')
     args = parser.parse_args(argv)
     try:
         if args.command == 'init':
             record = init_pod(args.pod, args.name, args.i_am_human, chain=args.chain,
-                              record_sharing=args.share_record, agent_access=args.agent_access)
+                              accept_cyrus=args.accept_cyrus, select_refusal=args.select_refusal)
             print(json.dumps({'created': str(Path(args.pod).expanduser()), 'status': record['status'],
                               'identity_status': record['identity_status'], 'local_id': record['local_id'],
                               'open': str(Path(args.pod).expanduser() / 'm5-iam.html')}, indent=2))
         elif args.command == 'status':
             print(json.dumps(load_record(args.pod), indent=2, ensure_ascii=False))
         elif args.command == 'consent':
-            consent = set_consent(args.pod, args.share_record, args.agent_access)
-            print(json.dumps({key: value['choice'] for key, value in consent['choices'].items()}, indent=2))
+            consent = set_refusal(args.pod, args.right_to_refuse == 'select')
+            print(json.dumps({'cyrus_protocol': consent['cyrus_protocol']['status'],
+                              'right_to_refuse': consent['right_to_refuse']['status']}, indent=2))
         elif args.command == 'verify':
             result = verify_pod(args.pod)
             print(json.dumps(result, indent=2))

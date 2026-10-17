@@ -390,7 +390,8 @@
       },
       {
         "name": "CYRUS Protocol",
-        "does": "Guards the Trust and its IP against capture"
+        "does": "Protects every holder's basic and sovereign rights, and guards the Trust and its IP against capture",
+        "with_iam": "Accepted when you activate your IAM"
       },
       {
         "name": "TitleChain Registry",

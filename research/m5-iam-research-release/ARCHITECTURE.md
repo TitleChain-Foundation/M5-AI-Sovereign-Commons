@@ -34,7 +34,7 @@ M5POD-IAM/
   M0-M5IAM-000/
     iam.json                 IAM ONLY · self-attested, not verified · free
     attestation/             human terms, machine record, executable check
-    consent/consent.json     two separate choices, both REFUSED unless approved
+    consent/consent.json     CYRUS Protocol accepted; right to refuse selected, not activated
     identifiers/             local identifier; TCID and others empty until registration
     registry/                simulated TitleChain Registry entry
     receive/                 reserved
@@ -55,20 +55,32 @@ verifies the IAM through M5-x401 (`RESERVED_NOT_SIGNED`; nothing is signed in
 this release). `verify` recomputes the
 ledger chain and every recorded digest and fails closed on any difference.
 
-## Consent
+## CYRUS Protocol and the right to refuse consent
 
-Activation records two separate choices in `consent/consent.json`, each
-`APPROVED` or `REFUSED`, and both default to `REFUSED`:
+Activation fails unless the holder accepts the CYRUS Protocol
+(`accept_cyrus`, `--accept-cyrus`). Acceptance is recorded in
+`consent/consent.json` with the protections it gives (basic rights, and the
+five sovereign rights of identity, data, privacy, self-determination and
+portability) and the Trust that holds it.
 
-- **Record sharing:** whether the IAM record may be shared beyond the device.
-- **Agent access (CYRUS Protocol):** whether agents the holder chooses may read
-  the pod and assist. Approval never lets an agent act, pay, sign or
-  authorize: an IAM-only pod has `can_authorize: []`.
+The protocol grants the right to refuse consent. The holder may select it at
+activation or later. On an IAM it is `SELECTED_NOT_ACTIVATED` with
+`activated: false`, because an IAM's credentials are self-attested. It
+activates when credentials are verified (Bank of Me registration, or an
+approved agency through M5-x401), which this release does not perform. Each
+change is appended to the history and the ledger (`CONSENT_RECORDED`,
+`REFUSAL_SELECTED`, `REFUSAL_UNSELECTED`), so `verify` detects edits made
+outside the tool.
 
-The human terms state that refusal is the default. The holder can change
-either choice at any time, in the app or with `m5_iam.py consent`. Each change
-is appended to the file's history and to the ledger (`CONSENT_RECORDED`,
-`CONSENT_CHANGED`), so `verify` detects any edit made outside the tool.
+## Certificate of Title contents
+
+The sample IAM certificate records: the holder, account and attestation; the
+registry reference and commitment; CYRUS Protocol acceptance; the
+right-to-refuse status at issuance; the commons (publisher, repository,
+software licence `Apache-2.0`, standard licence `CC-BY-4.0`, and that the
+holder's records stay theirs); and usage (free for life, personal, not
+transferable, `can_authorize: []`). Its shape follows ISO/IEC 19770-3
+entitlement records, with licences as SPDX identifiers.
 
 ## Registry entry (simulated)
 

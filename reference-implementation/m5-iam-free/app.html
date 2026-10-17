@@ -36,13 +36,7 @@ input[type=text]:focus,select:focus{outline:2px solid var(--ink);outline-offset:
 .btn{margin-top:18px;border:0;border-radius:9999px;background:var(--ink);color:var(--white);padding:13px 26px;font-weight:600;cursor:pointer}
 .btn:disabled{background:var(--line2);cursor:not-allowed}
 .error{color:var(--rose);font-size:14px;margin:10px 0 0}
-.consent{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line)}
-.consent:first-of-type{border-top:0}
-.consent b{font-weight:600}.consent span{display:block;color:var(--muted);font-size:13px;margin-top:2px}
-.seg{display:flex;flex:none;border:1px solid var(--line2);border-radius:9999px;overflow:hidden}
-.seg button{border:0;background:var(--white);color:var(--muted);font:inherit;font-size:11px;font-weight:700;letter-spacing:.14em;padding:7px 12px;cursor:pointer}
-.seg button.on.APPROVED{background:var(--emerald);color:#fff}.seg button.on.REFUSED{background:var(--rose);color:#fff}
-@media (max-width:560px){.consent{flex-direction:column;align-items:flex-start}}
+
 .pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line2);border-radius:9999px;padding:4px 12px;color:var(--muted);background:var(--white);margin:0 6px 6px 0}
 .pill.on{border-color:var(--emerald-line);background:var(--emerald-soft);color:var(--emerald)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
@@ -66,6 +60,7 @@ input[type=text]:focus,select:focus{outline:2px solid var(--ink);outline-offset:
 .chaincard .cell .v{color:var(--white)}
 .chaincard .group{color:#FDA4AF}
 .chaintop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.pill.pending{border-color:#FCD34D;background:#FFFBEB;color:#92400E;margin:0}
 .pill.sample{background:#292524;border-color:#57534E;color:#FDE68A;margin:0}
 .hash{color:#A7F3D0;font-size:13px;padding:10px 12px;border:1px solid #44403C;border-radius:10px;margin-top:6px}
 .note{font-size:13px;color:var(--muted);margin:12px 0 0}
@@ -290,20 +285,19 @@ function supportPanel(item) {
 
 function cell(k, v, n) { const c = el('div', 'cell'); c.append(el('div', 'k', k), el('div', 'v', v)); if (n) c.append(el('div', 'n', n)); return c; }
 
-const CONSENT_LABEL = { record_sharing: 'Share my IAM record', agent_access: 'Agent access · CYRUS Protocol' };
-// Two separate choices. Each starts as Refuse; the holder must choose Approve.
-function consentRows(values, onPick) {
-  return Object.keys(CONSENT_LABEL).map(key => {
-    const row = el('div', 'consent'), left = el('div');
-    left.append(el('b', null, CONSENT_LABEL[key]), el('span', null, state.consent_choices[key]));
-    const seg = el('div', 'seg');
-    ['APPROVED', 'REFUSED'].forEach(v => {
-      const b = el('button', v + (values[key] === v ? ' on' : ''), v === 'APPROVED' ? 'APPROVE' : 'REFUSE'); b.type = 'button';
-      b.setAttribute('aria-pressed', String(values[key] === v));
-      b.addEventListener('click', () => onPick(key, v)); seg.append(b);
-    });
-    row.append(left, seg); return row;
-  });
+// CYRUS Protocol: accepting it is required, because it is what protects the holder.
+function cyrusBox() {
+  const c = state.cyrus, box = el('div', 'terms');
+  box.append(el('b', null, c.name + ' · held by the ' + c.held_by));
+  const list = el('ul'); list.style.margin = '8px 0 0';
+  c.basic_rights.forEach(r => list.append(el('li', null, r)));
+  list.append(el('li', null, 'Your rights to ' + c.sovereign_rights.join(', ').toLowerCase().replace(/, ([^,]*)$/, ' and $1')));
+  list.append(el('li', null, c.grants + ' — selected by you, activated when your credentials are verified'));
+  box.append(list);
+  return box;
+}
+function refusalStatus(r) {
+  return r.selected ? 'Selected · not activated' : 'Not selected';
 }
 
 function formView() {
@@ -330,29 +324,32 @@ function formView() {
   const box = el('input'); box.type = 'checkbox'; box.id = 'attest';
   const attest = el('label', 'attest'); attest.htmlFor = 'attest'; attest.style.cssText = 'text-transform:none;letter-spacing:0;color:inherit';
   attest.append(box, el('span', null, 'I am attesting to my humanity. I am a human being.'));
-  const choices = { record_sharing: 'REFUSED', agent_access: 'REFUSED' };
-  const consentBox = el('div');
-  const drawConsent = () => consentBox.replaceChildren(...consentRows(choices, (k, v) => { choices[k] = v; drawConsent(); }));
-  drawConsent();
-  const l4 = el('label', null, 'Your consent '); l4.append(el('small', null, 'two separate choices, both refused unless you approve'));
+  const l4 = el('label', null, 'The CYRUS Protocol '); l4.append(el('small', null, 'required · it protects you'));
+  const cyrus = el('input'); cyrus.type = 'checkbox'; cyrus.id = 'cyrus';
+  const cyrusLabel = el('label', 'attest'); cyrusLabel.htmlFor = 'cyrus'; cyrusLabel.style.cssText = 'text-transform:none;letter-spacing:0;color:inherit';
+  cyrusLabel.append(cyrus, el('span', null, 'I accept the CYRUS Protocol.'));
+  const refuse = el('input'); refuse.type = 'checkbox'; refuse.id = 'refuse';
+  const refuseLabel = el('label', 'attest'); refuseLabel.htmlFor = 'refuse'; refuseLabel.style.cssText = 'text-transform:none;letter-spacing:0;color:inherit;font-weight:400;font-size:15px';
+  const refuseText = el('span'); refuseText.append(el('b', null, 'I select my right to refuse consent. '), document.createTextNode('Not activated yet. It activates ' + state.refusal_activates.charAt(0).toLowerCase() + state.refusal_activates.slice(1)));
+  refuseLabel.append(refuse, refuseText);
   const button = el('button', 'btn', 'Activate my IAM'); button.type = 'submit'; button.disabled = true;
   const error = el('p', 'error');
-  const ready = () => { button.disabled = !(box.checked && name.value.trim() && chain.value); };
+  const ready = () => { button.disabled = !(box.checked && cyrus.checked && name.value.trim() && chain.value); };
   [name, chain].forEach(i => i.addEventListener('input', () => { fill(); ready(); }));
-  box.addEventListener('change', ready);
+  box.addEventListener('change', ready); cyrus.addEventListener('change', ready);
   card.addEventListener('submit', async event => {
     event.preventDefault();
     button.disabled = true; error.textContent = '';
     try {
       const response = await fetch('/api/attest', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name.value, chain: chain.value, contact: contact.value, attest: box.checked, ...choices }) });
+        body: JSON.stringify({ name: name.value, chain: chain.value, contact: contact.value, attest: box.checked, accept_cyrus: cyrus.checked, right_to_refuse: refuse.checked }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Something went wrong.');
       state = data; render();
       window.scrollTo(0, 0);
     } catch (problem) { error.textContent = problem.message; ready(); }
   });
-  card.append(l1, name, l2, chain, l3, contact, terms, l4, consentBox, attest, button, error);
+  card.append(l1, name, l2, chain, l3, contact, terms, l4, cyrusBox(), cyrusLabel, refuseLabel, attest, button, error);
   fill();
   return [head, card];
 }
@@ -381,20 +378,24 @@ function resultView() {
 
   const consent = el('div', 'card');
   if (state.consent) {
-    const values = Object.fromEntries(Object.entries(state.consent.choices).map(([k, v]) => [k, v.choice]));
+    const k = state.consent, r = k.right_to_refuse;
     const problem = el('p', 'error');
-    consent.append(el('h2', null, 'Your consent'),
-      el('p', 'note', 'Two separate choices. Each stays refused unless you approve it, and you can change either at any time. Every change is added to your ledger.'),
-      ...consentRows(values, async (k, v) => {
-        if (values[k] === v) return;
-        try {
-          const response = await fetch('/api/consent', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ [k]: v }) });
-          const data = await response.json();
-          if (!response.ok) throw new Error(data.error || 'Something went wrong.');
-          state = data; render();
-        } catch (e) { problem.textContent = e.message; }
-      }), problem,
-      el('p', 'note', 'Last changed ' + new Date(state.consent.decided_at).toLocaleString() + ' · ' + state.consent.history.length + ' recorded'));
+    const top = el('div', 'chaintop'); top.append(el('h2', null, 'Your rights'), el('span', 'pill on', 'CYRUS Protocol accepted'));
+    consent.append(top, el('p', 'note', 'Accepted ' + new Date(k.cyrus_protocol.accepted_at).toLocaleString() + '. It protects you in everything this pod holds.'), cyrusBox());
+    const row = el('div', 'row'), left = el('div');
+    left.append(el('b', null, 'Right to refuse consent'), document.createTextNode(' '), el('span', null, r.selected ? r.why_not_active + ' It activates ' + r.activates.charAt(0).toLowerCase() + r.activates.slice(1) : 'You can select it at any time.'));
+    const right = el('div', 'r'); right.append(el('span', 'pill' + (r.selected ? ' pending' : ''), refusalStatus(r)));
+    const b = el('button', 'linkbtn', r.selected ? 'Unselect' : 'Select'); b.type = 'button';
+    b.addEventListener('click', async () => {
+      try {
+        const response = await fetch('/api/consent', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ right_to_refuse: !r.selected }) });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+        state = data; render();
+      } catch (e) { problem.textContent = e.message; }
+    });
+    right.append(b); row.append(left, right);
+    consent.append(row, problem, el('p', 'note', k.history.length + ' recorded in your ledger'));
   }
 
   const reg = state.registry;
@@ -444,7 +445,7 @@ function resultView() {
   later.append(el('p', 'note', state.catalog.account_note));
   if (state.catalog.protocols) {
     later.append(el('div', 'group', 'Protocols included with every registered account'));
-    state.catalog.protocols.items.forEach(x => { const row = el('div', 'row'), left = el('div'); left.append(el('b', null, x.name), document.createTextNode(' '), el('span', null, x.does)); row.append(left, el('div', 'r', 'Not with IAM')); later.append(row); });
+    state.catalog.protocols.items.forEach(x => { const row = el('div', 'row'), left = el('div'); left.append(el('b', null, x.name), document.createTextNode(' '), el('span', null, x.does)); row.append(left, el('div', 'r', x.with_iam || 'Not with IAM')); later.append(row); });
   }
 
   const rep = el('div', 'card');
@@ -474,8 +475,11 @@ function resultView() {
       by: 'This certifies that the IAM origin below was attested, by a human being, on a device the holder controls, by',
       holder: c.holder, name: 'IAM · ' + c.account, what: 'Free for life · ' + (c.state_chain || 'state chain not chosen'),
       fields: [['Account', c.account], ['State chain', (c.state_chain || 'Not chosen') + ' · self-selected'], ['Attested', new Date(c.attested_at).toLocaleDateString()],
-        ['Identity', c.identity_status], ['Registry ref', '#' + c.title_no], ['Status', 'Sample · not issued']],
-      rightsTitle: 'WHAT YOUR IAM GIVES YOU', rights: c.rights, foot: c.limits,
+        ['Identity', c.identity_status], ['Registry ref', '#' + c.title_no], ['Status', 'Sample · not issued'],
+        ['CYRUS Protocol', 'Accepted'], ['Right to refuse', refusalStatus(c.right_to_refuse)],
+        ['Software licence', c.commons.software_license], ['Standard licence', c.commons.standard_license],
+        ['Published by', c.commons.publisher], ['Usage', c.usage.price + ' · ' + c.usage.scope]],
+      rightsTitle: 'WHAT YOUR IAM GIVES YOU', rights: c.rights, foot: c.limits + ' ' + c.usage.transfer + ' Your records: ' + c.commons.your_records,
       hashLabel: 'Registry commitment:', hash: c.registry_commitment_sha256 }));
   }
   const parts = [head, have];
