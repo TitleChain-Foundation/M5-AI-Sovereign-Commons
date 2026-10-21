@@ -219,6 +219,133 @@ def iam_certificate(record, receipt, consent):
     return body
 
 
+KIT_TERMS = """# Software kit acceptance
+
+I, {name}, holder of IAM account {account}, choose these free tools for my own use:
+
+{lines}
+
+I download each tool from its official source, listed above.
+
+I accept each tool's licence as published by the people who make it. The
+licence is granted by them, not by M5 or TitleChain Foundation. The sample
+certificates in my pod record each licence; they do not grant it.
+
+M5 tool names are TitleChain Foundation's names for these kits. Each tool
+keeps its own name, licence and trademarks, and its makers are not affiliated
+with M5.
+
+My records stay mine, in this pod.
+
+Accepted: {now}
+"""
+KIT_RIGHTS = ['Use it for any purpose', 'Study how it works', 'Change it', 'Share copies']
+COPYLEFT = ('GPL', 'AGPL', 'MPL', 'LGPL')
+
+
+def load_starter_kit():
+    """The starter kit listed in iam-catalog.json beside this file."""
+    catalog = Path(__file__).resolve().parent / 'iam-catalog.json'
+    return json.loads(catalog.read_text(encoding='utf-8'))['starter_kit']
+
+
+def kit_certificate(record, tool, accepted_at, terms_sha256):
+    """A sample Software Licence Certificate of Title for one tool in the holder's kit."""
+    components = [{key: part[key] for key in ('name', 'version', 'license', 'source', 'download')}
+                  for part in tool['components']]
+    seed = json.dumps({'local_id': record['local_id'], 'tool': tool['id'], 'components': components,
+                       'accepted_at': accepted_at}, sort_keys=True)
+    copyleft = any(part['license'].startswith(COPYLEFT) for part in components)
+    body = {'schema': SCHEMA, 'certificate': 'Certificate of Title', 'subject': 'Software licence',
+            'title_no': 'SAMPLE-SW-' + sha256_bytes(seed.encode('utf-8'))[:8].upper(),
+            'holder': record['display_name'] or 'Holder of this IAM', 'account': ACCOUNT_SKU,
+            'm5_tool': tool['m5_name'], 'job': tool['job'], 'powered_by': components,
+            'licences': sorted({part['license'] for part in components}), 'kind': 'Open source', 'cost': 'FREE',
+            'accepted_at': accepted_at, 'kit_terms_sha256': terms_sha256, 'rights': KIT_RIGHTS,
+            'share_alike': copyleft,
+            'licence_note': 'The licence is granted by the people who make this software, under its public terms. '
+                            'This certificate records it; it does not grant it.',
+            'shape': 'ISO/IEC 19770-3 entitlement (sample); licences as SPDX identifiers',
+            'registry': 'SIMULATED_NOT_ANCHORED', 'status': 'SAMPLE_NOT_ISSUED', 'sample': True, 'issued_by': None,
+            'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False,
+            'note': 'Sample certificate. A Certificate of Title is issued by the TitleChain Registry only after launch.'}
+    body['certificate_sha256'] = sha256_bytes(json.dumps(body, sort_keys=True).encode('utf-8'))
+    return body
+
+
+def accept_kit(pod, tool_ids, signer, now=None, kit=None):
+    """Record the holder's acceptance of their software kit, with a sample certificate for each tool.
+
+    Writes the acceptance words, one sample certificate per tool and a kit record into the pod, each
+    entered in the ledger. Downloads nothing and sends nothing: the holder downloads each tool themselves.
+    """
+    record = load_record(pod)
+    if load_consent(pod) is None:
+        raise PodError('This pod has no CYRUS Protocol acceptance on record, so it cannot accept a kit.')
+    kit = kit or load_starter_kit()
+    tools = {tool['id']: tool for tool in kit['tools']}
+    wanted = set(tool_ids or [])
+    if not wanted:
+        raise PodError('Choose at least one tool for your kit.')
+    unknown = sorted(wanted - set(tools))
+    if unknown:
+        raise PodError('Not in the starter kit: ' + ', '.join(unknown))
+    signer = ' '.join(str(signer or '').split())[:80]
+    if not signer:
+        raise PodError('Type your name to sign.')
+    now = now or utc_now()
+    chosen = [tool for tool in kit['tools'] if tool['id'] in wanted]
+    layer = Path(pod).expanduser() / LAYER
+    (layer / 'software').mkdir(exist_ok=True)
+
+    lines = '\n'.join(f'- {tool["m5_name"]}: ' + ', '.join(
+        f'{part["name"]} {part["version"]} ({part["license"]}), from {part["download"]}' for part in tool['components'])
+        for tool in chosen)
+    terms = KIT_TERMS.format(name=signer, account=ACCOUNT_SKU, lines=lines, now=now)
+    (layer / 'software' / 'kit-terms.md').write_text(terms, encoding='utf-8')
+    append_event(layer, 'KIT_TERMS_WRITTEN', now, 'software/kit-terms.md')
+    terms_sha256 = sha256_bytes(terms.encode('utf-8'))
+
+    certificates = []
+    for tool in chosen:
+        certificate = kit_certificate(record, tool, now, terms_sha256)
+        name = f'registry/certificate-software-{tool["id"]}.json'
+        write_json(layer / name, certificate)
+        append_event(layer, 'SOFTWARE_CERTIFICATE_SAMPLE_WRITTEN', now, name)
+        certificates.append({'m5_tool': tool['m5_name'], 'title_no': certificate['title_no'], 'file': name,
+                             'certificate_sha256': certificate['certificate_sha256']})
+
+    kit_record = {'schema': SCHEMA, 'type': 'software-kit', 'account': ACCOUNT_SKU, 'local_id': record['local_id'],
+                  'accepted_at': now, 'versions_checked': kit.get('versions_checked'),
+                  'signed_by': signer, 'signature': {'method': 'TYPED_NAME', 'cryptographic': False},
+                  'signature_slots': SIGNATURE_SLOTS, 'kit_terms': 'software/kit-terms.md',
+                  'kit_terms_sha256': terms_sha256,
+                  'tools': [{'id': tool['id'], 'm5_tool': tool['m5_name'], 'job': tool['job'],
+                             'components': tool['components'], 'installer_sha256': None}
+                            for tool in chosen],
+                  'installer_note': 'Record each installer\'s SHA-256 after you download it from its official source.',
+                  'certificates': certificates, 'registry': 'SIMULATED_NOT_ANCHORED',
+                  'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False}
+    write_json(layer / 'software' / 'kit-record.json', kit_record)
+    append_event(layer, 'KIT_ACCEPTED', now, 'software/kit-record.json')
+    if os.name == 'posix':
+        for path in [layer / 'software', *(layer / 'software').iterdir(), *(layer / 'registry').iterdir()]:
+            path.chmod(0o700 if path.is_dir() else 0o600)
+    return kit_record
+
+
+def load_kit(pod):
+    """The holder's kit record and its certificates, or None if no kit has been accepted."""
+    layer = Path(pod).expanduser() / LAYER
+    path = layer / 'software' / 'kit-record.json'
+    if not path.exists():
+        return None
+    kit_record = json.loads(path.read_text(encoding='utf-8'))
+    certificates = [json.loads((layer / item['file']).read_text(encoding='utf-8'))
+                    for item in kit_record['certificates']]
+    return {'record': kit_record, 'certificates': certificates}
+
+
 def refusal_status(selected):
     return 'SELECTED_NOT_ACTIVATED' if selected else 'NOT_SELECTED'
 
@@ -401,7 +528,8 @@ def main(argv=None):
     commands = parser.add_subparsers(dest='command', required=True)
     for name, text in [('init', 'create a new local IAM pod'), ('status', 'show the IAM record'),
                        ('verify', 'check the ledger and recorded files'), ('export', 'copy the pod into one ZIP you keep'),
-                       ('consent', 'select or unselect your right to refuse consent')]:
+                       ('consent', 'select or unselect your right to refuse consent'),
+                       ('kit', 'sign and accept your free starter kit')]:
         command = commands.add_parser(name, help=text)
         command.add_argument('--pod', default='~/M5POD-IAM', help='pod folder (default: ~/M5POD-IAM)')
         if name == 'init':
@@ -417,6 +545,10 @@ def main(argv=None):
             command.add_argument('--right-to-refuse', choices=['select', 'unselect'], required=True)
         if name == 'export':
             command.add_argument('--output', required=True, help='ZIP file to write')
+        if name == 'kit':
+            command.add_argument('--tools', required=True,
+                                 help='comma-separated tool ids from the starter kit, e.g. ai-agent,office')
+            command.add_argument('--name', required=True, help='your name, as your signature')
     args = parser.parse_args(argv)
     try:
         if args.command == 'init':
@@ -431,6 +563,11 @@ def main(argv=None):
             consent = set_refusal(args.pod, args.right_to_refuse == 'select')
             print(json.dumps({'cyrus_protocol': consent['cyrus_protocol']['status'],
                               'right_to_refuse': consent['right_to_refuse']['status']}, indent=2))
+        elif args.command == 'kit':
+            kit_record = accept_kit(args.pod, [t.strip() for t in args.tools.split(',') if t.strip()], args.name)
+            print(json.dumps({'accepted': [c['m5_tool'] for c in kit_record['certificates']],
+                              'certificates': [c['title_no'] for c in kit_record['certificates']],
+                              'registry': kit_record['registry']}, indent=2))
         elif args.command == 'verify':
             result = verify_pod(args.pod)
             print(json.dumps(result, indent=2))

@@ -28,10 +28,12 @@ python3 m5_iam.py status
 python3 m5_iam.py verify
 python3 m5_iam.py consent --right-to-refuse select
 python3 m5_iam.py export --output my-iam-pod.zip
+python3 m5_iam.py kit --tools ai-agent,office --name "Your name"
 ```
 
-The app listens on 127.0.0.1 only, accepts the form only from its own page,
-and can do one thing to your files: create the pod. Neither file makes an
+The app listens on 127.0.0.1 only and accepts changes only from its own page.
+It can change your files in three ways: create the pod, record your consent
+choice, and record the starter kit you sign and accept. Neither file makes an
 outbound network call.
 
 ## What it creates
@@ -47,6 +49,8 @@ M5POD-IAM/
     consent/consent.json   CYRUS Protocol accepted; right to refuse selected or not
     identifiers/           a local identifier; TCID and the others stay empty
     receive/               reserved, empty
+    registry/              sample registry entry and sample Certificates of Title
+    software/              your starter kit, once you accept it: the words and the kit record
     ledger/events.jsonl    hash-chained record of what the tool wrote
 ```
 
@@ -67,6 +71,42 @@ it is recorded as **selected, not activated**: an IAM is self-attested, so it
 activates only when your credentials are verified, by registering Bank of Me
 or by an approved agency verifying your IAM through M5-x401. Every change is
 recorded in the ledger.
+
+## Your free M5 starter kit
+
+After activation, the app offers seven free tools, one for each everyday job,
+each under an M5 name with the software that powers it:
+
+| M5 tool | Powered by | Licence |
+| --- | --- | --- |
+| M5 AI Agent | Hermes Agent + Ollama | MIT + MIT |
+| M5 Office | LibreOffice | MPL-2.0 |
+| M5 Notes | Joplin | AGPL-3.0-or-later |
+| M5 Design | GIMP | GPL-3.0-or-later |
+| M5 Video | Shotcut | GPL-3.0-or-later |
+| M5 Publish | Ghost | MIT |
+| M5 Self-Custody Wallet | Rabby Wallet | MIT |
+
+Versions and official download links are in `iam-catalog.json`
+(`starter_kit`). M5 tool names are TitleChain Foundation's names for these
+kits. Each tool keeps its own name, licence and trademarks, and its makers are
+not affiliated with M5.
+
+You download each tool yourself from its official source; this tool downloads
+nothing. When you sign and accept your kit (a typed name, not a cryptographic
+signature), it writes into your pod:
+
+- `software/kit-terms.md`: the words you accepted, listing each tool, version,
+  licence and source.
+- `registry/certificate-software-<tool>.json`: a sample Software Licence
+  Certificate of Title for each tool, `SAMPLE_NOT_ISSUED` and
+  `SIMULATED_NOT_ANCHORED`. The licence is granted by the people who make the
+  software; the certificate records it.
+- `software/kit-record.json`: the kit, the certificates and a place to record
+  each installer's SHA-256 after you download it.
+
+Each file is entered in the ledger, so `m5_iam.py verify` checks it. You can
+change your kit and accept again at any time.
 
 ## What it does not do
 

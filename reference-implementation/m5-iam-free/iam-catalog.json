@@ -398,5 +398,138 @@
         "does": "Registers titles, certificates and commitments"
       }
     ]
+  },
+  "starter_kit": {
+    "title": "Your free M5 starter kit",
+    "versions_checked": "2026-10-21",
+    "names_note": "M5 tool names are TitleChain Foundation's names for these kits. Each tool keeps its own name, licence and trademarks, and its makers are not affiliated with M5.",
+    "tools": [
+      {
+        "id": "ai-agent",
+        "m5_name": "M5 AI Agent",
+        "job": "Personal AI agent",
+        "does": "Your own AI agent on your computer. It plans tasks, uses tools and remembers your work between sessions, so it can keep your pod organized. Ollama runs the AI model on your computer too.",
+        "setup_help": true,
+        "also": "LM Studio (easier to start, but closed source)",
+        "components": [
+          {
+            "name": "Hermes Agent",
+            "version": "v0.22.4",
+            "license": "MIT",
+            "source": "https://github.com/NousResearch/hermes-agent",
+            "download": "https://hermes-agent.nousresearch.com/docs/getting-started/installation"
+          },
+          {
+            "name": "Ollama",
+            "version": "v0.40.7",
+            "license": "MIT",
+            "source": "https://github.com/ollama/ollama",
+            "download": "https://ollama.com/download"
+          }
+        ]
+      },
+      {
+        "id": "office",
+        "m5_name": "M5 Office",
+        "job": "Office",
+        "does": "Documents, spreadsheets and slides. Opens and saves Word, Excel and PowerPoint files.",
+        "setup_help": false,
+        "also": "WordCraft, GridCraft and DeckCraft from ArtCraft, in early testing",
+        "components": [
+          {
+            "name": "LibreOffice",
+            "version": "26.2.7",
+            "license": "MPL-2.0",
+            "source": "https://www.libreoffice.org/",
+            "download": "https://www.libreoffice.org/download/download-libreoffice/"
+          }
+        ]
+      },
+      {
+        "id": "notes",
+        "m5_name": "M5 Notes",
+        "job": "Notes and files",
+        "does": "Notes, to-do lists and project pages, kept on your own computer.",
+        "setup_help": false,
+        "also": "Syncthing, to keep files in step across your devices",
+        "components": [
+          {
+            "name": "Joplin",
+            "version": "v3.7.21",
+            "license": "AGPL-3.0-or-later",
+            "source": "https://github.com/laurent22/joplin",
+            "download": "https://joplinapp.org/download/"
+          }
+        ]
+      },
+      {
+        "id": "design",
+        "m5_name": "M5 Design",
+        "job": "Photos and design",
+        "does": "Edit photos and make graphics.",
+        "setup_help": false,
+        "also": "Penpot for social posts and layouts; PhotoCraft and VectorCraft from ArtCraft, in early testing",
+        "components": [
+          {
+            "name": "GIMP",
+            "version": "3.2.6",
+            "license": "GPL-3.0-or-later",
+            "source": "https://gitlab.gnome.org/GNOME/gimp",
+            "download": "https://www.gimp.org/downloads/"
+          }
+        ]
+      },
+      {
+        "id": "video",
+        "m5_name": "M5 Video",
+        "job": "Video",
+        "does": "Cut, trim and caption videos for posts and reels.",
+        "setup_help": false,
+        "also": "OBS Studio for screen recording; FilmCraft from ArtCraft, in early testing",
+        "components": [
+          {
+            "name": "Shotcut",
+            "version": "26.9.27",
+            "license": "GPL-3.0-or-later",
+            "source": "https://github.com/mltframework/shotcut",
+            "download": "https://shotcut.org/download/"
+          }
+        ]
+      },
+      {
+        "id": "publish",
+        "m5_name": "M5 Publish",
+        "job": "Newsletter",
+        "does": "Publish a newsletter on your own site and keep all of your subscription income.",
+        "setup_help": true,
+        "also": "Listmonk",
+        "components": [
+          {
+            "name": "Ghost",
+            "version": "v6.72.0",
+            "license": "MIT",
+            "source": "https://github.com/TryGhost/Ghost",
+            "download": "https://ghost.org/docs/install/"
+          }
+        ]
+      },
+      {
+        "id": "wallet",
+        "m5_name": "M5 Self-Custody Wallet",
+        "job": "Wallet",
+        "does": "Hold your own digital money and keys, with no account fees. Write your recovery phrase on paper and keep it offline.",
+        "setup_help": false,
+        "also": "Frame",
+        "components": [
+          {
+            "name": "Rabby Wallet",
+            "version": "v0.94.12",
+            "license": "MIT",
+            "source": "https://github.com/RabbyHub/Rabby",
+            "download": "https://rabby.io/"
+          }
+        ]
+      }
+    ]
   }
 }

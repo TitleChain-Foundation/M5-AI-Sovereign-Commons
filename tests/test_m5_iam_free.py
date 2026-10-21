@@ -271,3 +271,76 @@ def test_certificate_states_protocol_commons_licences_and_usage(iam, tmp_path, c
     assert iam.main(["consent", "--pod", str(pod), "--right-to-refuse", "unselect"]) == 0
     assert json.loads(capsys.readouterr().out) == {"cyrus_protocol": "ACCEPTED", "right_to_refuse": "NOT_SELECTED"}
     assert iam.verify_pod(pod)["status"] == "PASS"
+
+
+def test_starter_kit_lists_m5_tools_with_licences_and_official_sources():
+    kit = json.loads((IMPL / "iam-catalog.json").read_text())["starter_kit"]
+    ids = [tool["id"] for tool in kit["tools"]]
+    assert len(ids) == len(set(ids)) == 7
+    for tool in kit["tools"]:
+        assert all(c.islower() or c.isdigit() or c == "-" for c in tool["id"]), tool["id"]
+        assert tool["m5_name"].startswith("M5 ")
+        for part in tool["components"]:
+            assert part["license"] and part["version"]
+            assert part["download"].startswith("https://") and part["source"].startswith("https://")
+    assert "not affiliated" in kit["names_note"]
+
+
+def test_kit_acceptance_writes_words_certificates_and_record_into_the_pod(iam, tmp_path):
+    pod = tmp_path / "pod"
+    iam.init_pod(pod, "Ada", attested=True, accept_cyrus=True)
+    record = iam.accept_kit(pod, ["office", "ai-agent"], "Ada Lovelace", now="2026-10-21T00:00:00Z")
+    layer = pod / "M0-M5IAM-000"
+    terms = (layer / "software" / "kit-terms.md").read_text()
+    assert "Ada Lovelace" in terms and "LibreOffice" in terms and "they do not grant it" in " ".join(terms.split())
+    assert [c["m5_tool"] for c in record["certificates"]] == ["M5 AI Agent", "M5 Office"]
+    assert record["signature"] == {"method": "TYPED_NAME", "cryptographic": False}
+    assert record["registry"] == "SIMULATED_NOT_ANCHORED" and record["network_write"] is False
+    office = json.loads((layer / "registry" / "certificate-software-office.json").read_text())
+    assert office["status"] == "SAMPLE_NOT_ISSUED" and office["issued_by"] is None
+    assert office["licences"] == ["MPL-2.0"] and office["share_alike"] is True
+    assert office["title_no"].startswith("SAMPLE-SW-") and office["holder"] == "Ada"
+    agent = json.loads((layer / "registry" / "certificate-software-ai-agent.json").read_text())
+    assert [p["name"] for p in agent["powered_by"]] == ["Hermes Agent", "Ollama"] and agent["share_alike"] is False
+    assert iam.load_kit(pod)["record"]["kit_terms_sha256"] == record["kit_terms_sha256"]
+    assert iam.verify_pod(pod)["status"] == "PASS"
+
+
+def test_kit_refuses_unknown_tools_an_empty_kit_and_a_missing_signature(iam, tmp_path):
+    pod = tmp_path / "pod"
+    iam.init_pod(pod, "Ada", attested=True, accept_cyrus=True)
+    for tools, name in [([], "Ada"), (["office", "not-a-tool"], "Ada"), (["office"], "   ")]:
+        with pytest.raises(iam.PodError):
+            iam.accept_kit(pod, tools, name)
+    assert not (pod / "M0-M5IAM-000" / "software" / "kit-record.json").exists()
+    assert iam.load_kit(pod) is None
+
+
+def test_app_records_the_kit_only_from_its_own_page(tmp_path):
+    app = load("m5_iam_app_kit", IMPL / "m5_iam_app.py")
+    server = ThreadingHTTPServer(("127.0.0.1", 0), app.Handler)
+    app.Handler.pod, app.Handler.port = tmp_path / "pod", server.server_address[1]
+    threading.Thread(target=server.serve_forever, daemon=True).start()
+    base = f"http://127.0.0.1:{app.Handler.port}"
+
+    def post(path, body, origin=base):
+        request = urllib.request.Request(base + path, data=json.dumps(body).encode(),
+                                         headers={"Content-Type": "application/json", "Origin": origin}, method="POST")
+        try:
+            with urllib.request.urlopen(request) as response:
+                return response.status, json.loads(response.read())
+        except urllib.error.HTTPError as error:
+            return error.code, None
+
+    try:
+        kit = {"tools": ["office", "wallet"], "name": "Ada", "accept": True}
+        assert post("/api/kit", kit)[0] == 409  # no pod yet
+        assert post("/api/attest", {"name": "Ada", "chain": "wyomingchain.eth", "attest": True, "accept_cyrus": True})[0] == 200
+        assert post("/api/kit", kit, origin="https://example.com")[0] == 403
+        assert post("/api/kit", {**kit, "accept": False})[0] == 409
+        assert post("/api/kit", {**kit, "tools": "office"})[0] == 409
+        status, state = post("/api/kit", kit)
+        assert status == 200 and state["check"]["status"] == "PASS"
+        assert [c["m5_tool"] for c in state["kit"]["certificates"]] == ["M5 Office", "M5 Self-Custody Wallet"]
+    finally:
+        server.shutdown()
