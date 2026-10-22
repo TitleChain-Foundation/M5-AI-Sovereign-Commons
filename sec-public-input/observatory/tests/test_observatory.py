@@ -14,8 +14,10 @@ sys.path.insert(0, str(OBSERVATORY))
 
 from update_observatory import (  # noqa: E402
     IndexEntry,
+    UNREADABLE_STATUS,
     automated_topics,
     build_feed,
+    collect_entry,
     load_reviews,
     needs_full_refresh,
     parse_index,
@@ -357,6 +359,49 @@ class ReviewTests(unittest.TestCase):
         dashboard = render_dashboard(feed)
         self.assertIn("new since previous feed", dashboard)
         self.assertIn("New Commenter", dashboard)
+
+
+
+class UnreadableFilingTests(unittest.TestCase):
+    def test_filing_without_text_is_flagged_instead_of_failing(self) -> None:
+        entry = IndexEntry(
+            comment_id="scanned",
+            date="Oct. 20, 2026",
+            letter_type="Public Comment",
+            commenter_name="Scanned Commenter",
+            source_url="https://www.sec.gov/comments/S7-2026-30/scanned.htm",
+        )
+        with patch(
+            "update_observatory.request_bytes",
+            return_value=(b"<html><body>   </body></html>", "text/html"),
+        ):
+            collected = collect_entry(
+                entry,
+                taxonomy={"x": {"label": "X", "keywords": ["x"]}},
+                retrieved_at=datetime.now(UTC).isoformat(),
+                timeout=1,
+            )
+        self.assertEqual(collected["analysis_status"], UNREADABLE_STATUS)
+        self.assertIsNone(collected["analysis_text_sha256"])
+        self.assertEqual(collected["automated_topics"], [])
+        self.assertEqual(len(collected["source_sha256"]), 64)
+
+        with tempfile.TemporaryDirectory() as directory, patch(
+            "update_observatory.collect_entry", return_value=collected
+        ):
+            feed = build_feed(
+                entries=[entry],
+                taxonomy={},
+                reviews_dir=Path(directory),
+                previous_feed=None,
+                retrieved_at=datetime.now(UTC).isoformat(),
+                timeout=1,
+                delay=0,
+            )
+        self.assertEqual(
+            feed["official_entries"][0]["analysis_status"], UNREADABLE_STATUS
+        )
+        self.assertIn(UNREADABLE_STATUS, render_dashboard(feed))
 
 
 if __name__ == "__main__":

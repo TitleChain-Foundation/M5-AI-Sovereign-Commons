@@ -188,6 +188,14 @@ def parse_index(source: str, docket: str = DOCKET) -> list[IndexEntry]:
     return list(unique.values())
 
 
+AUTOMATED_STATUS = "AUTOMATED SIGNAL SCAN — NOT HUMAN REVIEWED"
+UNREADABLE_STATUS = "NO MACHINE-READABLE TEXT — NEEDS HUMAN REVIEW"
+
+
+class NoExtractableText(ValueError):
+    """The official filing was retrieved but has no machine-readable text."""
+
+
 def extract_text(source: bytes, media_type: str) -> str:
     if media_type == "application/pdf":
         reader = PdfReader(io.BytesIO(source))
@@ -205,7 +213,7 @@ def extract_text(source: bytes, media_type: str) -> str:
     else:
         raise ValueError(f"Unexpected SEC comment media type: {media_type}")
     if not text.strip():
-        raise ValueError("SEC comment did not contain extractable text.")
+        raise NoExtractableText("SEC comment did not contain extractable text.")
     return text
 
 
@@ -271,11 +279,30 @@ def collect_entry(
     timeout: float,
 ) -> dict[str, Any]:
     source, media_type = request_bytes(entry.source_url, timeout=timeout)
-    text = extract_text(source, media_type)
+    try:
+        text = extract_text(source, media_type)
+    except NoExtractableText:
+        # A scanned or image-only filing must not stop the whole publication.
+        # It is listed with its source digest and flagged for a human reader.
+        return {
+            **asdict(entry),
+            "analysis_status": UNREADABLE_STATUS,
+            "analysis_text_sha256": None,
+            "automated_topics": [],
+            "automated_analysis": (
+                "The official filing has no machine-readable text (it may be a "
+                "scanned image), so no automated scan was run. Open the exact "
+                "SEC filing to read it."
+            ),
+            "is_foundation_submission": entry.comment_id in FOUNDATION_COMMENT_IDS,
+            "retrieved_at": retrieved_at,
+            "source_media_type": media_type,
+            "source_sha256": sha256(source),
+        }
     topics = automated_topics(text, taxonomy)
     return {
         **asdict(entry),
-        "analysis_status": "AUTOMATED SIGNAL SCAN — NOT HUMAN REVIEWED",
+        "analysis_status": AUTOMATED_STATUS,
         "analysis_text_sha256": sha256(text.encode("utf-8")),
         "automated_topics": topics,
         "automated_analysis": (
@@ -385,7 +412,11 @@ def build_feed(
     reviews, review_warnings = load_reviews(reviews_dir, by_id)
     for entry in collected:
         entry.pop("human_review", None)
-        entry["analysis_status"] = "AUTOMATED SIGNAL SCAN — NOT HUMAN REVIEWED"
+        entry["analysis_status"] = (
+            AUTOMATED_STATUS
+            if entry.get("analysis_text_sha256")
+            else UNREADABLE_STATUS
+        )
         review = reviews.get(entry["comment_id"])
         if review:
             entry["analysis_status"] = "HUMAN REVIEWED"
