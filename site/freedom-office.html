@@ -1,0 +1,606 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta charset="utf-8">
+<title>Freedom Office Software Checklist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an audit worksheet. Sticky tally bar, filter row, then one ledger table per software group. */
+:root {
+  --bg: #f3f5f4;
+  --paper: #ffffff;
+  --ink: #15201d;
+  --muted: #5b6a65;
+  --line: #d9e0dd;
+  --accent: #1d6b5a;
+  --accent-soft: #e2f0ec;
+  --switch: #1d6b5a; --switch-bg: #e2f0ec;
+  --less: #8a5a00;  --less-bg: #fbf0d9;
+  --keep: #4d5a72;  --keep-bg: #e8ecf3;
+  --cancel: #a3302a; --cancel-bg: #f9e4e2;
+  --free: #3d5f9e;  --free-bg: #e4ebf8;
+  --display: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f1513; --paper: #161e1b; --ink: #e3ebe8; --muted: #93a39e; --line: #2a3632;
+  --accent: #5cc2a8; --accent-soft: #1a2e29;
+  --switch: #6fd0b6; --switch-bg: #17302a; --less: #e3b25a; --less-bg: #33270f;
+  --keep: #a9b6cf; --keep-bg: #222a38; --cancel: #f08a82; --cancel-bg: #3a1c1a;
+  --free: #9db8ec; --free-bg: #1d2840; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0f1513; --paper: #161e1b; --ink: #e3ebe8; --muted: #93a39e; --line: #2a3632;
+  --accent: #5cc2a8; --accent-soft: #1a2e29;
+  --switch: #6fd0b6; --switch-bg: #17302a; --less: #e3b25a; --less-bg: #33270f;
+  --keep: #a9b6cf; --keep-bg: #222a38; --cancel: #f08a82; --cancel-bg: #3a1c1a;
+  --free: #9db8ec; --free-bg: #1d2840; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { padding-block: 40px 24px; display: grid; gap: 12px; }
+.eyebrow { font: 600 12px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1 { font: 800 clamp(30px, 5vw, 46px)/1.05 var(--display); margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+.lede { color: var(--muted); max-width: 72ch; margin: 0; font-size: 16px; text-wrap: pretty; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 6px; font-size: 14px; color: var(--muted); }
+.facts b { font: 500 15px var(--mono); color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.tally { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--line); }
+.tally .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; padding-block: 12px; }
+.t-item { display: grid; gap: 2px; }
+.t-item span { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.t-item b { font: 500 20px var(--mono); font-variant-numeric: tabular-nums; }
+.t-item.save b { color: var(--switch); }
+.t-actions { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+button { font: 500 13px var(--body); border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 8px 12px; min-height: 36px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+button.primary { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding-block: 20px 8px; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg button[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+#q { flex: 1 1 220px; min-width: 0; font: 400 14px var(--body); padding: 8px 12px; min-height: 36px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
+
+section.group { margin-block: 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.g-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; align-items: baseline; padding: 14px 16px 10px; border-bottom: 1px solid var(--line); }
+.g-head h2 { font: 700 18px/1.2 var(--display); margin: 0; }
+.g-head .g-meta { font: 400 13px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.soon-note { font-size: 12px; color: var(--muted); }
+.rows { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th { text-align: left; font: 600 11px var(--body); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding: 8px 12px; }
+td { padding: 10px 12px; border-top: 1px solid var(--line); vertical-align: top; }
+tr.checked td { background: var(--accent-soft); }
+td.chk { width: 44px; }
+td.chk input { width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; margin: 2px 0 0; }
+td.brand label { font-weight: 600; cursor: pointer; }
+td.cost { font: 400 14px var(--mono); text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; width: 90px; }
+td.act { width: 110px; }
+.pill { display: inline-block; font: 600 11px/1 var(--body); letter-spacing: .06em; text-transform: uppercase; padding: 5px 8px; border-radius: 999px; white-space: nowrap; }
+.pill.switch { color: var(--switch); background: var(--switch-bg); }
+.pill.reduce { color: var(--less); background: var(--less-bg); }
+.pill.keep { color: var(--keep); background: var(--keep-bg); }
+.pill.drop { color: var(--cancel); background: var(--cancel-bg); }
+.pill.free { color: var(--free); background: var(--free-bg); }
+.pill.soon { color: var(--muted); background: var(--bg); }
+td.alt { color: var(--ink); }
+.opts { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.opts span { font-size: 12px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
+.save-note { font: 400 12px var(--mono); color: var(--switch); margin-top: 4px; }
+.empty { padding: 28px 16px; color: var(--muted); text-align: center; }
+
+.included { margin-block: 40px 56px; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.inc-card { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 18px; min-width: 0; }
+.inc-card h3 { font: 700 16px var(--display); margin: 0 0 4px; }
+.inc-card p { color: var(--muted); font-size: 13px; margin: 0 0 12px; }
+.inc-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.inc-card li { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
+.inc-card li em { font-style: normal; color: var(--muted); font-size: 13px; text-align: right; }
+h2.section { font: 800 24px/1.1 var(--display); margin: 48px 0 0; }
+
+.progress { display: grid; gap: 8px; margin-bottom: 20px; }
+.bar { height: 6px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: inherit; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width .3s; } }
+.p-text { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; font-size: 14px; color: var(--muted); }
+.p-text b { color: var(--ink); font-weight: 600; }
+ol.steps { list-style: none; padding: 0; margin: 0 0 10px; display: grid; gap: 12px; counter-reset: s; }
+.step { counter-increment: s; background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 0 16px; align-items: start; }
+.step.done { border-color: var(--accent); }
+.step::before { content: counter(s); grid-row: 1 / 7; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: 700 15px var(--display); color: var(--accent); border: 1.5px solid var(--accent); }
+.step.done::before { content: "\2713"; background: var(--accent); color: var(--paper); }
+.step .job { grid-column: 2; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.step h3 { grid-column: 2; font: 700 21px/1.2 var(--display); margin: 2px 0 0; }
+.powered { grid-column: 2; font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+.step .why { grid-column: 2 / 4; margin: 0 0 6px; max-width: 62ch; }
+.step .saves { grid-column: 2 / 4; font-size: 14px; color: var(--muted); margin: 0 0 14px; }
+.step .saves b { color: var(--switch); font-weight: 600; }
+.step .saves .help { color: var(--less); font-weight: 600; }
+.get { grid-column: 3; grid-row: 1 / 4; align-self: center; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 16px; border-radius: 8px; background: var(--accent); color: var(--paper); font-weight: 600; font-size: 14px; text-decoration: none; white-space: nowrap; }
+.get:hover { filter: brightness(1.08); }
+.get:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.done-box { grid-column: 2 / 4; display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; cursor: pointer; min-height: 44px; justify-self: start; }
+.done-box input { width: 22px; height: 22px; accent-color: var(--accent); cursor: pointer; margin: 0; }
+.step.done .done-box { color: var(--accent); font-weight: 600; }
+.more { grid-column: 2 / 4; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; }
+.more a { color: var(--accent); }
+.more .new { color: var(--free); font-weight: 600; }
+.why a { color: var(--accent); font-weight: 600; }
+.kit { background: var(--paper); border: 1.5px solid var(--accent); border-radius: 10px; padding: 20px; margin: 0 0 32px; display: grid; gap: 14px; }
+.kit[hidden], .sign[hidden], .certs[hidden], [hidden] { display: none !important; }
+.kit-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; }
+.kit-head h2 { font: 800 24px/1.1 var(--display); margin: 4px 0 0; }
+.badge { font-size: 12px; font-weight: 600; color: var(--less); background: var(--less-bg); padding: 5px 10px; border-radius: 999px; }
+.kit-intro { margin: 0; color: var(--muted); max-width: 70ch; }
+.kit-table { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.kit-table table { min-width: 680px; }
+.kit-table td { vertical-align: middle; }
+.kit-table td.v { font: 400 13px var(--mono); white-space: nowrap; }
+.kit-table td.lic { font-size: 13px; }
+.kit-table td.dl a { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.kit-table .sub { display: block; font-size: 12px; color: var(--muted); }
+.kit-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+pre.record { margin: 0; max-height: 320px; overflow: auto; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 14px; font: 12px/1.5 var(--mono); white-space: pre; }
+.kit-next { margin: 0; padding-left: 20px; color: var(--muted); font-size: 14px; display: grid; gap: 4px; }
+@media (max-width: 600px) {
+  .step { grid-template-columns: 32px minmax(0, 1fr); padding: 16px; gap: 0 12px; }
+  .get { grid-column: 2; grid-row: auto; justify-self: start; margin-bottom: 8px; }
+  .step .why, .step .saves, .done-box, .more { grid-column: 2; }
+}
+@media (max-width: 560px) { .step { grid-template-columns: 34px 1fr; } .done-box { grid-column: 2; grid-row: auto; } .step .why, .step .meta { grid-column: 2; } }
+details.all { margin-block: 8px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; padding: 0 16px; }
+details.all > summary { cursor: pointer; padding-block: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; list-style: none; }
+details.all > summary::-webkit-details-marker { display: none; }
+details.all > summary b { font: 700 17px var(--display); }
+details.all > summary b::before { content: "+ "; color: var(--accent); }
+details.all[open] > summary b::before { content: "– "; }
+.sum-hint { color: var(--muted); font-size: 13px; }
+.tally-inline { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; padding-block: 12px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.tally-inline b { font: 500 15px var(--mono); color: var(--ink); }
+.tally-inline .save b { color: var(--switch); }
+details.all section.group { border-color: var(--line); }
+
+.sign, .certs { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin: 0 0 32px; display: grid; gap: 14px; }
+.sign-form { display: grid; gap: 14px; max-width: 640px; }
+.field { display: grid; gap: 4px; }
+.field label { font-weight: 600; font-size: 14px; }
+.field input { font: 400 15px var(--body); padding: 10px 12px; min-height: 44px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+.field input[readonly] { font-family: var(--mono); color: var(--muted); }
+.field .sub { font-size: 12px; color: var(--muted); }
+.ack { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; cursor: pointer; }
+.ack input { width: 20px; height: 20px; margin-top: 1px; accent-color: var(--accent); flex: none; }
+.form-error { margin: 0; color: var(--cancel); font-size: 14px; font-weight: 600; }
+.cert-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.cert-tabs button[aria-selected="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+/* The certificate is a printed document: one fixed paper palette in both themes. */
+.cwrap { --c-paper: #fbf9f6; --c-ink: #1c1917; --c-muted: #6b6560; --c-rose: #be123c; --c-accent: #047857;
+  background: #ffffff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; color: var(--c-ink); }
+.cframe { padding: 9px; border-radius: 8px; background: repeating-linear-gradient(45deg, var(--c-accent) 0 2px, transparent 2px 7px), repeating-linear-gradient(-45deg, var(--c-ink) 0 1px, transparent 1px 7px); }
+.cert { background: var(--c-paper); border: 2px solid var(--c-ink); outline: 1px solid var(--c-ink); outline-offset: -8px; padding: clamp(18px, 4vw, 34px); display: flex; flex-direction: column; gap: 18px; }
+.chead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.corg { font-size: 11px; font-weight: 700; letter-spacing: .24em; }
+.corg span { display: block; color: var(--c-muted); letter-spacing: .12em; font-weight: 600; margin-top: 2px; }
+.stamp { transform: rotate(-6deg); border: 3px solid var(--c-rose); color: var(--c-rose); padding: 5px 12px; text-align: center; }
+.stamp b { display: block; font-size: 15px; letter-spacing: .2em; }
+.stamp span { font-size: 9px; font-weight: 700; letter-spacing: .12em; white-space: nowrap; }
+.tno { text-align: right; font-size: 10px; letter-spacing: .2em; color: var(--c-muted); }
+.tno b { display: block; font: 600 14px var(--mono); color: var(--c-ink); letter-spacing: .04em; }
+.cmid { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+.ckind { font-size: 13px; font-weight: 700; letter-spacing: .4em; text-align: center; }
+.cbar { width: 64px; height: 4px; background: var(--c-accent); }
+.cby { font-size: 14px; color: var(--c-muted); max-width: 52ch; }
+.cholder { font-size: 19px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; overflow-wrap: anywhere; }
+.cname { font: 800 clamp(30px, 6vw, 44px)/1.05 var(--display); }
+.cpow { font-size: 14px; color: var(--c-muted); }
+.cfields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--c-ink); border-left: 1px solid var(--c-ink); }
+.cfields div { padding: 10px 12px; border-right: 1px solid var(--c-ink); border-bottom: 1px solid var(--c-ink); min-width: 0; }
+.cfields i { display: block; font-style: normal; font-size: 9px; font-weight: 700; letter-spacing: .18em; color: var(--c-muted); text-transform: uppercase; }
+.cfields b { font-size: 14px; overflow-wrap: break-word; }
+@media (max-width: 560px) { .cfields { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.crights { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.crights div { border: 1px solid var(--c-ink); padding: 8px 10px; font-size: 13px; font-weight: 600; text-align: center; }
+.cfoot { font-size: 12px; color: var(--c-muted); text-align: center; max-width: 70ch; margin: 0 auto; }
+.csig { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--c-ink); padding-top: 12px; font-size: 12px; color: var(--c-muted); }
+.csig b { display: block; font: 600 16px var(--display); color: var(--c-ink); }
+.chash { font: 10px/1.4 var(--mono); color: var(--c-muted); overflow-wrap: anywhere; text-align: center; }
+.brand-note { font-size: 12px; color: var(--muted); margin: 0; }
+footer { color: var(--muted); font-size: 12px; padding-block: 0 40px; }
+#toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 6px; font-size: 14px; z-index: 20; }
+@media (max-width: 560px) { .t-actions { margin-left: 0; } }
+@media (prefers-reduced-motion: no-preference) { tr td { transition: background-color .15s; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Freedom Office · Starter kit</div>
+    <h1>Build your free office in seven steps</h1>
+    <p class="lede">Pick one free tool for each everyday job. Then review your kit, download each tool from its official source, and save your kit record to your IAM-Free pod.</p>
+  </header>
+  <div class="progress" role="status" aria-live="polite">
+    <div class="bar"><i id="pBar"></i></div>
+    <div class="p-text"><b id="pDone">0 of 7 done</b><span id="pSave"></span></div>
+  </div>
+  <ol class="steps" id="steps"></ol>
+  <p class="brand-note" style="margin-bottom:28px">M5 tool names are TitleChain Foundation's names for these kits. Each tool keeps its own name, license and trademarks, and its makers are not affiliated with M5.</p>
+  <section class="kit" id="kit" aria-labelledby="kitTitle">
+    <div class="kit-head">
+      <div><div class="eyebrow">Last step</div><h2 id="kitTitle">Review your kit</h2></div>
+      <span class="badge">Draft record · not yet signed</span>
+    </div>
+    <p class="kit-intro" id="kitIntro"></p>
+    <div class="kit-table"><table>
+      <thead><tr><th>M5 tool</th><th>Software</th><th>Version</th><th>License</th><th>Download</th></tr></thead>
+      <tbody id="kitRows"></tbody>
+    </table></div>
+    <div class="kit-actions">
+      <button type="button" class="primary" id="copyRecord">Copy my kit record</button>
+      <button type="button" id="showRecord" aria-expanded="false" aria-controls="recordBox">Show the record</button>
+    </div>
+    <pre class="record" id="recordBox" hidden></pre>
+    <ol class="kit-next">
+      <li>Download each tool from the official links above.</li>
+      <li>Save your kit record in your IAM-Free pod, next to your other records.</li>
+      <li>When IAM signing is live, your record becomes a signed Software Passport: proof of exactly which versions you installed and under which licenses.</li>
+    </ol>
+  </section>
+
+  <section class="sign" id="sign" aria-labelledby="signTitle" hidden>
+    <div class="kit-head">
+      <div><div class="eyebrow">Sign and accept</div><h2 id="signTitle">Accept your kit</h2></div>
+      <span class="badge">Simulated · nothing is sent</span>
+    </div>
+    <p class="kit-intro">Sign with your IAM-Free account to accept the license of each tool in your kit. You then receive a Certificate of Title for each one. This is a simulation: your name stays on this page, and nothing is recorded or sent.</p>
+    <form id="signForm" class="sign-form" novalidate>
+      <div class="field"><label for="signName">Your name, as your signature</label><input id="signName" autocomplete="name" placeholder="e.g. Pamela Norton" required></div>
+      <div class="field"><label for="signAcct">IAM account</label><input id="signAcct" value="M5IAM-000" readonly aria-describedby="acctNote"><span class="sub" id="acctNote">Your free IAM account. One human, acting for themselves.</span></div>
+      <label class="ack"><input type="checkbox" id="ack1"> I'm downloading each tool from its official source, listed above.</label>
+      <label class="ack"><input type="checkbox" id="ack2"> I accept each tool's license as published by the people who make it. I understand the certificate records the license; it doesn't grant it.</label>
+      <label class="ack"><input type="checkbox" id="ack3"> My records stay mine, in my IAM-Free pod.</label>
+      <p class="form-error" id="signError" role="alert" hidden></p>
+      <div class="kit-actions"><button type="submit" class="primary" id="signBtn">Sign and accept</button></div>
+    </form>
+  </section>
+
+  <section class="certs" id="certs" aria-labelledby="certsTitle" hidden>
+    <div class="kit-head">
+      <div><div class="eyebrow">Your Certificates of Title</div><h2 id="certsTitle">Certificates for your kit</h2></div>
+      <button type="button" id="resign">Change or sign again</button>
+    </div>
+    <p class="kit-intro" id="certsIntro"></p>
+    <div class="cert-tabs" role="tablist" id="certTabs"></div>
+    <div id="certView"></div>
+  </section>
+</div>
+
+<main class="wrap">
+  <details class="all" id="allList">
+  <summary><span><b>Check everything you pay for</b></span><span class="sum-hint">All 119 subscriptions, with a free option for each</span></summary>
+  <div class="tally-inline"><span>Ticked <b id="tCount">0</b></span><span>Paying now <b id="tNow">$0/mo</b></span><span class="save">You keep <b id="tSave">$0/mo</b> · <b id="tYear">$0</b>/yr</span>
+    <span class="t-actions"><button type="button" id="copyBtn" class="primary">Copy my list</button><button type="button" id="clearBtn">Clear ticks</button></span></div>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Show">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="switch" aria-pressed="false">Free switches</button>
+      <button type="button" data-f="reduce" aria-pressed="false">Pay less</button>
+      <button type="button" data-f="drop" aria-pressed="false">Cancel</button>
+      <button type="button" data-f="keep" aria-pressed="false">Keep</button>
+      <button type="button" data-f="free" aria-pressed="false">Already free</button>
+      <button type="button" data-f="mine" aria-pressed="false">My ticks</button>
+    </div>
+    <input id="q" type="search" placeholder="Search a product, e.g. Adobe or Zoom" aria-label="Search products">
+  </div>
+  <div id="groups"></div>
+  </details>
+
+  <h2 class="section">Also included free</h2>
+  <div class="included" id="included"></div>
+  <footer>Source: the Freedom Office free-tools catalog on dagny.m5bank.app/bank (<span style="font-family:var(--mono)">src/lib/freeToolsCatalog.js</span>, main branch, 21 Oct 2026). "Free" means no subscription fee; check each tool's own license before you rely on it for business use.</footer>
+</main>
+<div id="toast" hidden></div>
+
+<script>
+const DATA = {"layers":[{"id":"devices","label":"Devices","soon":false,"tools":[{"b":"AppleCare+ / device protection","c":9.99,"f":"Keep only on irreplaceable devices","p":"reduce","r":4.99,"o":null,"s":false},{"b":"Device payment plan","c":35,"f":"Revive a closet device first","p":"keep","r":null,"o":null,"s":false},{"b":"Printer ink subscription","c":6.99,"f":"Library printer; print less","p":"drop","r":null,"o":null,"s":false},{"b":"Extra storage / drive plan","c":5,"f":"One external drive, amortized","p":"keep","r":null,"o":null,"s":false}]},{"id":"storage","label":"Storage & backup","soon":false,"tools":[{"b":"iCloud+","c":2.99,"f":"Nextcloud or Syncthing","p":"switch","r":null,"o":null,"s":false},{"b":"Dropbox Plus","c":11.99,"f":"Nextcloud or Syncthing","p":"switch","r":null,"o":null,"s":false},{"b":"Google One","c":1.99,"f":"Nextcloud or Syncthing","p":"switch","r":null,"o":null,"s":false},{"b":"Backblaze","c":9,"f":"restic / BorgBackup + external drive","p":"reduce","r":2,"o":null,"s":false}]},{"id":"network","label":"Network","soon":false,"tools":[{"b":"Phone plan","c":65,"f":"Prepaid / lower-cost carriers","p":"reduce","r":30,"o":null,"s":false},{"b":"Home internet","c":70,"f":"Keep","p":"keep","r":null,"o":null,"s":false},{"b":"Starlink satellite internet","c":120,"f":"Lighter plan or standby","p":"keep","r":null,"o":["Viasat","HughesNet","T-Mobile 5G Home","Verizon 5G Home"],"s":false}]},{"id":"web","label":"Web & hosting","soon":false,"tools":[{"b":"Squarespace","c":25,"f":"Static site (Hugo / Astro)","p":"switch","r":null,"o":["Hugo","Astro","Eleventy"],"s":false},{"b":"Base44","c":20,"f":"Static site (Hugo / Astro)","p":"switch","r":null,"o":["Hugo","Astro","Eleventy"],"s":false},{"b":"Netlify Pro","c":19,"f":"Free hosting tiers / self-host","p":"switch","r":null,"o":["Fleek on IPFS","Akash decentralized compute","Cloudflare Pages free"],"s":false},{"b":"Domain names","c":15,"f":"Domains are always paid","p":"keep","r":null,"o":null,"s":false},{"b":"Linktree Pro","c":9,"f":"One-page static site","p":"switch","r":null,"o":["Astro","Eleventy"],"s":false},{"b":"Vercel Pro","c":20,"f":"Free hosting tiers","p":"switch","r":null,"o":["Cloudflare Pages free","Fleek on IPFS","Akash compute"],"s":false}]},{"id":"ai","label":"AI services","soon":false,"tools":[{"b":"ChatGPT Plus","c":20,"f":"Local model (Ollama / LM Studio)","p":"switch","r":null,"o":["Qwen in Ollama","Llama in LM Studio","Mistral in llama.cpp"],"s":false},{"b":"Claude Pro","c":20,"f":"Local model","p":"keep","r":null,"o":null,"s":false},{"b":"Perplexity Pro","c":20,"f":"SearXNG + local model","p":"switch","r":null,"o":["SearXNG","Whisper + local model"],"s":false},{"b":"Google AI Pro","c":19.99,"f":"Local model","p":"switch","r":null,"o":["Gemma in Ollama","Llama in LM Studio"],"s":false},{"b":"GitHub Copilot","c":10,"f":"Continue + open models","p":"switch","r":null,"o":["Continue.dev","Cline + open models"],"s":false}]},{"id":"media","label":"Media & voice","soon":false,"tools":[{"b":"Midjourney","c":10,"f":"Stable Diffusion in ComfyUI","p":"switch","r":null,"o":null,"s":false},{"b":"ElevenLabs","c":22,"f":"Piper TTS","p":"switch","r":null,"o":null,"s":false},{"b":"Otter","c":16.99,"f":"Whisper (whisper.cpp)","p":"switch","r":null,"o":null,"s":false},{"b":"Canva Pro","c":15,"f":"Penpot / Polotno","p":"switch","r":null,"o":["Penpot","Polotno Studio","Photopea"],"s":false},{"b":"Adobe Creative Cloud","c":69.99,"f":"GIMP/Krita, Kdenlive, Inkscape","p":"switch","r":null,"o":null,"s":false},{"b":"Loom","c":15,"f":"OBS Studio","p":"switch","r":null,"o":null,"s":false},{"b":"Suno","c":10,"f":"Open music models","p":"keep","r":null,"o":null,"s":false},{"b":"CapCut Pro","c":9.99,"f":"Kdenlive / Shotcut","p":"switch","r":null,"o":null,"s":false}]},{"id":"artcraft","label":"Design (Adobe-free creative suite)","soon":false,"tools":[{"b":"Adobe Photoshop","c":22.99,"f":"GIMP / Krita / Photopea","p":"switch","r":null,"o":["GIMP","Krita","Photopea"],"s":false},{"b":"Adobe Illustrator","c":22.99,"f":"Inkscape","p":"switch","r":null,"o":null,"s":false},{"b":"Adobe Premiere Pro","c":22.99,"f":"Kdenlive / Shotcut / Olive","p":"switch","r":null,"o":["Kdenlive","Shotcut","Olive"],"s":false},{"b":"Adobe After Effects","c":22.99,"f":"Natron","p":"switch","r":null,"o":null,"s":false},{"b":"Adobe Audition","c":22.99,"f":"Audacity","p":"switch","r":null,"o":null,"s":false},{"b":"Adobe Lightroom","c":11.99,"f":"darktable / RawTherapee","p":"switch","r":null,"o":["darktable","RawTherapee"],"s":false},{"b":"Adobe InDesign","c":22.99,"f":"Scribus","p":"switch","r":null,"o":null,"s":false},{"b":"Adobe Acrobat Pro","c":19.99,"f":"Stirling-PDF / PDF Arranger","p":"switch","r":null,"o":["Stirling-PDF","PDF Arranger"],"s":false},{"b":"Adobe Animate","c":22.99,"f":"OpenToonz / Synfig / Pencil2D","p":"switch","r":null,"o":["OpenToonz","Synfig","Pencil2D"],"s":false},{"b":"Adobe Dimension","c":22.99,"f":"Blender","p":"switch","r":null,"o":null,"s":false},{"b":"Adobe Substance 3D","c":19.99,"f":"Material Maker","p":"switch","r":null,"o":null,"s":false},{"b":"Adobe Dreamweaver","c":22.99,"f":"VSCodium + Astro","p":"switch","r":null,"o":null,"s":false}]},{"id":"comms","label":"Communication","soon":false,"tools":[{"b":"Zoom Pro","c":15.99,"f":"Jitsi Meet or Matrix","p":"switch","r":null,"o":["Jitsi Meet","Matrix (Element)","Signal"],"s":false},{"b":"Slack Pro","c":8.75,"f":"Matrix or Signal","p":"switch","r":null,"o":["Matrix (Element)","Signal"],"s":false},{"b":"Discord Nitro","c":9.99,"f":"Matrix or Signal","p":"switch","r":null,"o":["Matrix (Element)","Signal"],"s":false},{"b":"Blotato","c":29,"f":"Mixpost","p":"switch","r":null,"o":null,"s":false},{"b":"LinkedIn Premium","c":39.99,"f":"Free plan; keep only during a search","p":"reduce","r":0,"o":null,"s":false},{"b":"X Premium","c":8,"f":"Mastodon / Bluesky","p":"keep","r":null,"o":null,"s":false},{"b":"Meta Verified","c":14.99,"f":"Free account","p":"reduce","r":0,"o":null,"s":false},{"b":"Buffer or Later","c":18,"f":"Mixpost","p":"switch","r":null,"o":null,"s":false},{"b":"Telegram Premium","c":4.99,"f":"Signal / Bitchat","p":"switch","r":null,"o":null,"s":false},{"b":"Snapchat+","c":3.99,"f":"Free account","p":"drop","r":null,"o":null,"s":false},{"b":"Bluesky","c":0,"f":"Free","p":"keep","r":null,"o":null,"s":false},{"b":"Mastodon","c":0,"f":"Free","p":"keep","r":null,"o":null,"s":false},{"b":"Nostr","c":0,"f":"Free","p":"keep","r":null,"o":null,"s":false},{"b":"Bitchat","c":0,"f":"Free","p":"keep","r":null,"o":null,"s":false},{"b":"Signal","c":0,"f":"Free","p":"keep","r":null,"o":null,"s":false}]},{"id":"office","label":"Office & productivity","soon":false,"tools":[{"b":"Microsoft 365","c":9.99,"f":"LibreOffice","p":"switch","r":null,"o":null,"s":false},{"b":"Google Workspace","c":7,"f":"LibreOffice","p":"switch","r":null,"o":null,"s":false},{"b":"Notion","c":10,"f":"Joplin / Logseq","p":"switch","r":null,"o":null,"s":false},{"b":"Grammarly","c":12,"f":"LanguageTool + local model","p":"switch","r":null,"o":null,"s":false},{"b":"1Password","c":2.99,"f":"KeePassXC / Vaultwarden","p":"switch","r":null,"o":null,"s":false},{"b":"DocuSign","c":10,"f":"DocuSeal / OpenSign","p":"switch","r":null,"o":null,"s":false},{"b":"Gamma","c":10,"f":"LibreOffice Impress + local model","p":"switch","r":null,"o":null,"s":false},{"b":"Miro","c":8,"f":"Nextcloud Whiteboard / Excalidraw","p":"switch","r":null,"o":null,"s":false}]},{"id":"business","label":"Business operations","soon":false,"tools":[{"b":"QuickBooks","c":38,"f":"GnuCash / Akaunting","p":"switch","r":null,"o":null,"s":false},{"b":"Zapier","c":19.99,"f":"n8n self-hosted","p":"switch","r":null,"o":null,"s":false},{"b":"HubSpot","c":20,"f":"Twenty / SuiteCRM","p":"switch","r":null,"o":null,"s":false},{"b":"Upwork Freelancer Plus","c":19.99,"f":"Free plan + direct invoicing","p":"reduce","r":0,"o":null,"s":false},{"b":"Calendly","c":10,"f":"Nextcloud Calendar","p":"switch","r":null,"o":null,"s":false},{"b":"HoneyBook","c":39,"f":"Akaunting + DocuSeal","p":"switch","r":null,"o":null,"s":false},{"b":"Coworking membership","c":299,"f":"Day passes / library","p":"reduce","r":75,"o":null,"s":false}]},{"id":"finance","label":"Finance & payments (TradFi)","soon":false,"tools":[{"b":"Bank account fees","c":12,"f":"No-fee credit union / online bank","p":"reduce","r":0,"o":null,"s":false},{"b":"Card processing fees","c":45,"f":"Compare rates; bank transfer for large invoices","p":"reduce","r":30,"o":null,"s":false}]},{"id":"defi","label":"DeFi & wallets (free rails)","soon":false,"tools":[{"b":"Custodial wallet fees","c":5,"f":"Self-custody: Frame / Rabby / Gnosis Safe","p":"switch","r":null,"o":["Frame","Rabby Wallet","Gnosis Safe"],"s":false},{"b":"DFNS key management","c":0,"f":"DFNS (open SDK, self-custody)","p":"keep","r":null,"o":null,"s":false},{"b":"Numscript money routing","c":0,"f":"Numscript (open source)","p":"keep","r":null,"o":null,"s":false},{"b":"Swap / bridge fees","c":10,"f":"Uniswap / Aave (open protocols)","p":"switch","r":null,"o":["Uniswap","Aave","Sablier"],"s":false},{"b":"Wallet connection","c":0,"f":"WalletConnect (open protocol)","p":"keep","r":null,"o":null,"s":false},{"b":"On-chain indexing","c":0,"f":"The Graph (open source)","p":"keep","r":null,"o":null,"s":false},{"b":"Governance / voting","c":0,"f":"Snapshot (free, off-chain)","p":"keep","r":null,"o":null,"s":false}]},{"id":"statebank","label":"Public State Banking (Coming Soon)","soon":true,"tools":[{"b":"Bank account fees","c":12,"f":"Public State Banking — coming soon","p":"keep","r":null,"o":null,"s":true},{"b":"Card processing fees","c":45,"f":"Public State Banking rails — coming soon","p":"keep","r":null,"o":null,"s":true},{"b":"Treasury / yield","c":20,"f":"Public State Banking custody — coming soon","p":"keep","r":null,"o":null,"s":true}]},{"id":"legal","label":"Legal, entity & compliance","soon":false,"tools":[{"b":"Registered agent","c":125,"f":"Be your own agent where allowed","p":"reduce","r":0,"o":null,"s":false}]},{"id":"health","label":"Health & wellbeing","soon":false,"tools":[{"b":"Calm or Headspace","c":14.99,"f":"Free guided audio","p":"keep","r":null,"o":null,"s":false},{"b":"Therapy app","c":280,"f":"Keep licensed care; private journals in Bank of Me","p":"keep","r":null,"o":null,"s":false},{"b":"Fitness app","c":24,"f":"Free spreadsheet / open tracker","p":"reduce","r":0,"o":null,"s":false},{"b":"Nutrition tracker","c":19.99,"f":"Free spreadsheet / open tracker","p":"switch","r":null,"o":null,"s":false},{"b":"Wearable membership","c":5.99,"f":"Gadgetbridge; private symptom log","p":"switch","r":null,"o":null,"s":false}]},{"id":"personal","label":"Learning & personal","soon":false,"tools":[{"b":"Netflix","c":17.99,"f":"Rotate one streamer at a time","p":"reduce","r":7.99,"o":null,"s":false},{"b":"Spotify","c":11.99,"f":"Family plan in Bank of Us","p":"reduce","r":3.33,"o":null,"s":false},{"b":"YouTube Premium","c":13.99,"f":"Free tier / family plan","p":"drop","r":null,"o":null,"s":false},{"b":"Disney+","c":9.99,"f":"Rotate streamers","p":"drop","r":null,"o":null,"s":false},{"b":"Audible","c":14.95,"f":"Libby + Calibre + Piper","p":"switch","r":null,"o":null,"s":false},{"b":"Kindle Unlimited","c":11.99,"f":"Libby + Calibre","p":"switch","r":null,"o":null,"s":false}]},{"id":"marketing","label":"Marketing & sales","soon":false,"tools":[{"b":"Mailchimp","c":13,"f":"Listmonk self-hosted","p":"switch","r":null,"o":null,"s":false},{"b":"Kit (ConvertKit)","c":39,"f":"Listmonk self-hosted","p":"switch","r":null,"o":null,"s":false},{"b":"beehiiv","c":49,"f":"Listmonk self-hosted","p":"switch","r":null,"o":null,"s":false},{"b":"Shopify","c":39,"f":"WooCommerce / static store + payment links","p":"switch","r":null,"o":null,"s":false},{"b":"Kajabi or Teachable","c":149,"f":"Static site + payment links, PeerTube","p":"switch","r":null,"o":null,"s":false},{"b":"Semrush or Ahrefs","c":139.95,"f":"Free search console + local model","p":"switch","r":null,"o":null,"s":false},{"b":"Website analytics","c":9,"f":"Matomo / Plausible self-hosted","p":"switch","r":null,"o":null,"s":false},{"b":"LinkedIn Sales Navigator","c":99.99,"f":"Twenty CRM + free LinkedIn","p":"switch","r":null,"o":null,"s":false},{"b":"Paid ads","c":100,"f":"Keep earning campaigns, stop the rest","p":"reduce","r":60,"o":null,"s":false},{"b":"Patreon fees","c":40,"f":"Memberships on your own site","p":"keep","r":null,"o":null,"s":false}]},{"id":"substack","label":"Newsletter & publishing","soon":false,"tools":[{"b":"Substack paid newsletter","c":50,"f":"Ghost self-hosted (0% fee)","p":"switch","r":null,"o":["Ghost self-hosted","Listmonk"],"s":false},{"b":"beehiiv","c":49,"f":"Listmonk self-hosted","p":"switch","r":null,"o":null,"s":false},{"b":"Kit (ConvertKit)","c":39,"f":"Listmonk self-hosted","p":"switch","r":null,"o":null,"s":false}]},{"id":"cloud","label":"Cloud compute","soon":false,"tools":[{"b":"AWS","c":50,"f":"Free tiers + own machine","p":"switch","r":null,"o":null,"s":false},{"b":"Google Cloud","c":40,"f":"Free tiers + own machine","p":"switch","r":null,"o":null,"s":false},{"b":"Microsoft Azure","c":40,"f":"Free tiers + own machine","p":"switch","r":null,"o":null,"s":false},{"b":"GPU cloud, monthly","c":99,"f":"Vast.ai / RunPod by the hour","p":"reduce","r":25,"o":null,"s":false},{"b":"Virtual server (shared CPU)","c":24,"f":"Smaller server / own machine","p":"reduce","r":5,"o":null,"s":false},{"b":"Colab Pro","c":9.99,"f":"Local model + GPU hours as needed","p":"switch","r":null,"o":null,"s":false},{"b":"GitHub Pro or Team","c":4,"f":"GitHub Free","p":"reduce","r":0,"o":null,"s":false},{"b":"GitHub Actions minutes","c":15,"f":"Run builds on own machine","p":"switch","r":null,"o":null,"s":false},{"b":"GitHub Codespaces","c":18,"f":"Develop on own machine","p":"switch","r":null,"o":null,"s":false},{"b":"GitLab Premium","c":29,"f":"Forgejo / Codeberg","p":"switch","r":null,"o":null,"s":false}]}],"services":[{"brand":"Hermes private AI","price":"Free download","needsBoM":false},{"brand":"Matrix account on M5 network","price":"Included with Bank of Me","needsBoM":true},{"brand":"Verified identity","price":"Included with Bank of Me","needsBoM":true},{"brand":"M5Canon credentials","price":"Per use","needsBoM":true},{"brand":"TitleChain assets","price":"Per use","needsBoM":true},{"brand":"Agentic payments","price":"Per use","needsBoM":true},{"brand":"AI compute","price":"Per use","needsBoM":true}]};
+const PLAN = { switch: "Switch free", reduce: "Pay less", keep: "Keep", drop: "Cancel" };
+const money = n => "$" + (Math.round(n * 100) / 100).toLocaleString("en-US", { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 });
+const rows = [];
+DATA.layers.forEach(l => l.tools.forEach((t, i) => rows.push({ ...t, id: l.id + ":" + i, layer: l })));
+const isFree = t => t.c === 0;
+const saving = t => isFree(t) || t.s ? 0 : t.p === "switch" || t.p === "drop" ? t.c : t.p === "reduce" ? (t.r || 0) : 0;
+
+let checked = new Set();
+try { checked = new Set(JSON.parse(localStorage.getItem("fo-checked") || "[]")); } catch (e) {}
+const persist = () => { try { localStorage.setItem("fo-checked", JSON.stringify([...checked])); } catch (e) {} };
+let filter = "all", query = "";
+
+const paid = rows.filter(t => !isFree(t) && !t.s);
+const count = p => paid.filter(t => t.p === p).length;
+
+function matches(t) {
+  if (query) {
+    const hay = (t.b + " " + t.f + " " + (t.o || []).join(" ") + " " + t.layer.label).toLowerCase();
+    if (!hay.includes(query)) return false;
+  }
+  if (filter === "all") return true;
+  if (filter === "mine") return checked.has(t.id);
+  if (filter === "free") return isFree(t);
+  return !isFree(t) && !t.s && t.p === filter;
+}
+
+function pill(t) {
+  if (t.s) return `<span class="pill soon">Coming soon</span>`;
+  if (isFree(t)) return `<span class="pill free">Already free</span>`;
+  return `<span class="pill ${t.p}">${PLAN[t.p]}</span>`;
+}
+
+function render() {
+  const out = [];
+  DATA.layers.forEach(l => {
+    const list = rows.filter(t => t.layer === l && matches(t));
+    if (!list.length) return;
+    const lPaid = l.tools.filter(t => t.c > 0 && !t.s);
+    const lSave = lPaid.reduce((s, t) => s + saving(t), 0);
+    out.push(`<section class="group" aria-labelledby="h-${l.id}"><div class="g-head"><h2 id="h-${l.id}">${l.label}</h2>` +
+      (l.soon ? `<span class="soon-note">Not available yet. Shown for planning only.</span>` :
+        `<span class="g-meta">${lPaid.length} paid · up to ${money(lSave)}/mo back</span>`) +
+      `</div><div class="rows"><table><thead><tr><th><span class="sr">I pay</span></th><th>Product</th><th style="text-align:right">Per month</th><th>Action</th><th>Free option</th></tr></thead><tbody>` +
+      list.map(t => {
+        const on = checked.has(t.id), dis = isFree(t) || t.s;
+        const s = saving(t);
+        return `<tr class="${on ? "checked" : ""}"><td class="chk"><input type="checkbox" id="c-${t.id}" data-id="${t.id}" ${on ? "checked" : ""} ${dis ? "disabled" : ""} aria-label="I pay for ${t.b}"></td>` +
+          `<td class="brand"><label for="c-${t.id}">${t.b}</label></td><td class="cost">${t.c ? money(t.c) : "Free"}</td><td class="act">${pill(t)}</td>` +
+          `<td class="alt">${t.f}${t.o ? `<div class="opts">${t.o.map(o => `<span>${o}</span>`).join("")}</div>` : ""}${s && !dis ? `<div class="save-note">keep ${money(s)}/mo</div>` : ""}</td></tr>`;
+      }).join("") + `</tbody></table></div></section>`);
+  });
+  document.getElementById("groups").innerHTML = out.join("") || `<div class="empty">${filter === "mine" ? "You haven't ticked anything yet. Tick the subscriptions you pay for under All." : "No products match. Try a shorter search."}</div>`;
+  tally();
+}
+
+function tally() {
+  const mine = rows.filter(t => checked.has(t.id));
+  const now = mine.reduce((s, t) => s + t.c, 0), save = mine.reduce((s, t) => s + saving(t), 0);
+  document.getElementById("tCount").textContent = mine.length;
+  document.getElementById("tNow").textContent = money(now) + "/mo";
+  document.getElementById("tSave").textContent = money(save) + "/mo";
+  document.getElementById("tYear").textContent = money(save * 12);
+}
+
+document.getElementById("groups").addEventListener("change", e => {
+  const id = e.target.dataset.id; if (!id) return;
+  e.target.checked ? checked.add(id) : checked.delete(id);
+  e.target.closest("tr").classList.toggle("checked", e.target.checked);
+  persist(); tally();
+  if (filter === "mine") render();
+});
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+  filter = b.dataset.f;
+  document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  render();
+}));
+document.getElementById("q").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); render(); });
+
+let clearArmed = false;
+document.getElementById("clearBtn").addEventListener("click", e => {
+  if (!clearArmed) { clearArmed = true; e.target.textContent = "Tap again to clear"; setTimeout(() => { clearArmed = false; e.target.textContent = "Clear ticks"; }, 3000); return; }
+  checked.clear(); persist(); clearArmed = false; e.target.textContent = "Clear ticks"; render(); toast("Ticks cleared");
+});
+
+function toast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 2200); }
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const mine = rows.filter(t => checked.has(t.id));
+  if (!mine.length) { toast("Tick at least one subscription first"); return; }
+  const lines = ["My Freedom Office software checklist", ""];
+  DATA.layers.forEach(l => {
+    const m = mine.filter(t => t.layer === l); if (!m.length) return;
+    lines.push(l.label.toUpperCase());
+    m.forEach(t => lines.push(`[ ] ${t.b} (${money(t.c)}/mo) -> ${PLAN[t.p]}: ${t.f}`));
+    lines.push("");
+  });
+  const now = mine.reduce((s, t) => s + t.c, 0), save = mine.reduce((s, t) => s + saving(t), 0);
+  lines.push(`Paying now: ${money(now)}/mo. Keep by switching: ${money(save)}/mo (${money(save * 12)}/yr).`);
+  const text = lines.join("\n");
+  navigator.clipboard.writeText(text).then(() => toast("Copied your list"), () => {
+    const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select();
+    toast("Copy blocked here. The list is selected; press Cmd+C."); setTimeout(() => ta.remove(), 8000);
+  });
+});
+
+const inc = [
+  ["Freedom Office tools", "Included free. Runs on your own computer.", ["Identity & credentials", "Private AI agent", "Personal workspace", "Files & records", "Images", "Inventory & private closet", "Machine-readable personal data", "Local & open-weight AI tools"].map(x => [x, "Free"])],
+  ["Export anywhere", "Your data leaves with you, with no re-keying.", ["QuickBooks", "Excel", "Word", "Any existing system"].map(x => [x, "Included"])],
+  ["M5 services", "Optional. Added on top, not swaps.", DATA.services.map(s => [s.brand, s.price + (s.needsBoM ? " · needs Bank of Me" : "")])],
+];
+document.getElementById("included").innerHTML = inc.map(([h, p, items]) =>
+  `<div class="inc-card"><h3>${h}</h3><p>${p}</p><ul>${items.map(([a, b]) => `<li><span>${a}</span><em>${b}</em></li>`).join("")}</ul></div>`).join("");
+
+render();
+
+const STEPS = [
+  { id: "ai", m5: "M5 AI Agent", powered: "Hermes Agent + Ollama", job: "Personal AI agent", tool: "Hermes Agent", url: "https://hermes-agent.nousresearch.com",
+    why: `Your own AI agent on your computer. It plans tasks, uses tools, and remembers your work between sessions, so it can keep your M5POD organized. Connect it to <a href="https://ollama.com" target="_blank" rel="noopener">Ollama</a> so the AI model runs on your machine too, and nothing leaves it. Hermes can use your files and terminal, so you decide what it may do.`,
+    replaces: "ChatGPT Plus", save: 20, help: true, more: "LM Studio (easier to start, but closed source)",
+    parts: [{ name: "Hermes Agent", version: "v0.22.4", license: "MIT", url: "https://hermes-agent.nousresearch.com/docs/getting-started/installation", source: "github.com/NousResearch/hermes-agent" },
+            { name: "Ollama", version: "v0.40.7", license: "MIT", url: "https://ollama.com/download", source: "github.com/ollama/ollama" }] },
+  { id: "office", m5: "M5 Office", powered: "LibreOffice", job: "Office", tool: "LibreOffice", url: "https://www.libreoffice.org",
+    why: "Documents, spreadsheets and slides. Opens and saves Word, Excel and PowerPoint files.",
+    replaces: "Microsoft 365", save: 9.99, early: "WordCraft, GridCraft and DeckCraft",
+    parts: [{ name: "LibreOffice", version: "26.2.7", license: "MPL-2.0", url: "https://www.libreoffice.org/download/download-libreoffice/", source: "libreoffice.org" }] },
+  { id: "organize", m5: "M5 Notes", powered: "Joplin", job: "Notes & files", tool: "Joplin", url: "https://joplinapp.org",
+    why: "Notes, to-do lists and project pages, kept on your own computer.",
+    replaces: "Notion", save: 10, more: "Syncthing, to keep files in step across your devices",
+    parts: [{ name: "Joplin", version: "v3.7.21", license: "AGPL-3.0-or-later", url: "https://joplinapp.org/download/", source: "github.com/laurent22/joplin" }] },
+  { id: "editing", m5: "M5 Design", powered: "GIMP", job: "Photos & design", tool: "GIMP", url: "https://www.gimp.org",
+    why: "Edit photos and make graphics.",
+    replaces: "Adobe Photoshop", save: 22.99, more: "Penpot for social posts and layouts", early: "PhotoCraft and VectorCraft",
+    parts: [{ name: "GIMP", version: "3.2.6", license: "GPL-3.0-or-later", url: "https://www.gimp.org/downloads/", source: "gitlab.gnome.org/GNOME/gimp" }] },
+  { id: "video", m5: "M5 Video", powered: "Shotcut", job: "Video", tool: "Shotcut", url: "https://shotcut.org",
+    why: "Cut, trim and caption videos for posts and reels.",
+    replaces: "CapCut Pro", save: 9.99, more: "OBS Studio for screen recording", early: "FilmCraft",
+    parts: [{ name: "Shotcut", version: "26.9.27", license: "GPL-3.0", url: "https://shotcut.org/download/", source: "github.com/mltframework/shotcut" }] },
+  { id: "content", m5: "M5 Publish", powered: "Ghost", job: "Newsletter", tool: "Ghost", url: "https://ghost.org",
+    why: "Publish a newsletter on your own site and keep all of your subscription income.",
+    replaces: "Substack fees", save: 50, help: true, more: "Listmonk",
+    parts: [{ name: "Ghost", version: "v6.72.0", license: "MIT", url: "https://ghost.org/docs/install/", source: "github.com/TryGhost/Ghost" }] },
+  { id: "wallet", m5: "M5 Self-Custody Wallet", powered: "Rabby Wallet", job: "Wallet", tool: "Rabby Wallet", url: "https://rabby.io",
+    why: "Hold your own digital money and keys, with no account fees. Write your recovery phrase on paper and keep it offline.",
+    replaces: "custodial wallet fees", save: 5, more: "Frame",
+    parts: [{ name: "Rabby Wallet", version: "v0.94.12", license: "MIT (name and logo reserved)", url: "https://rabby.io", source: "github.com/RabbyHub/Rabby" }] },
+];
+const VERSIONS_CHECKED = "2026-10-21";
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem("fo-kit") || "[]")); } catch (e) {}
+
+function kitRecord() {
+  const items = STEPS.filter(s => done.has(s.id)).flatMap(s => s.parts.map(p => ({
+    m5_tool: s.m5, job: s.job, software: p.name, version: p.version, license: p.license,
+    official_download: p.url, source: p.source, replaces: s.replaces,
+    installer_sha256: "record after download",
+  })));
+  return {
+    format: "m5.freedom-office.kit-record.v0",
+    status: "draft, not signed",
+    created: new Date().toISOString(),
+    holder: "IAM-Free account (link when signing is available)",
+    versions_checked: VERSIONS_CHECKED,
+    saves_per_month_usd: Math.round(STEPS.filter(s => done.has(s.id)).reduce((a, s) => a + s.save, 0) * 100) / 100,
+    items,
+    acceptance: signed ? { signed_by: signed.name, account: "M5IAM-000", accepted_at: signed.at, statement_sha256: signed.statementHash,
+      signature: "simulated", certificates: signed.certs.map(c => ({ m5_tool: c.step.m5, title_no: "SAMPLE-SW-" + c.hash.slice(0, 8).toUpperCase(), sha256: c.hash, status: "SAMPLE_NOT_ISSUED", registry: "SIMULATED_NOT_ANCHORED" })) } : null,
+  };
+}
+function renderKit() {
+  const box = document.getElementById("kit"), chosen = STEPS.filter(s => done.has(s.id));
+  box.hidden = chosen.length === 0;
+  updateSignVisibility();
+  if (!chosen.length) return;
+  document.getElementById("kitIntro").textContent =
+    `${chosen.length} ${chosen.length === 1 ? "tool" : "tools"} in your kit. Download each one from its official source. Versions and licenses were checked on 21 October 2026.`;
+  document.getElementById("kitRows").innerHTML = chosen.flatMap(s => s.parts.map((p, i) =>
+    `<tr><td><b>${s.m5}</b><span class="sub">${i === 0 ? s.job : "AI model runtime"}</span></td><td>${p.name}</td>
+      <td class="v">${p.version}</td><td class="lic">${p.license}</td>
+      <td class="dl"><a href="${p.url}" target="_blank" rel="noopener">Download &#8599;</a><span class="sub">${p.source}</span></td></tr>`)).join("");
+  const rb = document.getElementById("recordBox");
+  if (!rb.hidden) rb.textContent = JSON.stringify(kitRecord(), null, 2);
+}
+document.getElementById("showRecord").addEventListener("click", e => {
+  const rb = document.getElementById("recordBox"); rb.hidden = !rb.hidden;
+  e.target.setAttribute("aria-expanded", String(!rb.hidden));
+  e.target.textContent = rb.hidden ? "Show the record" : "Hide the record";
+  if (!rb.hidden) rb.textContent = JSON.stringify(kitRecord(), null, 2);
+});
+document.getElementById("copyRecord").addEventListener("click", () => {
+  const text = JSON.stringify(kitRecord(), null, 2);
+  navigator.clipboard.writeText(text).then(() => toast("Kit record copied. Paste it into a file in your pod."), () => {
+    const rb = document.getElementById("recordBox"); rb.hidden = false; rb.textContent = text;
+    const r = document.createRange(); r.selectNodeContents(rb); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    toast("Copy is blocked here. The record is selected; press Cmd+C.");
+  });
+});
+
+let signed = null;
+async function sha256(text) {
+  const d = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(d)].map(b => b.toString(16).padStart(2, "0")).join("");
+}
+const COPYLEFT = /GPL|AGPL|MPL/;
+function updateSignVisibility() {
+  document.getElementById("sign").hidden = done.size === 0 || !!signed;
+  document.getElementById("certs").hidden = !signed;
+}
+document.getElementById("signForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = document.getElementById("signName").value.trim();
+  const err = document.getElementById("signError");
+  const missing = !name ? "Type your name to sign." : !["ack1", "ack2", "ack3"].every(id => document.getElementById(id).checked) ? "Tick all three statements to accept." : "";
+  if (missing) { err.textContent = missing; err.hidden = false; return; }
+  err.hidden = true;
+  const chosen = STEPS.filter(s => done.has(s.id));
+  const at = new Date().toISOString();
+  const statement = JSON.stringify({ name, account: "M5IAM-000", at, kit: chosen.map(s => s.parts.map(p => p.name + "@" + p.version)) });
+  const statementHash = await sha256(statement);
+  const certs = [];
+  for (const s of chosen) certs.push({ step: s, hash: await sha256(statementHash + s.id) });
+  signed = { name, at, statementHash, certs, active: 0 };
+  updateSignVisibility(); renderCerts();
+  document.getElementById("certs").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+});
+document.getElementById("resign").addEventListener("click", () => { signed = null; updateSignVisibility(); renderKit(); document.getElementById("sign").scrollIntoView(); });
+function el(tag, cls, text) { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; }
+function certNode(c) {
+  const s = c.step, when = new Date(signed.at).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const lic = [...new Set(s.parts.map(p => p.license))].join(" + ");
+  const copyleft = s.parts.some(p => COPYLEFT.test(p.license));
+  const wrap = el("div", "cwrap"), frame = el("div", "cframe"), cert = el("div", "cert");
+  const head = el("div", "chead"), org = el("div", "corg", "TITLECHAIN REGISTRY"); org.append(el("span", null, "M5 FREEDOM OFFICE · SOFTWARE LICENSE"));
+  const stamp = el("div", "stamp"); stamp.append(el("b", null, "SAMPLE"), el("span", null, "NOT ISSUED · NOT ANCHORED"));
+  const tno = el("div", "tno", "TITLE NO."); tno.append(el("b", null, "SAMPLE-SW-" + c.hash.slice(0, 8).toUpperCase()));
+  head.append(org, stamp, tno);
+  const mid = el("div", "cmid");
+  mid.append(el("div", "ckind", "CERTIFICATE OF TITLE"), el("div", "cbar"),
+    el("div", "cby", "This certifies that the software below is held under its published license by"),
+    el("div", "cholder", signed.name + " · M5IAM-000"), el("div", "cname", s.m5),
+    el("div", "cpow", "Powered by " + s.parts.map(p => p.name + " " + p.version).join(" + ")));
+  const fields = el("div", "cfields");
+  [["License", lic], ["Kind", "Open source"], ["Cost to you", "$0"], ["Source", s.parts.map(p => p.source.replace(/^github\.com\//, "")).join(" + ")],
+   ["Accepted", when], ["Status", "Sample · not issued"]].forEach(([k, v]) => { const d = el("div"); d.append(el("i", null, k), el("b", null, v)); fields.append(d); });
+  const rights = el("div", "crights"); ["Use it for any purpose", "Study how it works", "Change it", "Share copies"].forEach(r => rights.append(el("div", null, r)));
+  const sig = el("div", "csig");
+  const a = el("div", null, "Signed by the holder"); a.append(el("b", null, signed.name));
+  const b = el("div", null, "Registry entry"); b.append(el("b", null, "Simulated · not anchored"));
+  sig.append(a, b);
+  cert.append(head, mid, fields, el("div", "ckind", "RIGHTS YOU HOLD UNDER " + lic.toUpperCase()), rights,
+    el("div", "cfoot", (copyleft ? "If you share a changed version, share it under the same license. " : "") +
+      "The license is granted by the people who make this software, under its public terms. This certificate records it; it does not grant it. " +
+      "M5 tool names are TitleChain Foundation's names for these kits; each tool keeps its own name, license and trademarks, and its makers are not affiliated with M5."),
+    sig, el("div", "chash", "SHA-256 of this certificate: " + c.hash));
+  frame.append(cert); wrap.append(frame);
+  return wrap;
+}
+function renderCerts() {
+  if (!signed) return;
+  document.getElementById("certsIntro").textContent =
+    `${signed.certs.length} sample ${signed.certs.length === 1 ? "certificate" : "certificates"}, one for each M5 tool you accepted. At launch, the TitleChain Registry issues real ones and saves them in your IAM-Free pod.`;
+  const tabs = document.getElementById("certTabs");
+  tabs.innerHTML = "";
+  signed.certs.forEach((c, i) => {
+    const b = el("button", null, c.step.m5); b.type = "button"; b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", String(i === signed.active));
+    b.addEventListener("click", () => { signed.active = i; renderCerts(); });
+    tabs.append(b);
+  });
+  const view = document.getElementById("certView"); view.innerHTML = ""; view.append(certNode(signed.certs[signed.active]));
+}
+const perMonth = n => "$" + (Math.round(n * 100) / 100).toFixed(n % 1 ? 2 : 0) + " a month";
+function renderSteps() {
+  document.getElementById("steps").innerHTML = STEPS.map(s => {
+    const extras = [s.more, s.early ? `<span class="new">New, in early testing:</span> ${s.early} from <a href="https://getartcraft.com/apps" target="_blank" rel="noopener">ArtCraft</a>` : ""].filter(Boolean);
+    return `<li class="step ${done.has(s.id) ? "done" : ""}">
+    <div class="job">${s.job}</div>
+    <h3>${s.m5}</h3>
+    <div class="powered">Powered by ${s.powered}</div>
+    <a class="get" href="${s.url}" target="_blank" rel="noopener">About ${s.tool} <span aria-hidden="true">&#8599;</span></a>
+    <p class="why">${s.why}</p>
+    <p class="saves">Replaces ${s.replaces}. <b>Saves ${perMonth(s.save)}.</b>${s.help ? ` <span class="help">You may want help setting this one up.</span>` : ""}</p>
+    <label class="done-box"><input type="checkbox" data-step="${s.id}" ${done.has(s.id) ? "checked" : ""}> ${done.has(s.id) ? "In my kit" : "Add to my kit"}</label>
+    ${extras.length ? `<div class="more">Other free options: ${extras.join(" &middot; ")}</div>` : ""}</li>`;
+  }).join("");
+  const n = done.size, save = STEPS.filter(s => done.has(s.id)).reduce((a, s) => a + s.save, 0);
+  const all = STEPS.reduce((a, s) => a + s.save, 0);
+  document.getElementById("pBar").style.width = (n / STEPS.length * 100) + "%";
+  document.getElementById("pDone").textContent = n === STEPS.length ? "All 7 in your kit" : `${n} of ${STEPS.length} in your kit`;
+  document.getElementById("pSave").textContent = n ? `Your kit saves ${perMonth(save)}` : `Saves up to ${perMonth(Math.round(all))} with all seven`;
+  renderKit();
+}
+document.getElementById("steps").addEventListener("change", e => {
+  const id = e.target.dataset.step; if (!id) return;
+  e.target.checked ? done.add(id) : done.delete(id);
+  try { localStorage.setItem("fo-kit", JSON.stringify([...done])); } catch (err) {}
+  if (signed) { signed = null; toast("Your kit changed, so sign again to update your certificates."); }
+  renderSteps();
+});
+renderSteps();
+</script>
+<style>.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}</style>
+
+</body></html>
