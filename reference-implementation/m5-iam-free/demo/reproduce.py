@@ -30,7 +30,7 @@ EXPECTED = HERE / 'expected-digests.json'
 
 def run(folder):
     pod = Path(folder) / 'M5POD-IAM-demo'
-    m5_iam.init_pod(pod, FIXED['display_name'], attested=True, now=FIXED['now'],
+    m5_iam.init_pod(pod, FIXED['display_name'], attested=True, accept_cyrus=True, now=FIXED['now'],
                     local_id=FIXED['local_id'], chain=FIXED['chain'])
     digests = {path.relative_to(pod).as_posix(): hashlib.sha256(path.read_bytes()).hexdigest()
                for path in sorted(pod.rglob('*')) if path.is_file()}

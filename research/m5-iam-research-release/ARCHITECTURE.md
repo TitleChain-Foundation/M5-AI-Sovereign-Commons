@@ -34,6 +34,7 @@ M5POD-IAM/
   M0-M5IAM-000/
     iam.json                 IAM ONLY · self-attested, not verified · free
     attestation/             human terms, machine record, executable check
+    consent/consent.json     CYRUS Protocol accepted; right to refuse selected, not activated
     identifiers/             local identifier; TCID and others empty until registration
     registry/                simulated TitleChain Registry entry
     receive/                 reserved
@@ -48,8 +49,38 @@ so the pod is not tied to a single agent or vendor.
 The attestation follows M5-RICARDIAN-TRIPLE-LAYER-001 (in `standards/`): the
 human terms control; the machine record binds the digest of the terms and of
 the executable check; the executable check declares `authority_effect: NONE`,
-`network_write: false` and `financial_movement: false`. `verify` recomputes the
+`network_write: false` and `financial_movement: false`. The machine record
+reserves signature slots for the holder and for an approved agency that later
+verifies the IAM through M5-x401 (`RESERVED_NOT_SIGNED`; nothing is signed in
+this release). `verify` recomputes the
 ledger chain and every recorded digest and fails closed on any difference.
+
+## CYRUS Protocol and the right to refuse consent
+
+Activation fails unless the holder accepts the CYRUS Protocol
+(`accept_cyrus`, `--accept-cyrus`). Acceptance is recorded in
+`consent/consent.json` with the protections it gives (basic rights, and the
+five sovereign rights of identity, data, privacy, self-determination and
+portability) and the Trust that holds it.
+
+The protocol grants the right to refuse consent. The holder may select it at
+activation or later. On an IAM it is `SELECTED_NOT_ACTIVATED` with
+`activated: false`, because an IAM's credentials are self-attested. It
+activates when credentials are verified (Bank of Me registration, or an
+approved agency through M5-x401), which this release does not perform. Each
+change is appended to the history and the ledger (`CONSENT_RECORDED`,
+`REFUSAL_SELECTED`, `REFUSAL_UNSELECTED`), so `verify` detects edits made
+outside the tool.
+
+## Certificate of Title contents
+
+The sample IAM certificate records: the holder, account and attestation; the
+registry reference and commitment; CYRUS Protocol acceptance; the
+right-to-refuse status at issuance; the commons (publisher, repository,
+software licence `Apache-2.0`, standard licence `CC-BY-4.0`, and that the
+holder's records stay theirs); and usage (free for life, personal, not
+transferable, `can_authorize: []`). Its shape follows ISO/IEC 19770-3
+entitlement records, with licences as SPDX identifiers.
 
 ## Registry entry (simulated)
 
@@ -71,6 +102,30 @@ ANCHORED**:
 | IAM origin | The person's IAM account | `registry/certificate-iam-origin.json`, written to the pod and recorded in the ledger; carries the registry commitment |
 | Software license | Any free tool in the catalog | Generated on screen from the catalog entry; records the tool's SPDX license and states that the license is granted by its makers, not by the certificate |
 | Licensed service | A paid service (sample: Element plan) | Generated on screen; shows both paths: an existing customer shows proof of the plan, a new customer pays the provider directly through M5-OpenAPI |
+
+Under each software certificate, an **optional support** panel (sample, no
+value moves) lets the person set an amount and a schedule (one time, per hour,
+day, week, month or year) for two separate gifts:
+
+- **The developers,** paid directly once their Sigstore release signature is
+  matched to a verified payee: their own wallet, or the M5 entity account they
+  contribute through.
+- **Pay it forward to TitleChain Foundation,** directed to the TitleChain
+  Sovereign Purpose Trust for its mission. Off unless chosen.
+
+Gifts are never part of a fee split and the software stays free either way.
+Terms, payment rails and protection rules are in the separately published fine
+print.
+
+### Previews of what opens later (samples)
+
+- **Purchase protection** under the paid-service certificate: optional, from
+  credentialed providers only, sorted by price, with each provider's fee, its
+  rate in the member's ZIP and the commons median for that ZIP.
+- **Reputation:** none at IAM. A person's reputation is their M5Nash Score,
+  which starts with Bank of Me and grows with giving, paying it forward,
+  completed classes and time and talents given to the community; entity
+  accounts build their own scores.
 
 No certificate is issued by this release. A Certificate of Title is issued by
 the TitleChain Registry only after launch.
