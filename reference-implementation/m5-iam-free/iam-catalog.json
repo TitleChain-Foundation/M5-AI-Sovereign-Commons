@@ -209,7 +209,7 @@
       "name": "Bank of Me",
       "for": "You, as a person",
       "price": "$49 per year",
-      "adds": "A reusable ID for the year, your own member block for a private agent, a registered M5POD and product licences.",
+      "adds": "Your reusable ID: verify once and reuse it everywhere, re-checked and monitored all year so its status stays current. Also your own member block for a private agent, a registered M5POD and product licences.",
       "name_fee": "+ $5 a year for your name \u00b7 first year waived"
     },
     {
@@ -232,7 +232,7 @@
       "tier": "M4",
       "name": "Bank of Institutions",
       "for": "A verified institution",
-      "price": "$250 per year \u00b7 pending launch",
+      "price": "From $250 per year \u00b7 setup by custom quote \u00b7 pending launch",
       "adds": "An account for an institution with verified standing.",
       "name_fee": "+ $5 a year for your name \u00b7 first year waived",
       "detail": "Organized by place: nation, tribal nation or territory, state, county and city. Classified by its standard NAICS industry code, for example 522110 Commercial Banking or 524 Insurance Carriers."
@@ -241,13 +241,13 @@
       "tier": "M5",
       "name": "Bank of Government",
       "for": "A public body",
-      "price": "$500 per year \u00b7 pending launch",
+      "price": "From $500 per year \u00b7 setup by custom quote \u00b7 pending launch",
       "adds": "An account for a government entity. Every action needs human approval.",
       "name_fee": "+ $5 a year for your name \u00b7 first year waived",
       "detail": "Each judicial, legislative and executive body is organized by its place and jurisdiction: nation, tribal nation or territory, state, county and city. Classified by NAICS sector 92, Public Administration: for example 922110 Courts, 921120 Legislative Bodies, 921110 Executive Offices, and 921150 American Indian and Alaska Native Tribal Governments. People register first as Bank of Me humans, then secure their credentials to activate the agency."
     }
   ],
-  "account_note": "Registered accounts are not open yet. Every account pays $5 a year for its name; the first year is waived when the account is activated. Each person who operates an entity account needs their own Bank of Me account first. Sub-accounts are activated separately. Secretary of State and other government filing fees are separate.",
+  "account_note": "Registered accounts are not open yet. Every person who acts for an entity holds their own active Bank of Me; the entity's fee covers the entity, not its people. One account per legal entity; sub-accounts are activated separately. Every account pays $5 a year for its name; the first year is waived when the account is activated. Government filing fees and outside verification are separate.",
   "products": [
     {
       "group": "Talk and meet",
@@ -353,5 +353,183 @@
         }
       ]
     }
-  ]
+  ],
+  "protocols": {
+    "applies_to": [
+      "M1",
+      "M2",
+      "M3",
+      "M4",
+      "M5"
+    ],
+    "note": "Every registered account includes these protocols under the protection of its M5POD. The free IAM does not.",
+    "items": [
+      {
+        "name": "M5-x401",
+        "does": "Asks for and checks proof before access or delivery"
+      },
+      {
+        "name": "M5-x402",
+        "does": "States and validates any payment condition, with a time-stamped token"
+      },
+      {
+        "name": "M5-OpenAPI",
+        "does": "Credentialed access to M5 services and the marketplace"
+      },
+      {
+        "name": "M5Scan",
+        "does": "Checks a claim against several independent sources"
+      },
+      {
+        "name": "M5Index",
+        "does": "Public commons index, including rates by ZIP code"
+      },
+      {
+        "name": "M5Pay",
+        "does": "Routes payments with three-part Ricardian receipts"
+      },
+      {
+        "name": "CYRUS Protocol",
+        "does": "Protects every holder's basic and sovereign rights, and guards the Trust and its IP against capture",
+        "with_iam": "Accepted when you activate your IAM"
+      },
+      {
+        "name": "TitleChain Registry",
+        "does": "Registers titles, certificates and commitments"
+      }
+    ]
+  },
+  "starter_kit": {
+    "title": "Your free M5 starter kit",
+    "versions_checked": "2026-10-21",
+    "names_note": "M5 tool names are TitleChain Foundation's names for these kits. Each tool keeps its own name, licence and trademarks, and its makers are not affiliated with M5.",
+    "tools": [
+      {
+        "id": "ai-agent",
+        "m5_name": "M5 AI Agent",
+        "job": "Personal AI agent",
+        "does": "Your own AI agent on your computer. It plans tasks, uses tools and remembers your work between sessions, so it can keep your pod organized. Ollama runs the AI model on your computer too.",
+        "setup_help": true,
+        "also": "LM Studio (easier to start, but closed source)",
+        "components": [
+          {
+            "name": "Hermes Agent",
+            "version": "v0.22.4",
+            "license": "MIT",
+            "source": "https://github.com/NousResearch/hermes-agent",
+            "download": "https://hermes-agent.nousresearch.com/docs/getting-started/installation"
+          },
+          {
+            "name": "Ollama",
+            "version": "v0.40.7",
+            "license": "MIT",
+            "source": "https://github.com/ollama/ollama",
+            "download": "https://ollama.com/download"
+          }
+        ]
+      },
+      {
+        "id": "office",
+        "m5_name": "M5 Office",
+        "job": "Office",
+        "does": "Documents, spreadsheets and slides. Opens and saves Word, Excel and PowerPoint files.",
+        "setup_help": false,
+        "also": "WordCraft, GridCraft and DeckCraft from ArtCraft, in early testing",
+        "components": [
+          {
+            "name": "LibreOffice",
+            "version": "26.2.7",
+            "license": "MPL-2.0",
+            "source": "https://www.libreoffice.org/",
+            "download": "https://www.libreoffice.org/download/download-libreoffice/"
+          }
+        ]
+      },
+      {
+        "id": "notes",
+        "m5_name": "M5 Notes",
+        "job": "Notes and files",
+        "does": "Notes, to-do lists and project pages, kept on your own computer.",
+        "setup_help": false,
+        "also": "Syncthing, to keep files in step across your devices",
+        "components": [
+          {
+            "name": "Joplin",
+            "version": "v3.7.21",
+            "license": "AGPL-3.0-or-later",
+            "source": "https://github.com/laurent22/joplin",
+            "download": "https://joplinapp.org/download/"
+          }
+        ]
+      },
+      {
+        "id": "design",
+        "m5_name": "M5 Design",
+        "job": "Photos and design",
+        "does": "Edit photos and make graphics.",
+        "setup_help": false,
+        "also": "Penpot for social posts and layouts; PhotoCraft and VectorCraft from ArtCraft, in early testing",
+        "components": [
+          {
+            "name": "GIMP",
+            "version": "3.2.6",
+            "license": "GPL-3.0-or-later",
+            "source": "https://gitlab.gnome.org/GNOME/gimp",
+            "download": "https://www.gimp.org/downloads/"
+          }
+        ]
+      },
+      {
+        "id": "video",
+        "m5_name": "M5 Video",
+        "job": "Video",
+        "does": "Cut, trim and caption videos for posts and reels.",
+        "setup_help": false,
+        "also": "OBS Studio for screen recording; FilmCraft from ArtCraft, in early testing",
+        "components": [
+          {
+            "name": "Shotcut",
+            "version": "26.9.27",
+            "license": "GPL-3.0-or-later",
+            "source": "https://github.com/mltframework/shotcut",
+            "download": "https://shotcut.org/download/"
+          }
+        ]
+      },
+      {
+        "id": "publish",
+        "m5_name": "M5 Publish",
+        "job": "Newsletter",
+        "does": "Publish a newsletter on your own site and keep all of your subscription income.",
+        "setup_help": true,
+        "also": "Listmonk",
+        "components": [
+          {
+            "name": "Ghost",
+            "version": "v6.72.0",
+            "license": "MIT",
+            "source": "https://github.com/TryGhost/Ghost",
+            "download": "https://ghost.org/docs/install/"
+          }
+        ]
+      },
+      {
+        "id": "wallet",
+        "m5_name": "M5 Self-Custody Wallet",
+        "job": "Wallet",
+        "does": "Hold your own digital money and keys, with no account fees. Write your recovery phrase on paper and keep it offline.",
+        "setup_help": false,
+        "also": "Frame",
+        "components": [
+          {
+            "name": "Rabby Wallet",
+            "version": "v0.94.12",
+            "license": "MIT",
+            "source": "https://github.com/RabbyHub/Rabby",
+            "download": "https://rabby.io/"
+          }
+        ]
+      }
+    ]
+  }
 }

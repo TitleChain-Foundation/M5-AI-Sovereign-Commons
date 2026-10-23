@@ -34,6 +34,7 @@ M5POD-IAM/
   M0-M5IAM-000/
     iam.json                 IAM ONLY · self-attested, not verified · free
     attestation/             human terms, machine record, executable check
+    consent/consent.json     CYRUS Protocol accepted; right to refuse selected, not activated
     identifiers/             local identifier; TCID and others empty until registration
     registry/                simulated TitleChain Registry entry
     receive/                 reserved
@@ -48,8 +49,38 @@ so the pod is not tied to a single agent or vendor.
 The attestation follows M5-RICARDIAN-TRIPLE-LAYER-001 (in `standards/`): the
 human terms control; the machine record binds the digest of the terms and of
 the executable check; the executable check declares `authority_effect: NONE`,
-`network_write: false` and `financial_movement: false`. `verify` recomputes the
+`network_write: false` and `financial_movement: false`. The machine record
+reserves signature slots for the holder and for an approved agency that later
+verifies the IAM through M5-x401 (`RESERVED_NOT_SIGNED`; nothing is signed in
+this release). `verify` recomputes the
 ledger chain and every recorded digest and fails closed on any difference.
+
+## CYRUS Protocol and the right to refuse consent
+
+Activation fails unless the holder accepts the CYRUS Protocol
+(`accept_cyrus`, `--accept-cyrus`). Acceptance is recorded in
+`consent/consent.json` with the protections it gives (basic rights, and the
+five sovereign rights of identity, data, privacy, self-determination and
+portability) and the Trust that holds it.
+
+The protocol grants the right to refuse consent. The holder may select it at
+activation or later. On an IAM it is `SELECTED_NOT_ACTIVATED` with
+`activated: false`, because an IAM's credentials are self-attested. It
+activates when credentials are verified (Bank of Me registration, or an
+approved agency through M5-x401), which this release does not perform. Each
+change is appended to the history and the ledger (`CONSENT_RECORDED`,
+`REFUSAL_SELECTED`, `REFUSAL_UNSELECTED`), so `verify` detects edits made
+outside the tool.
+
+## Certificate of Title contents
+
+The sample IAM certificate records: the holder, account and attestation; the
+registry reference and commitment; CYRUS Protocol acceptance; the
+right-to-refuse status at issuance; the commons (publisher, repository,
+software licence `Apache-2.0`, standard licence `CC-BY-4.0`, and that the
+holder's records stay theirs); and usage (free for life, personal, not
+transferable, `can_authorize: []`). Its shape follows ISO/IEC 19770-3
+entitlement records, with licences as SPDX identifiers.
 
 ## Registry entry (simulated)
 
