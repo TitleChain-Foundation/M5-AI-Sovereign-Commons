@@ -11,6 +11,7 @@ on:
       - ".github/workflows/publish-sec-observatory.yml"
       - "sec-public-input/observatory/**"
       - "sec-public-input/foundation-submissions/**/*.pdf"
+      - "site/**"
 
 permissions:
   contents: read
@@ -41,12 +42,13 @@ jobs:
       - name: Test observatory
         run: python -m unittest discover -s sec-public-input/observatory/tests -v
 
-      - name: Refresh official SEC index and build public site
+      - name: Refresh official SEC index and build the Commons site
         run: |
           python sec-public-input/observatory/update_observatory.py \
             --output _site/sec-observatory \
             --previous-feed "https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/feed.json"
-          cp sec-public-input/observatory/pages-index.html _site/index.html
+          cp -R site/. _site/
+          test -s _site/index.html
           test -s _site/sec-observatory/feed.json
           test -s _site/sec-observatory/foundation-status.json
           touch _site/.nojekyll
