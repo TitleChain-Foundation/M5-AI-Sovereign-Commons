@@ -109,6 +109,20 @@ footer{font-size:12px;color:var(--label)}
 .flag{margin-top:8px;font-size:13px;color:var(--rose);font-weight:600}
 .supportline{flex-wrap:wrap}
 .linkbtn{border:0;background:none;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px}
+.kitrow{display:flex;gap:12px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line);margin:0;cursor:pointer;text-transform:none;letter-spacing:0;font-size:15px;font-weight:400;color:inherit}
+.kitrow:first-of-type{border-top:0}
+.kitrow input{width:20px;height:20px;margin-top:3px;accent-color:var(--ink);flex:none}
+.kitrow .kitbody{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.kitrow .kitname{font-weight:600;font-size:16px}
+.kitrow .kitname span{font-weight:400;color:var(--muted);font-size:14px}
+.kitrow .kitpow{font-size:13px;color:var(--muted)}
+.kitrow .kitdoes{font-size:14px;color:var(--body)}
+.kitlinks{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px}
+.kitlinks a{color:var(--ink);font-weight:600}
+.kitalso{font-size:12px;color:var(--label)}
+.kittop{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+.kitsign{margin-top:18px;border-top:1px solid var(--line);padding-top:6px}
+input.kitname{width:100%;border:1px solid var(--line2);border-radius:9999px;padding:11px 16px;background:var(--white)}
 @media print{.bar,.strip,main>*:not(.printing),footer{display:none!important}.printing{display:block!important}body{background:#fff}}
 @media (max-width:560px){.cert{padding:22px 18px}.certname{font-size:32px}}
 </style>
@@ -201,7 +215,7 @@ function certView() {
   close.addEventListener('click', () => { shownCert = null; render(); });
   actions.append(print, close);
   box.append(actions);
-  if (shownCert.kind === 'tool') box.append(supportPanel(shownCert.item));
+  if (shownCert.kind === 'tool' || shownCert.kind === 'kit') box.append(supportPanel(shownCert.item));
   if (shownCert.kind === 'service') box.append(protectionPanel());
   return box;
 }
@@ -354,13 +368,124 @@ function formView() {
   return [head, card];
 }
 
+// Free starter kit: pick, sign and accept, then sample certificates saved in the pod.
+let kitEditing = false;
+const kitPicked = new Set();
+function poweredBy(components) {
+  return components.map(p => p.name + ' ' + p.version + ' (' + p.license + ')').join(' + ');
+}
+function kitCertificateView(c, note) {
+  const short = u => u.replace(/^https:\/\/(www\.)?/, '').replace(/^github\.com\//, '').replace(/\/$/, '');
+  return {
+    accent: '#047857', registry: 'M5 FREEDOM OFFICE · SOFTWARE LICENSE', titleNo: c.title_no,
+    by: 'This certifies that the software below is held under its published licence by',
+    holder: c.holder + ' · ' + c.account, name: c.m5_tool, what: 'Powered by ' + c.powered_by.map(p => p.name + ' ' + p.version).join(' + '),
+    fields: [['Licence', c.licences.join(' + ')], ['Kind', c.kind], ['Cost to you', '$0'],
+      ['Job', c.job], ['Source', c.powered_by.map(p => short(p.source).split('/').pop()).join(' + ')],
+      ['Accepted', new Date(c.accepted_at).toLocaleDateString()], ['Registry', 'Simulated · not anchored'], ['Status', 'Sample · not issued']],
+    rightsTitle: 'RIGHTS YOU HOLD UNDER ' + c.licences.join(' + '), rights: c.rights,
+    foot: (c.share_alike ? 'If you share a changed version, share it under the same licence. ' : '') + c.licence_note + ' ' + note,
+    hashLabel: 'SHA-256 of this certificate:', hash: c.certificate_sha256
+  };
+}
+function showKitCertificate(c) {
+  shownCert = kitCertificateView(c, state.catalog.starter_kit.names_note);
+  shownCert.kind = 'kit'; shownCert.item = { name: c.powered_by[0].name };
+  render();
+  document.getElementById('certview').scrollIntoView({ behavior: 'smooth' });
+}
+function kitCard() {
+  const kit = state.catalog.starter_kit, saved = state.kit;
+  const card = el('div', 'card'); card.id = 'kit';
+  if (saved && !kitEditing) {
+    const k = saved.record;
+    const top = el('div', 'kittop'); top.append(el('h2', null, kit.title), el('span', 'pill on', 'Accepted · saved in your pod'));
+    card.append(top, el('p', 'note', 'Signed by ' + k.signed_by + ' on ' + new Date(k.accepted_at).toLocaleString() +
+      '. A typed name, not a cryptographic signature. Each certificate is a sample until the TitleChain Registry issues real ones at launch.'));
+    saved.certificates.forEach(c => {
+      const row = el('div', 'row'), left = el('div');
+      left.append(el('b', null, c.m5_tool), document.createTextNode(' '), el('span', null, 'Powered by ' + poweredBy(c.powered_by)));
+      const right = el('div', 'r'); right.append(document.createTextNode(c.title_no + ' · '));
+      const b = el('button', 'linkbtn', 'View certificate'); b.type = 'button'; b.addEventListener('click', () => showKitCertificate(c));
+      right.append(b); row.append(left, right); card.append(row);
+    });
+    card.append(el('p', 'mono', state.pod_path + '/' + 'M0-M5IAM-000/' + 'software/kit-record.json'));
+    const change = el('button', 'ghost', 'Change my kit'); change.type = 'button';
+    change.addEventListener('click', () => { kitEditing = true; kitPicked.clear(); k.tools.forEach(t => kitPicked.add(t.id)); render(); document.getElementById('kit').scrollIntoView(); });
+    const actions = el('div', 'certactions'); actions.append(change); card.append(actions);
+    card.append(el('p', 'note', kit.names_note));
+    return card;
+  }
+  const top = el('div', 'kittop'); top.append(el('h2', null, kit.title));
+  const all = el('button', 'linkbtn', 'Select all'); all.type = 'button';
+  top.append(all);
+  card.append(top, el('p', 'note', 'Pick a free tool for each everyday job. Download each one from its official source. Then sign and accept: your kit record and a sample certificate for each tool are saved in your pod. Versions checked ' + kit.versions_checked + '.'));
+  const boxes = [];
+  kit.tools.forEach(t => {
+    const row = el('label', 'kitrow'), box = el('input'); box.type = 'checkbox'; box.checked = kitPicked.has(t.id);
+    box.addEventListener('change', () => { box.checked ? kitPicked.add(t.id) : kitPicked.delete(t.id); fill(); });
+    boxes.push([box, t]);
+    const body = el('div', 'kitbody'), name = el('div', 'kitname', t.m5_name + ' ');
+    name.append(el('span', null, '· ' + t.job));
+    const links = el('div', 'kitlinks');
+    t.components.forEach(p => { const a = el('a', null, 'Download ' + p.name); a.href = p.download; a.target = '_blank'; a.rel = 'noopener noreferrer'; links.append(a); });
+    if (t.setup_help) links.append(el('span', 'pill pending', 'You may want help setting this up'));
+    body.append(name, el('div', 'kitpow', 'Powered by ' + poweredBy(t.components)), el('div', 'kitdoes', t.does), links);
+    if (t.also) body.append(el('div', 'kitalso', 'Also free: ' + t.also));
+    row.append(box, body); card.append(row);
+  });
+  all.addEventListener('click', () => { boxes.forEach(([b, t]) => { b.checked = true; kitPicked.add(t.id); }); fill(); });
+
+  const sign = el('form', 'kitsign');
+  const terms = el('div', 'terms');
+  const l1 = el('label', null, 'Your name, as your signature '); l1.htmlFor = 'kitname'; l1.append(el('small', null, 'stays on this computer'));
+  const name = el('input', 'kitname'); name.type = 'text'; name.id = 'kitname'; name.maxLength = 80; name.autocomplete = 'name';
+  name.value = state.record.display_name || '';
+  const acks = ['I download each tool from its official source, listed above.',
+    'I accept each tool’s licence as published by the people who make it. The certificate records the licence; it does not grant it.',
+    'My records stay mine, in this pod.'].map((text, i) => {
+    const box = el('input'); box.type = 'checkbox'; box.id = 'kitack' + i;
+    const label = el('label', 'attest'); label.htmlFor = box.id; label.style.cssText = 'text-transform:none;letter-spacing:0;color:inherit;font-weight:400;font-size:15px';
+    label.append(box, el('span', null, text)); return [box, label];
+  });
+  const button = el('button', 'btn', 'Sign and save to my pod'); button.type = 'submit';
+  const error = el('p', 'error');
+  const fill = () => {
+    const chosen = kit.tools.filter(t => kitPicked.has(t.id));
+    terms.replaceChildren(el('b', null, chosen.length ? 'You accept ' + chosen.length + (chosen.length === 1 ? ' tool' : ' tools') : 'Pick at least one tool above'),
+      document.createTextNode(chosen.map(t => t.m5_name + ': ' + poweredBy(t.components)).join('\n')));
+    button.disabled = !(chosen.length && name.value.trim() && acks.every(([b]) => b.checked));
+  };
+  name.addEventListener('input', fill); acks.forEach(([b]) => b.addEventListener('change', fill));
+  sign.addEventListener('submit', async event => {
+    event.preventDefault(); button.disabled = true; error.textContent = '';
+    try {
+      const response = await fetch('/api/kit', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tools: [...kitPicked], name: name.value, accept: acks.every(([b]) => b.checked) }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Something went wrong.');
+      state = data; kitEditing = false; shownCert = null; render();
+      document.getElementById('kit').scrollIntoView();
+    } catch (problem) { error.textContent = problem.message; fill(); }
+  });
+  sign.append(el('div', 'group', 'Sign and accept'), terms, l1, name, ...acks.map(([, l]) => l), button, error);
+  if (saved) {
+    const cancel = el('button', 'ghost', 'Keep my current kit'); cancel.type = 'button'; cancel.style.marginLeft = '8px';
+    cancel.addEventListener('click', () => { kitEditing = false; render(); });
+    sign.append(cancel);
+  }
+  card.append(sign, el('p', 'note', kit.names_note));
+  fill();
+  return card;
+}
+
 function resultView() {
   const r = state.record;
   const head = el('div');
   const h = el('h1'); h.append('Your IAM is ', el('em', null, 'active'), '.');
   head.append(el('div', 'eyebrow', 'IAM · ' + r.account_sku + ' · free'), h);
   const pills = el('div'); pills.append(el('span', 'pill on', 'IAM active'), el('span', 'pill', 'Human attested · not verified'), el('span', 'pill', 'On this computer only'));
-  head.append(pills, el('p', 'lede', 'You attested to your humanity. Here is what you have now, what you can use today, and what you can open later.'));
+  head.append(pills, el('p', 'lede', 'You attested to your humanity. Here is what you have now, your free starter kit, what else you can use today, and what you can open later.'));
 
   const have = el('div', 'card');
   have.append(el('h2', null, 'What you have'));
@@ -486,6 +611,7 @@ function resultView() {
   if (state.consent) parts.push(consent);
   if (reg) parts.push(chainCard);
   if (c) parts.push(iamCert);
+  if (state.catalog.starter_kit) parts.push(kitCard());
   if (shownCert) parts.push(certView());
   return parts.concat([use, later, rep, not]);
 }
