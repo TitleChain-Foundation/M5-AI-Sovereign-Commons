@@ -41,7 +41,7 @@ in your browser. It runs on your own computer only.
 
 On macOS, the first time you open a downloaded launcher you may need to
 right-click it and choose **Open**. Prefer the command line? Run
-`python3 m5_iam_app.py`, or `python3 m5_iam.py init --name "Your name" --chain wyomingchain.eth --i-am-human`.
+`python3 m5_iam_app.py`, or `python3 m5_iam.py init --name "Your name" --chain wyomingchain.eth --i-am-human --accept-cyrus`.
 
 ## What you get
 

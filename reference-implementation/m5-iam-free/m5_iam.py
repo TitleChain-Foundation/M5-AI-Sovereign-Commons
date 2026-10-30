@@ -37,6 +37,13 @@ I understand that this is my own attestation. No one has verified it. It does
 not issue a TCID or a credential, open a Bank of Me account, or authorize any
 payment, signature, transfer or agent action.
 
+I accept the CYRUS Protocol, which protects me: no slavery, servitude or
+forced labour; freedom of thought, conscience and faith, any faith or none;
+and my rights to identity, data, privacy, self-determination and portability.
+
+Under it I hold the right to refuse consent. I may select it now. It
+activates only when my credentials are verified.
+
 I may delete this account and its records from my device at any time.
 
 Attested: {now}
@@ -46,6 +53,23 @@ ATTESTATION_TEXT = (
     'on a computer I control. I understand this statement is self-attested and '
     'has not been verified by any credential, issuer or registry.'
 )
+SIGNATURE_SLOTS = {
+    'holder': 'RESERVED_NOT_SIGNED',
+    'approving_agency': 'RESERVED_NOT_SIGNED',
+    'note': 'Signed when the holder has a signing key and when an approved agency verifies this IAM through M5-x401.',
+}
+# Accepting the CYRUS Protocol is required: it is what protects the holder.
+# Wording is a draft for counsel review.
+CYRUS_PROTOCOL = {
+    'name': 'CYRUS Protocol',
+    'held_by': 'TitleChain Sovereign Purpose Trust',
+    'basic_rights': ['No slavery, servitude or forced labour',
+                     'Freedom of thought, conscience and faith: any faith or none'],
+    'sovereign_rights': ['Identity', 'Data', 'Privacy', 'Self-determination', 'Portability'],
+    'grants': 'The right to refuse consent',
+}
+REFUSAL_ACTIVATES = ('When your credentials are verified, by registering Bank of Me or by an approved agency '
+                     'verifying this IAM through M5-x401.')
 NON_CLAIMS = [
     'Not a TCID. No TitleChain ID has been issued.',
     'Not a verified identity. No credential or issuer has checked this statement.',
@@ -53,6 +77,7 @@ NON_CLAIMS = [
     'Cannot authorize a transaction, title transfer, payment, signature or delegated agent action.',
 ]
 VAULT_NOTE = {
+    'consent': 'Your acceptance of the CYRUS Protocol, and your right to refuse consent: selected by you, activated when your credentials are verified.',
     'attestation': 'The human attestation in three matching parts: the words, the data and the check.',
     'identifiers': 'The local identifier. TCID, PayName, ENS and WSW URI stay empty until issued by registration.',
     'receive': 'Reserved for a receiving address. Empty until one is issued by registration.',
@@ -156,7 +181,22 @@ def registry_receipt(layer, contract_id, now):
                     'Registry. Your name, contact and statement stay on your own device.'}
 
 
-def iam_certificate(record, receipt):
+COMMONS = {
+    'publisher': 'TitleChain Foundation',
+    'repository': 'https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons',
+    'software_license': 'Apache-2.0',
+    'standard_license': 'CC-BY-4.0',
+    'your_records': 'Yours. The licences cover the software and the standard, never your records.',
+}
+USAGE = {
+    'price': 'Free for life',
+    'scope': 'Personal. One human, acting for themselves.',
+    'transfer': 'Not transferable. A new holder makes their own attestation.',
+    'can_authorize': [],
+}
+
+
+def iam_certificate(record, receipt, consent):
     """A sample Certificate of Title for the IAM origin, issued against the simulated registry entry."""
     body = {'schema': SCHEMA, 'certificate': 'Certificate of Title', 'subject': 'IAM origin',
             'title_no': receipt['ref_id'], 'holder': record['display_name'] or 'Holder of this IAM',
@@ -164,6 +204,13 @@ def iam_certificate(record, receipt):
             'identity_status': 'Human attested, not verified',
             'rights': ['Use the free IAM for life', 'Use free and open tools on your own devices',
                        'Export or delete your own records at any time', 'Apply for a registered account when they open'],
+            'cyrus_protocol': {'status': consent['cyrus_protocol']['status'],
+                               'accepted_at': consent['cyrus_protocol']['accepted_at']},
+            'right_to_refuse': {'selected': consent['right_to_refuse']['selected'],
+                                'status': consent['right_to_refuse']['status'],
+                                'current_choice': 'consent/consent.json'},
+            'commons': COMMONS, 'usage': USAGE,
+            'shape': 'ISO/IEC 19770-3 entitlement (sample); licences as SPDX identifiers',
             'limits': 'Not a TCID or a verified identity. Cannot authorize a payment, signature, title transfer or agent action.',
             'registry_commitment_sha256': receipt['commitment_sha256'], 'status': 'SAMPLE_NOT_ISSUED',
             'sample': True, 'issued_by': None,
@@ -172,10 +219,155 @@ def iam_certificate(record, receipt):
     return body
 
 
-def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chain='', contact=''):
+KIT_TERMS = """# Software kit acceptance
+
+I, {name}, holder of IAM account {account}, choose these free tools for my own use:
+
+{lines}
+
+I download each tool from its official source, listed above.
+
+I accept each tool's licence as published by the people who make it. The
+licence is granted by them, not by M5 or TitleChain Foundation. The sample
+certificates in my pod record each licence; they do not grant it.
+
+M5 tool names are TitleChain Foundation's names for these kits. Each tool
+keeps its own name, licence and trademarks, and its makers are not affiliated
+with M5.
+
+My records stay mine, in this pod.
+
+Accepted: {now}
+"""
+KIT_RIGHTS = ['Use it for any purpose', 'Study how it works', 'Change it', 'Share copies']
+COPYLEFT = ('GPL', 'AGPL', 'MPL', 'LGPL')
+
+
+def load_starter_kit():
+    """The starter kit listed in iam-catalog.json beside this file."""
+    catalog = Path(__file__).resolve().parent / 'iam-catalog.json'
+    return json.loads(catalog.read_text(encoding='utf-8'))['starter_kit']
+
+
+def kit_certificate(record, tool, accepted_at, terms_sha256):
+    """A sample Software Licence Certificate of Title for one tool in the holder's kit."""
+    components = [{key: part[key] for key in ('name', 'version', 'license', 'source', 'download')}
+                  for part in tool['components']]
+    seed = json.dumps({'local_id': record['local_id'], 'tool': tool['id'], 'components': components,
+                       'accepted_at': accepted_at}, sort_keys=True)
+    copyleft = any(part['license'].startswith(COPYLEFT) for part in components)
+    body = {'schema': SCHEMA, 'certificate': 'Certificate of Title', 'subject': 'Software licence',
+            'title_no': 'SAMPLE-SW-' + sha256_bytes(seed.encode('utf-8'))[:8].upper(),
+            'holder': record['display_name'] or 'Holder of this IAM', 'account': ACCOUNT_SKU,
+            'm5_tool': tool['m5_name'], 'job': tool['job'], 'powered_by': components,
+            'licences': sorted({part['license'] for part in components}), 'kind': 'Open source', 'cost': 'FREE',
+            'accepted_at': accepted_at, 'kit_terms_sha256': terms_sha256, 'rights': KIT_RIGHTS,
+            'share_alike': copyleft,
+            'licence_note': 'The licence is granted by the people who make this software, under its public terms. '
+                            'This certificate records it; it does not grant it.',
+            'shape': 'ISO/IEC 19770-3 entitlement (sample); licences as SPDX identifiers',
+            'registry': 'SIMULATED_NOT_ANCHORED', 'status': 'SAMPLE_NOT_ISSUED', 'sample': True, 'issued_by': None,
+            'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False,
+            'note': 'Sample certificate. A Certificate of Title is issued by the TitleChain Registry only after launch.'}
+    body['certificate_sha256'] = sha256_bytes(json.dumps(body, sort_keys=True).encode('utf-8'))
+    return body
+
+
+def accept_kit(pod, tool_ids, signer, now=None, kit=None):
+    """Record the holder's acceptance of their software kit, with a sample certificate for each tool.
+
+    Writes the acceptance words, one sample certificate per tool and a kit record into the pod, each
+    entered in the ledger. Downloads nothing and sends nothing: the holder downloads each tool themselves.
+    """
+    record = load_record(pod)
+    if load_consent(pod) is None:
+        raise PodError('This pod has no CYRUS Protocol acceptance on record, so it cannot accept a kit.')
+    kit = kit or load_starter_kit()
+    tools = {tool['id']: tool for tool in kit['tools']}
+    wanted = set(tool_ids or [])
+    if not wanted:
+        raise PodError('Choose at least one tool for your kit.')
+    unknown = sorted(wanted - set(tools))
+    if unknown:
+        raise PodError('Not in the starter kit: ' + ', '.join(unknown))
+    signer = ' '.join(str(signer or '').split())[:80]
+    if not signer:
+        raise PodError('Type your name to sign.')
+    now = now or utc_now()
+    chosen = [tool for tool in kit['tools'] if tool['id'] in wanted]
+    layer = Path(pod).expanduser() / LAYER
+    (layer / 'software').mkdir(exist_ok=True)
+
+    lines = '\n'.join(f'- {tool["m5_name"]}: ' + ', '.join(
+        f'{part["name"]} {part["version"]} ({part["license"]}), from {part["download"]}' for part in tool['components'])
+        for tool in chosen)
+    terms = KIT_TERMS.format(name=signer, account=ACCOUNT_SKU, lines=lines, now=now)
+    (layer / 'software' / 'kit-terms.md').write_text(terms, encoding='utf-8')
+    append_event(layer, 'KIT_TERMS_WRITTEN', now, 'software/kit-terms.md')
+    terms_sha256 = sha256_bytes(terms.encode('utf-8'))
+
+    certificates = []
+    for tool in chosen:
+        certificate = kit_certificate(record, tool, now, terms_sha256)
+        name = f'registry/certificate-software-{tool["id"]}.json'
+        write_json(layer / name, certificate)
+        append_event(layer, 'SOFTWARE_CERTIFICATE_SAMPLE_WRITTEN', now, name)
+        certificates.append({'m5_tool': tool['m5_name'], 'title_no': certificate['title_no'], 'file': name,
+                             'certificate_sha256': certificate['certificate_sha256']})
+
+    kit_record = {'schema': SCHEMA, 'type': 'software-kit', 'account': ACCOUNT_SKU, 'local_id': record['local_id'],
+                  'accepted_at': now, 'versions_checked': kit.get('versions_checked'),
+                  'signed_by': signer, 'signature': {'method': 'TYPED_NAME', 'cryptographic': False},
+                  'signature_slots': SIGNATURE_SLOTS, 'kit_terms': 'software/kit-terms.md',
+                  'kit_terms_sha256': terms_sha256,
+                  'tools': [{'id': tool['id'], 'm5_tool': tool['m5_name'], 'job': tool['job'],
+                             'components': tool['components'], 'installer_sha256': None}
+                            for tool in chosen],
+                  'installer_note': 'Record each installer\'s SHA-256 after you download it from its official source.',
+                  'certificates': certificates, 'registry': 'SIMULATED_NOT_ANCHORED',
+                  'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False}
+    write_json(layer / 'software' / 'kit-record.json', kit_record)
+    append_event(layer, 'KIT_ACCEPTED', now, 'software/kit-record.json')
+    if os.name == 'posix':
+        for path in [layer / 'software', *(layer / 'software').iterdir(), *(layer / 'registry').iterdir()]:
+            path.chmod(0o700 if path.is_dir() else 0o600)
+    return kit_record
+
+
+def load_kit(pod):
+    """The holder's kit record and its certificates, or None if no kit has been accepted."""
+    layer = Path(pod).expanduser() / LAYER
+    path = layer / 'software' / 'kit-record.json'
+    if not path.exists():
+        return None
+    kit_record = json.loads(path.read_text(encoding='utf-8'))
+    certificates = [json.loads((layer / item['file']).read_text(encoding='utf-8'))
+                    for item in kit_record['certificates']]
+    return {'record': kit_record, 'certificates': certificates}
+
+
+def refusal_status(selected):
+    return 'SELECTED_NOT_ACTIVATED' if selected else 'NOT_SELECTED'
+
+
+def consent_record(contract_id, accepted_at, selected, now, history):
+    return {'schema': SCHEMA, 'type': 'iam-consent', 'contract_id': contract_id,
+            'cyrus_protocol': {**CYRUS_PROTOCOL, 'status': 'ACCEPTED', 'accepted_at': accepted_at,
+                               'required': True},
+            'right_to_refuse': {'selected': selected, 'status': refusal_status(selected), 'activated': False,
+                                'activates': REFUSAL_ACTIVATES,
+                                'why_not_active': 'An IAM is self-attested. Its credentials are not verified yet.'},
+            'decided_at': now, 'history': history,
+            'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False}
+
+
+def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chain='', contact='',
+             accept_cyrus=False, select_refusal=False):
     pod = Path(pod).expanduser()
     if not attested:
         raise PodError('The human attestation is required to create an IAM pod. On the command line, add --i-am-human.')
+    if accept_cyrus is not True:
+        raise PodError('Accepting the CYRUS Protocol is required: it is what protects you. On the command line, add --accept-cyrus.')
     if pod.exists() and any(pod.iterdir()):
         raise PodError(f'{pod} already exists and is not empty. Nothing was changed.')
     now = now or utc_now()
@@ -202,7 +394,9 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
                    'chain': {'selected': chain or None, 'status': 'SELF_SELECTED_NOT_VERIFIED'},
                    'human_terms_sha256': sha256_bytes(terms.encode('utf-8')),
                    'executable_check_sha256': sha256_bytes((layer / 'attestation' / 'executable-check.json').read_bytes()),
-                   'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False}
+                   'authority_effect': 'NONE', 'network_write': False, 'financial_movement': False,
+                   # Reserved: the holder's signature, and an approving agency's signature over its own claim (via M5-x401).
+                   'signatures': [], 'signature_slots': SIGNATURE_SLOTS}
     identifiers = {'schema': SCHEMA, 'local_id': local_id, 'tcid': None, 'payname': None,
                    'ens': None, 'wsw_uri': None,
                    'chain': {'selected': chain or None, 'status': 'SELF_SELECTED_NOT_VERIFIED'},
@@ -212,7 +406,9 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
               'display_name': display_name, 'local_id': local_id, 'tcid': None, 'created_at': now,
               'chain': chain or None, 'chain_status': 'SELF_SELECTED_NOT_VERIFIED',
               'contact': contact or None, 'contract_id': contract_id,
-              'price': 'FREE', 'network_required': False, 'can_authorize': [], 'non_claims': NON_CLAIMS}
+              'price': 'FREE', 'network_required': False, 'can_authorize': [], 'non_claims': NON_CLAIMS,
+              'signature_status': 'RESERVED_NOT_SIGNED', 'consent_file': 'consent/consent.json',
+              'cyrus_protocol': 'ACCEPTED'}
     write_json(layer / 'attestation' / 'human-attestation.json', attestation)
     write_json(layer / 'identifiers' / 'identifiers.json', identifiers)
     write_json(layer / 'iam.json', record)
@@ -226,7 +422,8 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
         'This folder stays on your computer. Nothing in it is sent anywhere.\n', encoding='utf-8')
     (pod / 'm5agent' / 'm5readme.md').write_text(
         '# m5agent\n\nRules, prompts and configuration for any agent, local or hosted, that you allow '
-        'to read this pod.\nNo agent may act for you on the strength of an IAM-only pod.\n', encoding='utf-8')
+        'to read this pod.\nEvery agent works under the CYRUS Protocol the holder accepted '
+        f'({LAYER}/consent/consent.json). No agent may act for you on the strength of an IAM-only pod.\n', encoding='utf-8')
     (layer / 'm5readme.md').write_text(
         f'# {ACCOUNT_SKU} · IAM · free\n\nStatus: **{STATUS}** · {IDENTITY_STATUS}\n\n'
         + ''.join(f'- `{name}/` — {note}\n' for name, note in VAULT_NOTE.items())
@@ -239,15 +436,45 @@ def init_pod(pod, display_name='', attested=False, now=None, local_id=None, chai
     append_event(layer, 'HUMAN_ATTESTED', now, 'attestation/human-attestation.json')
     append_event(layer, 'IDENTIFIERS_WRITTEN', now, 'identifiers/identifiers.json')
     append_event(layer, 'IAM_RECORD_WRITTEN', now, 'iam.json')
+    selected = bool(select_refusal)
+    consent = consent_record(contract_id, now, selected, now,
+                             [{'at': now, 'cyrus_protocol': 'ACCEPTED', 'right_to_refuse': refusal_status(selected)}])
+    write_json(layer / 'consent' / 'consent.json', consent)
+    append_event(layer, 'CONSENT_RECORDED', now, 'consent/consent.json')
     receipt = registry_receipt(layer, contract_id, now)
     write_json(layer / 'registry' / 'registry-receipt.json', receipt)
     append_event(layer, 'REGISTRY_ENTRY_SIMULATED', now, 'registry/registry-receipt.json')
-    write_json(layer / 'registry' / 'certificate-iam-origin.json', iam_certificate(record, receipt))
+    write_json(layer / 'registry' / 'certificate-iam-origin.json', iam_certificate(record, receipt, consent))
     append_event(layer, 'CERTIFICATE_SAMPLE_WRITTEN', now, 'registry/certificate-iam-origin.json')
     if os.name == 'posix':
         for path in [pod, *pod.rglob('*')]:
             path.chmod(0o700 if path.is_dir() else 0o600)
     return record
+
+
+def load_consent(pod):
+    path = Path(pod).expanduser() / LAYER / 'consent' / 'consent.json'
+    consent = json.loads(path.read_text(encoding='utf-8')) if path.exists() else None
+    # Pods made before the CYRUS Protocol step have no acceptance on record.
+    return consent if consent and 'cyrus_protocol' in consent else None
+
+
+def set_refusal(pod, selected, now=None):
+    """Select or unselect the right to refuse consent. It stays not activated until credentials are verified."""
+    record = load_record(pod)
+    current = load_consent(pod)
+    if current is None:
+        raise PodError('This pod has no consent record. It was created before the CYRUS Protocol step existed.')
+    now = now or utc_now()
+    selected = bool(selected)
+    layer = Path(pod).expanduser() / LAYER
+    path = layer / 'consent' / 'consent.json'
+    history = current['history'] + [{'at': now, 'cyrus_protocol': 'ACCEPTED', 'right_to_refuse': refusal_status(selected)}]
+    write_json(path, consent_record(record['contract_id'], current['cyrus_protocol']['accepted_at'], selected, now, history))
+    append_event(layer, 'REFUSAL_SELECTED' if selected else 'REFUSAL_UNSELECTED', now, 'consent/consent.json')
+    if os.name == 'posix':
+        path.chmod(0o600)
+    return load_consent(pod)
 
 
 def load_record(pod):
@@ -300,24 +527,47 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description='Free, local M5 IAM starting pod. No network calls.')
     commands = parser.add_subparsers(dest='command', required=True)
     for name, text in [('init', 'create a new local IAM pod'), ('status', 'show the IAM record'),
-                       ('verify', 'check the ledger and recorded files'), ('export', 'copy the pod into one ZIP you keep')]:
+                       ('verify', 'check the ledger and recorded files'), ('export', 'copy the pod into one ZIP you keep'),
+                       ('consent', 'select or unselect your right to refuse consent'),
+                       ('kit', 'sign and accept your free starter kit')]:
         command = commands.add_parser(name, help=text)
         command.add_argument('--pod', default='~/M5POD-IAM', help='pod folder (default: ~/M5POD-IAM)')
         if name == 'init':
             command.add_argument('--name', default='', help='a display name of your choosing (optional)')
             command.add_argument('--i-am-human', action='store_true', help='make the human attestation')
             command.add_argument('--chain', default='', help='your state chain, your own choice (optional)')
+        if name == 'init':
+            command.add_argument('--accept-cyrus', action='store_true',
+                                 help='accept the CYRUS Protocol, which protects you (required)')
+            command.add_argument('--select-refusal', action='store_true',
+                                 help='select your right to refuse consent (activates when your credentials are verified)')
+        if name == 'consent':
+            command.add_argument('--right-to-refuse', choices=['select', 'unselect'], required=True)
         if name == 'export':
             command.add_argument('--output', required=True, help='ZIP file to write')
+        if name == 'kit':
+            command.add_argument('--tools', required=True,
+                                 help='comma-separated tool ids from the starter kit, e.g. ai-agent,office')
+            command.add_argument('--name', required=True, help='your name, as your signature')
     args = parser.parse_args(argv)
     try:
         if args.command == 'init':
-            record = init_pod(args.pod, args.name, args.i_am_human, chain=args.chain)
+            record = init_pod(args.pod, args.name, args.i_am_human, chain=args.chain,
+                              accept_cyrus=args.accept_cyrus, select_refusal=args.select_refusal)
             print(json.dumps({'created': str(Path(args.pod).expanduser()), 'status': record['status'],
                               'identity_status': record['identity_status'], 'local_id': record['local_id'],
                               'open': str(Path(args.pod).expanduser() / 'm5-iam.html')}, indent=2))
         elif args.command == 'status':
             print(json.dumps(load_record(args.pod), indent=2, ensure_ascii=False))
+        elif args.command == 'consent':
+            consent = set_refusal(args.pod, args.right_to_refuse == 'select')
+            print(json.dumps({'cyrus_protocol': consent['cyrus_protocol']['status'],
+                              'right_to_refuse': consent['right_to_refuse']['status']}, indent=2))
+        elif args.command == 'kit':
+            kit_record = accept_kit(args.pod, [t.strip() for t in args.tools.split(',') if t.strip()], args.name)
+            print(json.dumps({'accepted': [c['m5_tool'] for c in kit_record['certificates']],
+                              'certificates': [c['title_no'] for c in kit_record['certificates']],
+                              'registry': kit_record['registry']}, indent=2))
         elif args.command == 'verify':
             result = verify_pod(args.pod)
             print(json.dumps(result, indent=2))

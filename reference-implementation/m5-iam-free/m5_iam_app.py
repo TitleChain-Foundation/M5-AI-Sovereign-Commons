@@ -2,8 +2,10 @@
 
 Runs on your own computer only. Standard library only. It listens on the
 loopback address, shows one page, and can do one thing to your files: create
-your IAM starting pod when you make the human attestation. It makes no
-outbound network calls.
+your IAM starting pod when you make the human attestation, with your
+acceptance of the CYRUS Protocol, record whether you select your right to
+refuse consent, and record the free starter kit you sign and accept. It makes
+no outbound network calls.
 """
 import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -65,8 +67,11 @@ class Handler(BaseHTTPRequestHandler):
         shown = '~' + shown[len(home):] if shown.startswith(home) else shown
         cert_file = self.pod / m5_iam.LAYER / 'registry' / 'certificate-iam-origin.json'
         certificate = json.loads(cert_file.read_text(encoding='utf-8')) if record and cert_file.exists() else None
+        consent = m5_iam.load_consent(self.pod) if record else None
         return {'pod_path': shown, 'record': record, 'check': check, 'catalog': catalog,
-                'registry': receipt, 'certificate': certificate, 'terms_template': m5_iam.HUMAN_TERMS}
+                'registry': receipt, 'certificate': certificate, 'consent': consent,
+                'cyrus': m5_iam.CYRUS_PROTOCOL, 'kit': m5_iam.load_kit(self.pod) if record else None,
+                'refusal_activates': m5_iam.REFUSAL_ACTIVATES, 'terms_template': m5_iam.HUMAN_TERMS}
 
     def do_GET(self):
         if not self.local_request():
@@ -79,8 +84,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send(404, 'text/plain; charset=utf-8', b'Not found')
 
     def do_POST(self):
-        # Only this page, on this computer, may ask for the pod to be created.
-        if (not self.local_request() or self.path != '/api/attest'
+        # Only this page, on this computer, may create the pod, change its consent or record its kit.
+        if (not self.local_request() or self.path not in ('/api/attest', '/api/consent', '/api/kit')
                 or self.headers.get('Origin') not in (self.origin(), f'http://localhost:{self.port}')
                 or self.headers.get('Content-Type') != 'application/json'):
             self.send(403, 'text/plain; charset=utf-8', b'Forbidden')
@@ -91,12 +96,27 @@ class Handler(BaseHTTPRequestHandler):
             return
         try:
             data = json.loads(self.rfile.read(length))
+            if self.path == '/api/kit':
+                tools = data.get('tools')
+                if not isinstance(tools, list) or not all(isinstance(t, str) for t in tools):
+                    raise m5_iam.PodError('Choose at least one tool for your kit.')
+                if data.get('accept') is not True:
+                    raise m5_iam.PodError('Tick all three statements to accept your kit.')
+                m5_iam.accept_kit(self.pod, tools, clean(data.get('name'), 80))
+                self.send_json(200, self.state())
+                return
+            if self.path == '/api/consent':
+                m5_iam.set_refusal(self.pod, data.get('right_to_refuse') is True)
+                self.send_json(200, self.state())
+                return
             chains = {c['chain'] for c in json.loads((HERE / 'iam-catalog.json').read_text(encoding='utf-8'))['chains']}
             chain = clean(data.get('chain'), 80)
             if chain and chain not in chains:
                 raise m5_iam.PodError('Choose a state chain from the list.')
             m5_iam.init_pod(self.pod, clean(data.get('name'), 80), data.get('attest') is True,
-                            chain=chain, contact=clean(data.get('contact'), 120))
+                            chain=chain, contact=clean(data.get('contact'), 120),
+                            accept_cyrus=data.get('accept_cyrus') is True,
+                            select_refusal=data.get('right_to_refuse') is True)
         except (ValueError, AttributeError):
             self.send_json(400, {'error': 'The form could not be read.'})
         except m5_iam.PodError as error:
