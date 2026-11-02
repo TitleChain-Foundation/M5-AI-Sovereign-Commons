@@ -14,6 +14,7 @@ on:
       - "site/**"
       - "scripts/build_commons_library.py"
       - "tests/test_commons_library.py"
+      - "tests/test_commons_frontend_connections.py"
       - "**/*.md"
       - "assets/**"
       - "pilots/**/visuals/**"
@@ -50,7 +51,7 @@ jobs:
         run: python -m unittest discover -s sec-public-input/observatory/tests -v
 
       - name: Test documentation build and security boundaries
-        run: python -m unittest discover -s tests -p test_commons_library.py -v
+        run: python -m unittest discover -s tests -p 'test_commons_*.py' -v
 
       - name: Refresh official SEC index and build the Commons site
         run: |

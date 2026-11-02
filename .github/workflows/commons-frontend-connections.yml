@@ -1,0 +1,41 @@
+name: Commons frontend connections
+on:
+  pull_request:
+    paths: ['site/**', 'scripts/check_commons_search.cjs', 'scripts/build_commons_library.py', '.github/workflows/commons-frontend-connections.yml']
+  push:
+    branches: [main]
+    paths: ['site/**', 'scripts/check_commons_search.cjs', 'scripts/build_commons_library.py', '.github/workflows/commons-frontend-connections.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  search-and-frontends:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build the existing site and document readers
+        run: |
+          python -m pip install -r site/requirements.txt
+          mkdir -p _site
+          cp -R site/. _site/
+          python scripts/build_commons_library.py --output _site
+      - name: Install isolated browser QA dependencies
+        run: |
+          npm install --prefix "$RUNNER_TEMP/commons-browser" --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          "$RUNNER_TEMP/commons-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Test search, filters, routes and designed front ends
+        env:
+          NODE_PATH: ${{ runner.temp }}/commons-browser/node_modules
+        run: node scripts/check_commons_search.cjs _site browser-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: commons-frontends
+          path: browser-evidence/
