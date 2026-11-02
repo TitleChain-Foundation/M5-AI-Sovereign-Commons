@@ -8,7 +8,7 @@ Baseline: Commons main `1b7365a9a9dac6d655413fa8bc5f186bcda7f067` (PR #46). The 
 |---|---|---|
 | Homepage executes an obsolete embedded catalog although a maintained readable catalog already has the corrected page names and M5POD wording | `site/index.html` bundled template/manifest | Load the existing `./commons-data.js` once and remove only the unused embedded catalog asset. Keep other packed assets and design. |
 | iWBE/iSWE proposals point at design-export filenames absent from the deployed site | Catalog connection above | Existing readable catalog maps them to `iwbe.html` and `iwbe.html#iswe`; calculator reference maps to `labs.html`. No new competing catalog. |
-| Search calculator-family, header and footer links point to the obsolete M5Labs address | `site/index.html` active template | Use verified `https://m5labs-8770fb.gitlab.io/`, retaining paths/fragments. |
+| Search calculator-family, header and footer links point to the obsolete M5Labs address | `site/index.html` active template | Use verified `https://m5labs-8770fb.gitlab.io/`, retaining valid paths/fragments. The absent /instruments/ destination is linked to the existing calculator section and labeled accordingly. |
 | Browser-native select parsing loses loop-generated Pathway/Status option labels | `site/index.html` active template | Render the current catalog's option labels as ordinary option elements in existing controls. Keep filter values and behavior. Update options if the catalog enums/pathways change. |
 | Designed pages exist but search has no clear direct entry | Search view | Add a compact link row for existing Freedom Office, Marketplace, iWBE/iSWE, M5Labs and Documentation. Detail views and original source links remain. |
 | Search and later route views render outside a prematurely closed main, leaving a full blank viewport above content | Bundled template main/footer boundary | Keep all routed screens inside main, retain the footer after it, and remove only the obsolete duplicated family-card fragment with unwired like controls. Current family cards and links remain. |
@@ -37,7 +37,7 @@ For local browser QA, build a preview using the existing guide, install Playwrig
 node scripts/check_commons_search.cjs /absolute/path/to/site-preview /absolute/path/to/browser-evidence
 ```
 
-With existing Chrome, set M5_CHROME_PATH to its executable. Otherwise install Playwright Chromium in the QA environment. The browser audit checks all 79 indexed search entries, every local detail destination at desktop/mobile sizes, labeled filters and filtering, empty results, 17 current calculator links, all three project-design links including the iSWE fragment, all four local quick-entry destinations, execution/HTTP failures, initial-viewport search visibility and search overflow. It does not submit account forms or call protected tools.
+With existing Chrome, set M5_CHROME_PATH to its executable. Otherwise install Playwright Chromium in the QA environment. The browser audit checks all 79 indexed search entries, every local detail destination and all 80 project-tab views and 15 core/pathway views at desktop/mobile sizes, labeled filters and filtering, empty results, 17 current calculator links, all three project-design links including the iSWE fragment, all four local quick-entry destinations, local file/fragment targets from every inspected route, execution/HTTP failures, initial-viewport search visibility and search overflow. It does not submit account forms or call protected tools.
 
 ## Review, deploy, rollback
 
