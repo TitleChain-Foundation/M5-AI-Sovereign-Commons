@@ -11,6 +11,7 @@ Baseline: Commons main `1b7365a9a9dac6d655413fa8bc5f186bcda7f067` (PR #46). The 
 | Search calculator-family, header and footer links point to the obsolete M5Labs address | `site/index.html` active template | Use verified `https://m5labs-8770fb.gitlab.io/`, retaining paths/fragments. |
 | Browser-native select parsing loses loop-generated Pathway/Status option labels | `site/index.html` active template | Render the current catalog's option labels as ordinary option elements in existing controls. Keep filter values and behavior. Update options if the catalog enums/pathways change. |
 | Designed pages exist but search has no clear direct entry | Search view | Add a compact link row for existing Freedom Office, Marketplace, iWBE/iSWE, M5Labs and Documentation. Detail views and original source links remain. |
+| Search and later route views render outside a prematurely closed main, leaving a full blank viewport above content | Bundled template main/footer boundary | Keep all routed screens inside main, retain the footer after it, and remove only the obsolete duplicated family-card fragment with unwired like controls. Current family cards and links remain. |
 | Long registry IDs overflow mobile search results | Scoped Search CSS | Wrap identifiers and stack result columns below 600px, preserving exact identifiers and destinations. |
 | Calculator front end requests absent `m5-ic.jsx` | `site/labs.html` | Replace missing decorative imports with an accessible text marker; keep artwork, AI-assisted labels and rights notices. |
 
@@ -26,7 +27,7 @@ The maintained catalog's existing current wording becomes visible through the re
 
 ## Reproduce and automate
 
-Run the existing full conformance command in `docs/COMMONS-WEBSITE-SYNC.md`. The repair adds five regression tests in `tests/test_commons_frontend_connections.py`. The existing publication job runs both Commons test modules.
+Run the existing full conformance command in `docs/COMMONS-WEBSITE-SYNC.md`. The repair adds six regression tests in `tests/test_commons_frontend_connections.py`. The existing publication job runs both Commons test modules.
 
 The separate read-only `.github/workflows/commons-frontend-connections.yml` builds the current site/readers and runs the browser audit on PRs, main changes and manual dispatch. It has no Pages write or deployment permission. It installs Playwright 1.56.1 in an isolated runner directory and uploads browser results/screenshots, including failure evidence.
 
@@ -36,7 +37,7 @@ For local browser QA, build a preview using the existing guide, install Playwrig
 node scripts/check_commons_search.cjs /absolute/path/to/site-preview /absolute/path/to/browser-evidence
 ```
 
-With existing Chrome, set M5_CHROME_PATH to its executable. Otherwise install Playwright Chromium in the QA environment. The browser audit checks all 79 indexed search entries, every local detail destination at desktop/mobile sizes, labeled filters and filtering, empty results, 17 current calculator links, all three project-design links including the iSWE fragment, all four local quick-entry destinations, execution/HTTP failures and search overflow. It does not submit account forms or call protected tools.
+With existing Chrome, set M5_CHROME_PATH to its executable. Otherwise install Playwright Chromium in the QA environment. The browser audit checks all 79 indexed search entries, every local detail destination at desktop/mobile sizes, labeled filters and filtering, empty results, 17 current calculator links, all three project-design links including the iSWE fragment, all four local quick-entry destinations, execution/HTTP failures, initial-viewport search visibility and search overflow. It does not submit account forms or call protected tools.
 
 ## Review, deploy, rollback
 

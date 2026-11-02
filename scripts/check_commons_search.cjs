@@ -5,7 +5,7 @@ const root=path.resolve(process.argv[2]||'_site'),output=path.resolve(process.ar
 (async()=>{await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;let rows=[];try{browser=await chromium.launch(process.env.M5_CHROME_PATH?{executablePath:process.env.M5_CHROME_PATH}:{});const base='http://127.0.0.1:'+server.address().port;
 for(const width of [1280,390]){
  const page=await browser.newPage({viewport:{width,height:900}}),errors=[],httpErrors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)httpErrors.push(r.url());});
- await page.goto(base+'/index.html#/search/',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Search the Commons',exact:true}).waitFor();
+ await page.goto(base+'/index.html#/search/',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Search the Commons',exact:true}).waitFor();assert.ok(await page.locator('main h1').evaluate(e=>e.getBoundingClientRect().top<innerHeight),'Search title must appear in the initial viewport, not below an empty main');
  for(const label of ['Type','Pathway','Status']){const opts=await page.getByRole('combobox',{name:label,exact:true}).locator('option').allTextContents();assert.ok(opts.length>1);assert.ok(opts.every(t=>t.trim().length>0),label+' labels');}
  const results=page.locator('[data-screen-label="Search"] ul a');assert.equal(await results.count(),79,'Preserve all existing indexed records');
  const links=await results.evaluateAll(es=>es.map(e=>({text:e.textContent,href:e.getAttribute('href')})));
@@ -16,7 +16,7 @@ for(const width of [1280,390]){
  await page.getByRole('combobox',{name:'Pathway',exact:true}).selectOption('');await page.getByRole('combobox',{name:'Type',exact:true}).selectOption('');
  await page.getByRole('searchbox').fill('no-such-result-xyz');await page.getByRole('searchbox').press('Tab');await page.getByText('No results.',{exact:true}).waitFor();await page.getByRole('searchbox').fill('');await page.getByRole('searchbox').press('Tab');
  // Every local search destination remains a valid existing view; source-only and external results stay distinct.
- for(const link of links.filter(x=>x.href.startsWith('#/'))){await page.evaluate(h=>{location.hash=h},link.href);await page.waitForTimeout(80);assert.equal(await page.getByText('This page is not in the Commons.',{exact:true}).count(),0,link.href);assert.ok(await page.locator('h1').count()>0,link.href);}
+ for(const link of links.filter(x=>x.href.startsWith('#/'))){await page.evaluate(h=>{location.hash=h},link.href);await page.waitForTimeout(80);assert.equal(await page.getByText('This page is not in the Commons.',{exact:true}).count(),0,link.href);assert.ok(await page.locator('main h1').count()>0,link.href);}
  for(const [slug,file] of [['iwbe','iwbe.html'],['iswe','iwbe.html#iswe'],['m5labs-calculators','labs.html']]){
   await page.goto(base+'/index.html#/projects/'+slug+'/overview/',{waitUntil:'networkidle'});await page.waitForFunction(file=>Array.from(document.querySelectorAll('a[href]')).some(a=>a.getAttribute('href')===file),file);
   const a=page.locator('a[href="'+file+'"]');await a.click();await page.waitForLoadState('networkidle');assert.ok((await page.locator('h1').count())>0,file);

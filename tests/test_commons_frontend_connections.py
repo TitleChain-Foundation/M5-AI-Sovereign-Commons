@@ -39,9 +39,15 @@ class Connections(unittest.TestCase):
         text=template()
         self.assertNotIn('https://titlechain-foundation.gitlab.io/m5labs/',text)
         self.assertIn('https://m5labs-8770fb.gitlab.io/',text)
-        search=text.split('data-screen-label="Search"')[1].split('</section>')[0]
+        search=text.split('<div data-screen-label="Search">')[1].split('</section>')[0]
         for name in ('freedom-office.html','marketplace.html','iwbe.html','library/index.html'):
             self.assertIn('./'+name,search)
+    def test_all_route_views_remain_inside_main(self):
+        text=template();main=text.split('<main id="main"')[1].split('</main>')[0]
+        for name in ('Search','Toolkit Library','Toolkit Detail'):
+            self.assertIn('data-screen-label="'+name+'"',main)
+        self.assertNotIn('f.likeAria',text) # obsolete duplicated family card, never wired
+
     def test_labs_does_not_import_missing_icon_component(self):
         text=(ROOT/'site/labs.html').read_text()
         self.assertNotIn('m5-ic.jsx',text)
