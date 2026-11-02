@@ -3,3 +3,4 @@ openpyxl>=3.1,<4
 pytest>=8,<10
 rfc3339-validator>=0.1.4,<1
 rfc3986-validator>=0.1.1,<1
+-r site/requirements.txt
