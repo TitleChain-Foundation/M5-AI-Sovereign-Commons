@@ -7,6 +7,7 @@ for(const width of [1280,390]){
  const page=await browser.newPage({viewport:{width,height:900}}),errors=[],httpErrors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.url().startsWith(base)&&r.status()>=400)httpErrors.push(r.url());});
  await page.goto(base+'/index.html#/search/',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Search the Commons',exact:true}).waitFor();assert.ok(await page.locator('main h1').evaluate(e=>e.getBoundingClientRect().top<innerHeight),'Search title must appear in the initial viewport, not below an empty main');
  for(const label of ['Type','Pathway','Status']){const opts=await page.getByRole('combobox',{name:label,exact:true}).locator('option').allTextContents();assert.ok(opts.length>1);assert.ok(opts.every(t=>t.trim().length>0),label+' labels');}
+ await page.getByRole('link',{name:'Skip to content',exact:true}).press('Enter');assert.ok(page.url().endsWith('#/search/'),'Skip link must preserve SPA route');assert.equal(await page.evaluate(()=>document.activeElement.id),'main');
  const results=page.locator('[data-screen-label="Search"] ul a');assert.equal(await results.count(),79,'Preserve all existing indexed records');
  const links=await results.evaluateAll(es=>es.map(e=>({text:e.textContent,href:e.getAttribute('href')})));
  assert.equal(links.filter(x=>x.href.startsWith('https://m5labs-8770fb.gitlab.io/#calculators')).length,17);

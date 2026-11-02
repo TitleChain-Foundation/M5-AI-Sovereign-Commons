@@ -12,6 +12,7 @@ Baseline: Commons main `1b7365a9a9dac6d655413fa8bc5f186bcda7f067` (PR #46). The 
 | Browser-native select parsing loses loop-generated Pathway/Status option labels | `site/index.html` active template | Render the current catalog's option labels as ordinary option elements in existing controls. Keep filter values and behavior. Update options if the catalog enums/pathways change. |
 | Designed pages exist but search has no clear direct entry | Search view | Add a compact link row for existing Freedom Office, Marketplace, iWBE/iSWE, M5Labs and Documentation. Detail views and original source links remain. |
 | Search and later route views render outside a prematurely closed main, leaving a full blank viewport above content | Bundled template main/footer boundary | Keep all routed screens inside main, retain the footer after it, and remove only the obsolete duplicated family-card fragment with unwired like controls. Current family cards and links remain. |
+| Keyboard skip link changes the SPA hash to an unknown route | Skip-to-content link | Focus and scroll to main without changing the search/detail route. |
 | Long registry IDs overflow mobile search results | Scoped Search CSS | Wrap identifiers and stack result columns below 600px, preserving exact identifiers and destinations. |
 | Calculator front end requests absent `m5-ic.jsx` | `site/labs.html` | Replace missing decorative imports with an accessible text marker; keep artwork, AI-assisted labels and rights notices. |
 
@@ -37,7 +38,7 @@ For local browser QA, build a preview using the existing guide, install Playwrig
 node scripts/check_commons_search.cjs /absolute/path/to/site-preview /absolute/path/to/browser-evidence
 ```
 
-With existing Chrome, set M5_CHROME_PATH to its executable. Otherwise install Playwright Chromium in the QA environment. The browser audit checks all 79 indexed search entries, every local detail destination and all 80 project-tab views and 15 core/pathway views at desktop/mobile sizes, labeled filters and filtering, empty results, 17 current calculator links, all three project-design links including the iSWE fragment, all four local quick-entry destinations, local file/fragment targets from every inspected route, execution/HTTP failures, initial-viewport search visibility and search overflow. It does not submit account forms or call protected tools.
+With existing Chrome, set M5_CHROME_PATH to its executable. Otherwise install Playwright Chromium in the QA environment. The browser audit checks all 79 indexed search entries, every local detail destination and all 80 project-tab views and 15 core/pathway views at desktop/mobile sizes, labeled filters and filtering, empty results, 17 current calculator links, all three project-design links including the iSWE fragment, all four local quick-entry destinations, local file/fragment targets from every inspected route, execution/HTTP failures, initial-viewport search visibility, route-preserving keyboard skip behavior and search overflow. It does not submit account forms or call protected tools.
 
 ## Review, deploy, rollback
 
