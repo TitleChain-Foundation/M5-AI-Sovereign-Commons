@@ -51,7 +51,11 @@ jobs:
         run: python -m unittest discover -s sec-public-input/observatory/tests -v
 
       - name: Test documentation build and security boundaries
-        run: python -m unittest discover -s tests -p 'test_commons_*.py' -v
+        # These are unittest suites. The pytest-based handoff suite runs in
+        # commons-conformance.yml with the repository development dependencies.
+        run: |
+          python -m unittest discover -s tests -p test_commons_library.py -v
+          python -m unittest discover -s tests -p test_commons_frontend_connections.py -v
 
       - name: Refresh official SEC index and build the Commons site
         run: |
