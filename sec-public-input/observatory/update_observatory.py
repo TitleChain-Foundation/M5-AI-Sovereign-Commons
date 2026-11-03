@@ -512,12 +512,22 @@ def render_dashboard(feed: dict[str, Any], foundation_record: dict[str, Any] | N
                 "</article>"
             )
 
+    navigation_manifest = Path(__file__).resolve().parents[2] / "site/assets/navigation/manifest.json"
+    navigation = ""
+    if navigation_manifest.is_file():
+        version = json.loads(navigation_manifest.read_text())["bundle_sha256"][:12]
+        navigation = (
+            f'<link rel="stylesheet" href="../assets/navigation/navigation.css?v={version}">'
+            f'<script defer data-m5-site="commons" src="../assets/navigation/navigation.js?v={version}"></script>'
+        )
+
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{html.escape(TITLE)}</title>
+  {navigation}
   <meta name="description" content="{html.escape(DESCRIPTION, quote=True)}">
   <style>
     :root {{ color-scheme: light; font-family: ui-sans-serif, system-ui, sans-serif; }}

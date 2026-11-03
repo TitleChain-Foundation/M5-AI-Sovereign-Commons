@@ -1,0 +1,53 @@
+{
+  "schema": "m5-public-navigation/v1",
+  "version": "1.0.0",
+  "foundation": "TitleChain Foundation",
+  "sites": {
+    "commons": {"label": "M5 Sovereign Commons", "switchLabel": "Commons", "url": "https://commons.titlechainfoundation.org/", "source": "https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons"},
+    "labs": {"label": "M5Labs", "switchLabel": "M5Labs", "url": "https://m5labs-8770fb.gitlab.io/", "source": "https://gitlab.com/titlechain-foundation/m5labs"}
+  },
+  "sharedTools": [
+    {"id": "freedom-office", "label": "Freedom Office", "site": "commons", "path": "freedom-office.html", "matchPaths": ["freedom-office.html"]},
+    {"id": "marketplace", "label": "M5-OpenAPI Marketplace", "site": "commons", "path": "marketplace.html", "matchPaths": ["marketplace.html"]}
+  ],
+  "menus": {
+    "commons": [
+      {"id": "pathways", "label": "Pathways", "site": "commons", "path": "#/", "matchHashes": ["#/", "#/programs/", "#/projects/"]},
+      {"id": "toolkits", "label": "Toolkits", "site": "commons", "path": "#/tools/", "matchHashes": ["#/tools/"]},
+      {"id": "standards", "label": "Research & Standards", "site": "commons", "path": "#/standards/", "matchHashes": ["#/standards/"]},
+      {"id": "funding", "label": "Funding", "site": "commons", "path": "#/funding/", "matchHashes": ["#/funding/"]},
+      {"id": "search", "label": "Search", "site": "commons", "path": "#/search/", "matchHashes": ["#/search/"]},
+      {"id": "documentation", "label": "Documentation", "site": "commons", "path": "library/index.html", "matchPaths": ["library/"]}
+    ],
+    "labs": [
+      {"id": "calculators", "label": "Calculators", "site": "labs", "path": "#calculators", "matchHashes": ["#calculators"]},
+      {"id": "projects", "label": "Projects", "site": "labs", "path": "#projects", "matchHashes": ["#projects"]},
+      {"id": "simulations", "label": "Simulations", "site": "labs", "path": "simulations/", "matchPaths": ["simulations/"]},
+      {"id": "inversion", "label": "The Inversion", "site": "labs", "path": "inversion/", "matchPaths": ["inversion/"]},
+      {"id": "research", "label": "Research & Observations", "site": "labs", "path": "#papers", "matchHashes": ["#papers"], "matchPaths": ["whitepapers/"]},
+      {"id": "marketplace-reference", "label": "Marketplace reference", "site": "labs", "path": "marketplace/", "matchPaths": ["marketplace/"]},
+      {"id": "about", "label": "About", "site": "labs", "path": "#about", "matchHashes": ["#about"]}
+    ]
+  },
+  "pageSections": {
+    "commons": {
+      "iwbe.html": [
+        {"label": "Free M5-IAM", "path": "#simulate"},
+        {"label": "iSWE", "path": "#iswe"},
+        {"label": "Commons access", "path": "#commons"},
+        {"label": "Plan", "path": "#plan"},
+        {"label": "Underwrite iWBE", "path": "#underwrite"}
+      ],
+      "labs.html": [
+        {"label": "Sovereign AI & Science", "path": "#/programs/ai-science/", "site": "commons"},
+        {"label": "Calculator families", "path": "#families"}
+      ],
+      "marketplace.html": [
+        {"label": "Services", "path": "#services"},
+        {"label": "Calculator research", "path": "#/labs/calculators/", "site": "commons"},
+        {"label": "Member sign-in", "url": "https://m5bank.app/"}
+      ]
+    },
+    "labs": {}
+  }
+}

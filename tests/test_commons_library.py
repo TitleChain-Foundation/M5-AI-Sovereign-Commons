@@ -70,7 +70,8 @@ class LibraryTests(unittest.TestCase):
 ''')
         self.build(['README.md']);p=Tags();p.feed(self.text())
         self.assertNotIn('iframe',p.tags);self.assertNotIn('img',p.tags)
-        self.assertEqual(p.tags.count('script'),1) # trusted external reader only
+        self.assertEqual(p.tags.count('script'),2) # trusted external reader and shared navigation only
+        self.assertEqual({urlsplit(a['src']).path for a in p.attrs if 'src' in a and urlsplit(a['src']).path.endswith('.js')},{'../assets/library-reader.js','../assets/navigation/navigation.js'})
         self.assertIn('details',p.tags)
         for attrs in p.attrs:
             self.assertFalse(any(k.startswith('on') for k in attrs))

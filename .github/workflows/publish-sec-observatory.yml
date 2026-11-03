@@ -12,6 +12,8 @@ on:
       - "sec-public-input/observatory/**"
       - "sec-public-input/foundation-submissions/**/*.pdf"
       - "site/**"
+      - "shared-navigation/**"
+      - "scripts/build_shared_navigation.py"
       - "scripts/build_commons_library.py"
       - "tests/test_commons_library.py"
       - "tests/test_commons_frontend_connections.py"
@@ -59,6 +61,7 @@ jobs:
 
       - name: Refresh official SEC index and build the Commons site
         run: |
+          python scripts/build_shared_navigation.py --web-root site --check
           python sec-public-input/observatory/update_observatory.py \
             --output _site/sec-observatory \
             --previous-feed "https://titlechain-foundation.github.io/M5-AI-Sovereign-Commons/sec-observatory/feed.json"

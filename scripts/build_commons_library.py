@@ -88,10 +88,11 @@ def parsed(md, text):
 
 
 def page(title, body, prefix, provenance=''):
+    navigation_version=json.loads((ROOT/'site/assets/navigation/manifest.json').read_text())['bundle_sha256'][:12]
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self' https:; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
-<title>{escape(title)} · Commons documentation</title><link rel="stylesheet" href="{prefix}assets/library.css"></head>
+<title>{escape(title)} · Commons documentation</title><link rel="stylesheet" href="{prefix}assets/library.css"><link rel="stylesheet" href="{prefix}assets/navigation/navigation.css?v={navigation_version}"><script src="{prefix}assets/navigation/navigation.js?v={navigation_version}" data-m5-site="commons" defer></script></head>
 <body><header><nav aria-label="Documentation"><a href="{prefix}index.html">TitleChain Foundation · Commons</a><a href="{prefix}library/index.html">Documentation</a><a href="{REPO}">GitHub source</a></nav></header>
 <main><p class="eyebrow">Commons documentation · source edition</p>{provenance}<article>{body}</article></main>
 <script src="{prefix}assets/library-reader.js" defer></script></body></html>'''
