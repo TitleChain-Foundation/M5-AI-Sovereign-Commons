@@ -4,8 +4,8 @@
   "contract_sha256": "71e22c803930c4cb9bd68aa9917613ca5a6589d0ceee1e80fc81842a67767465",
   "assets": {
     "navigation.js": "48da79488d9cd9834938ff400f0f46763a0fadc209de4a4ed3779aa2030fbed2",
-    "navigation.css": "b3b11f9609ba534b71dc91a5eb6d2aa59a87cdac992b20b67ad3f7ba05607e72",
+    "navigation.css": "24672243d5e78b69e77d7de0a011642f5e961bceed5b112cc811a9e4b8c76c53",
     "mark.png": "b5bae8c603ee83b0ff7cc8259a44fdc9f0ec074f50926967ccd7b80984cede61"
   },
-  "bundle_sha256": "9d48d51184ef078f8491830660eb794a4f1e542190ed18d9fe10c585726a7d61"
+  "bundle_sha256": "51c5ea377796a519532e2af199541c8198195bfbbefaebeac53e077146766f1b"
 }
