@@ -143,6 +143,16 @@ def discovery_metadata(source, title, text):
             break
     if not summary:
         summary = dict((k, description) for k, _, description in LIBRARY_TOPICS)[topic]
+    summary = {
+        'README.md': 'Understand the public Commons, its standards, project pathways and source repositories before choosing a deeper topic.',
+        'GLOSSARY.md': 'Look up the terms used across Commons documents, standards and public project references.',
+        'standards/README.md': 'Explore the proposed specifications and their boundaries, then follow the exact source for status and scope.',
+        'reference-implementation/README.md': 'Inspect bounded reference code and examples for interoperability and testing; distinguish examples from production services.',
+        'pilots/README.md': 'Compare public project scopes, research references and disclosed simulations without assuming deployment or institutional approval.',
+        'RELEASE-STATUS.md': 'Check the repository’s stated release status, demonstrated behavior and outstanding requirements.',
+        'THREAT-MODEL.md': 'Review security assumptions, trust boundaries and the threats considered by the public reference implementation.',
+        'LICENSE.md': 'Find the applicable rights and licensing references before reusing code, documents or other materials.',
+    }.get(source, summary)
     display_title = title
     if 'PPT-EZ-CA-0001-THE-BEAR-COMES-HOME' in source:
         display_title = 'The Bear Comes Home — Public Bank of California concept'
