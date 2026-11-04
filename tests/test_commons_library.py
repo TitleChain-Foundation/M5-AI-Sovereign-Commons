@@ -49,6 +49,30 @@ class LibraryTests(unittest.TestCase):
                     self.assertTrue(dest.is_file(),str(page)+': '+attrs[key])
                     if url.fragment and dest.suffix=='.html':
                         self.assertIn('id="'+unquote(url.fragment)+'"',dest.read_text())
+    def test_discovery_preserves_every_source_destination_and_escapes_metadata(self):
+        self.write('README.md', '# Overview\n\nWelcome to this public collection of documents and source records.')
+        self.write('docs/guide.md', '# <img src=x onerror=alert(1)>\n\nA source description that must remain inert rather than execute markup.')
+        catalog=self.build(['README.md'])
+        index=self.text('library/index.html');parsed=Tags();parsed.feed(index)
+        links={a['href'] for a in parsed.attrs if 'href' in a}
+        self.assertIn('README.html',links)
+        self.assertIn('https://github.com/TitleChain-Foundation/M5-AI-Sovereign-Commons/blob/'+'a'*40+'/docs/guide.md',links)
+        self.assertEqual(sum(a.get('class')=='library-card' for a in parsed.attrs),2)
+        self.assertNotIn('img',parsed.tags)
+        self.assertIn('library-index.js',index)
+        self.assertEqual({e['source_path'] for e in catalog['entries']},{'README.md','docs/guide.md'})
+        self.assertTrue(all(e['topic'] in {x[0] for x in lib.LIBRARY_TOPICS} for e in catalog['entries']))
+
+    def test_discovery_front_matter_title_does_not_change_source_reader(self):
+        path='pilots/312-spring-commons/briefs/PPT-EZ-CA-0001-THE-BEAR-COMES-HOME.md'
+        text='---\ntitle: A source title\nstatus: concept_only\n---\n\n# Source title\n\nThis is a proposed research concept and is not an approved institution.'
+        self.write(path,text)
+        catalog=self.build([path]);entry=catalog['entries'][0]
+        self.assertEqual(entry['display_title'],'The Bear Comes Home — Public Bank of California concept')
+        self.assertEqual(entry['document_kind'],'Project document')
+        self.assertIn('proposed research concept',entry['summary'])
+        self.assertEqual((self.root/path).read_text(),text)
+
     def test_traversal_absolute_and_hidden_sources_are_rejected(self):
         for source in ('../private.md','/private.md','.git/secret.md'):
             with self.subTest(source=source),self.assertRaises(ValueError):self.build([source])
