@@ -1,0 +1,21 @@
+name: Public navigation parity
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect-live-navigation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare both public manifests and deployed asset hashes
+        run: python scripts/check_navigation_parity.py https://commons.titlechainfoundation.org/ https://m5labs-8770fb.gitlab.io/ > navigation-parity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-navigation-parity
+          path: navigation-parity.json

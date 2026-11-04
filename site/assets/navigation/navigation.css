@@ -1,0 +1,47 @@
+/* Isolated website chrome; no application or publication-body rules. */
+#m5-shared-header{display:block!important;position:sticky!important;top:0!important;z-index:40;width:100%;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-top:3px solid #3c7bff!important;background:#f8fdff!important;color:#0d1321!important;font:14px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;box-shadow:0 1px 0 #d6dee8;box-sizing:border-box}
+#m5-shared-header *{box-sizing:border-box}
+#m5-shared-header .m5-nav-inner{max-width:1320px;margin:0 auto;padding:14px clamp(20px,4vw,48px) 0;display:grid;grid-template-columns:280px minmax(0,1fr);column-gap:30px}
+#m5-shared-header .m5-nav-masthead{display:flex;align-items:center;gap:12px;align-self:start;padding-bottom:12px}
+#m5-shared-header .m5-nav-brand{display:flex;align-items:center;gap:10px;padding:0;min-width:0}
+#m5-shared-header .m5-nav-brand img{display:block;flex:none;width:34px;height:34px;max-width:none;object-fit:contain}
+#m5-shared-header .m5-nav-brand>span{display:flex;flex-direction:column;gap:1px;min-width:0;white-space:normal}
+#m5-shared-header .m5-nav-brand>span>span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#4a5568}
+#m5-shared-header .m5-nav-brand strong{font-size:21px;line-height:1.2;font-weight:750;letter-spacing:-.02em;white-space:normal;overflow-wrap:break-word}
+#m5-shared-header a{font-family:inherit;font-size:14px;font-weight:550;line-height:1.4;letter-spacing:normal;text-transform:none;text-decoration:none;color:#0d1321;border-radius:8px;padding:8px 10px;display:inline-flex;align-items:center;white-space:nowrap}
+#m5-shared-header a:hover{color:#1f7f8c;background:#e8f4f6}
+#m5-shared-header a:focus-visible,#m5-shared-header button:focus-visible{outline:2px solid #1f7f8c;outline-offset:3px}
+#m5-shared-header #m5-shared-links{display:contents}
+#m5-shared-header .m5-nav-utilities{grid-column:2;grid-row:1;align-self:center;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:6px}
+#m5-shared-header nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap;margin:0}
+#m5-shared-header .m5-nav-sites{gap:2px;padding:2px;border:1px solid #d6dee8;border-radius:10px;background:#fff}
+#m5-shared-header .m5-nav-sites a{padding:5px 12px}
+#m5-shared-header .m5-nav-sites a[aria-current]{color:#fff;background:#0d1321}
+#m5-shared-header .m5-nav-tools a{color:#1f7f8c}
+#m5-shared-header .m5-nav-primary{grid-column:1/-1;grid-row:2;padding:0 0 8px}
+#m5-shared-header .m5-nav-primary a[aria-current],#m5-shared-header .m5-nav-tools a[aria-current]{background:#e8f4f6;color:#0d1321}
+#m5-shared-header .m5-nav-context{grid-column:1/-1;grid-row:3;border-top:1px solid #d6dee8;padding:6px 0;font-size:12px}
+#m5-shared-header .m5-nav-context>span{font-size:11px;color:#4a5568;margin-right:6px}
+#m5-shared-header .m5-nav-context a{font-size:12px;padding:5px 8px}
+#m5-shared-header [hidden]{display:none!important}
+#m5-shared-header button{display:none;flex:none;border:1px solid #d6dee8;background:#fff;color:#0d1321;border-radius:8px;padding:8px 12px;font:600 14px/1.4 system-ui;cursor:pointer}
+#m5-shared-header .m5-nav-skip{position:absolute;left:-10000px;top:6px;background:#fff;z-index:100}
+#m5-shared-header .m5-nav-skip:focus{left:10px}
+.m5-navigation-replaced{display:none!important}
+header.m5-navigation-context-header{position:relative!important;top:auto!important}
+.m5-navigation-frame{min-height:calc(100vh - var(--m5-navigation-height,110px))!important}
+@media(max-width:1000px){
+ #m5-shared-header .m5-nav-inner{display:block;padding-top:12px}
+ #m5-shared-header .m5-nav-masthead{justify-content:space-between;min-width:0}
+ #m5-shared-header .m5-nav-brand strong{font-size:19px}
+ #m5-shared-header button{display:block}
+ #m5-shared-header #m5-shared-links{display:none;max-height:70vh;overflow:auto;padding-bottom:12px}
+ #m5-shared-header[data-open="true"] #m5-shared-links{display:block}
+ #m5-shared-header .m5-nav-utilities{grid-column:2;grid-row:1;align-self:center;justify-content:flex-start;gap:10px}
+ #m5-shared-header .m5-nav-primary{padding:8px 0}
+ #m5-shared-header .m5-nav-primary a{padding:10px 12px}
+ #m5-shared-header .m5-nav-context{padding-top:8px}
+}
+@media print{#m5-shared-header{display:none!important}.m5-navigation-frame{min-height:0!important}}
+
+html[data-m5-navigation-version]{scroll-padding-top:calc(var(--m5-navigation-height,110px) + 12px)}
