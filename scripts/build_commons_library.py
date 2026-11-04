@@ -87,13 +87,105 @@ def parsed(md, text):
     return tokens, headings, title or 'Source document'
 
 
-def page(title, body, prefix, provenance=''):
+# Editorial discovery metadata only; classifications do not grant canonical status.
+LIBRARY_TOPICS = [
+    ('orientation', 'Start here', 'The overview, language and participation essentials.'),
+    ('identity', 'Identity & workspaces', 'Free M5-IAM, consent, portability and member environments.'),
+    ('standards', 'Standards & building', 'Proposed standards, schemas, providers and reference code.'),
+    ('projects', 'Projects & pilots', 'Public project briefs, control packs and disclosed simulations.'),
+    ('research', 'Research & indices', 'SHADOW research, methodologies, public data and reports.'),
+    ('regulatory', 'SEC & public input', 'Submissions, exhibits, regulatory crosswalks and monitoring.'),
+    ('governance', 'Governance & evidence', 'Rights, licensing, security, authority and review records.'),
+]
+
+
+def discovery_metadata(source, title, text):
+    path = source.lower()
+    if source in ('README.md', 'GLOSSARY.md', 'CONTRIBUTING.md', 'CODE_OF_CONDUCT.md', 'docs/README.md'):
+        topic = 'orientation'
+    elif path.startswith('sec-public-input/') or 'pilot-sec-rfi' in path:
+        topic = 'regulatory'
+    elif path.startswith('shadow-m5index/') or '/shadow-m5index-' in path:
+        topic = 'research'
+    elif path.startswith('pilots/') or 'project-control' in path or 'peoples-trust-public-pilot' in path:
+        topic = 'projects'
+    elif any(x in path for x in ('m5-iam', 'm5iam', 'm5-pod/', 'm5-eve/', 'activation/', 'consent', 'refusal', 'portability', 'workspace', 'm5pod', 'm5bom-activation', 'm5-eve-')):
+        topic = 'identity'
+    elif any(x in path for x in ('governance', 'legal', 'license', 'patent', 'trademark', 'security', 'threat', 'authority', 'validation', 'evidence', 'canonical', 'conformance', 'namespace', 'crosswalk', 'release-status')):
+        topic = 'governance'
+    else:
+        topic = 'standards'
+    if '/simulations/' in path:
+        kind = 'Simulation'
+    elif path.startswith('standards/') and source != 'standards/README.md':
+        kind = 'Proposed standard'
+    elif '/update-notes/' in path or '/reports/' in path or re.search(r'20\d\d-\d\d-\d\d', path):
+        kind = 'Dated review / record'
+    elif path.startswith('reference-implementation/') or '/reference/' in path:
+        kind = 'Reference implementation'
+    elif path.startswith('pilots/'):
+        kind = 'Project document'
+    else:
+        kind = 'Guide / source'
+    # Remove front matter for discovery excerpts, without changing reader/source text.
+    prose = re.sub(r'\A---\s*\n.*?\n---\s*\n', '', text, count=1, flags=re.S)
+    paragraphs = re.split(r'\n\s*\n', prose)
+    summary = ''
+    for paragraph in paragraphs:
+        if paragraph.lstrip().startswith(('#', '```', '|', '<', '![', '---', '- ', '* ')):
+            continue
+        plain = re.sub(r'!?\[([^\]]*)\]\([^)]*\)', r'\1', paragraph)
+        plain = re.sub(r'<[^>]*>', '', plain)
+        plain = re.sub(r'[*`_]', '', plain)
+        plain = ' '.join(plain.split())
+        if len(plain) >= 45 and not plain.startswith(('Status:', 'Version:', 'Date:', '©')):
+            summary = plain[:177].rsplit(' ', 1)[0] + '…' if len(plain) > 180 else plain
+            break
+    if not summary:
+        summary = dict((k, description) for k, _, description in LIBRARY_TOPICS)[topic]
+    display_title = title
+    if 'PPT-EZ-CA-0001-THE-BEAR-COMES-HOME' in source:
+        display_title = 'The Bear Comes Home — Public Bank of California concept'
+    elif len(title) > 160:
+        display_title = Path(source).stem.replace('-', ' ').replace('_', ' ')
+    return {'topic': topic, 'document_kind': kind, 'display_title': display_title, 'summary': summary}
+
+
+def library_index(entries, rendered_count):
+    counts = Counter(e['topic'] for e in entries)
+    links = {e['source_path']: posixpath.relpath(e['route'], 'library') if e['route'] else e['source_url'] for e in entries}
+    def entry_link(path, label):
+        return '<a href="'+escape(links[path], quote=True)+'">'+escape(label)+' <span aria-hidden="true">↗</span></a>' if path in links else ''
+    journeys = [
+        ('01', 'Understand the Commons', 'Begin with the overview and shared vocabulary.', [('README.md', 'Commons overview'), ('GLOSSARY.md', 'Glossary')]),
+        ('02', 'Build with the standards', 'Follow the specifications into reference implementations.', [('standards/README.md', 'Proposed standards'), ('reference-implementation/README.md', 'Reference code')]),
+        ('03', 'Explore public projects', 'Read project scopes, evidence and disclosed simulations.', [('pilots/README.md', 'Public pilots'), ('shadow-m5index/README.md', 'SHADOW research')]),
+        ('04', 'Review the evidence', 'Check release status, rights and security boundaries.', [('RELEASE-STATUS.md', 'Release status'), ('THREAT-MODEL.md', 'Threat model')]),
+    ]
+    journey_html = ''.join('<section class="library-journey"><span class="journey-number">'+n+'</span><h3>'+title+'</h3><p>'+description+'</p><div>'+''.join(entry_link(p, label) for p, label in paths)+'</div></section>' for n, title, description, paths in journeys)
+    topics = '<a class="topic-link is-active" href="#documents" data-library-topic="all" aria-current="true"><span>All topics</span><span>'+str(len(entries))+'</span></a>'
+    topics += ''.join('<a class="topic-link" href="#documents" data-library-topic="'+key+'"><span>'+label+'</span><span>'+str(counts[key])+'</span></a>' for key, label, _ in LIBRARY_TOPICS)
+    cards = []
+    for e in entries:
+        href = links[e['source_path']]
+        label = 'Read on Commons' if e['route'] else 'Open GitHub source'
+        source_class = 'reader' if e['route'] else 'source'
+        searchable = ' '.join([e['display_title'], e['source_path'], e['summary'], e['document_kind'], dict((k, n) for k, n, _ in LIBRARY_TOPICS)[e['topic']]])
+        cards.append('<li class="library-card" data-topic="'+e['topic']+'" data-format="'+source_class+'" data-search="'+escape(searchable, quote=True)+'"><div class="card-meta"><span>'+escape(e['document_kind'])+'</span><span class="format-label '+source_class+'">'+('Read here' if e['route'] else 'GitHub')+'</span></div><h3><a href="'+escape(href, quote=True)+'">'+escape(e['display_title'])+'</a></h3><p>'+escape(e['summary'])+'</p><details class="card-source"><summary>Source details</summary><code>'+escape(e['source_path'])+'</code></details><a class="card-action" href="'+escape(href, quote=True)+'">'+label+' <span aria-hidden="true">↗</span></a></li>')
+    return '''<section class="library-hero"><div><p class="library-kicker">Explore · understand · build</p><h1>Commons knowledge library</h1><p class="hero-description">Find the right starting point. Follow a topic, explore a project or go straight to the source.</p><a class="hero-action" href="#documents">Explore the library <span aria-hidden="true">↓</span></a></div><div class="library-stat"><strong>'''+str(rendered_count)+'''</strong><span>documents to read here</span><div>'''+str(len(entries)-rendered_count)+''' more source documents on GitHub</div></div></section>
+<section class="journeys" aria-labelledby="journey-heading"><div class="section-label"><h2 id="journey-heading">What brings you here?</h2><span>Four ways into the collection</span></div><div class="journey-grid">'''+journey_html+'''</div></section>
+<section class="library-explorer" id="documents" aria-labelledby="explorer-heading"><aside><h2 id="explorer-heading">Browse by topic</h2><nav class="topic-list" aria-label="Library topics">'''+topics+'''</nav><div class="library-note"><strong>A guide to the sources</strong><p>Topic and document-type labels help you navigate. They do not establish approval, deployment or canonical authority. Check each source’s own status and version.</p></div></aside><div class="library-results"><div class="library-toolbar" data-library-controls hidden><label for="library-query">Search the collection</label><input id="library-query" type="search" placeholder="Try consent, free IAM, Spring Commons…" autocomplete="off"><div class="filter-row"><label>Open in<select id="library-format"><option value="all">All locations</option><option value="reader">Read on Commons</option><option value="source">GitHub source</option></select></label><label>Sort by<select id="library-sort"><option value="recommended">Starting points first</option><option value="az">Title A–Z</option></select></label><button id="library-clear" type="button">Clear filters</button></div></div><div class="results-heading"><h2 id="library-topic-heading">All documents</h2><p id="library-count" role="status" aria-live="polite">'''+str(len(entries))+''' documents</p></div><p class="search-hint" data-library-controls hidden>Search titles, descriptions and source paths. Results come from this repository’s public collection.</p><ul class="library-grid" id="library-results">'''+''.join(cards)+'''</ul><div id="library-empty" class="library-empty" hidden><h3>No documents match yet.</h3><p>Try a shorter phrase or clear the topic and location filters.</p><button type="button" data-library-reset>Show all documents</button></div><button id="library-more" type="button" hidden>Show more documents</button><noscript><p>The complete directory is shown below the starting points. Use your browser’s Find command to search it.</p></noscript></div></section>'''
+
+
+def page(title, body, prefix, provenance='', directory=False):
     navigation_version=json.loads((ROOT/'site/assets/navigation/manifest.json').read_text())['bundle_sha256'][:12]
+    directory_assets = f'<link rel="stylesheet" href="{prefix}assets/library-index.css"><script src="{prefix}assets/library-index.js" defer></script>' if directory else ''
+    body_class = ' class="library-directory"' if directory else ''
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self' https:; script-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
-<title>{escape(title)} · Commons documentation</title><link rel="stylesheet" href="{prefix}assets/library.css"><link rel="stylesheet" href="{prefix}assets/navigation/navigation.css?v={navigation_version}"><script src="{prefix}assets/navigation/navigation.js?v={navigation_version}" data-m5-site="commons" defer></script></head>
-<body><header><nav aria-label="Documentation"><a href="{prefix}index.html">TitleChain Foundation · Commons</a><a href="{prefix}library/index.html">Documentation</a><a href="{REPO}">GitHub source</a></nav></header>
+<title>{escape(title)} · Commons documentation</title>{directory_assets}<link rel="stylesheet" href="{prefix}assets/library.css"><link rel="stylesheet" href="{prefix}assets/navigation/navigation.css?v={navigation_version}"><script src="{prefix}assets/navigation/navigation.js?v={navigation_version}" data-m5-site="commons" defer></script></head>
+<body{body_class}><header><nav aria-label="Documentation"><a href="{prefix}index.html">TitleChain Foundation · Commons</a><a href="{prefix}library/index.html">Documentation</a><a href="{REPO}">GitHub source</a></nav></header>
 <main><p class="eyebrow">Commons documentation · source edition</p>{provenance}<article>{body}</article></main>
 <script src="{prefix}assets/library-reader.js" defer></script></body></html>'''
 
@@ -189,20 +281,11 @@ def build(root, output, manifest_path=None):
         doc=documents.get(source)
         text=(root/source).read_text()
         title=doc['title'] if doc else next((line.lstrip('# ').strip() for line in text.splitlines() if line.startswith('# ')),source)
-        entries.append({'source_path':source,'title':title,'disposition':'on_domain_reader' if doc else 'github_source','route':doc['route'] if doc else None,'anchors':sorted(doc['anchors']) if doc else [],'source_url':source_link(source),'sha256':hashlib.sha256((root/source).read_bytes()).hexdigest()})
+        entries.append({'source_path':source,'title':title,'disposition':'on_domain_reader' if doc else 'github_source','route':doc['route'] if doc else None,'anchors':sorted(doc['anchors']) if doc else [],'source_url':source_link(source),'sha256':hashlib.sha256((root/source).read_bytes()).hexdigest(), **discovery_metadata(source, title, text)})
     catalog={'schema_version':1,'source_commit':commit,'rendered_count':len(documents),'entries':entries,'aliases':aliases,'source_reference_warnings':sorted(missing)}
     dest=output/'library';dest.mkdir(parents=True,exist_ok=True)
     (dest/'source-map.json').write_text(json.dumps(catalog,indent=2)+'\n')
-    groups=[]
-    for kind,label in [('on_domain_reader','Read on the Commons'),('github_source','Additional GitHub source documents')]:
-        links=[]
-        for item in entries:
-            if item['disposition']==kind:
-                href=posixpath.relpath(item['route'],'library') if item['route'] else item['source_url']
-                links.append('<li><a href="'+escape(href,quote=True)+'">'+escape(item['title'])+'</a><small>'+escape(item['source_path'])+'</small></li>')
-        groups.append('<section><h2>'+label+'</h2><ul class="catalog">'+''.join(links)+'</ul></section>')
-    intro=f'<h1>Commons documentation</h1><p>Read the standards, project guides and public research linked from the Commons. {len(documents)} selected documents open here; other source documents remain available on GitHub. Status labels and limitations remain part of each source.</p>'
-    (dest/'index.html').write_text(page('Commons documentation',intro+''.join(groups),'../'))
+    (dest/'index.html').write_text(page('Knowledge library', library_index(entries, len(documents)), '../', directory=True))
     for source,data in assets.items():
         dest=output/'library/media'/source;dest.parent.mkdir(parents=True,exist_ok=True);dest.write_bytes(data)
     return catalog

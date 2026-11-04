@@ -1,10 +1,10 @@
 name: Commons frontend connections
 on:
   pull_request:
-    paths: ['sec-public-input/observatory/update_observatory.py', 'shared-navigation/**', 'scripts/build_shared_navigation.py', 'scripts/check_shared_navigation.cjs', 'site/**', 'scripts/check_commons_search.cjs', 'scripts/build_commons_library.py', '.github/workflows/commons-frontend-connections.yml']
+    paths: ['sec-public-input/observatory/update_observatory.py', 'shared-navigation/**', 'scripts/build_shared_navigation.py', 'scripts/check_shared_navigation.cjs', 'scripts/check_library_discovery.cjs', 'site/**', 'scripts/check_commons_search.cjs', 'scripts/build_commons_library.py', '.github/workflows/commons-frontend-connections.yml']
   push:
     branches: [main]
-    paths: ['sec-public-input/observatory/update_observatory.py', 'shared-navigation/**', 'scripts/build_shared_navigation.py', 'scripts/check_shared_navigation.cjs', 'site/**', 'scripts/check_commons_search.cjs', 'scripts/build_commons_library.py', '.github/workflows/commons-frontend-connections.yml']
+    paths: ['sec-public-input/observatory/update_observatory.py', 'shared-navigation/**', 'scripts/build_shared_navigation.py', 'scripts/check_shared_navigation.cjs', 'scripts/check_library_discovery.cjs', 'site/**', 'scripts/check_commons_search.cjs', 'scripts/build_commons_library.py', '.github/workflows/commons-frontend-connections.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -37,6 +37,7 @@ jobs:
         run: |
           node scripts/check_commons_search.cjs _site browser-evidence
           node scripts/check_shared_navigation.cjs commons _site navigation-evidence
+          node scripts/check_library_discovery.cjs _site library-evidence
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -44,3 +45,4 @@ jobs:
           path: |
             browser-evidence/
             navigation-evidence/
+            library-evidence/
