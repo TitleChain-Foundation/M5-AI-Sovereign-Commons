@@ -48,6 +48,14 @@ class Connections(unittest.TestCase):
             self.assertIn('data-screen-label="'+name+'"',main)
         self.assertNotIn('f.likeAria',text) # obsolete duplicated family card, never wired
 
+    def test_labs_discovery_links_and_navigation_contract(self):
+        text=(ROOT/'site/labs.html').read_text()
+        for route in ('observatory/', 'calculator-families/', 'research/', 'research/mathematical-knots.html'):
+            self.assertIn('https://m5labs-8770fb.gitlab.io/'+route,text)
+        contract=json.loads((ROOT/'shared-navigation/navigation.json').read_text())
+        self.assertIn('observatory',[x['id'] for x in contract['menus']['labs']])
+        self.assertIn('docs/M5LABS_RESEARCH_DISCOVERY.md',json.loads((ROOT/'site/content-map.json').read_text())['selected_sources'])
+
     def test_labs_does_not_import_missing_icon_component(self):
         text=(ROOT/'site/labs.html').read_text()
         self.assertNotIn('m5-ic.jsx',text)

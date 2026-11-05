@@ -33,7 +33,7 @@ class LibraryTests(unittest.TestCase):
     def test_real_selected_sources_links_and_images_resolve(self):
         shutil.copytree(ROOT/'site',self.output)
         catalog=lib.build(ROOT,self.output)
-        self.assertEqual(catalog['rendered_count'],68)
+        self.assertEqual(catalog['rendered_count'],69)
         self.assertEqual(catalog['source_reference_warnings'],[])
         self.assertEqual(len(catalog['entries']),len([x for x in lib.tracked(ROOT) if x.endswith('.md')]))
         self.assertIn('Draft for Public Comment',self.text())

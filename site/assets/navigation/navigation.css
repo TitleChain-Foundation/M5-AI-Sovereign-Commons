@@ -45,3 +45,16 @@ header.m5-navigation-context-header{position:relative!important;top:auto!importa
 @media print{#m5-shared-header{display:none!important}.m5-navigation-frame{min-height:0!important}}
 
 html[data-m5-navigation-version]{scroll-padding-top:calc(var(--m5-navigation-height,110px) + 12px)}
+
+/* Stable shared masthead; page-local links are content, not an extra sticky row. */
+html{scrollbar-gutter:stable}
+#m5-shared-header .m5-nav-inner{grid-template-rows:52px 44px}
+#m5-shared-header .m5-nav-masthead{min-height:52px}
+#m5-shared-header .m5-nav-brand>span>span{font-size:9px;letter-spacing:.075em;white-space:nowrap}
+#m5-shared-header .m5-nav-brand strong{white-space:nowrap}
+#m5-shared-header .m5-nav-primary{flex-wrap:nowrap;min-height:44px}
+#m5-page-navigation{max-width:1320px;margin:0 auto;padding:10px clamp(20px,4vw,48px);display:flex;gap:14px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #d6dee8;font:12px/1.5 system-ui,sans-serif;background:#f8fdff;color:#4a5568}
+#m5-page-navigation a{color:#1f7f8c;text-underline-offset:3px}
+#m5-page-navigation[hidden]{display:none!important}
+@media(max-width:1000px){#m5-shared-header .m5-nav-inner{grid-template-rows:none}#m5-shared-header .m5-nav-primary{flex-wrap:wrap}}
+@media print{#m5-page-navigation{display:none!important}}
