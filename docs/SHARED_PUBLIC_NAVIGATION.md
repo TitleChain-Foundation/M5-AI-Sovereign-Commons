@@ -4,7 +4,7 @@ This changes public website navigation only. It does not change M5Canon, account
 
 ## Framework
 
-Both properties use the same Foundation mark, masthead, Commons / M5Labs switcher, Freedom Office and M5-OpenAPI Marketplace links, keyboard behavior and mobile Menu. A second row belongs to the current site; optional “On this page” links sit below the shared header so they cannot change its height. M5Labs keeps Research & Observations as its public research heading.
+Both properties use the same Foundation mark, masthead, Commons / M5Labs switcher, Freedom Office and M5-OpenAPI Marketplace links, keyboard behavior and mobile Menu. A second row belongs to the current site; optional “On this page” links sit below the shared header so they cannot change its height. The Labs menu uses the short label Papers; the homepage research introduction retains its own editorial heading.
 
 Commons retains Pathways, Toolkits, Research & Standards, Funding, Search and Documentation. M5Labs uses Calculators, Projects, Observatory, Simulations, The Inversion, Marketplace, Papers and About, in that order on every page. Papers and About have dedicated index pages; old homepage fragments remain available. The shared Marketplace entry opens the existing Commons marketplace; the Labs reference copy remains available. This is routing consolidation, not a new credential or vendor approval claim.
 
