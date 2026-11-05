@@ -10,7 +10,7 @@ for(const width of [1280,390]){
  await page.getByRole('link',{name:'Skip to content',exact:true}).press('Enter');assert.ok(page.url().endsWith('#/search/'),'Skip link must preserve SPA route');assert.equal(await page.evaluate(()=>document.activeElement.id),'main');
  const results=page.locator('[data-screen-label="Search"] ul a');assert.equal(await results.count(),79,'Preserve all existing indexed records');
  const links=await results.evaluateAll(es=>es.map(e=>({text:e.textContent,href:e.getAttribute('href')})));
- assert.equal(links.filter(x=>x.href.startsWith('https://m5labs-8770fb.gitlab.io/#calculators')).length,17);
+ assert.equal(links.filter(x=>x.href.startsWith('https://m5labs-8770fb.gitlab.io/calculator-families/')).length,17);
  assert.ok((await page.locator('body').innerText()).includes('79 results'));assert.equal(await page.locator('a[href*="titlechain-foundation.gitlab.io/m5labs"]').count(),0);
  await page.getByRole('combobox',{name:'Type',exact:true}).selectOption('Project');assert.equal(await results.count(),10);
  await page.getByRole('combobox',{name:'Pathway',exact:true}).selectOption('business-enterprise');assert.ok((await results.count())>0 && (await results.count())<10);
