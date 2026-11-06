@@ -178,7 +178,7 @@
       notice: 'Featured M5Labs development project. Not a confirmed production calculator. M5-CALC-001, 002 and 003 are proposed and have not completed review or certification.',
       overview: ['Mathematical and scientific research enters M5Labs. Qualified referees review applicable methods. Engineers build instruments, and validated reference implementations are published with version-specific evidence. Individual calculators then become M5 Toolkits.'],
       source: null, controlIndex: null, designRef: 'labs.html', designRefLabel: 'Calculator families design',
-      research: [doc('openai/math · identified external research source', 'https://github.com/openai/math', 'External', 'Repository')],
+      research: [doc('M5Scientific Research Observatory', 'https://m5labs-8770fb.gitlab.io/observatory/', 'Research preview', 'Directory'), doc('M5 calculator families', 'https://m5labs-8770fb.gitlab.io/calculator-families/', 'Research preview', 'Reference'), doc('Mathematical knots · human-led evidence pathway', 'https://m5labs-8770fb.gitlab.io/research/mathematical-knots.html', 'Learning preview', 'Reference'), doc('openai/math · identified external research source', 'https://github.com/openai/math', 'External', 'Repository')],
       documents: [], funding: { status: 'proposed', label: 'Proposed · no budget published', note: 'Igor Rivin’s participation as a referee is proposed and not confirmed.' },
       results: [], resultNote: 'No calculator has completed review.', tools: ['m5-calc-001', 'm5-calc-002', 'm5-calc-003'], participate: ['Propose a method for review', 'Build to the open calculator standard', 'Referee a family (proposed process)'] },
 

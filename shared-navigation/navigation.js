@@ -56,14 +56,14 @@
     const brand = document.createElement('a'); brand.className = 'm5-nav-brand'; brand.href = root.href;
     const logo = document.createElement('img'); logo.src = new URL('mark.png?v='+assetVersion, assetRoot).href; logo.alt = ''; logo.width = 34; logo.height = 34;
     const words = document.createElement('span'), foundation = document.createElement('span'), title = document.createElement('strong');
-    foundation.textContent = CONTRACT.foundation; title.textContent = config.label; words.append(foundation,title); brand.append(logo,words);
+    foundation.textContent = CONTRACT.foundation; title.textContent = config.switchLabel; brand.setAttribute('aria-label',config.label+' home'); words.append(foundation,title); brand.append(logo,words);
     const button = document.createElement('button'); button.type = 'button'; button.textContent = 'Menu'; button.setAttribute('aria-expanded','false'); button.setAttribute('aria-controls','m5-shared-links'); button.addEventListener('click',()=>setOpen(!open));
     row.append(brand,button);
     const links = document.createElement('div'); links.id = 'm5-shared-links';
     const utilities = document.createElement('div'); utilities.className = 'm5-nav-utilities';
     utilities.append(navigation('TitleChain sites',Object.entries(CONTRACT.sites).map(([key,value])=>({id:'site-'+key,label:value.switchLabel,site:key,path:''})),'m5-nav-sites'),navigation('Shared tools',CONTRACT.sharedTools,'m5-nav-tools'));
     links.append(utilities,navigation('Primary',CONTRACT.menus[site],'m5-nav-primary'));
-    const context = navigation('Page sections',[],'m5-nav-context'); context.hidden = true; links.append(context);
+
     inner.append(row,links); header.append(inner);
     const skip = document.createElement('a'); skip.className = 'm5-nav-skip'; skip.textContent = 'Skip to content'; skip.href = '#main'; skip.addEventListener('click',e=>{e.preventDefault();const target=contentTarget();if(target){target.setAttribute('tabindex','-1');target.focus();target.scrollIntoView({block:'start'});}}); header.prepend(skip);
     header.addEventListener('click',e=>{if(e.target.closest('a'))setOpen(false);});
@@ -89,7 +89,7 @@
       if (old.querySelector('h1')) { old.setAttribute('role','region'); old.setAttribute('aria-label','Page introduction'); continue; } // A page title/hero is content, not a toolbar.
       const researchMetadata = localPath().startsWith('whitepapers/') && !old.querySelector('nav');
       const documentMetadata = site === 'commons' && localPath().startsWith('library/');
-      if (researchMetadata || documentMetadata) { old.classList.add('m5-navigation-context-header'); old.setAttribute('role','region'); old.setAttribute('aria-label','Document context'); }
+      if (researchMetadata || documentMetadata) { old.classList.add('m5-navigation-context-header'); old.setAttribute('role','region'); old.setAttribute('aria-label','Document context'); if(researchMetadata)for(const a of old.querySelectorAll('a'))a.classList.add('m5-navigation-replaced'); }
       else old.classList.add('m5-navigation-replaced');
       let frame = old.parentElement;
       while (frame && frame !== document.body) { if (frame.style.minHeight === '100vh') { frame.classList.add('m5-navigation-frame'); break; } frame = frame.parentElement; }
@@ -109,7 +109,9 @@
     const key = JSON.stringify(sections);
     if (key !== contextKey) {
       contextKey = key;
-      const context = header.querySelector('.m5-nav-context'); context.replaceChildren();
+      let context = document.getElementById('m5-page-navigation');
+      if(!context){context=navigation('Page sections',[],'m5-nav-context');context.id='m5-page-navigation';header.after(context);}
+      context.replaceChildren();
       if (sections.length) {const label=document.createElement('span');label.textContent='On this page';context.append(label);for(const item of sections)context.append(anchor(item));}
       context.hidden = !sections.length;
     }
