@@ -56,7 +56,7 @@
     const brand = document.createElement('a'); brand.className = 'm5-nav-brand'; brand.href = root.href;
     const logo = document.createElement('img'); logo.src = new URL('mark.png?v='+assetVersion, assetRoot).href; logo.alt = ''; logo.width = 34; logo.height = 34;
     const words = document.createElement('span'), foundation = document.createElement('span'), title = document.createElement('strong');
-    foundation.textContent = CONTRACT.foundation; title.textContent = config.switchLabel; brand.setAttribute('aria-label',config.label+' home'); words.append(foundation,title); brand.append(logo,words);
+    foundation.textContent = CONTRACT.foundation; title.textContent = config.switchLabel; brand.setAttribute('aria-label',CONTRACT.foundation+' '+config.switchLabel+' home'); words.append(foundation,title); brand.append(logo,words);
     const button = document.createElement('button'); button.type = 'button'; button.textContent = 'Menu'; button.setAttribute('aria-expanded','false'); button.setAttribute('aria-controls','m5-shared-links'); button.addEventListener('click',()=>setOpen(!open));
     row.append(brand,button);
     const links = document.createElement('div'); links.id = 'm5-shared-links';
