@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "version": "1.2.0",
-  "contract_sha256": "5d4454c7a9145137c6fbf282e5361a7c82d2c6a8353a2b9e3de13d03df2d3df2",
+  "version": "1.2.1",
+  "contract_sha256": "5c4b287bfbda6c1c57fb07cb46d993145907e08708324001bf1195d26ffb72d7",
   "assets": {
-    "navigation.js": "3befd69fe3cff55c3264f898b8ac2cb31ec019e81a8925ce33e6c3ee1620dccc",
+    "navigation.js": "b40f6adcbf6db4f5121b5e224914ba5fa42f4f71e1e89c9eae12d0424e81322d",
     "navigation.css": "e5b84fc9e7feb1022b9a8227b72eb7b50a7a5ec0a24db4e3818979570c5d0c9d",
     "mark.png": "b5bae8c603ee83b0ff7cc8259a44fdc9f0ec074f50926967ccd7b80984cede61"
   },
-  "bundle_sha256": "d5e536c12df370f93a135c74af4f84805cae886abe4d6b2d8d82fd78d8cc5685"
+  "bundle_sha256": "8884049261589bb3b8171d090a829e4b05a1415caecfca8e041951eaffbe5d7a"
 }
