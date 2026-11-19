@@ -394,3 +394,54 @@ in [LICENSE.md](LICENSE.md) and [LEGAL-NOTICES.md](LEGAL-NOTICES.md).
 Passing the included tests demonstrates only the cases those tests exercise.
 It does not establish production security, legal compliance, provider
 enrollment, hardware certification, or full standards conformance.
+
+
+# Licensing, Access and Participation
+
+The M5 AI Sovereign Commons publishes authorized public standards documentation, reference code, schemas, examples and research materials originating within the M5 ecosystem.
+
+The repository’s existing Apache License 2.0 and CC BY 4.0 path mappings and exclusions govern the materials within their stated scope. MIT and other licenses apply only where expressly designated. Third-party media and separately licensed private integrations retain their recorded boundaries. Public materials may be used independently in other repositories under their applicable licenses.
+
+## Free Access and Registered Operation
+
+M5 IAM and Freedom Office are free to use. Individuals and organizations may explore the tools, create work and use the features included in the free offering without registering an M5 operating sovereign account.
+
+An operating sovereign account requires registration with TitleChain Foundation and completion of the verification and authorization applicable to the individual, cooperative, business, institution, agency or government. Creating a free IAM account, downloading software or using Freedom Office does not by itself establish registered operating authority.
+
+Registration, verification, activation, hosted resources and other separately requested services may carry disclosed fees. Charges for services do not replace or restrict permissions already granted under an applicable software or content license.
+
+## Applicable Licenses
+
+Each file, component or release is governed by its express license designation and corresponding license text. The repository license matrix records the scope of those permissions and exclusions.
+
+| Material | Applicable treatment |
+|---|---|
+| Expressly designated public software | MIT, Apache License 2.0 or another identified software license |
+| Expressly designated research text, documentation and education | Creative Commons Attribution 4.0 International |
+| Expressly designated constitutional materials | Cyrus Purpose-Bound Constitutional Commons License |
+| Proprietary implementation | M5 Sovereign Source License or applicable written agreement |
+| Third-party software, models, datasets and media | Their respective licenses and notices |
+| Names, logos and authorization marks | Separate trademark and mark-use terms |
+| Undesignated or private material | Reserved, subject to applicable law and previously granted permissions |
+
+These categories do not newly designate any material under a license. Existing grants and upstream notices remain in effect. Public visibility alone creates no additional license. Free access does not itself mean source code is publicly licensed.
+
+## Official Scientific Publication
+
+Official publication through the M5Scientific review and registration process requires an appropriate account registered with TitleChain Foundation, current M5-CV credentials appropriate to the contributor’s role, authority to submit and license the work, documented provenance and completion of applicable qualified human referee review.
+
+These requirements apply equally to M5-authored and external research. They do not restrict independent use or publication permitted by an applicable license. Registration, payment or sponsorship does not establish scientific validity or guarantee acceptance. Agents assist research; qualified human referees retain approval authority.
+
+Contributors retain ownership except where an effective agreement provides otherwise. Contributions follow the destination’s disclosed terms. Participation does not automatically transfer independent work or discoveries.
+
+## Patents, Marks and Approval
+
+Patent permissions are those granted by the applicable software license or an identified effective patent instrument. Apache License 2.0 contributions retain the patent permissions provided by that license. Publication alone does not establish a broader patent grant.
+
+Software and content permissions do not grant general rights to names, logos, registry authority, activation marks or certification marks. Membership identifies account standing; activation identifies an authorized operational state; scientific approval applies to the identified work and version reviewed. Each authorized claim must identify its scope and current status.
+
+An M5 authorization claim must be supported by an issuer-controlled authorization record identifying the subject, authorized scope, record identifier, applicable validity period and current status. A copied image, account color or independent implementation is not evidence of authorization. Expired, suspended, revoked or out-of-scope authorizations must not be represented as current certification. Suspected misuse is handled through the published mark-policy and reporting procedures.
+
+Ending a service or mark authorization does not withdraw independently granted software or content rights.
+
+See the repository’s governing license texts, license matrix, intellectual-property policy and applicable contribution and service terms.
