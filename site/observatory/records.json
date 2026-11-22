@@ -1,0 +1,54 @@
+{
+  "schema": "titlechain-legislative-observatory/1",
+  "as_of": "2026-11-21",
+  "last_verified": "2026-11-21",
+  "records": [
+    {
+      "id": "scaa",
+      "type": "foundation_model_draft",
+      "status": "NOT_INTRODUCED",
+      "version": "Draft v2, revised November 18, 2026",
+      "repository_commit": "c130c301825f2e4f952ee2b2881ff94ab4dd1a70",
+      "git_blob_sha": "b3880be1d1ade136e5eb451d483ec31848075945",
+      "source_url": "https://github.com/TitleChain-Foundation/icsn-standards/blob/c130c301825f2e4f952ee2b2881ff94ab4dd1a70/legislation/sovereign-compute-access-act/OFFICIAL-TEXT.md",
+      "objective": "Seek congressional consideration in 2027; no sponsor or introduction established"
+    },
+    {
+      "id": "hr2347-house",
+      "type": "congressional_bill_text",
+      "bill": "H.R. 2347",
+      "version": "BILLS-119hr2347eh",
+      "source_url": "https://www.govinfo.gov/content/pkg/BILLS-119hr2347eh/html/BILLS-119hr2347eh.htm",
+      "status": "HOUSE_ENGROSSED_TEXT"
+    },
+    {
+      "id": "hr2347-senate",
+      "type": "congressional_bill_text",
+      "bill": "H.R. 2347",
+      "version": "BILLS-119hr2347eas",
+      "status": "PASSED_SENATE_AS_AMENDED",
+      "action_date": "2026-11-19",
+      "source_url": "https://www.govinfo.gov/content/pkg/BILLS-119hr2347eas/pdf/BILLS-119hr2347eas.pdf",
+      "source_sha256": "f7419bfc8b526e7f65f8c21a3f8d9a2b0193813cda1b1a635ae779b55afc519c",
+      "bytes": 1081198,
+      "pages": 488,
+      "pinned_section": "Division C, Section 3001",
+      "section_pages": [
+        483,
+        484,
+        485,
+        486
+      ],
+      "section_verification": "VERIFIED_IN_OFFICIAL_EAS_PDF",
+      "vote_source": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00270.htm",
+      "vote": {
+        "yea": 62,
+        "nay": 33,
+        "not_voting": 5
+      },
+      "enactment": "NOT_ESTABLISHED_BY_REVIEW",
+      "latest_house_disposition": "VERIFICATION_PENDING",
+      "source_version_note": "Senate engrossed amendment; not an enacted public law"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "status": "FEATURE_PR_PREPARATION_APPROVED",
+  "base_commit": "025aad7066c3a0ac8d7c92156589c0c1b147676f",
+  "exact_pdf_verified": true,
+  "sec_observatory_modified": false,
+  "calculator_or_member_system_modified": false,
+  "canonical_scaa_modified": false,
+  "merge_and_deploy_authorized": false,
+  "outstanding": [
+    "Latest House disposition / enactment verification",
+    "Foundation homepage cross-link in its own repository",
+    "Human legal/editorial approval"
+  ],
+  "commit_issue_feature_push_authorized": true
+}
