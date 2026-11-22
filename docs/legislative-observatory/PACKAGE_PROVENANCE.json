@@ -1,0 +1,35 @@
+{
+  "source_package": "TitleChain_Legislative_Observatory_GitHub_Handoff_2026-11-22.zip",
+  "sha256": "b101e01e06ecbff2886852ae183caf592a7175c28adefe39b617a4998422af82",
+  "files": [
+    {
+      "file": "BASE44_IMPLEMENTATION.md",
+      "sha256": "ffc619db04eba1993dac915bb8e826addd46afd9854a0aba5af313504c96c75a"
+    },
+    {
+      "file": "EVIDENCE_REGISTER.md",
+      "sha256": "b9485a074a37e0a4b9f917cdbda64fe2093ef62a3fd58dacfb0a82b89679c1e6"
+    },
+    {
+      "file": "GITHUB_HANDOFF_AND_PINNING.md",
+      "sha256": "fc086d04b9477cf6a594e3bbf77ba13c38cd63603a3a67f2f0f26ec952a3bf6e"
+    },
+    {
+      "file": "HR2347_BAAJA_PINNED_RECORD.md",
+      "sha256": "7276f62ecc286efcfdcc5edbd5ce3dcf5705a64d87304d33a8595f012cb361b8"
+    },
+    {
+      "file": "OBSERVATORY_PAGE_COPY.md",
+      "sha256": "b29100eefe324b2a8bc6e5acdeccd6c1c377d9ce4c1845a21a03d6db9f1efd2a"
+    },
+    {
+      "file": "OUTREACH_DRAFT.md",
+      "sha256": "1f60ce26aec7a9523f8d5245957c788a15f0ec1456c4f046a954ad72a9dcf334"
+    },
+    {
+      "file": "README_START_HERE.md",
+      "sha256": "df7eba7203ab52ba3a89a0474dacc9fdeaf73db5df1ce44638903db758412918"
+    }
+  ],
+  "source_status": "Supplied proposed handoff; official sources take precedence"
+}
