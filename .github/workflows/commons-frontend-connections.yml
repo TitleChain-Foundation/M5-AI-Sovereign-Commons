@@ -10,7 +10,7 @@ permissions:
   contents: read
 jobs:
   search-and-frontends:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04  # Match the pinned Playwright 1.56.1 browser/dependency support.
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
