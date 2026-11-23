@@ -44,7 +44,7 @@ class Connections(unittest.TestCase):
             self.assertIn('./'+name,search)
     def test_all_route_views_remain_inside_main(self):
         text=template();main=text.split('<main id="main"')[1].split('</main>')[0]
-        for name in ('Search','Toolkit Library','Toolkit Detail'):
+        for name in ('Search','Toolkit Library','Toolkit Detail','Programs index'):
             self.assertIn('data-screen-label="'+name+'"',main)
         self.assertNotIn('f.likeAria',text) # obsolete duplicated family card, never wired
 

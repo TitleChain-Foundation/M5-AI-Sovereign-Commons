@@ -1,3 +1,4 @@
+@import url("./editorial-typography.css?v=870e4ad48406");
 /* Isolated website chrome; no application or publication-body rules. */
 #m5-shared-header{display:block!important;position:sticky!important;top:0!important;z-index:40;width:100%;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-top:3px solid #3c7bff!important;background:#f8fdff!important;color:#0d1321!important;font:14px/1.4 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;box-shadow:0 1px 0 #d6dee8;box-sizing:border-box}
 #m5-shared-header *{box-sizing:border-box}

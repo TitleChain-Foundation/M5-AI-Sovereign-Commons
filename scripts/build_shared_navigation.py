@@ -19,7 +19,7 @@ def payloads(root=ROOT):
     canonical=json.dumps(contract,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
     template=(source/'navigation.js').read_text()
     if template.count('__M5_NAVIGATION_CONTRACT__')!=1:raise ValueError('Missing contract placeholder')
-    result={'navigation.js':template.replace('__M5_NAVIGATION_CONTRACT__',canonical.decode()).encode(),'navigation.css':(source/'navigation.css').read_bytes(),'mark.png':(source/'mark.png').read_bytes()}
+    result={'navigation.js':template.replace('__M5_NAVIGATION_CONTRACT__',canonical.decode()).encode(),'editorial-typography.css':(source/'editorial-typography.css').read_bytes(),'navigation.css':('@import url("./editorial-typography.css?v='+hashlib.sha256((source/'editorial-typography.css').read_bytes()).hexdigest()[:12]+'");\n').encode()+(source/'navigation.css').read_bytes(),'mark.png':(source/'mark.png').read_bytes()}
     manifest={'schema':1,'version':contract['version'],'contract_sha256':hashlib.sha256(canonical).hexdigest(),'assets':{k:hashlib.sha256(v).hexdigest() for k,v in result.items()}}
     manifest['bundle_sha256']=hashlib.sha256(json.dumps(manifest['assets'],sort_keys=True).encode()).hexdigest()
     result['manifest.json']=(json.dumps(manifest,indent=2)+'\n').encode()
