@@ -39,18 +39,3 @@
   .document-reader pre { font-size: 8.5pt; }
   .document-reader tr { break-inside: avoid; }
 }
-
-.classroom-tool {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: fit-content;
-  max-width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #6b929f;
-  border-radius: 10px;
-  text-decoration: none;
-}
-.classroom-tool img { flex: none; object-fit: contain; }
-.classroom-tool strong { text-decoration: underline; text-underline-offset: 3px; }
-.classroom-tool small { display: block; color: #d7e9f0; }
