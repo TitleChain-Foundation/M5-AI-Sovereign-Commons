@@ -36,6 +36,12 @@ for(const width of [1280,390]){
    for(const href of tabs){if(href!==link.href)await checkView(href);projectTabs++;}
   }
  }
+ await page.goto(base+'/index.html#/programs/',{waitUntil:'networkidle'});
+ await page.getByRole('heading',{name:'Explore the Commons',exact:true}).waitFor();
+ const programs=page.locator('[data-screen-label="Programs index"] a');
+ const programRoutes=await programs.evaluateAll(es=>es.map(e=>e.getAttribute('href')));
+ assert.equal(programRoutes.length,9,'Programs index should link all nine pathways');
+ for(const href of programRoutes)await checkView(href);
  for(const slug of ['ai-science','health-wellness','business-enterprise','creator-economy','agriculture-land','energy-resources','finance-markets','government-institutions','spiritual-education-growth'])await checkView('#/programs/'+slug+'/');
  for(const href of ['#/tools/','#/standards/','#/funding/','#/observatory/','#/labs/','#/labs/calculators/'])await checkView(href);
  assert.equal(await page.locator('main article').count(),17,'Preserve one card for each calculator family, without obsolete duplicates');
