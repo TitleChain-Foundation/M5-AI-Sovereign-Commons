@@ -4,8 +4,9 @@
   "contract_sha256": "5c4b287bfbda6c1c57fb07cb46d993145907e08708324001bf1195d26ffb72d7",
   "assets": {
     "navigation.js": "b40f6adcbf6db4f5121b5e224914ba5fa42f4f71e1e89c9eae12d0424e81322d",
-    "navigation.css": "e5b84fc9e7feb1022b9a8227b72eb7b50a7a5ec0a24db4e3818979570c5d0c9d",
+    "editorial-typography.css": "870e4ad484064f702b8da9d8e4d1ecdae656b4c9ac2dd30dbfb1f5f0acbd3648",
+    "navigation.css": "afa08fa8c6f22fcf3c36d0879e4c5577d2e5f6056322a752d20561d4d1245ee3",
     "mark.png": "b5bae8c603ee83b0ff7cc8259a44fdc9f0ec074f50926967ccd7b80984cede61"
   },
-  "bundle_sha256": "8884049261589bb3b8171d090a829e4b05a1415caecfca8e041951eaffbe5d7a"
+  "bundle_sha256": "72806921e41c600cb8323bfcd4316e876733cfbe6c82f410e9eba42902c8989d"
 }
