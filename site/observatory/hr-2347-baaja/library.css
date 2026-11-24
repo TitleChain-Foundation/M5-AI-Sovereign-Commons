@@ -1,0 +1,56 @@
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+  gap: 12px;
+}
+.library-grid article { margin: 0; }
+#take-action, #share { margin-block: 36px; }
+.copy-field { display: grid; gap: .5rem; max-width: 48rem; margin-block: 1rem; }
+.copy-field label { font-weight: 700; }
+.copy-field input, .copy-field textarea {
+  width: 100%;
+  padding: .6rem;
+  border: 1px solid #68788b;
+  border-radius: .35rem;
+  color: inherit;
+  font: inherit;
+}
+.copy-field textarea { resize: vertical; }
+.copy-field button {
+  justify-self: start;
+  background: #0d2035;
+  color: white;
+  border: 0;
+  border-radius: .35rem;
+  font: inherit;
+  padding: .55rem 1rem;
+  cursor: pointer;
+}
+.copy-field :focus-visible { outline: 3px solid #8340bd; outline-offset: 3px; }
+#copy-feedback { position: fixed; bottom: 1rem; right: 1rem; margin: 0; }
+#copy-feedback:not(:empty) { background: #0d2035; color: white; padding: .6rem 1rem; border-radius: .35rem; }
+.document-reader { max-width: 62rem; overflow-wrap: anywhere; }
+.document-reader table { border-collapse: collapse; width: 100%; }
+.document-reader :is(td,th) { text-align: left; vertical-align: top; padding: .5rem; border: 1px solid #d6dee8; }
+.document-reader pre { white-space: pre-wrap; font-size: .95em; }
+@media print {
+  .reader-back, body > :not(main) { display: none; }
+  .document-reader { padding: 0; color: black; }
+  .document-reader pre { font-size: 8.5pt; }
+  .document-reader tr { break-inside: avoid; }
+}
+
+.classroom-tool {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: fit-content;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #6b929f;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.classroom-tool img { flex: none; object-fit: contain; }
+.classroom-tool strong { text-decoration: underline; text-underline-offset: 3px; }
+.classroom-tool small { display: block; color: #d7e9f0; }

@@ -1,0 +1,39 @@
+# H.R. 2347 — Proposed House amendment to the Senate amendment
+
+**DRAFT — FOR LEGISLATIVE COUNSEL REVIEW. NOT INTRODUCED OR ADOPTED.**
+
+## Proposed motion
+
+That the House concur in the amendment of the Senate to H.R. 2347 with an amendment.
+
+## Proposed amendment
+
+In lieu of the matter proposed to be inserted by the amendment of the Senate, insert the following:
+
+```text
+SECTION 1. SHORT TITLE.
+
+This Act may be cited as the “Survivor Justice Tax Prevention Act”.
+
+SEC. 2. EXCLUSION FROM GROSS INCOME OF ANY DAMAGES, OTHER THAN PUNITIVE DAMAGES, RECEIVED ON ACCOUNT OF SEXUAL ACTS OR SEXUAL CONTACT.
+
+(a) In General.—Section 104(a)(2) of the Internal Revenue Code of 1986 is amended by striking “on account of personal physical injuries or physical sickness;” and inserting “on account of—
+    “(A) personal physical injuries or physical sickness, or
+    “(B) any sexual act (as defined in paragraph (2) of section 2246 of title 18, United States Code, as in effect on the date of the enactment of this subparagraph) or sexual contact (as defined in paragraph (3) of such section, as so in effect), whether or not there are medical records or observable injuries of such act or contact;”.
+
+(b) Burden of Proof With Respect to Whether Damages Are on Account of Sexual Act or Sexual Contact.—Section 104 of such Code is amended by redesignating subsection (d) as subsection (e) and by inserting after subsection (c) the following new subsection:
+    “(d) Burden of Proof With Respect to Whether Damages Are on Account of Sexual Act or Sexual Contact.—For purposes of subsection (a)(2), if a decision or agreement states that any damages received therefrom are on account of a sexual act or sexual contact referred to in subsection (a)(2)(B)—
+    “(1) such statement shall be treated as credible evidence that such damages are so on account for purposes of section 7491(a), and
+    “(2) the taxpayer shall be treated as having met the requirements of section 7491(a)(2) with respect to the issue of whether such damages are so on account.”.
+
+(c) Effective Date.—
+    (1) In General.—The amendments made by this section shall apply to amounts received pursuant to decisions made, and agreements entered into, after the date of the enactment of this Act.
+    (2) Special Rule for Decisions.—For purposes of paragraph (1), a decision shall be treated as made after the date of the enactment of this Act if the first payment pursuant to such decision is received after such date.
+    (3) Special Rule for Agreements.—For purposes of paragraph (1), an agreement shall not be treated as entered into after the date of the enactment of this Act if such agreement replaces, supersedes, or revises an agreement entered into on or before such date.
+
+(d) No Inference With Respect to Effect of Medical Records or Observable Injuries on Determinations With Respect to Personal Physical Injuries or Physical Sickness.—No inference may be drawn from the amendment made by subsection (a) (or from section 104(a)(2)(B) of the Internal Revenue Code of 1986, as amended by subsection (a)) with respect to whether the term “personal physical injuries or physical sickness” as used in section 104(a)(2) of such Code includes injuries or sickness with respect to which there are no medical records or observable injuries.
+
+(e) Promotion of Public Awareness of Exclusion.—The Secretary of the Treasury (or the Secretary’s delegate), in consultation with the Department of Justice Office on Violence Against Women and other relevant Federal agencies, shall conduct a program to promote public awareness of the exclusion from gross income provided by section 104(a)(2)(B) of the Internal Revenue Code of 1986, as amended by this section.
+```
+
+**Drafting note:** The operative text is transcribed from the House-engrossed version with typography normalized. The motion and substitute formulation require verification by House Legislative Counsel, the Clerk, and the Parliamentarian. A separate House floor vehicle, rule, or recognition procedure may be required. This draft does not assume Senate concurrence.
