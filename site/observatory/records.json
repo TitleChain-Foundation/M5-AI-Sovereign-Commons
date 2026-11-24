@@ -47,7 +47,7 @@
     "not_voting": 5
    },
    "enactment": "NOT_ESTABLISHED_BY_REVIEW",
-   "latest_house_disposition": "VERIFICATION_PENDING",
+   "latest_house_disposition": "NO_LATER_ACTION_RECORDED_IN_2026_11_23_GOVINFO_FEED",
    "source_version_note": "Senate engrossed amendment; not an enacted public law"
   },
   {
@@ -104,5 +104,133 @@
    "source_url": "https://commons.titlechainfoundation.org/observatory/hr-2347-baaja/house-discussion-draft/",
    "objective": "Offered for first-term House members to consider introducing; no sponsor established"
   }
- ]
+ ],
+ "hr2347_review_receipts": {
+  "official_records": [
+   {
+    "id": "hr2347-house",
+    "title": "House-engrossed H.R. 2347",
+    "issuing_authority": "U.S. House of Representatives",
+    "version": "BILLS-119hr2347eh",
+    "status": "House engrossed",
+    "action_date": "2026-04-27",
+    "source_url": "https://www.govinfo.gov/content/pkg/BILLS-119hr2347eh/html/BILLS-119hr2347eh.htm",
+    "local_path": "../sources/BILLS-119hr2347eh.pdf",
+    "bytes": 122713,
+    "sha256": "ff8bb1beae369b45736ac42d02716332f8507276ae34c68110e1df1d2896595c",
+    "last_verified": "2026-11-23",
+    "retrieved_utc": "2026-11-23T23:57:32.401002+00:00",
+    "verification_method": "Downloaded from official GovInfo PDF and checked the bill identifier and version"
+   },
+   {
+    "id": "hr2347-sa6883",
+    "title": "Senate substitute as proposed",
+    "issuing_authority": "U.S. Senate",
+    "version": "SA 6883",
+    "status": "Proposed substitute",
+    "action_date": "2026-11-10",
+    "source_url": "https://www.govinfo.gov/content/pkg/CREC-2026-11-10/html/CREC-2026-11-10-pt1-PgS5471-2.htm",
+    "local_path": "../sources/CREC-2026-11-10-SA6883-extract.pdf",
+    "bytes": 579823,
+    "sha256": "02b033bc7a374cbca909d8fb3e40be93ed01808a967175d3045fed0013b40e11",
+    "last_verified": "2026-11-23",
+    "verification_method": "Local repository bytes hashed and compared with pinned PR #58 baseline",
+    "reviewer": "Review implementation"
+   },
+   {
+    "id": "hr2347-senate",
+    "title": "Senate-engrossed amendment",
+    "issuing_authority": "U.S. Senate",
+    "version": "BILLS-119hr2347eas",
+    "status": "Senate passed as amended",
+    "action_date": "2026-11-19",
+    "source_url": "https://www.govinfo.gov/content/pkg/BILLS-119hr2347eas/pdf/BILLS-119hr2347eas.pdf",
+    "local_path": "../sources/BILLS-119hr2347eas.pdf",
+    "bytes": 1081198,
+    "sha256": "f7419bfc8b526e7f65f8c21a3f8d9a2b0193813cda1b1a635ae779b55afc519c",
+    "last_verified": "2026-11-23",
+    "verification_method": "Local repository bytes hashed and compared with pinned PR #58 baseline",
+    "reviewer": "Review implementation"
+   },
+   {
+    "id": "hr2347-vote",
+    "title": "Senate roll call 270",
+    "issuing_authority": "U.S. Senate",
+    "version": "119-2-270",
+    "status": "62–33, five not voting",
+    "action_date": "2026-11-19",
+    "source_url": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00270.htm"
+   },
+   {
+    "id": "hr2347-actions",
+    "title": "Legislative action history",
+    "issuing_authority": "Library of Congress",
+    "version": "119th Congress, H.R. 2347",
+    "status": "Senate passage is the latest action in the November 23, 2026 GovInfo status feed",
+    "action_date": null,
+    "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2347/all-actions",
+    "verification_url": "https://www.govinfo.gov/bulkdata/BILLSTATUS/119/hr/BILLSTATUS-119hr2347.xml",
+    "source_update_utc": "2026-11-23T14:30:33Z",
+    "retrieved_utc": "2026-11-24T05:13:13+00:00",
+    "last_verified": "2026-11-23",
+    "source_sha256": "dced080191428d64acbf52040b2d51b093aa846a7a22c0d694c6206622b44afb",
+    "bytes": 544193
+   }
+  ],
+  "recovered_foundation_records": [
+   {
+    "id": "survivor-amendment",
+    "title": "Proposed survivor-only House amendment",
+    "archive": "HR2347_Observatory_Package.zip",
+    "archive_member": "HR2347_Observatory_Package/legislation/PROPOSED_HOUSE_FURTHER_AMENDMENT.md",
+    "path": "docs/legislative-observatory/HR2347-119/legislation/PROPOSED_HOUSE_FURTHER_AMENDMENT.md",
+    "bytes": 4141,
+    "sha256": "d28705c75bee2ec91b60454f9783106f8f3e943a88c3eb8f810150286a711432",
+    "recovered_on": "2026-11-23",
+    "reviewer": "Pending",
+    "reader": "documents/survivor-amendment.html",
+    "status": "PROPOSED — NOT INTRODUCED"
+   },
+   {
+    "id": "paine-comparison",
+    "title": "House and Senate proposal comparison",
+    "archive": "HR2347_Observatory_Package.zip",
+    "archive_member": "HR2347_Observatory_Package/comparison/HOUSE_SENATE_PAINE.md",
+    "path": "docs/legislative-observatory/HR2347-119/comparison/HOUSE_SENATE_PAINE.md",
+    "bytes": 3242,
+    "sha256": "9981077a3baedc15e315046b050cd83bb57885a2acd01ec54715d99df19b62b9",
+    "recovered_on": "2026-11-23",
+    "reviewer": "Pending",
+    "reader": "documents/paine-comparison.html",
+    "status": "Foundation research or guidance"
+   },
+   {
+    "id": "recovered-receipts",
+    "title": "Earlier source receipts",
+    "archive": "HR2347_Observatory_Package.zip",
+    "archive_member": "HR2347_Observatory_Package/receipts/SOURCES.md",
+    "path": "docs/legislative-observatory/HR2347-119/receipts/SOURCES.md",
+    "bytes": 1280,
+    "sha256": "10e65d603b787153c8f3d4dd7b14e74a6150c5a3331b033b9dc6eb55d73860fa",
+    "recovered_on": "2026-11-23",
+    "reviewer": "Pending",
+    "reader": "documents/recovered-receipts.html",
+    "status": "Foundation research or guidance"
+   },
+   {
+    "id": "pathway",
+    "title": "Legislative pathway",
+    "archive": "HR2347_Observatory_Package.zip",
+    "archive_member": "HR2347_Observatory_Package/STEP_BY_STEP.md",
+    "path": "docs/legislative-observatory/HR2347-119/STEP_BY_STEP.md",
+    "bytes": 3186,
+    "sha256": "15ae673904c5768793ba6883f4356aa716f3282390223ebbf8caf055131054ad",
+    "recovered_on": "2026-11-23",
+    "reviewer": "Pending",
+    "reader": "documents/pathway.html",
+    "status": "Foundation research or guidance"
+   }
+  ],
+  "review_base": "40cedf9e13eb11e3a1ada8b1657d58a4159f9f99"
+ }
 }
